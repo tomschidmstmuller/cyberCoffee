@@ -1,420 +1,632 @@
 <!doctype html>
-<html lang="vi" class="h-full">
- <head>
+<html lang="en" class="h-full">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VietCoffee - The Coffee House</title>
+  <title>CYBERCOFFEE // NIGHT CAFÉ TERMINAL</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cyber.css">
   <script src="/_sdk/element_sdk.js"></script>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="h-full font-vietnam overflow-auto" style="background-color: #faf6f1;">
-  <div class="w-full h-full">
-    
+  <style>
+    .view-transition-main { view-transition-name: main; }
+  </style>
+</head>
+<body class="h-full font-body overflow-x-hidden">
+  <div class="scanlines"></div>
+  <div class="scanline-anim"></div>
+  <div class="noise-overlay"></div>
+  <div class="crt-overlay"></div>
+
+  <div id="particle-container" class="particle-container"></div>
+
+  <div class="w-full h-full relative z-10">
+
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(250, 246, 241, 0.95); backdrop-filter: blur(10px);">
+    <nav class="nav-cyber">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 md:h-20"><!-- Logo -->
-        <div class="flex items-center gap-3">
-        <img src="media-assets/logo.svg" alt="VietCoffee Logo" class="w-10 h-10 md:w-12 md:h-12 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hidden" style="background: linear-gradient(135deg, #4a2c1a, #8b5a2b);">
-          <svg class="w-6 h-6 md:w-7 md:h-7 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z" />
-          </svg>
-        </div><span id="nav-brand" class="font-playfair text-xl md:text-2xl font-bold" style="color: #2d1810;">VietCoffee</span>
-        </div><!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center gap-8"><a href="#home" class="nav-link text-sm font-medium" style="color: #4a2c1a;">HOME PAGE</a> <a href="./featureproducts.html" class="nav-link text-sm font-medium" style="color: #4a2c1a;">FEATURED PRODUCTS</a> <a href="#story" class="nav-link text-sm font-medium" style="color: #4a2c1a;">OUR STORY</a> <a href="#stores" class="nav-link text-sm font-medium" style="color: #4a2c1a;">FIND US</a> <a href="/blog.html" class="nav-link text-sm font-medium" style="color: #4a2c1a;">BLOG</a>
-        </div><!-- CTA Button -->
-        <div class="flex items-center gap-4"><button class="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-sm font-medium btn-primary" style="background: linear-gradient(135deg, #4a2c1a, #6b3d23);">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg> ORDER NOW </button> <!-- Mobile Menu Button --> <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg" style="color: #4a2c1a;">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg></button>
+        <div class="flex items-center justify-between h-16 md:h-20">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center relative" style="background: linear-gradient(135deg, rgba(157,78,221,0.2), rgba(255,46,99,0.2)); border: 1px solid rgba(157,78,221,0.3);">
+              <svg class="w-6 h-6 md:w-7 md:h-7" viewBox="0 0 24 24" fill="none">
+                <path d="M2 21H20V19H2M20 8H18V5H20M20 3H4V13C4 15.209 5.791 17 8 17H14C16.209 17 18 15.209 18 13V10H20C21.105 10 22 9.105 22 8V5C22 3.895 21.105 3 20 3Z" fill="url(#neon-grad)"/>
+                <defs><linearGradient id="neon-grad" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9D4EDD"/><stop offset="0.5" stop-color="#FF2E63"/><stop offset="1" stop-color="#FF4FD8"/></linearGradient></defs>
+              </svg>
+            </div>
+            <span id="nav-brand" class="font-display text-lg md:text-xl font-bold" style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">CYBER</span>
+            <span class="text-lg md:text-xl font-bold text-white">COFFEE</span>
+          </div>
+          <div class="hidden md:flex items-center gap-8">
+            <a href="#home" class="nav-link-cyber">Home</a>
+            <a href="./featureproducts.html" class="nav-link-cyber">Menu</a>
+            <a href="#story" class="nav-link-cyber">Network</a>
+            <a href="#stores" class="nav-link-cyber">Nodes</a>
+            <a href="./discount.html" class="nav-link-cyber">Rewards</a>
+            <a href="./blog.html" class="nav-link-cyber">Log</a>
+          </div>
+          <div class="flex items-center gap-4">
+            <button class="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-sm font-semibold cyber-btn">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+              ORDER
+            </button>
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-white">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+          </div>
         </div>
       </div>
-      </div><!-- Mobile Menu -->
-      <div id="mobile-menu" class="hidden md:hidden border-t" style="background: rgba(250, 246, 241, 0.98); border-color: #e8ddd4;">
-      <div class="px-4 py-4 space-y-3"><a href="#home" class="block py-2 text-sm font-medium" style="color: #4a2c1a;">HOME PAGE</a> <a href="./featureproducts.html" class="block py-2 text-sm font-medium" style="color: #4a2c1a;">FEATURED PRODUCTS</a> <a href="#story" class="block py-2 text-sm font-medium" style="color: #4a2c1a;">OUR STORY</a> <a href="#stores" class="block py-2 text-sm font-medium" style="color: #4a2c1a;">FIND US</a> <a href="/blog.html" class="block py-2 text-sm font-medium" style="color: #4a2c1a;">BLOG</a>
-      </div>
+      <div id="mobile-menu" class="hidden md:hidden border-t border-white/5" style="background: rgba(7,7,11,0.95);">
+        <div class="px-4 py-4 space-y-3">
+          <a href="#home" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Home</a>
+          <a href="./featureproducts.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Menu</a>
+          <a href="#story" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Network</a>
+          <a href="#stores" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Nodes</a>
+          <a href="./discount.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Rewards</a>
+          <a href="./blog.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Log</a>
+        </div>
       </div>
     </nav>
-   
-   
+
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen hero-gradient coffee-pattern pt-20">
-      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30" style="background-image: url('media-assets/home.jpg');"></div>
-      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30"></div><!-- Decorative Elements -->
-      <div class="absolute top-32 left-10 w-20 h-20 rounded-full opacity-10" style="background: #8b5a2b;"></div>
-      <div class="absolute bottom-40 right-20 w-32 h-32 rounded-full opacity-10" style="background: #d4a574;"></div>
-      <div class="absolute top-1/3 right-1/4 w-16 h-16 rounded-full opacity-5" style="background: white;"></div>
+    <section id="home" class="hero-cyber pt-20">
+      <div class="absolute inset-0 grid-overlay"></div>
+      <div class="absolute inset-0 hex-grid"></div>
+
+      <div class="blob blob-violet" style="top: -10%; left: -10%; animation: floatSlow 8s ease-in-out infinite;"></div>
+      <div class="blob blob-crimson" style="bottom: -10%; right: -5%; animation: floatSlow 10s ease-in-out infinite reverse;"></div>
+      <div class="blob blob-cyan" style="top: 40%; right: 20%; animation: floatSlow 12s ease-in-out infinite;"></div>
+
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-      <div class="grid lg:grid-cols-2 gap-12 items-center"><!-- Content -->
-        <div class="text-center lg:text-left space-y-8">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full" style="background: rgba(212, 165, 116, 0.2); border: 1px solid rgba(212, 165, 116, 0.3);"><span class="w-2 h-2 rounded-full animate-pulse" style="background: #d4a574;"></span> <span class="text-sm font-medium" style="color: #d4a574;">EST. 2025 PHAN THIẾT CITY.</span>
-        </div>
-        <h1 id="hero-headline" class="font-playfair text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white" style="color:#D4A502">CHUYỆN<br><span style="color: #d4a574;">"VietCoffee"</span></h1>
-        <p id="hero-tagline" class="text-lg font-bold :text-xl leading-relaxed max-w-xl mx-auto lg:mx-0" style="color: #49291c;";">"The VietCoffee tin rằng, nụ cười là hương vị ngọt ngào nhất trong mỗi ngày mới."</p>
-        <p class="text-base leading-relaxed max-w-xl mx-auto lg:mx-0" style="color: #49291c">Từ những hạt cà phê được chọn lọc kỹ càng từ cao nguyên Việt Nam, chúng tôi mang đến cho bạn những tách cà phê đậm đà hương vị quê hương. Mỗi cửa hàng là một "ngôi nhà" - nơi bạn có thể thư giãn, kết nối và tận hưởng những khoảnh khắc bình yên.</p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"><button class="px-8 py-4 rounded-full text-white font-semibold btn-primary flex items-center justify-center gap-2" style="background: linear-gradient(135deg, #d4a574, #b8956a);">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-          </svg> OUR MENU </button> <button class="px-8 py-4 rounded-full font-semibold border-2 flex items-center justify-center gap-2 transition-all hover:bg-white/10" style="border-color: rgba(255,255,255,0.3); color: white;">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg> FIND US </button>
-        </div>
-        </div><!-- Hero Image/Illustration -->
-        <div class="relative flex justify-center">
-        <div class="relative w-72 h-72 md:w-96 md:h-96"><!-- Main Coffee Cup -->
-          <div class="absolute inset-0 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(212, 165, 116, 0.2), rgba(139, 90, 43, 0.2)); border: 2px solid rgba(212, 165, 116, 0.3);">
-          <div class="w-48 h-48 md:w-64 md:h-64 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(212, 165, 116, 0.3), rgba(139, 90, 43, 0.3));">
-            <svg class="w-32 h-32 md:w-40 md:h-40" viewbox="0 0 100 100" fill="none"><!-- Coffee Cup --> <ellipse cx="50" cy="75" rx="30" ry="8" fill="#8b5a2b" opacity="0.3" /> <path d="M25 35 L25 70 Q25 80 50 80 Q75 80 75 70 L75 35 Z" fill="#f5f0eb" stroke="#d4a574" stroke-width="2" /> <path d="M25 35 Q25 45 50 45 Q75 45 75 35 Q75 25 50 25 Q25 25 25 35" fill="#4a2c1a" stroke="#d4a574" stroke-width="2" /> <!-- Handle --> <path d="M75 40 Q90 40 90 55 Q90 70 75 65" fill="none" stroke="#d4a574" stroke-width="3" stroke-linecap="round" /> <!-- Steam --> <path d="M40 15 Q42 10 40 5" stroke="#d4a574" stroke-width="2" stroke-linecap="round" opacity="0.6">
-              <animate attributename="d" values="M40 15 Q42 10 40 5;M40 15 Q38 10 40 5;M40 15 Q42 10 40 5" dur="2s" repeatcount="indefinite" />
-            </path> <path d="M50 18 Q52 12 50 6" stroke="#d4a574" stroke-width="2" stroke-linecap="round" opacity="0.6">
-              <animate attributename="d" values="M50 18 Q52 12 50 6;M50 18 Q48 12 50 6;M50 18 Q52 12 50 6" dur="2.5s" repeatcount="indefinite" />
-            </path> <path d="M60 15 Q62 10 60 5" stroke="#d4a574" stroke-width="2" stroke-linecap="round" opacity="0.6">
-              <animate attributename="d" values="M60 15 Q62 10 60 5;M60 15 Q58 10 60 5;M60 15 Q62 10 60 5" dur="1.8s" repeatcount="indefinite" />
-            </path>
-            </svg>
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Content -->
+          <div class="text-center lg:text-left space-y-8">
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-lg glass-purple">
+              <span class="status-dot online"></span>
+              <span class="text-xs font-mono font-medium tracking-widest" style="color: rgba(0, 245, 212, 0.8);">SYS.ONLINE // v2.0.25</span>
+            </div>
+
+            <h1 class="space-y-2">
+              <span class="block font-display text-5xl md:text-7xl lg:text-8xl font-black tracking-tight">
+                <span class="text-white glitch-text" data-text="WAKE">WAKE</span>
+                <span style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">&</span>
+                <span class="text-white glitch-text" data-text="BREW">BREW</span>
+              </span>
+              <span class="block font-display text-3xl md:text-5xl lg:text-6xl font-bold mt-2" style="background: linear-gradient(135deg, #9D4EDD, #FF2E63, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                CYBER COFFEE
+              </span>
+            </h1>
+
+            <div class="glitch-text" data-text="> The café runs on code, caffeine, and chaos.">
+              <p class="font-mono text-sm md:text-base" style="color: rgba(245, 247, 250, 0.5);">
+                > <span class="terminal-text" style="color: rgba(0, 245, 212, 0.7);">The café runs on code, caffeine, and chaos.</span>
+              </p>
+            </div>
+
+            <p class="text-base leading-relaxed max-w-xl mx-auto lg:mx-0" style="color: var(--silver);">
+              Underground hub for hackers, night coders, gamers, and creatives. 
+              Open 24/7. Neon fuel. Bass-heavy silence. Caffeine IV drip included.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <button class="cyber-btn px-8 py-4 rounded-xl text-white font-semibold flex items-center justify-center gap-2 text-sm">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                ACCESS MENU
+              </button>
+              <button class="cyber-btn-outline px-8 py-4 rounded-xl flex items-center justify-center gap-2 text-sm">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                LOCATE NODE
+              </button>
+            </div>
+
+            <!-- Dashboard -->
+            <div class="dashboard-grid max-w-lg mx-auto lg:mx-0 pt-4">
+              <div class="dashboard-item">
+                <div class="dashboard-value" id="stat-patrons">2.4K</div>
+                <div class="dashboard-label">Night Patrons</div>
+              </div>
+              <div class="dashboard-item">
+                <div class="dashboard-value" id="stat-caffeine">99<span style="font-size: 0.8rem;">%</span></div>
+                <div class="dashboard-label">Caffeine Level</div>
+              </div>
+              <div class="dashboard-item">
+                <div class="dashboard-value"><span class="text-glow-cyan" style="-webkit-text-fill-color: #4CC9F0;" id="stat-wifi">1.2</span><span style="font-size: 0.8rem;">Gbps</span></div>
+                <div class="dashboard-label">Uplink Speed</div>
+              </div>
+              <div class="dashboard-item">
+                <div class="dashboard-value text-glow-amber animate-pulse-neon" style="-webkit-text-fill-color: #FFB703;" id="stat-uptime">24/7</div>
+                <div class="dashboard-label">Uptime Status</div>
+              </div>
+            </div>
           </div>
-          </div><!-- Floating Coffee Beans -->
-          <div class="absolute -top-4 right-8 animate-bounce" style="animation-delay: 0.2s;">
-          <svg class="w-8 h-8" viewbox="0 0 24 24" fill="#d4a574"><ellipse cx="12" cy="12" rx="6" ry="10" transform="rotate(-30 12 12)" /> <path d="M8 8 Q12 12 8 16" stroke="#8b5a2b" stroke-width="1.5" fill="none" />
-          </svg>
-          </div>
-          <div class="absolute bottom-12 -left-4 animate-bounce" style="animation-delay: 0.5s;">
-          <svg class="w-6 h-6" viewbox="0 0 24 24" fill="#8b5a2b"><ellipse cx="12" cy="12" rx="6" ry="10" transform="rotate(20 12 12)" /> <path d="M8 8 Q12 12 8 16" stroke="#4a2c1a" stroke-width="1.5" fill="none" />
-          </svg>
-          </div>
-          <div class="absolute top-20 -left-8 animate-bounce" style="animation-delay: 0.8s;">
-          <svg class="w-5 h-5" viewbox="0 0 24 24" fill="#d4a574" opacity="0.7"><ellipse cx="12" cy="12" rx="6" ry="10" transform="rotate(-45 12 12)" />
-          </svg>
+
+          <!-- Holographic Coffee Cup -->
+          <div class="relative flex justify-center">
+            <div class="relative">
+              <div class="w-72 h-72 md:w-96 md:h-96 relative">
+                <div class="absolute inset-0 rounded-full animate-pulse-neon" style="background: radial-gradient(circle, rgba(157,78,221,0.08), transparent 70%);"></div>
+                <div class="absolute inset-4 rounded-full animate-spin-slow" style="background: conic-gradient(from 0deg, rgba(157,78,221,0.05), rgba(255,46,99,0.05), rgba(76,201,240,0.05), rgba(157,78,221,0.05));"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <svg class="w-48 h-48 md:w-64 md:h-64" viewBox="0 0 120 120" fill="none">
+                    <defs>
+                      <linearGradient id="cupGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#9D4EDD" stop-opacity="0.6"/>
+                        <stop offset="50%" stop-color="#FF2E63" stop-opacity="0.4"/>
+                        <stop offset="100%" stop-color="#4CC9F0" stop-opacity="0.3"/>
+                      </linearGradient>
+                      <linearGradient id="steamGrad" x1="0" y1="1" x2="0" y2="0">
+                        <stop offset="0%" stop-color="#9D4EDD" stop-opacity="0.4"/>
+                        <stop offset="100%" stop-color="#4CC9F0" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                    <!-- Glow under cup -->
+                    <ellipse cx="60" cy="95" rx="35" ry="6" fill="#9D4EDD" opacity="0.15"/>
+                    <ellipse cx="60" cy="95" rx="20" ry="4" fill="#FF2E63" opacity="0.2"/>
+                    <!-- Cup body -->
+                    <path d="M30 45 L30 80 Q30 92 60 92 Q90 92 90 80 L90 45 Z" fill="rgba(17,19,26,0.6)" stroke="url(#cupGrad)" stroke-width="1.5"/>
+                    <!-- Cup top -->
+                    <path d="M30 45 Q30 55 60 55 Q90 55 90 45 Q90 35 60 35 Q30 35 30 45" fill="rgba(17,19,26,0.8)" stroke="url(#cupGrad)" stroke-width="1.5"/>
+                    <!-- Coffee surface -->
+                    <ellipse cx="60" cy="45" rx="28" ry="8" fill="#FF2E63" opacity="0.15"/>
+                    <ellipse cx="60" cy="45" rx="20" ry="5" fill="#9D4EDD" opacity="0.2"/>
+                    <!-- Handle -->
+                    <path d="M90 50 Q108 50 108 68 Q108 85 90 80" fill="none" stroke="url(#cupGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                    <!-- Neon steam -->
+                    <path d="M45 30 Q40 20 45 10" stroke="url(#steamGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.6">
+                      <animate attributeName="d" values="M45 30 Q40 20 45 10;M45 30 Q50 20 45 10;M45 30 Q40 20 45 10" dur="2s" repeatCount="indefinite"/>
+                    </path>
+                    <path d="M60 28 Q62 18 60 8" stroke="url(#steamGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.5">
+                      <animate attributeName="d" values="M60 28 Q62 18 60 8;M60 28 Q58 18 60 8;M60 28 Q62 18 60 8" dur="2.5s" repeatCount="indefinite"/>
+                    </path>
+                    <path d="M75 30 Q80 20 75 10" stroke="url(#steamGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.4">
+                      <animate attributeName="d" values="M75 30 Q80 20 75 10;M75 30 Q70 20 75 10;M75 30 Q80 20 75 10" dur="1.8s" repeatCount="indefinite"/>
+                    </path>
+                    <!-- Holographic rings -->
+                    <ellipse cx="60" cy="45" rx="32" ry="10" fill="none" stroke="#4CC9F0" stroke-width="0.5" opacity="0.2" transform="rotate(-5 60 45)"/>
+                    <ellipse cx="60" cy="45" rx="36" ry="12" fill="none" stroke="#9D4EDD" stroke-width="0.5" opacity="0.15" transform="rotate(5 60 45)"/>
+                  </svg>
+                </div>
+              </div>
+              <!-- Orbiting particles -->
+              <svg class="absolute top-0 left-0 w-full h-full animate-spin-slow" viewBox="0 0 100 100" style="animation-duration: 15s;">
+                <circle cx="50" cy="5" r="2" fill="#FF4FD8" opacity="0.6"/>
+                <circle cx="95" cy="50" r="1.5" fill="#4CC9F0" opacity="0.5"/>
+                <circle cx="5" cy="50" r="2" fill="#FFB703" opacity="0.4"/>
+                <circle cx="50" cy="95" r="1.5" fill="#00F5D4" opacity="0.5"/>
+              </svg>
+            </div>
           </div>
         </div>
-        </div>
-      </div><!-- Scroll Indicator -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce"><span class="text-xs uppercase tracking-widest" style="color: rgba(255,255,255,0.5);">Cuộn xuống</span>
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" style="color: rgba(255,255,255,0.5);" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
       </div>
-      </div>
-    </section><!-- Collection Section -->
-   
-    <!-- Quality Story Section -->
-    <section id="story" class="py-20 md:py-32" style="background-color: #2d1810;">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 gap-6 md:gap-8"><!-- Coffee Story -->
-        <div class="quality-card relative rounded-3xl overflow-hidden min-h-[400px] md:min-h-[500px] group" style="background: linear-gradient(135deg, #3d2317 0%, #1a0f0a 100%);">
-        <div class="absolute inset-0 opacity-30" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;100&quot; height=&quot;100&quot; viewBox=&quot;0 0 100 100&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;%238b5a2b&quot; fill-opacity=&quot;0.3&quot;%3E%3Ccircle cx=&quot;20&quot; cy=&quot;20&quot; r=&quot;8&quot;/%3E%3Ccircle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;8&quot;/%3E%3Ccircle cx=&quot;80&quot; cy=&quot;30&quot; r=&quot;8&quot;/%3E%3Ccircle cx=&quot;30&quot; cy=&quot;70&quot; r=&quot;8&quot;/%3E%3Ccircle cx=&quot;70&quot; cy=&quot;80&quot; r=&quot;8&quot;/%3E%3C/g%3E%3C/svg%3E');"></div>
-        <div class="relative h-full p-8 md:p-12 flex flex-col justify-end">
-        <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('media-assets/specialty1.png');"></div>
-          <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6 relative z-10" style="background: rgba(212, 165, 116, 0.2); border: 2px solid rgba(212, 165, 116, 0.3);">
-          <svg class="w-8 h-8" viewbox="0 0 24 24" fill="#d4a574"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z" />
-          </svg>
-          </div>
-          <h3 class="font-playfair text-2xl md:text-3xl font-bold text-white mb-4 leading-tight relative z-10">Nguyên bản từ giá trị<br>
-          hạt cà phê chất lượng</h3>
-          <p class="text-base mb-6 leading-relaxed relative z-10" style="color: rgba(255,255,255,0.7);">Mọi nụ cười ở The Coffee House đều bắt đầu từ một hạt cà phê nguyên bản. Chúng tôi tìm kiếm những hạt cà phê tốt nhất từ cao nguyên Việt Nam, rang xay thủ công để giữ trọn hương vị đậm đà.</p><button class="self-start px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2 transition-all hover:gap-3 relative z-10" style="background: rgba(212, 165, 116, 0.2); color: #d4a574; border: 1px solid rgba(212, 165, 116, 0.3);"> XEM THÊM 
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg></button>
-        </div>
-        </div><!-- Tea Story -->
-        <div class="quality-card relative rounded-3xl overflow-hidden min-h-[400px] md:min-h-[500px] group" style="background: linear-gradient(135deg, #2d4a35 0%, #1a2e1f 100%);">
-        <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('media-assets/specialty2.png');"></div>
-        <div class="relative h-full p-8 md:p-12 flex flex-col justify-end">
-          <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6 relative z-10" style="background: rgba(124, 183, 127, 0.2); border: 2px solid rgba(124, 183, 127, 0.3);">
-          <svg class="w-8 h-8" viewbox="0 0 24 24" fill="#7cb77f"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z" />
-          </svg>
-          </div>
-          <h3 class="font-playfair text-2xl md:text-3xl font-bold text-white mb-4 leading-tight relative z-10">Chất lượng khởi nguồn từ<br>
-          những đồi trà tuyển chọn</h3>
-          <p class="text-base mb-6 leading-relaxed relative z-10" style="color: rgba(255,255,255,0.7);">Từ những đồi trà xanh mướt của Thái Nguyên, Lâm Đồng, chúng tôi mang đến những tách trà thanh mát, tinh khiết. Mỗi lá trà được hái thủ công, chế biến cẩn thận để giữ trọn tinh hoa thiên nhiên.</p><button class="self-start px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2 transition-all hover:gap-3 relative z-10" style="background: rgba(124, 183, 127, 0.2); color: #7cb77f; border: 1px solid rgba(124, 183, 127, 0.3);"> XEM THÊM 
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg></button>
-        </div>
-        </div>
-      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-float">
+        <span class="text-[0.6rem] font-mono uppercase tracking-[0.2em]" style="color: rgba(168, 176, 192, 0.4);">Scroll to initialize</span>
+        <div style="width: 1px; height: 30px; background: linear-gradient(180deg, rgba(157,78,221,0.5), transparent);"></div>
       </div>
     </section>
-   
-   
-    <!-- Store Locator Section -->
-    <section id="stores" class="py-20 md:py-32 relative overflow-hidden" style="background: linear-gradient(135deg, #f5ede4 0%, #faf6f1 100%);"><!-- Decorative Map Pattern -->
-      <div class="absolute inset-0 opacity-5">
-      <svg class="w-full h-full" viewbox="0 0 800 600" fill="none"><circle cx="200" cy="150" r="100" stroke="#4a2c1a" stroke-width="1" /> <circle cx="600" cy="400" r="150" stroke="#4a2c1a" stroke-width="1" /> <path d="M100 300 Q400 100 700 400" stroke="#4a2c1a" stroke-width="1" fill="none" />
-      </svg>
-      </div>
+
+    <!-- Menu Section -->
+    <section class="py-20 md:py-32 relative overflow-hidden" style="background: linear-gradient(180deg, #1A1033, #11131A, #07070B);">
+      <div class="absolute inset-0 hex-grid opacity-50"></div>
+      <div class="blob blob-violet" style="top: 20%; left: -15%; animation: floatSlow 12s ease-in-out infinite;"></div>
+      <div class="blob blob-crimson" style="bottom: 30%; right: -10%; animation: floatSlow 14s ease-in-out infinite reverse;"></div>
+
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-      <div class="grid lg:grid-cols-2 gap-12 items-center"><!-- Content -->
-        <div class="text-center lg:text-left"><span class="inline-block px-4 py-1 rounded-full text-sm font-medium mb-4" style="background: rgba(74, 44, 26, 0.1); color: #4a2c1a;"> CỬA HÀNG </span>
-        <h2 id="store-title" class="font-playfair text-3xl md:text-5xl font-bold mb-4" style="color: #2d1810;">Tìm <span style="color: #8b5a2b;">"nhà"</span> gần bạn</h2>
-        <p class="text-xl mb-2 font-medium" style="color: #4a2c1a;">"Dù bạn ở đâu, 'Nhà' cũng luôn ở gần."</p>
-        <p class="text-base mb-8 leading-relaxed" style="color: #6b5344;">Với hơn 150 cửa hàng trải dài khắp Việt Nam, VietCoffee luôn sẵn sàng chào đón bạn. Hãy tìm một góc ấm cúng để thưởng thức tách cà phê yêu thích của bạn.</p><!-- Location Finder -->
-        <div class="space-y-4 max-w-md mx-auto lg:mx-0">
-          <div class="relative"><select class="w-full px-5 py-4 rounded-2xl appearance-none cursor-pointer text-base border-2 focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all" style="background: white; border-color: #e8ddd4; color: #4a2c1a;" id="city-select"> <option value="">Chọn Thành phố</option> <option value="hcm">Hồ Chí Minh</option> <option value="hn">Hà Nội</option> <option value="dn">Đà Nẵng</option> <option value="hp">Hải Phòng</option> <option value="ct">Cần Thơ</option> <option value="bd">Bình Dương</option> <option value="dl">Đà Lạt</option> </select>
-          <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none" fill="none" stroke="#8b5a2b" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
+        <div class="menu-section-header">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
+            <span class="status-dot active"></span>
+            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(157, 78, 221, 0.8);">MENU // SYSTEM ACTIVE</span>
           </div>
-          <div class="relative"><select class="w-full px-5 py-4 rounded-2xl appearance-none cursor-pointer text-base border-2 focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all" style="background: white; border-color: #e8ddd4; color: #4a2c1a;" id="district-select"> <option value="">Chọn Quận/Huyện</option> </select>
-          <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none" fill="none" stroke="#8b5a2b" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-          </div><button class="w-full px-8 py-4 rounded-2xl text-white font-bold btn-primary flex items-center justify-center gap-2" style="background: linear-gradient(135deg, #5e3821, #9e6240);">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg> LOOK FOR OUR STORES IN YOUR LOCAL PLACE </button>
+          <h2>FUEL SELECTION</h2>
+          <p>Choose your weapon. All drinks overclocked with neon essence.</p>
         </div>
-        </div><!-- Map Illustration -->
-        <div class="relative flex justify-center">
-        <div class="relative w-full max-w-lg">
-          <svg class="w-full h-auto" viewbox="0 0 400 400" fill="none"><!-- Vietnam Map Outline (Simplified) --> <path d="M200 20 C250 30 280 80 290 120 C300 160 310 200 300 250 C290 300 270 340 230 370 C200 390 170 380 150 350 C130 320 120 280 130 230 C140 180 160 130 180 80 C190 50 195 25 200 20" fill="#e8ddd4" stroke="#d4a574" stroke-width="2" /> <!-- Store Location Pins --> <g class="animate-pulse" style="animation-delay: 0s;">
-            <circle cx="200" cy="180" r="8" fill="#4a2c1a" />
-            <circle cx="200" cy="180" r="12" fill="#4a2c1a" opacity="0.3" />
-            <text x="200" y="200" text-anchor="middle" font-size="10" fill="#4a2c1a" font-weight="bold">
-            HCM
-            </text>
-          </g> <g class="animate-pulse" style="animation-delay: 0.3s;">
-            <circle cx="190" cy="80" r="6" fill="#8b5a2b" />
-            <circle cx="190" cy="80" r="10" fill="#8b5a2b" opacity="0.3" />
-            <text x="190" y="95" text-anchor="middle" font-size="9" fill="#8b5a2b" font-weight="bold">
-            HN
-            </text>
-          </g> <g class="animate-pulse" style="animation-delay: 0.6s;">
-            <circle cx="260" cy="140" r="5" fill="#d4a574" />
-            <circle cx="260" cy="140" r="9" fill="#d4a574" opacity="0.3" />
-            <text x="260" y="155" text-anchor="middle" font-size="8" fill="#d4a574" font-weight="bold">
-            ĐN
-            </text>
-          </g> <g class="animate-pulse" style="animation-delay: 0.9s;">
-            <circle cx="170" cy="280" r="5" fill="#6b3d23" />
-            <circle cx="170" cy="280" r="9" fill="#6b3d23" opacity="0.3" />
-            <text x="170" y="295" text-anchor="middle" font-size="8" fill="#6b3d23" font-weight="bold">
-            CT
-            </text>
-          </g> <!-- Decorative Coffee Beans --> <ellipse cx="320" cy="100" rx="10" ry="16" fill="#d4a574" opacity="0.5" transform="rotate(-30 320 100)" /> <ellipse cx="100" cy="300" rx="8" ry="12" fill="#8b5a2b" opacity="0.4" transform="rotate(20 100 300)" /> <ellipse cx="340" cy="280" rx="6" ry="10" fill="#4a2c1a" opacity="0.3" transform="rotate(-15 340 280)" />
-          </svg><!-- Stats -->
-          <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 flex gap-6 px-6 py-4 rounded-2xl shadow-lg" style="background: white;">
-          <div class="text-center">
-            <div class="text-2xl font-bold" style="color: #4a2c1a;">
-            150+
-            </div>
-            <div class="text-xs" style="color: #8b7355;">
-            STOCK
-            </div>
-          </div>
-          <div class="w-px" style="background: #e8ddd4;"></div>
-          <div class="text-center">
-            <div class="text-2xl font-bold" style="color: #4a2c1a;">
-            20+
-            </div>
-            <div class="text-xs" style="color: #8b7355;">
-            Tỉnh thành
-            </div>
-          </div>
-          </div>
+
+        <!-- Category Filters -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+          <button class="cyber-btn px-5 py-2.5 rounded-lg text-xs font-semibold tracking-wider" onclick="filterProducts('all', this)">ALL</button>
+          <button class="cyber-btn-outline px-5 py-2.5 rounded-lg text-xs font-semibold tracking-wider" onclick="filterProducts('cafe', this)">COFFEE</button>
+          <button class="cyber-btn-outline px-5 py-2.5 rounded-lg text-xs font-semibold tracking-wider" onclick="filterProducts('boba', this)">BOBA</button>
+          <button class="cyber-btn-outline px-5 py-2.5 rounded-lg text-xs font-semibold tracking-wider" onclick="filterProducts('food', this)">SNACKS</button>
         </div>
+
+        <!-- Products Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="products-grid">
         </div>
-      </div>
+
+        <div class="text-center mt-12">
+          <a href="./featureproducts.html" class="cyber-btn-outline inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold">
+            VIEW FULL MENU
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
       </div>
     </section>
-   
-   
-   
+
+    <!-- Network Story Section -->
+    <section id="story" class="py-20 md:py-32 relative overflow-hidden" style="background: linear-gradient(180deg, #07070B, #11131A, #1A1033);">
+      <div class="absolute inset-0 grid-overlay"></div>
+      <div class="blob blob-cyan" style="top: -5%; right: -10%; animation: floatSlow 10s ease-in-out infinite;"></div>
+      <div class="blob blob-violet" style="bottom: 10%; left: -5%; animation: floatSlow 12s ease-in-out infinite reverse;"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
+            <span class="status-dot online"></span>
+            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(0, 245, 212, 0.8);">NETWORK // NODES ACTIVE</span>
+          </div>
+          <h2 class="font-display text-3xl md:text-5xl font-bold">
+            <span style="background: linear-gradient(135deg, #4CC9F0, #9D4EDD); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">CORE</span>
+            <span class="text-white"> INFRASTRUCTURE</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+          <!-- Coffee Node -->
+          <div class="cyber-card p-8 md:p-12 group relative overflow-hidden">
+            <div class="corner-bracket tl"></div>
+            <div class="corner-bracket tr"></div>
+            <div class="corner-bracket bl"></div>
+            <div class="corner-bracket br"></div>
+            <div class="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-violet/5 blur-3xl group-hover:bg-violet/10 transition-all duration-700"></div>
+            <div class="relative">
+              <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, rgba(157,78,221,0.15), rgba(255,46,99,0.15)); border: 1px solid rgba(157,78,221,0.2);">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none"><path d="M2 21H20V19H2M20 8H18V5H20M20 3H4V13C4 15.209 5.791 17 8 17H14C16.209 17 18 15.209 18 13V10H20C21.105 10 22 9.105 22 8V5C22 3.895 21.105 3 20 3Z" fill="url(#story-grad1)"/><defs><linearGradient id="story-grad1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9D4EDD"/><stop offset="1" stop-color="#FF2E63"/></linearGradient></defs></svg>
+              </div>
+              <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-3">BEAN PROTOCOL</h3>
+              <div class="progress-bar mb-4"><div class="progress-bar-fill" style="width: 94%;"></div></div>
+              <p class="text-sm leading-relaxed" style="color: var(--silver);">Single-origin beans sourced from the highlands. Small-batch roasted with precision. Every cup is a compiled executable of flavor.</p>
+              <button class="mt-6 text-xs font-mono font-semibold tracking-wider flex items-center gap-2" style="color: var(--violet);">READ_MORE <span class="text-glow">→</span></button>
+            </div>
+          </div>
+
+          <!-- Tea Node -->
+          <div class="cyber-card p-8 md:p-12 group relative overflow-hidden">
+            <div class="corner-bracket tl"></div>
+            <div class="corner-bracket tr"></div>
+            <div class="corner-bracket bl"></div>
+            <div class="corner-bracket br"></div>
+            <div class="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-cyan/5 blur-3xl group-hover:bg-cyan/10 transition-all duration-700"></div>
+            <div class="relative">
+              <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, rgba(76,201,240,0.15), rgba(0,245,212,0.15)); border: 1px solid rgba(76,201,240,0.2);">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22L6.66 19.7C7.14 19.87 7.64 20 8 20C19 20 22 3 22 3C21 5 14 5.25 9 6.25C4 7.25 2 11.5 2 13.5C2 15.5 3.75 17.25 3.75 17.25C7 8 17 8 17 8Z" fill="url(#story-grad2)"/><defs><linearGradient id="story-grad2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4CC9F0"/><stop offset="1" stop-color="#00F5D4"/></linearGradient></defs></svg>
+              </div>
+              <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-3">MATCHA MATRIX</h3>
+              <div class="progress-bar mb-4"><div class="progress-bar-fill" style="width: 88%;"></div></div>
+              <p class="text-sm leading-relaxed" style="color: var(--silver);">Ceremonial-grade matcha from selected estates. Stone-ground, antioxidant-rich, cyber-monk approved for extended hacking sessions.</p>
+              <button class="mt-6 text-xs font-mono font-semibold tracking-wider flex items-center gap-2" style="color: var(--cyan);">READ_MORE <span style="color: var(--cyan);">→</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Ticker -->
+    <div class="relative py-4" style="background: rgba(17, 19, 26, 0.8); border-top: 1px solid rgba(157,78,221,0.1); border-bottom: 1px solid rgba(157,78,221,0.1); overflow: hidden;">
+      <div class="data-ticker">
+        <div class="data-ticker-inner font-mono text-xs tracking-wider" style="color: rgba(168, 176, 192, 0.5);">
+          <span style="color: var(--violet);">◆</span> SYSTEM BOOT: 00:00:00 <span style="color: var(--crimson);">//</span> CAFFEINE LEVELS: 99.7% <span style="color: var(--crimson);">//</span> NODE STATUS: 7/7 ONLINE <span style="color: var(--crimson);">//</span> UPLINK: 1.2 GBPS <span style="color: var(--crimson);">//</span> ACTIVE SESSIONS: 42 <span style="color: var(--crimson);">//</span> BEAN RESERVES: OPTIMAL <span style="color: var(--crimson);">//</span> BREW TEMP: 93°C <span style="color: var(--violet);">◆</span> SYSTEM BOOT: 00:00:00 <span style="color: var(--crimson);">//</span> CAFFEINE LEVELS: 99.7% <span style="color: var(--crimson);">//</span> NODE STATUS: 7/7 ONLINE <span style="color: var(--crimson);">//</span> UPLINK: 1.2 GBPS <span style="color: var(--crimson);">//</span> ACTIVE SESSIONS: 42 <span style="color: var(--crimson);">//</span> BEAN RESERVES: OPTIMAL <span style="color: var(--crimson);">//</span> BREW TEMP: 93°C
+        </div>
+      </div>
+    </div>
+
+    <!-- Store Locator Section -->
+    <section id="stores" class="py-20 md:py-32 relative overflow-hidden" style="background: linear-gradient(180deg, #11131A, #1A1033, #11131A);">
+      <div class="absolute inset-0 hex-grid opacity-30"></div>
+      <div class="blob blob-crimson" style="top: 30%; left: -20%; animation: floatSlow 11s ease-in-out infinite;"></div>
+      <div class="blob blob-cyan" style="bottom: 20%; right: -15%; animation: floatSlow 13s ease-in-out infinite reverse;"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
+              <span class="status-dot alert"></span>
+              <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(255, 46, 99, 0.8);">GEOLOCATE // SIGNAL ACTIVE</span>
+            </div>
+            <h2 class="font-display text-3xl md:text-5xl font-bold mb-4">
+              <span class="text-white">FIND A</span>
+              <span style="background: linear-gradient(135deg, #FF2E63, #FFB703); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"> NODE</span>
+            </h2>
+            <p class="text-base mb-2 font-mono" style="color: rgba(76, 201, 240, 0.6);">&gt; "Connect to the nearest cyber café terminal."</p>
+            <p class="text-sm mb-8 leading-relaxed" style="color: var(--silver);">With 150+ nodes across the network, there's always a terminal nearby. Find your station and boot up.</p>
+
+            <div class="space-y-4 max-w-md mx-auto lg:mx-0">
+              <div class="relative">
+                <select class="cyber-input w-full px-5 py-4 rounded-xl appearance-none cursor-pointer text-sm" id="city-select">
+                  <option value="" class="bg-graphite">Select City</option>
+                  <option value="hcm">Ho Chi Minh</option>
+                  <option value="hn">Hanoi</option>
+                  <option value="dn">Da Nang</option>
+                  <option value="hp">Hai Phong</option>
+                  <option value="ct">Can Tho</option>
+                  <option value="bd">Binh Duong</option>
+                  <option value="dl">Da Lat</option>
+                </select>
+                <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none" style="color: var(--violet);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </div>
+              <div class="relative">
+                <select class="cyber-input w-full px-5 py-4 rounded-xl appearance-none cursor-pointer text-sm" id="district-select">
+                  <option value="">Select District</option>
+                </select>
+                <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none" style="color: var(--violet);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </div>
+              <button class="cyber-btn w-full px-8 py-4 rounded-xl font-semibold flex items-center justify-center gap-2 text-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                SCAN FOR NODES
+              </button>
+            </div>
+          </div>
+
+          <!-- Cyber Map -->
+          <div class="relative flex justify-center">
+            <div class="relative w-full max-w-lg">
+              <div class="cyber-card p-6">
+                <svg class="w-full h-auto" viewBox="0 0 400 400" fill="none">
+                  <path d="M200 20 C250 30 280 80 290 120 C300 160 310 200 300 250 C290 300 270 340 230 370 C200 390 170 380 150 350 C130 320 120 280 130 230 C140 180 160 130 180 80 C190 50 195 25 200 20" fill="rgba(157,78,221,0.05)" stroke="url(#mapGrad)" stroke-width="1.5"/>
+                  <defs>
+                    <linearGradient id="mapGrad" x1="0" y1="0" x2="1" y2="1">
+                      <stop stop-color="#9D4EDD"/>
+                      <stop offset="0.5" stop-color="#FF2E63"/>
+                      <stop offset="1" stop-color="#4CC9F0"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Network Nodes -->
+                  <g>
+                    <circle cx="200" cy="180" r="6" fill="#9D4EDD"/>
+                    <circle cx="200" cy="180" r="12" fill="#9D4EDD" opacity="0.2" class="animate-neon-ping"/>
+                    <text x="200" y="195" text-anchor="middle" font-size="9" fill="#9D4EDD" font-family="monospace" font-weight="bold">HCM</text>
+                  </g>
+                  <g>
+                    <circle cx="190" cy="80" r="5" fill="#4CC9F0"/>
+                    <circle cx="190" cy="80" r="10" fill="#4CC9F0" opacity="0.2" class="animate-neon-ping" style="animation-delay: 0.5s;"/>
+                    <text x="190" y="95" text-anchor="middle" font-size="8" fill="#4CC9F0" font-family="monospace" font-weight="bold">HN</text>
+                  </g>
+                  <g>
+                    <circle cx="260" cy="140" r="4" fill="#FF2E63"/>
+                    <circle cx="260" cy="140" r="8" fill="#FF2E63" opacity="0.2" class="animate-neon-ping" style="animation-delay: 1s;"/>
+                    <text x="260" y="155" text-anchor="middle" font-size="8" fill="#FF2E63" font-family="monospace" font-weight="bold">DN</text>
+                  </g>
+                  <g>
+                    <circle cx="170" cy="280" r="4" fill="#FFB703"/>
+                    <circle cx="170" cy="280" r="8" fill="#FFB703" opacity="0.2" class="animate-neon-ping" style="animation-delay: 1.5s;"/>
+                    <text x="170" y="295" text-anchor="middle" font-size="8" fill="#FFB703" font-family="monospace" font-weight="bold">CT</text>
+                  </g>
+                  <!-- Connection lines -->
+                  <line x1="200" y1="180" x2="190" y2="80" stroke="rgba(157,78,221,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
+                  <line x1="200" y1="180" x2="260" y2="140" stroke="rgba(255,46,99,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
+                  <line x1="200" y1="180" x2="170" y2="280" stroke="rgba(76,201,240,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
+                </svg>
+              </div>
+
+              <!-- Stats overlay -->
+              <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-6 px-6 py-4 rounded-xl glass" style="min-width: 240px;">
+                <div class="text-center">
+                  <div class="font-display text-xl font-bold" style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">150+</div>
+                  <div class="text-[0.6rem] font-mono tracking-wider" style="color: var(--silver);">NODES</div>
+                </div>
+                <div style="width: 1px; background: rgba(255,255,255,0.06);"></div>
+                <div class="text-center">
+                  <div class="font-display text-xl font-bold" style="background: linear-gradient(135deg, #4CC9F0, #00F5D4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">20+</div>
+                  <div class="text-[0.6rem] font-mono tracking-wider" style="color: var(--silver);">REGIONS</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Instagram Section -->
-    <section class="py-20 md:py-32" style="background-color: #2d1810;">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><!-- Section Header -->
-      <div class="text-center mb-12"><span class="inline-block px-4 py-1 rounded-full text-sm font-medium mb-4" style="background: rgba(212, 165, 116, 0.2); color: #d4a574;"> KẾT NỐI VỚI NHÀ </span>
-        <h2 class="font-playfair text-3xl md:text-5xl font-bold text-white mb-4"><span style="color: #d4a574;">INSTAGRAM</span></h2><a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all hover:gap-3" style="background: rgba(212, 165, 116, 0.2); color: #d4a574; border: 1px solid rgba(212, 165, 116, 0.3);">
-        <svg class="w-5 h-5" viewbox="0 0 24 24" fill="currentColor"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
-        </svg> FOLLOW NGAY </a>
-      </div><!-- Instagram Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4" id="instagram-grid"><!-- Instagram items will be inserted by JS -->
-      </div>
+    <section class="py-20 md:py-32 relative overflow-hidden" style="background: linear-gradient(180deg, #11131A, #07070B);">
+      <div class="absolute inset-0 grid-overlay"></div>
+      <div class="blob blob-violet" style="top: 40%; left: -10%; animation: floatSlow 9s ease-in-out infinite;"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
+            <span class="status-dot online"></span>
+            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(0, 245, 212, 0.8);">FEED // LIVE STREAM</span>
+          </div>
+          <h2 class="font-display text-3xl md:text-5xl font-bold">
+            <span style="background: linear-gradient(135deg, #FF4FD8, #9D4EDD); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">#CYBER</span>
+            <span class="text-white">CAFÉ</span>
+          </h2>
+          <p class="text-sm mt-2" style="color: var(--silver);">Tag your late-night sessions with #CyberCafé to join the feed.</p>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg cyber-btn-outline text-xs font-semibold mt-4">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+            FOLLOW FEED
+          </a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4" id="instagram-grid"></div>
       </div>
     </section>
-   
-   
+
     <!-- Footer -->
-    <footer style="background: #1a0f0a;">
+    <footer class="footer-cyber">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12"><!-- Brand Column -->
-        <div class="col-span-2 md:col-span-4 lg:col-span-1 mb-8 lg:mb-0">
-        <div class="flex items-center gap-3 mb-6">
-          <img src="media-assets/logo.svg" alt="VietCoffee Logo" class="w-12 h-12 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="w-12 h-12 rounded-full flex items-center justify-center hidden" style="background: linear-gradient(135deg, #4a2c1a, #8b5a2b);">
-          <svg class="w-7 h-7 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z" />
-          </svg>
-          </div><span id="footer-brand" class="font-playfair text-2xl font-bold text-white">VietCoffee</span>
-        </div>
-        <p class="text-sm leading-relaxed mb-6" style="color: rgba(255,255,255,0.6);">Bringing you rich, authentic Vietnamese coffee, VietCoffee is your second home.</p><!-- Social Icons -->
-        <div class="flex gap-3"><a href="#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition-colors" style="background: rgba(255,255,255,0.1);" onmouseover="this.style.background='#d4a574'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-          <svg class="w-5 h-5 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z" />
-          </svg></a> <a href="#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition-colors" style="background: rgba(255,255,255,0.1);" onmouseover="this.style.background='#d4a574'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-          <svg class="w-5 h-5 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
-          </svg></a> <a href="#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition-colors" style="background: rgba(255,255,255,0.1);" onmouseover="this.style.background='#d4a574'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-          <svg class="w-5 h-5 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.5,18.78 17.18,18.84C15.88,18.91 14.69,18.94 13.59,18.94L12,19C7.81,19 5.2,18.84 4.17,18.56C3.27,18.31 2.69,17.73 2.44,16.83C2.31,16.36 2.22,15.73 2.16,14.93C2.09,14.13 2.06,13.44 2.06,12.84L2,12C2,9.81 2.16,8.2 2.44,7.17C2.69,6.27 3.27,5.69 4.17,5.44C4.64,5.31 5.5,5.22 6.82,5.16C8.12,5.09 9.31,5.06 10.41,5.06L12,5C16.19,5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z" />
-          </svg></a>
-        </div>
-        </div><!-- GIỚI THIỆU -->
-        <div>
-        <h4 class="font-semibold text-white mb-4">GIỚI THIỆU</h4>
-        <ul class="space-y-3">
-          <li><a href="#" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">ABOUT US</a></li>
-          <li><a href="/featureproducts.html" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">PRODUCTS</a></li>
-          <li><a href="/discount.html" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">DISCOUNTS</a></li>
-          <li><a href="/blog.html" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">BLOG</a></li>
-          <li><a href="#" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">STORE</a></li>
-          <li><a href="#" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">LOOKING FOR A JOB?</a></li>
-        </ul>
-        </div><!-- ĐIỀU KHOẢN -->
-        <div>
-        <h4 class="font-semibold text-white mb-4">ĐIỀU KHOẢN</h4>
-        <ul class="space-y-3">
-          <li><a href="#" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">Điều khoản sử dụng</a></li>
-          <li><a href="#" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">Chính sách bảo mật</a></li>
-          <li><a href="#" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">Hướng dẫn xuất hóa đơn</a></li>
-        </ul>
-        </div>
-        
-        <!-- LIÊN HỆ -->
-        <div>
-        <h4 class="font-semibold text-white mb-4">LIÊN HỆ</h4>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-2">
-          <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="currentColor" style="color: #d4a574;" viewbox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
-          </svg><span class="text-sm" style="color: rgba(255,255,255,0.6);">57 Mile End Rd, Bethnal Green, London.</span></li>
-          <li class="flex items-center gap-2">
-          <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" style="color: #d4a574;" viewbox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" />
-          </svg><span class="text-sm" style="color: rgba(255,255,255,0.6);">1800 6936</span></li>
-          <li class="flex items-center gap-2">
-          <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" style="color: #d4a574;" viewbox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
-          </svg><span class="text-sm" style="color: rgba(255,255,255,0.6);">support@vietcoffee.vn</span></li>
-        </ul>
-        </div><!-- DOWNLOAD APP -->
-        <div>
-        <h4 class="font-semibold text-white mb-4">TẢI APP</h4>
-        <div class="space-y-3"><a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-2 rounded-lg transition-colors" style="background: rgba(255,255,255,0.1);" onmouseover="this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-          <svg class="w-6 h-6 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M17.05,20.28C16.07,20.83 14.89,21 13.5,21C11.55,21 9.84,20.63 8.37,19.91C6.9,19.18 5.82,18.12 5.15,16.73C4.47,15.34 4.14,13.66 4.14,11.68C4.14,9.28 4.66,7.25 5.7,5.59C6.74,3.94 8.19,2.76 10.05,2.06C11.9,1.35 14.09,1 16.61,1C17.77,1 18.7,1.04 19.39,1.12L19.05,3.5C18.36,3.36 17.6,3.29 16.77,3.29C14.96,3.29 13.39,3.58 12.07,4.15C10.74,4.73 9.72,5.56 9,6.66C8.27,7.77 7.91,9.11 7.91,10.68L7.94,10.92C8.5,10.28 9.29,9.77 10.31,9.38C11.32,9 12.47,8.81 13.77,8.81C15.3,8.81 16.62,9.09 17.73,9.67C18.84,10.24 19.71,11.04 20.33,12.08C20.95,13.11 21.26,14.3 21.26,15.65C21.26,17 20.94,18.2 20.3,19.23C19.67,20.27 18.67,21 17.05,20.28M15.5,11.91C14.75,11.91 14.06,12.03 13.42,12.28C12.79,12.53 12.26,12.87 11.82,13.31C11.39,13.75 11.1,14.26 10.95,14.84C10.8,15.42 10.89,16 11.23,16.5C11.57,17 12.03,17.37 12.6,17.62C13.17,17.87 13.79,18 14.45,18C15.3,18 16.04,17.82 16.67,17.45C17.3,17.09 17.8,16.58 18.15,15.93C18.5,15.28 18.67,14.53 18.67,13.69C18.67,12.86 18.43,12.19 17.95,11.69C17.47,11.19 16.65,11.91 15.5,11.91Z" />
-          </svg>
-          <div><span class="block text-xs" style="color: rgba(255,255,255,0.6);">Tải về trên</span> <span class="block text-sm font-semibold text-white">App Store</span>
-          </div></a> <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-2 rounded-lg transition-colors" style="background: rgba(255,255,255,0.1);" onmouseover="this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-          <svg class="w-6 h-6 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-          </svg>
-          <div><span class="block text-xs" style="color: rgba(255,255,255,0.6);">Tải về trên</span> <span class="block text-sm font-semibold text-white">Google Play</span>
-          </div></a>
-        </div>
-        </div>
-      </div><!-- Bottom Footer -->
-      <div class="mt-12 pt-8 border-t" style="border-color: rgba(255,255,255,0.1);">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-sm text-center md:text-left" style="color: rgba(255,255,255,0.5);">© 2025 VietCoffee. Công ty TNHH VietCoffee Việt Nam.<br class="md:hidden">
-          ĐKKD: 0944636084 do Sở KH&amp;ĐT TP.HCM cấp ngày 23/07/2014</p>
-        <div class="flex items-center gap-2"><span class="text-sm" style="color: rgba(255,255,255,0.5);">Thanh toán an toàn</span>
-          <div class="flex gap-2">
-          <div class="w-10 h-6 rounded flex items-center justify-center" style="background: white;"><span class="text-xs font-bold" style="color: #1a0f0a;">VISA</span>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
+          <!-- Brand -->
+          <div class="col-span-2 md:col-span-4 lg:col-span-1 mb-8 lg:mb-0">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, rgba(157,78,221,0.2), rgba(255,46,99,0.2)); border: 1px solid rgba(157,78,221,0.3);">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none"><path d="M2 21H20V19H2M20 8H18V5H20M20 3H4V13C4 15.209 5.791 17 8 17H14C16.209 17 18 15.209 18 13V10H20C21.105 10 22 9.105 22 8V5C22 3.895 21.105 3 20 3Z" fill="url(#footer-grad)"/><defs><linearGradient id="footer-grad" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9D4EDD"/><stop offset="1" stop-color="#FF2E63"/></linearGradient></defs></svg>
+              </div>
+              <span class="font-display text-xl font-bold" style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">CYBER</span>
+              <span class="text-xl font-bold text-white">COFFEE</span>
+            </div>
+            <p class="text-sm leading-relaxed mb-6" style="color: var(--silver);">Underground cyber café network. Fuel for the overclocked. Open 24/7.</p>
+            <div class="flex gap-3">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);" onmouseover="this.style.borderColor='rgba(157,78,221,0.4)'; this.style.boxShadow='0 0 15px rgba(157,78,221,0.15)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.boxShadow='none'">
+                <svg class="w-5 h-5" style="color: var(--silver);" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);" onmouseover="this.style.borderColor='rgba(157,78,221,0.4)'; this.style.boxShadow='0 0 15px rgba(157,78,221,0.15)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.boxShadow='none'">
+                <svg class="w-5 h-5" style="color: var(--silver);" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);" onmouseover="this.style.borderColor='rgba(157,78,221,0.4)'; this.style.boxShadow='0 0 15px rgba(157,78,221,0.15)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.boxShadow='none'">
+                <svg class="w-5 h-5" style="color: var(--silver);" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.46 3.5 12 3.5 12 3.5S4.54 3.5 2.62 4.05A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.92.55 9.38.55 9.38.55s7.46 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+              </a>
+            </div>
           </div>
-          <div class="w-10 h-6 rounded flex items-center justify-center" style="background: white;"><span class="text-xs font-bold" style="color: #1a0f0a;">MC</span>
+
+          <!-- SYSTEM -->
+          <div>
+            <h4 class="font-display text-xs font-bold tracking-widest mb-4" style="color: var(--violet);">SYSTEM</h4>
+            <ul class="space-y-3">
+              <li><a href="#" class="footer-link font-mono text-xs">> about.exe</a></li>
+              <li><a href="/featureproducts.html" class="footer-link font-mono text-xs">> menu.db</a></li>
+              <li><a href="/discount.html" class="footer-link font-mono text-xs">> rewards.sh</a></li>
+              <li><a href="/blog.html" class="footer-link font-mono text-xs">> log.txt</a></li>
+              <li><a href="#" class="footer-link font-mono text-xs">> nodes.map</a></li>
+              <li><a href="/jobsubmit.html" class="footer-link font-mono text-xs">> join.exe</a></li>
+            </ul>
           </div>
-          <div class="w-10 h-6 rounded flex items-center justify-center" style="background: white;"><span class="text-xs font-bold" style="color: #1a0f0a;">MOMO</span>
+
+          <!-- PROTOCOLS -->
+          <div>
+            <h4 class="font-display text-xs font-bold tracking-widest mb-4" style="color: var(--crimson);">PROTOCOLS</h4>
+            <ul class="space-y-3">
+              <li><a href="#" class="footer-link font-mono text-xs">> terms.cfg</a></li>
+              <li><a href="#" class="footer-link font-mono text-xs">> privacy.enc</a></li>
+              <li><a href="#" class="footer-link font-mono text-xs">> billing.sys</a></li>
+              <li><a href="#" class="footer-link font-mono text-xs">> license.key</a></li>
+            </ul>
           </div>
+
+          <!-- CONTACT -->
+          <div>
+            <h4 class="font-display text-xs font-bold tracking-widest mb-4" style="color: var(--cyan);">CONTACT</h4>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style="color: var(--cyan);" fill="currentColor" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/></svg>
+                <span class="text-xs font-mono" style="color: var(--silver);">57 Mile End Rd, London</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-3.5 h-3.5 flex-shrink-0" style="color: var(--cyan);" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
+                <span class="text-xs font-mono" style="color: var(--silver);">1800 6936</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-3.5 h-3.5 flex-shrink-0" style="color: var(--cyan);" fill="currentColor" viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
+                <span class="text-xs font-mono" style="color: var(--silver);">support@cybercoffee.io</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- DOWNLOAD -->
+          <div>
+            <h4 class="font-display text-xs font-bold tracking-widest mb-4" style="color: var(--amber);">CONNECT</h4>
+            <div class="space-y-3">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'; this.style.background='rgba(157,78,221,0.05)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.05)'; this.style.background='rgba(255,255,255,0.03)'">
+                <svg class="w-5 h-5" style="color: var(--silver);" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05,20.28C16.07,20.83 14.89,21 13.5,21C11.55,21 9.84,20.63 8.37,19.91C6.9,19.18 5.82,18.12 5.15,16.73C4.47,15.34 4.14,13.66 4.14,11.68C4.14,9.28 4.66,7.25 5.7,5.59C6.74,3.94 8.19,2.76 10.05,2.06C11.9,1.35 14.09,1 16.61,1C17.77,1 18.7,1.04 19.39,1.12L19.05,3.5C18.36,3.36 17.6,3.29 16.77,3.29C14.96,3.29 13.39,3.58 12.07,4.15C10.74,4.73 9.72,5.56 9,6.66C8.27,7.77 7.91,9.11 7.91,10.68L7.94,10.92C8.5,10.28 9.29,9.77 10.31,9.38C11.32,9 12.47,8.81 13.77,8.81C15.3,8.81 16.62,9.09 17.73,9.67C18.84,10.24 19.71,11.04 20.33,12.08C20.95,13.11 21.26,14.3 21.26,15.65C21.26,17 20.94,18.2 20.3,19.23C19.67,20.27 18.67,21 17.05,20.28M15.5,11.91C14.75,11.91 14.06,12.03 13.42,12.28C12.79,12.53 12.26,12.87 11.82,13.31C11.39,13.75 11.1,14.26 10.95,14.84C10.8,15.42 10.89,16 11.23,16.5C11.57,17 12.03,17.37 12.6,17.62C13.17,17.87 13.79,18 14.45,18C15.3,18 16.04,17.82 16.67,17.45C17.3,17.09 17.8,16.58 18.15,15.93C18.5,15.28 18.67,14.53 18.67,13.69C18.67,12.86 18.43,12.19 17.95,11.69C17.47,11.19 16.65,11.91 15.5,11.91Z"/></svg>
+                <div>
+                  <span class="block text-[0.6rem] font-mono" style="color: var(--silver);">DOWNLOAD FOR</span>
+                  <span class="block text-xs font-semibold text-white">iOS</span>
+                </div>
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'; this.style.background='rgba(157,78,221,0.05)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.05)'; this.style.background='rgba(255,255,255,0.03)'">
+                <svg class="w-5 h-5" style="color: var(--silver);" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                <div>
+                  <span class="block text-[0.6rem] font-mono" style="color: var(--silver);">DOWNLOAD FOR</span>
+                  <span class="block text-xs font-semibold text-white">Android</span>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
+
+        <div class="mt-12 pt-8 border-t border-white/5">
+          <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-xs font-mono text-center md:text-left" style="color: rgba(168, 176, 192, 0.4);">© 2025 CYBERCOFFEE NETWORK // ALL RIGHTS RESERVED // SYS v2.0.25</p>
+            <div class="flex items-center gap-3">
+              <span class="text-[0.6rem] font-mono" style="color: rgba(168, 176, 192, 0.4);">SECURE PAYMENT:</span>
+              <div class="flex gap-2">
+                <div class="px-2 py-1 rounded text-[0.55rem] font-mono font-bold" style="background: rgba(255,255,255,0.05); color: var(--silver);">VISA</div>
+                <div class="px-2 py-1 rounded text-[0.55rem] font-mono font-bold" style="background: rgba(255,255,255,0.05); color: var(--silver);">MC</div>
+                <div class="px-2 py-1 rounded text-[0.55rem] font-mono font-bold" style="background: rgba(255,255,255,0.05); color: var(--silver);">MOMO</div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
       </div>
     </footer>
   </div>
+
   <script>
-    // Default configuration
     const defaultConfig = {
-      brand_name: 'VietCoffee',
-      hero_headline: 'CHUYỆN "VietCoffee"',
-      hero_tagline: '"The VietCoffee tin rằng, nụ cười là hương vị ngọt ngào nhất trong mỗi ngày mới."',
-      collection_title: '"Our" COLLECTION',
-      featured_title: 'FEATURED PRODUCT',
-      store_title: 'Tìm "quán" gần bạn',
-      background_color: '#faf6f1',
-      surface_color: '#2d1810',
-      text_color: '#4a2c1a',
-      primary_action_color: '#d4a574',
-      secondary_action_color: '#8b5a2b'
+      brand_name: 'CYBER',
+      hero_headline: 'WAKE BREW CYBER COFFEE',
+      hero_tagline: 'The café runs on code, caffeine, and chaos.',
+      collection_title: 'COLLECTION CORE',
+      featured_title: 'FEATURED FUEL',
+      store_title: 'FIND "NODE" NEAR YOU',
+      background_color: '#07070B',
+      surface_color: '#11131A',
+      text_color: '#F5F7FA',
+      primary_action_color: '#9D4EDD',
+      secondary_action_color: '#FF2E63'
     };
 
-    // Products data organized by category
     const products = {
       cafe: [
-        { name: 'A-Mê Classic', price: 39000, badge: 'Bestseller', image: 'media-assets/bacsiuclassic.png' },
-        { name: 'A-Mê Đào', price: 49000, badge: null, image: 'media-assets/peachamericano.png' },
-        { name: 'A-Mê Mơ', price: 49000, badge: null, image: 'media-assets/americanomo.png' },
-        { name: 'A-Mê Tuyết Quất', price: 59000, badge: 'New', image: 'media-assets/americanvietquat.png' },
-        { name: 'A-Mê Yuzu', price: 49000, badge: null, image: 'media-assets/yuzuamericano.png' },
-        { name: 'Americano Nóng', price: 45000, badge: null, image: 'media-assets/classicamericano.png' },
-        { name: 'Cappuccino', price: 55000, badge: null, image: 'media-assets/cappuccino.png' },
-        { name: 'Cappuccino Đá', price: 55000, badge: null, image: 'media-assets/coldcappucino.png' },
-        { name: 'Cappuccino Nóng', price: 55000, badge: null, image: 'media-assets/hotcappuccino.png' },
-        { name: 'Caramel Macchiato Đá', price: 65000, badge: 'Popular', image: 'media-assets/macchiato.png' },
-        { name: 'Caramel Macchiato Nóng', price: 69000, badge: null, image: 'media-assets/macchiato.png' },
-        { name: 'Cold Brew', price: 49000, badge: null, image: 'media-assets/coldbrew.png' },
-        { name: 'Cold Brew Truyền Thống', price: 45000, badge: null, image: 'media-assets/originalcoldbew.png' },
+        { name: 'Iced Americano', price: 39000, badge: 'Bestseller', image: 'media-assets/bacsiuclassic.png' },
         { name: 'Peach Americano', price: 49000, badge: null, image: 'media-assets/peachamericano.png' },
+        { name: 'Plum Americano', price: 49000, badge: null, image: 'media-assets/americanomo.png' },
+        { name: 'Blueberry Americano', price: 59000, badge: 'New', image: 'media-assets/americanvietquat.png' },
         { name: 'Yuzu Americano', price: 49000, badge: null, image: 'media-assets/yuzuamericano.png' },
-        { name: 'Cà Phê Phin Đen Đá', price: 35000, badge: null, image: 'media-assets/ca_phe_phin_den_da.png' },
-        { name: 'Cà Phê Phin Đen Nóng', price: 35000, badge: null, image: 'media-assets/ca_phe_phin_den_nong.png' },
-        { name: 'Cà Phê Phin Nâu Đá', price: 38000, badge: null, image: 'media-assets/ca_phe_phin_nau_da.png' },
-        { name: 'Cà Phê Phin Nâu Nóng', price: 38000, badge: null, image: 'media-assets/ca_phe_phin_nau_nong.png' },
-        { name: 'Bạc Xiu Truyền Thống Nóng', price: 39000, badge: null, image: 'media-assets/bac_xiu_truyen_thong_nong.png' },
-        { name: 'Bạc Xiu Classic', price: 39000, badge: null, image: 'media-assets/bacsiuclassic.png' },
-        { name: 'Bạc Xiu Caramel', price: 45000, badge: null, image: 'media-assets/bacsiu caramel.png' },
-        { name: 'Bạc Xiu Foam', price: 49000, badge: null, image: 'media-assets/bacsiufoam.png' },
-        { name: 'Bạc Xiu', price: 39000, badge: null, image: 'media-assets/bacsiu.png' },
+        { name: 'Hot Americano', price: 45000, badge: null, image: 'media-assets/classicamericano.png' },
+        { name: 'Cappuccino', price: 55000, badge: null, image: 'media-assets/cappuccino.png' },
+        { name: 'Iced Cappuccino', price: 55000, badge: null, image: 'media-assets/coldcappucino.png' },
+        { name: 'Hot Cappuccino', price: 55000, badge: null, image: 'media-assets/hotcappuccino.png' },
+        { name: 'Caramel Macchiato', price: 65000, badge: 'Popular', image: 'media-assets/macchiato.png' },
+        { name: 'Cold Brew', price: 49000, badge: null, image: 'media-assets/coldbrew.png' },
+        { name: 'Traditional Cold Brew', price: 45000, badge: null, image: 'media-assets/originalcoldbew.png' },
+        { name: 'Black Coffee', price: 35000, badge: null, image: 'media-assets/ca_phe_phin_den_da.png' },
+        { name: 'Hot Black Coffee', price: 35000, badge: null, image: 'media-assets/ca_phe_phin_den_nong.png' },
+        { name: 'Brown Coffee', price: 38000, badge: null, image: 'media-assets/ca_phe_phin_nau_da.png' },
+        { name: 'Hot Brown Coffee', price: 38000, badge: null, image: 'media-assets/ca_phe_phin_nau_nong.png' },
         { name: 'Espresso', price: 35000, badge: null, image: 'media-assets/espresso.png' },
-        { name: 'Espresso Nóng', price: 35000, badge: null, image: 'media-assets/espressohot.png' },
-        { name: 'Espresso Đá', price: 35000, badge: null, image: 'media-assets/espressocold.png' },
+        { name: 'Hot Espresso', price: 35000, badge: null, image: 'media-assets/espressohot.png' },
+        { name: 'Iced Espresso', price: 35000, badge: null, image: 'media-assets/espressocold.png' },
         { name: 'Ethiopia', price: 55000, badge: null, image: 'media-assets/ethiopia.png' },
         { name: 'Ethiopia Americano', price: 55000, badge: null, image: 'media-assets/ethiopiaamericano.png' },
         { name: 'Latte', price: 55000, badge: null, image: 'media-assets/latte.png' },
-        { name: 'Latte Nóng', price: 55000, badge: null, image: 'media-assets/lattehot.png' },
-        { name: 'Latte Caramel', price: 65000, badge: null, image: 'media-assets/latte caramel.png' },
-        { name: 'Latte Classic', price: 55000, badge: null, image: 'media-assets/latteclassic.png' },
-        { name: 'Latte Almond', price: 65000, badge: null, image: 'media-assets/lattealmond.png' },
-        { name: 'Latte Hazelnut', price: 65000, badge: null, image: 'media-assets/lattehazzlenut.png' },
+        { name: 'Hot Latte', price: 55000, badge: null, image: 'media-assets/lattehot.png' },
+        { name: 'Caramel Latte', price: 65000, badge: null, image: 'media-assets/latte caramel.png' },
+        { name: 'Classic Latte', price: 55000, badge: null, image: 'media-assets/latteclassic.png' },
+        { name: 'Almond Latte', price: 65000, badge: null, image: 'media-assets/lattealmond.png' },
+        { name: 'Hazelnut Latte', price: 65000, badge: null, image: 'media-assets/lattehazzlenut.png' },
         { name: 'Hot Chocolate', price: 55000, badge: null, image: 'media-assets/hotchoco.png' },
         { name: 'Cold Chocolate', price: 55000, badge: null, image: 'media-assets/coldchoco.png' },
-        { name: 'Frappe Chocolate', price: 65000, badge: null, image: 'media-assets/frappechoco.png' },
+        { name: 'Chocolate Frappe', price: 65000, badge: null, image: 'media-assets/frappechoco.png' },
         { name: 'Vanilla Frappe', price: 65000, badge: null, image: 'media-assets/vanillafroat.png' },
-        { name: 'Matcha Latte Đá', price: 65000, badge: null, image: 'media-assets/matchalattewithice.png' },
-        { name: 'Matcha Tây Bắc Đá', price: 65000, badge: null, image: 'media-assets/matchataybacda.png' },
-        { name: 'Matcha Tây Bắc Nóng', price: 65000, badge: null, image: 'media-assets/matchataybachot.png' },
-        { name: 'Matcha Yên Bắc', price: 65000, badge: null, image: 'media-assets/matchayenbac.png' },
+        { name: 'Iced Matcha Latte', price: 65000, badge: null, image: 'media-assets/matchalattewithice.png' },
         { name: 'Matcha Frappe', price: 65000, badge: null, image: 'media-assets/matchafrappe.png' },
-        { name: 'Matcha Fine D', price: 65000, badge: null, image: 'media-assets/matchafined.png' },
-        { name: 'Matcha Froth', price: 65000, badge: null, image: 'media-assets/matchafroat.png' },
-        { name: 'Oolong Tứ Quý', price: 55000, badge: null, image: 'media-assets/olongtuquy.png' },
-        { name: 'Oolong Tứ Quý Sương Sáo', price: 65000, badge: null, image: 'media-assets/olongtuquysuongsao.png' },
-        { name: 'Hồng Trà', price: 55000, badge: null, image: 'media-assets/hongtea.png' },
-        { name: 'Black Tea', price: 55000, badge: null, image: 'media-assets/blacktea.png' },
-        { name: 'Bla Oolong', price: 55000, badge: null, image: 'media-assets/blaoolong.png' }
+        { name: 'Matcha Foam', price: 65000, badge: null, image: 'media-assets/matchafroat.png' },
+        { name: 'Oolong Tea', price: 55000, badge: null, image: 'media-assets/olongtuquy.png' },
+        { name: 'Oolong with Jelly', price: 65000, badge: null, image: 'media-assets/olongtuquysuongsao.png' },
+        { name: 'Red Tea', price: 55000, badge: null, image: 'media-assets/hongtea.png' },
+        { name: 'Black Tea', price: 55000, badge: null, image: 'media-assets/blacktea.png' }
       ],
       boba: [
         { name: 'Matcha Boba Peach', price: 75000, badge: 'New', image: 'media-assets/matchabobapeach.png' },
-        { name: 'Hồng Trà Boba', price: 65000, badge: null, image: 'media-assets/hongteaboba.png' },
-        { name: 'Oolong Boba Tea', price: 65000, badge: null, image: 'media-assets/olongbobatea.png' }
+        { name: 'Red Tea Boba', price: 65000, badge: null, image: 'media-assets/hongteaboba.png' },
+        { name: 'Oolong Boba', price: 65000, badge: null, image: 'media-assets/olongbobatea.png' }
       ],
       food: [
         { name: 'Sandwich', price: 65000, badge: null, image: 'media-assets/sandwich.png' },
         { name: 'Croissant', price: 45000, badge: null, image: 'media-assets/croissant.png' },
         { name: 'Cheesecake', price: 75000, badge: null, image: 'media-assets/cheesecake.png' },
-        { name: 'Matcha Burnt Cheesecake', price: 85000, badge: 'Popular', image: 'media-assets/matchaburntcheesecake.png' },
+        { name: 'Matcha Cheesecake', price: 85000, badge: 'Popular', image: 'media-assets/matchaburntcheesecake.png' },
         { name: 'Mochi', price: 45000, badge: null, image: 'media-assets/mochi.png' },
-        { name: 'Mochi Phúc Bồn Tử', price: 55000, badge: null, image: 'media-assets/mochiphucbontu.png' },
-        { name: 'Raspberry Mochi', price: 55000, badge: null, image: 'media-assets/raspmocchi.png' },
-        { name: 'Mitsay', price: 45000, badge: null, image: 'media-assets/mitsay.png' },
-        { name: 'Mochi Kem Choco', price: 55000, badge: null, image: 'media-assets/mocchikemchoco.png' }
+        { name: 'Raspberry Mochi', price: 55000, badge: null, image: 'media-assets/mochiphucbontu.png' },
+        { name: 'Chocolate Mochi', price: 55000, badge: null, image: 'media-assets/mocchikemchoco.png' },
+        { name: 'Matcha Mochi', price: 55000, badge: null, image: 'media-assets/mitsay.png' }
       ]
     };
 
-
-    // Instagram posts with images
     const instagramPosts = [
       { image: 'media-assets/imgs/1.jpg' },
       { image: 'media-assets/imgs/2.jpg' },
@@ -424,170 +636,114 @@
       { image: 'media-assets/imgs/6.jpg' }
     ];
 
-    // Districts data by city
     const districts = {
-      hcm: ['Quận 1', 'Quận 2', 'Quận 3', 'Quận 7', 'Quận Bình Thạnh', 'Quận Phú Nhuận', 'Quận Tân Bình', 'Thủ Đức'],
-      hn: ['Hoàn Kiếm', 'Ba Đình', 'Đống Đa', 'Hai Bà Trưng', 'Cầu Giấy', 'Thanh Xuân', 'Hoàng Mai'],
-      dn: ['Hải Châu', 'Thanh Khê', 'Sơn Trà', 'Ngũ Hành Sơn', 'Liên Chiểu'],
-      hp: ['Hồng Bàng', 'Lê Chân', 'Ngô Quyền', 'Kiến An'],
-      ct: ['Ninh Kiều', 'Bình Thủy', 'Cái Răng'],
-      bd: ['Thủ Dầu Một', 'Dĩ An', 'Thuận An'],
-      dl: ['Phường 1', 'Phường 2', 'Phường 3', 'Phường 4']
+      hcm: ['District 1', 'District 2', 'District 3', 'District 7', 'Binh Thanh', 'Phu Nhuan', 'Tan Binh', 'Thu Duc'],
+      hn: ['Hoan Kiem', 'Ba Dinh', 'Dong Da', 'Hai Ba Trung', 'Cau Giay', 'Thanh Xuan', 'Hoang Mai'],
+      dn: ['Hai Chau', 'Thanh Khe', 'Son Tra', 'Ngu Hanh Son', 'Lien Chieu'],
+      hp: ['Hong Bang', 'Le Chan', 'Ngo Quyen', 'Kien An'],
+      ct: ['Ninh Kieu', 'Binh Thuy', 'Cai Rang'],
+      bd: ['Thu Dau Mot', 'Di An', 'Thuan An'],
+      dl: ['Ward 1', 'Ward 2', 'Ward 3', 'Ward 4']
     };
 
-    // Format price
     function formatPrice(price) {
       return new Intl.NumberFormat('vi-VN').format(price) + ' đ';
     }
 
-    // Render products by category
-    function renderProducts(config) {
-      const renderProductCard = (product, category) => `
-        <div class="product-card rounded-2xl overflow-hidden" style="background: white; box-shadow: 0 4px 20px rgba(45, 24, 16, 0.08);">
-          <div class="relative" style="aspect-ratio: 1;">
-            <img src="${product.image || 'media-assets/coffee.png'}" alt="${product.name}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="absolute inset-0 flex items-center justify-center hidden" style="background: linear-gradient(135deg, ${config.primary_action_color}22, ${config.secondary_action_color}22);">
-              <svg class="w-16 h-16 md:w-20 md:h-20" viewBox="0 0 24 24" fill="${config.secondary_action_color}" opacity="0.3">
-                <path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/>
-              </svg>
-            </div>
-            ${product.badge ? `<span class="absolute top-3 left-3 px-2 py-1 rounded-full text-xs font-semibold text-white z-10" style="background: ${product.badge === 'New' ? '#4a7c59' : product.badge === 'Bestseller' ? '#c75b39' : product.badge === 'Popular' ? config.secondary_action_color : config.secondary_action_color};">${product.badge}</span>` : ''}
-          </div>
-          <div class="p-4">
-            <span class="text-xs font-medium uppercase tracking-wider" style="color: ${config.secondary_action_color};">${category === 'cafe' ? 'Cà Phê' : category === 'boba' ? 'Boba' : 'Đồ Ăn'}</span>
-            <h3 class="font-semibold text-base mt-1 mb-2" style="color: ${config.surface_color};">${product.name}</h3>
-            <div class="flex items-center justify-between">
-              <span class="font-bold" style="color: ${config.text_color};">${formatPrice(product.price)}</span>
-              <button class="w-8 h-8 rounded-full flex items-center justify-center transition-colors" style="background: ${config.primary_action_color}; color: white;" onmouseover="this.style.background='${config.secondary_action_color}'" onmouseout="this.style.background='${config.primary_action_color}'">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
+    let activeFilter = 'all';
 
-      // Render Cafe products
-      const cafeGrid = document.getElementById('cafe-grid');
-      if (cafeGrid) {
-        cafeGrid.innerHTML = products.cafe.map(product => renderProductCard(product, 'cafe')).join('');
-      }
-
-      // Render Boba products
-      const bobaGrid = document.getElementById('boba-grid');
-      if (bobaGrid) {
-        bobaGrid.innerHTML = products.boba.map(product => renderProductCard(product, 'boba')).join('');
-      }
-
-      // Render Food products
-      const foodGrid = document.getElementById('food-grid');
-      if (foodGrid) {
-        foodGrid.innerHTML = products.food.map(product => renderProductCard(product, 'food')).join('');
-      }
+    function filterProducts(category, btn) {
+      activeFilter = category;
+      document.querySelectorAll('.flex-wrap.justify-center.gap-3.mb-12 button').forEach(b => {
+        if (b === btn) {
+          b.className = 'cyber-btn px-5 py-2.5 rounded-lg text-xs font-semibold tracking-wider';
+        } else {
+          b.className = 'cyber-btn-outline px-5 py-2.5 rounded-lg text-xs font-semibold tracking-wider';
+        }
+      });
+      renderProducts(defaultConfig);
     }
 
-    // Render Instagram grid
-    function renderInstagram(config) {
-      const grid = document.getElementById('instagram-grid');
+    function renderProducts(config) {
+      const grid = document.getElementById('products-grid');
       if (!grid) return;
-      
-      grid.innerHTML = instagramPosts.map((post, index) => `
-        <div class="instagram-item relative rounded-2xl overflow-hidden cursor-pointer" style="aspect-ratio: 1;">
-          <img src="${post.image}" alt="Instagram post ${index + 1}" class="w-full h-full object-cover">
-          <div class="instagram-overlay absolute inset-0 flex items-center justify-center" style="background: rgba(0,0,0,0.5);">
-            <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/>
-            </svg>
+
+      let items = [];
+      if (activeFilter === 'all') {
+        Object.entries(products).forEach(([cat, prods]) => {
+          prods.forEach(p => items.push({ ...p, category: cat }));
+        });
+      } else {
+        (products[activeFilter] || []).forEach(p => items.push({ ...p, category: activeFilter }));
+      }
+
+      items = items.slice(0, 8);
+
+      grid.innerHTML = items.map(product => `
+        <div class="product-card group">
+          <div class="relative" style="aspect-ratio: 1;">
+            <img src="${product.image || 'media-assets/coffee.png'}" alt="${product.name}" class="w-full h-full object-cover product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="absolute inset-0 flex items-center justify-center hidden" style="background: linear-gradient(135deg, rgba(157,78,221,0.1), rgba(255,46,99,0.1));">
+              <svg class="w-16 h-16 md:w-20 md:h-20" viewBox="0 0 24 24" fill="#9D4EDD" opacity="0.3"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/></svg>
+            </div>
+            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          <div class="p-4">
+            <span class="text-[0.6rem] font-mono font-medium uppercase tracking-widest" style="color: var(--violet);">${product.category === 'cafe' ? 'COFFEE' : product.category === 'boba' ? 'BOBA' : 'SNACK'}</span>
+            <h3 class="font-semibold text-sm mt-1 mb-2 text-white">${product.name}</h3>
+            <div class="flex items-center justify-between">
+              <span class="font-mono font-bold text-sm" style="color: var(--white);">${formatPrice(product.price)}</span>
+              <button class="w-8 h-8 rounded-lg flex items-center justify-center cyber-btn" style="padding: 0; min-width: unset; width: 32px; height: 32px;" onclick="event.stopPropagation()">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+              </button>
+            </div>
           </div>
         </div>
       `).join('');
     }
 
-    // Update UI based on config
+    function renderInstagram(config) {
+      const grid = document.getElementById('instagram-grid');
+      if (!grid) return;
+      grid.innerHTML = instagramPosts.map((post, index) => `
+        <div class="instagram-item group">
+          <img src="${post.image}" alt="Cyber feed ${index + 1}" class="w-full h-full object-cover" style="aspect-ratio: 1;">
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: linear-gradient(135deg, rgba(157,78,221,0.3), rgba(255,46,99,0.2));">
+            <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
+          </div>
+        </div>
+      `).join('');
+    }
+
     async function onConfigChange(config) {
-      // Update brand names
-      document.getElementById('nav-brand').textContent = config.brand_name || defaultConfig.brand_name;
-      document.getElementById('footer-brand').textContent = config.brand_name || defaultConfig.brand_name;
-      
-      // Update hero section
-      const heroHeadline = document.getElementById('hero-headline');
-      const headlineText = config.hero_headline || defaultConfig.hero_headline;
-      if (headlineText.includes('"')) {
-        const parts = headlineText.split('"');
-        heroHeadline.innerHTML = `${parts[0]}<br/><span style="color: ${config.primary_action_color || defaultConfig.primary_action_color};">"${parts[1]}"</span>${parts[2] || ''}`;
-      } else {
-        heroHeadline.textContent = headlineText;
-      }
-      
-      document.getElementById('hero-tagline').textContent = config.hero_tagline || defaultConfig.hero_tagline;
-      
-      // Update collection title
-      const collectionTitle = document.getElementById('collection-title');
-      const collTitle = config.collection_title || defaultConfig.collection_title;
-      if (collTitle.includes('"')) {
-        collectionTitle.innerHTML = collTitle.replace(/"([^"]+)"/g, `"$1" <span style="color: ${config.secondary_action_color || defaultConfig.secondary_action_color};">COLLECTION</span>`);
-      } else {
-        collectionTitle.textContent = collTitle;
-      }
-      
-      // Update featured title
-      const featuredTitle = document.getElementById('featured-title');
-      const featTitle = config.featured_title || defaultConfig.featured_title;
-      featuredTitle.innerHTML = featTitle.replace('PRODUCT', `<span style="color: ${config.secondary_action_color || defaultConfig.secondary_action_color};">PRODUCT</span>`);
-      
-      // Update store title
-      const storeTitle = document.getElementById('store-title');
-      const storeTitleText = config.store_title || defaultConfig.store_title;
-      if (storeTitleText.includes('"')) {
-        storeTitle.innerHTML = storeTitleText.replace(/"([^"]+)"/g, `<span style="color: ${config.secondary_action_color || defaultConfig.secondary_action_color};">"$1"</span>`);
-      } else {
-        storeTitle.textContent = storeTitleText;
-      }
-      
-      // Render dynamic content
+      document.getElementById('nav-brand').textContent = (config.brand_name || defaultConfig.brand_name) + 'COFFEE';
       renderProducts(config);
       renderInstagram(config);
     }
 
-    // Map config to capabilities for color/font editing
     function mapToCapabilities(config) {
       return {
         recolorables: [
           {
             get: () => config.background_color || defaultConfig.background_color,
-            set: (value) => {
-              config.background_color = value;
-              if (window.elementSdk) window.elementSdk.setConfig({ background_color: value });
-            }
+            set: (value) => { config.background_color = value; if (window.elementSdk) window.elementSdk.setConfig({ background_color: value }); }
           },
           {
             get: () => config.surface_color || defaultConfig.surface_color,
-            set: (value) => {
-              config.surface_color = value;
-              if (window.elementSdk) window.elementSdk.setConfig({ surface_color: value });
-            }
+            set: (value) => { config.surface_color = value; if (window.elementSdk) window.elementSdk.setConfig({ surface_color: value }); }
           },
           {
             get: () => config.text_color || defaultConfig.text_color,
-            set: (value) => {
-              config.text_color = value;
-              if (window.elementSdk) window.elementSdk.setConfig({ text_color: value });
-            }
+            set: (value) => { config.text_color = value; if (window.elementSdk) window.elementSdk.setConfig({ text_color: value }); }
           },
           {
             get: () => config.primary_action_color || defaultConfig.primary_action_color,
-            set: (value) => {
-              config.primary_action_color = value;
-              if (window.elementSdk) window.elementSdk.setConfig({ primary_action_color: value });
-            }
+            set: (value) => { config.primary_action_color = value; if (window.elementSdk) window.elementSdk.setConfig({ primary_action_color: value }); }
           },
           {
             get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
-            set: (value) => {
-              config.secondary_action_color = value;
-              if (window.elementSdk) window.elementSdk.setConfig({ secondary_action_color: value });
-            }
+            set: (value) => { config.secondary_action_color = value; if (window.elementSdk) window.elementSdk.setConfig({ secondary_action_color: value }); }
           }
         ],
         borderables: [],
@@ -596,7 +752,6 @@
       };
     }
 
-    // Map config to edit panel values
     function mapToEditPanelValues(config) {
       return new Map([
         ['brand_name', config.brand_name || defaultConfig.brand_name],
@@ -608,42 +763,57 @@
       ]);
     }
 
-    // Initialize Element SDK
     if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange,
-        mapToCapabilities,
-        mapToEditPanelValues
-      });
+      window.elementSdk.init({ defaultConfig, onConfigChange, mapToCapabilities, mapToEditPanelValues });
     } else {
-      // Fallback for preview without SDK
       onConfigChange(defaultConfig);
     }
 
+    // Particle system
+    function createParticles() {
+      const container = document.getElementById('particle-container');
+      if (!container) return;
+      const count = 60;
+      for (let i = 0; i < count; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        const size = Math.random() * 3 + 1;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        const colors = ['#9D4EDD', '#FF2E63', '#FF4FD8', '#4CC9F0', '#00F5D4', '#FFB703'];
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.boxShadow = `0 0 ${size * 3}px ${particle.style.background}`;
+        const duration = 3 + Math.random() * 4;
+        const delay = Math.random() * 5;
+        particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+        particle.style.opacity = 0.3 + Math.random() * 0.4;
+        container.appendChild(particle);
+      }
+    }
+    createParticles();
+
     // Mobile menu toggle
     document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
+      document.getElementById('mobile-menu').classList.toggle('hidden');
     });
 
     // City selection handler
     document.getElementById('city-select').addEventListener('change', (e) => {
       const districtSelect = document.getElementById('district-select');
       const cityDistricts = districts[e.target.value] || [];
-      
-      districtSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>' + 
+      districtSelect.innerHTML = '<option value="">Select District</option>' +
         cityDistricts.map(d => `<option value="${d}">${d}</option>`).join('');
     });
 
-    // Smooth scroll for navigation links
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Close mobile menu if open
           document.getElementById('mobile-menu').classList.add('hidden');
         }
       });
@@ -654,15 +824,25 @@
     window.addEventListener('scroll', () => {
       const nav = document.querySelector('nav');
       const currentScroll = window.pageYOffset;
-      
       if (currentScroll > 100) {
-        nav.style.boxShadow = '0 4px 20px rgba(45, 24, 16, 0.1)';
+        nav.style.borderBottom = '1px solid rgba(157,78,221,0.15)';
+        nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
       } else {
+        nav.style.borderBottom = '1px solid rgba(157,78,221,0.1)';
         nav.style.boxShadow = 'none';
       }
-      
       lastScroll = currentScroll;
     });
+
+    // Parallax effect on blobs
+    document.addEventListener('mousemove', (e) => {
+      const blobs = document.querySelectorAll('.blob');
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      blobs.forEach((blob, i) => {
+        blob.style.transform = `translate(${x * (i + 1)}px, ${y * (i + 1)}px)`;
+      });
+    });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bca6e294363fdc6',t:'MTc2ODE5NzU5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>

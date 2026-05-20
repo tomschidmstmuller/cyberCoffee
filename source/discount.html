@@ -1,1144 +1,330 @@
 <!doctype html>
 <html lang="en" class="h-full">
- <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VietCoffee - Daily Discounts</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <title>CYBERCOFFEE // REWARDS TERMINAL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="/_sdk/element_sdk.js"></script>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    body {
-      box-sizing: border-box;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    html, body {
-      height: 100%;
-      width: 100%;
-      overflow-x: hidden;
-    }
-    
-    body {
-      font-family: 'Be Vietnam Pro', sans-serif;
-    }
-    
-    .main-wrapper {
-      width: 100%;
-      min-height: 100%;
-      overflow-y: auto;
-      background: #faf6f1;
-    }
-    
-    h1, h2, h3 {
-      font-family: 'Playfair Display', serif;
-    }
-    
-    /* Navigation */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(45, 24, 16, 0.95);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      box-shadow: 0 4px 20px rgba(45, 24, 16, 0.3);
-    }
-    
-    .nav-link {
-      color: #faf6f1;
-      transition: all 0.3s ease;
-      font-weight: 600;
-      position: relative;
-      padding-bottom: 4px;
-    }
-    
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #8b5a2b, #faf6f1);
-      transition: width 0.3s ease;
-    }
-    
-    .nav-link:hover {
-      color: #8b5a2b;
-      transform: translateY(-2px);
-    }
-    
-    .nav-link:hover::after {
-      width: 100%;
-    }
-    
-    .order-btn {
-      background: linear-gradient(135deg, #8b5a2b, #6b3d23);
-      color: #faf6f1;
-      padding: 0.75rem 1.5rem;
-      border-radius: 50px;
-      font-weight: 700;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-    }
-    
-    .order-btn:hover {
-      background: linear-gradient(135deg, #6b3d23, #4a2c1a);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(139, 90, 43, 0.4);
-    }
-    
-    /* Hero Section */
-    .hero-section {
-      width: 100%;
-      min-height: 600px;
-      background: linear-gradient(135deg, rgba(45, 24, 16, 0.85), rgba(107, 61, 35, 0.75)),
-                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234a2c1a" width="1200" height="600"/><circle fill="%236b3d23" cx="200" cy="150" r="80"/><circle fill="%232d1810" cx="800" cy="400" r="100"/><circle fill="%238b5a2b" cx="1000" cy="200" r="60"/></svg>');
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      margin-top: 80px;
-    }
-    
-    .steam-particle {
-      position: absolute;
-      width: 3px;
-      height: 20px;
-      background: rgba(250, 246, 241, 0.4);
-      border-radius: 50%;
-      animation: steam-rise 4s ease-in-out infinite;
-    }
-    
-    @keyframes steam-rise {
-      0% {
-        transform: translateY(0) translateX(0);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.8;
-      }
-      90% {
-        opacity: 0.3;
-      }
-      100% {
-        transform: translateY(-200px) translateX(20px);
-        opacity: 0;
-      }
-    }
-    
-    .coffee-stain {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(107, 61, 35, 0.3), transparent);
-      animation: pulse 3s ease-in-out infinite;
-    }
-    
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.3; }
-      50% { transform: scale(1.1); opacity: 0.5; }
-    }
-    
-    /* Vietnamese Coffee Filter Button */
-    .phin-button {
-      width: 280px;
-      height: 280px;
-      position: relative;
-      cursor: pointer;
-      transition: all 0.4s ease;
-    }
-    
-    .phin-button:hover {
-      transform: scale(1.05);
-    }
-    
-    .phin-button.brewing {
-      animation: shake 0.5s ease-in-out infinite;
-    }
-    
-    @keyframes shake {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(-3deg); }
-      75% { transform: rotate(3deg); }
-    }
-    
-    .phin-filter {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #8b5a2b 0%, #6b3d23 50%, #4a2c1a 100%);
-      border-radius: 20% 20% 40% 40%;
-      position: relative;
-      box-shadow: 0 20px 60px rgba(45, 24, 16, 0.6),
-                  inset 0 -10px 30px rgba(0, 0, 0, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 4px solid #2d1810;
-    }
-    
-    .phin-filter::before {
-      content: '';
-      position: absolute;
-      top: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60%;
-      height: 8px;
-      background: #2d1810;
-      border-radius: 4px;
-    }
-    
-    .phin-filter::after {
-      content: '';
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40%;
-      height: 6px;
-      background: #2d1810;
-      border-radius: 3px;
-    }
-    
-    .phin-glow {
-      position: absolute;
-      top: -20px;
-      left: -20px;
-      right: -20px;
-      bottom: -20px;
-      border-radius: 30% 30% 50% 50%;
-      box-shadow: 0 0 40px rgba(139, 90, 43, 0.6);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    
-    .phin-button:hover .phin-glow {
-      opacity: 1;
-      animation: glow-pulse 2s ease-in-out infinite;
-    }
-    
-    @keyframes glow-pulse {
-      0%, 100% { box-shadow: 0 0 40px rgba(139, 90, 43, 0.6); }
-      50% { box-shadow: 0 0 60px rgba(139, 90, 43, 0.9); }
-    }
-    
-    .coffee-drip {
-      position: absolute;
-      bottom: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 8px;
-      height: 30px;
-      background: linear-gradient(180deg, #4a2c1a, #2d1810);
-      border-radius: 0 0 50% 50%;
-      animation: drip 2s ease-in-out infinite;
-    }
-    
-    @keyframes drip {
-      0%, 100% { height: 10px; opacity: 0.6; }
-      50% { height: 40px; opacity: 1; }
-    }
-    
-    .phin-button.brewing .coffee-drip {
-      animation: drip-fast 0.3s ease-in-out infinite;
-    }
-    
-    @keyframes drip-fast {
-      0% { height: 10px; }
-      100% { height: 50px; opacity: 0; }
-    }
-    
-    /* Result Display */
-    .result-cup {
-      width: 100%;
-      max-width: 500px;
-      background: linear-gradient(135deg, #faf6f1 0%, #e8ddd4 100%);
-      border-radius: 30px;
-      padding: 3rem;
-      box-shadow: 0 30px 80px rgba(45, 24, 16, 0.4);
-      position: relative;
-      overflow: hidden;
-      animation: slideUp 0.6s ease-out;
-      border: 4px solid #8b5a2b;
-    }
-    
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(60px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .result-cup::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 10px,
-        rgba(139, 90, 43, 0.03) 10px,
-        rgba(139, 90, 43, 0.03) 20px
-      );
-      animation: pattern-move 20s linear infinite;
-    }
-    
-    @keyframes pattern-move {
-      from { transform: translate(0, 0); }
-      to { transform: translate(50px, 50px); }
-    }
-    
-    .foam-art {
-      width: 150px;
-      height: 150px;
-      margin: 0 auto 2rem;
-      background: linear-gradient(135deg, #4a2c1a, #6b3d23);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      font-weight: 900;
-      color: #faf6f1;
-      box-shadow: 0 10px 30px rgba(74, 44, 26, 0.5),
-                  inset 0 -5px 20px rgba(0, 0, 0, 0.3);
-      position: relative;
-      z-index: 1;
-      animation: foam-reveal 0.8s ease-out;
-    }
-    
-    @keyframes foam-reveal {
-      from {
-        transform: scale(0) rotate(-180deg);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1) rotate(0deg);
-        opacity: 1;
-      }
-    }
-    
-    /* Coffee Bean Particles */
-    .bean-particle {
-      position: absolute;
-      width: 20px;
-      height: 14px;
-      background: #4a2c1a;
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      animation: bean-fall 2s ease-out forwards;
-      pointer-events: none;
-    }
-    
-    .bean-particle::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 2px;
-      height: 80%;
-      background: #2d1810;
-    }
-    
-    @keyframes bean-fall {
-      to {
-        transform: translateY(400px) rotate(720deg);
-        opacity: 0;
-      }
-    }
-    
-    /* Coupon Card */
-    .coupon-card {
-      background: #fff;
-      border: 3px dashed #8b5a2b;
-      border-radius: 20px;
-      padding: 2rem;
-      margin-top: 2rem;
-      position: relative;
-      animation: slideUp 0.8s ease-out 0.3s both;
-    }
-    
-    .coupon-card::before,
-    .coupon-card::after {
-      content: '';
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      background: #faf6f1;
-      border-radius: 50%;
-      border: 3px solid #8b5a2b;
-    }
-    
-    .coupon-card::before {
-      left: -18px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    
-    .coupon-card::after {
-      right: -18px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    
-    .coupon-code {
-      font-family: 'Courier New', monospace;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #2d1810;
-      background: linear-gradient(135deg, #e8ddd4, #faf6f1);
-      padding: 1rem 2rem;
-      border-radius: 12px;
-      border: 2px solid #6b3d23;
-      letter-spacing: 3px;
-      text-align: center;
-    }
-    
-    .copy-btn {
-      background: linear-gradient(135deg, #8b5a2b, #6b3d23);
-      color: #faf6f1;
-      border: none;
-      padding: 1rem 2.5rem;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-    }
-    
-    .copy-btn:hover {
-      background: linear-gradient(135deg, #6b3d23, #4a2c1a);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(74, 44, 26, 0.4);
-    }
-    
-    .copy-btn.copied {
-      background: linear-gradient(135deg, #10b981, #059669);
-      animation: success-pulse 0.5s ease;
-    }
-    
-    @keyframes success-pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-    
-    /* Day Indicator */
-    .day-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 1rem 2rem;
-      background: linear-gradient(135deg, #4a2c1a, #6b3d23);
-      color: #faf6f1;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      box-shadow: 0 8px 24px rgba(74, 44, 26, 0.4);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    
-    /* Stats Panel */
-    .stats-container {
-      background: linear-gradient(135deg, #2d1810, #4a2c1a);
-      border-radius: 24px;
-      padding: 2rem;
-      box-shadow: 0 15px 45px rgba(45, 24, 16, 0.5);
-      color: #faf6f1;
-    }
-    
-    .stat-box {
-      background: rgba(250, 246, 241, 0.1);
-      backdrop-filter: blur(10px);
-      padding: 1.5rem;
-      border-radius: 16px;
-      border: 1px solid rgba(139, 90, 43, 0.3);
-      text-align: center;
-    }
-    
-    .stat-value {
-      font-size: 3rem;
-      font-weight: 900;
-      color: #8b5a2b;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-    
-    /* Product Cards */
-    .product-card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(45, 24, 16, 0.15);
-      transition: all 0.4s ease;
-      border: 2px solid transparent;
-    }
-    
-    .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 50px rgba(45, 24, 16, 0.25);
-      border-color: #8b5a2b;
-    }
-    
-    .product-icon {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-    }
-    
-    /* How It Works */
-    .step-card {
-      background: linear-gradient(135deg, #fff, #faf6f1);
-      border-radius: 20px;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 8px 24px rgba(45, 24, 16, 0.1);
-      transition: transform 0.3s ease;
-      border: 2px solid #e8ddd4;
-    }
-    
-    .step-card:hover {
-      transform: translateY(-8px);
-      border-color: #8b5a2b;
-    }
-    
-    .step-number {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #8b5a2b, #6b3d23);
-      color: #faf6f1;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      font-weight: 900;
-      margin: 0 auto 1rem;
-      box-shadow: 0 6px 18px rgba(139, 90, 43, 0.4);
-    }
-    
-    /* Footer */
-    .footer-pattern {
-      background: linear-gradient(135deg, #2d1810, #4a2c1a);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .footer-pattern::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: 
-        repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(139, 90, 43, 0.1) 40px, rgba(139, 90, 43, 0.1) 80px);
-      pointer-events: none;
-    }
-    
-    /* Mobile Menu */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 80px;
-      left: 0;
-      right: 0;
-      background: rgba(45, 24, 16, 0.98);
-      backdrop-filter: blur(10px);
-      padding: 2rem;
-      z-index: 999;
-      animation: slideDown 0.3s ease;
-    }
-    
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .mobile-menu.active {
-      display: block;
-    }
-    
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 6px;
-      cursor: pointer;
-    }
-    
-    .hamburger span {
-      width: 30px;
-      height: 3px;
-      background: #faf6f1;
-      border-radius: 3px;
-      transition: all 0.3s ease;
-    }
-    
-    @media (max-width: 768px) {
-      .desktop-menu {
-        display: none !important;
-      }
-      
-      .hamburger {
-        display: flex;
-      }
-      
-      .phin-button {
-        width: 220px;
-        height: 220px;
-      }
-      
-      .foam-art {
-        width: 120px;
-        height: 120px;
-        font-size: 3rem;
-      }
-      
-      .coupon-code {
-        font-size: 1.3rem;
-      }
-      
-      .stat-value {
-        font-size: 2rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="cyber.css">
   <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="h-full">
-  <div class="main-wrapper"><!-- Navigation -->
-   <nav class="navbar">
+</head>
+<body class="h-full font-body overflow-x-hidden">
+  <div class="scanlines"></div>
+  <div class="scanline-anim"></div>
+  <div class="noise-overlay"></div>
+  <div class="crt-overlay"></div>
+  <div id="particle-container" class="particle-container"></div>
+
+  <!-- Navigation -->
+  <nav class="nav-cyber">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="flex justify-between items-center" style="height: 80px;">
-      <div class="flex items-center gap-3">
-       <svg class="w-8 h-8 md:w-10 md:h-10" viewbox="0 0 24 24" fill="#8b5a2b"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z" />
-       </svg>
-       <h1 id="site-name" class="text-2xl font-bold" style="color: #8b5a2b;">VietCoffee</h1>
-      </div>
-      <div class="desktop-menu hidden md:flex items-center gap-8"><a href="#home" class="nav-link">Home</a> <a href="#products" class="nav-link">Featured Products</a> <a href="#story" class="nav-link">Our Story</a> <a href="#stock" class="nav-link">Stock</a> <a href="#blog" class="nav-link">Blog</a>
-      </div>
-      <div class="hamburger md:hidden" id="hamburger"><span></span> <span></span> <span></span>
-      </div>
-     </div>
-    </div>
-   </nav><!-- Mobile Menu -->
-   <div class="mobile-menu" id="mobile-menu">
-    <div class="flex flex-col gap-4"><a href="#home" class="nav-link text-xl">Home</a> <a href="#products" class="nav-link text-xl">Featured Products</a> <a href="#story" class="nav-link text-xl">Our Story</a> <a href="#stock" class="nav-link text-xl">Stock</a> <a href="#blog" class="nav-link text-xl">Blog</a>
-    </div>
-   </div><!-- Hero Section -->
-   <section class="hero-section" id="home"><!-- Steam Particles -->
-    <div class="steam-particle" style="left: 20%; animation-delay: 0s;"></div>
-    <div class="steam-particle" style="left: 35%; animation-delay: 1s;"></div>
-    <div class="steam-particle" style="left: 50%; animation-delay: 0.5s;"></div>
-    <div class="steam-particle" style="left: 65%; animation-delay: 1.5s;"></div>
-    <div class="steam-particle" style="left: 80%; animation-delay: 2s;"></div><!-- Coffee Stains -->
-    <div class="coffee-stain" style="width: 100px; height: 100px; top: 10%; left: 10%;"></div>
-    <div class="coffee-stain" style="width: 150px; height: 150px; bottom: 15%; right: 10%; animation-delay: 1s;"></div>
-    <div class="text-center relative z-10 px-4">
-     <h1 id="hero-title" class="text-5xl md:text-7xl font-bold mb-6" style="color: #faf6f1; text-shadow: 0 4px 12px rgba(0,0,0,0.5);">Daily Vietnamese Coffee Discounts</h1>
-     <p id="hero-subtitle" class="text-xl md:text-2xl font-semibold" style="color: #e8ddd4;">Click the filter to brew your personal discount</p>
-    </div>
-   </section><!-- Day Indicator -->
-   <section class="w-full py-8 px-4">
-    <div class="max-w-4xl mx-auto text-center">
-     <div class="day-badge" id="day-badge"><span id="day-icon" class="text-3xl"></span> <span id="day-text"></span>
-     </div>
-     <p class="mt-4 text-lg font-semibold" style="color: #6b3d23;">Current Date: <span id="current-date"></span></p>
-    </div>
-   </section><!-- Interactive Discount Generator -->
-   <section class="w-full py-12 px-4">
-    <div class="max-w-6xl mx-auto"><!-- Button Section -->
-     <div id="button-section" class="text-center">
-      <div class="flex flex-col items-center justify-center mb-8">
-       <div class="phin-button" id="phin-button">
-        <div class="phin-glow"></div>
-        <div class="phin-filter">
-         <div class="text-center px-6">
-          <p id="button-text" class="text-lg md:text-xl font-bold" style="color: #faf6f1; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">CLICK TO BREW<br>
-           DISCOUNT</p>
-         </div>
-        </div>
-        <div class="coffee-drip"></div>
-       </div>
-      </div><!-- Day Logic Display -->
-      <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mt-12">
-       <div class="bg-white rounded-2xl p-6 shadow-lg border-2 border-e8ddd4">
-        <div class="text-4xl mb-3">
-         🏔️
-        </div>
-        <h3 class="text-2xl font-bold mb-3" style="color: #4a2c1a;">ODD DAYS</h3>
-        <p class="font-semibold mb-3" style="color: #6b3d23;">Random 1-9% Discounts</p>
-        <div class="flex justify-center gap-2 flex-wrap"><span class="text-2xl">☕</span> <span class="text-2xl">☕</span> <span class="text-2xl">☕</span> <span class="text-2xl">☕</span> <span class="text-2xl">☕</span> <span class="text-2xl">☕</span> <span class="text-2xl">☕</span> <span class="text-2xl">☕</span> <span class="text-2xl">☕</span>
-        </div>
-       </div>
-       <div class="bg-white rounded-2xl p-6 shadow-lg border-2 border-e8ddd4">
-        <div class="text-4xl mb-3">
-         🏠
-        </div>
-        <h3 class="text-2xl font-bold mb-3" style="color: #4a2c1a;">EVEN DAYS</h3>
-        <p class="font-semibold mb-3" style="color: #6b3d23;">Random 2-8% Discounts</p>
-        <div class="flex justify-center gap-2 flex-wrap"><span class="text-2xl">🫘</span> <span class="text-2xl">🫘</span> <span class="text-2xl">🫘</span> <span class="text-2xl">🫘</span> <span class="text-2xl">🫘</span> <span class="text-2xl">🫘</span> <span class="text-2xl">🫘</span> <span class="text-2xl">🫘</span>
-        </div>
-       </div>
-      </div>
-     </div><!-- Result Section -->
-     <div id="result-section" style="display: none;">
-      <div class="result-cup mx-auto">
-       <div class="text-center mb-4">
-        <div class="foam-art" id="foam-art"><span id="discount-number">0%</span>
-        </div>
-        <h2 class="text-3xl md:text-4xl font-bold mb-3" style="color: #2d1810;"><span id="result-message">You got 0% off Vietnamese coffee!</span></h2>
-        <p class="text-xl font-semibold" style="color: #6b3d23;" id="day-type-result"></p>
-       </div><!-- Coupon Card -->
-       <div class="coupon-card">
-        <div class="text-center">
-         <h3 class="text-2xl font-bold mb-4" style="color: #4a2c1a;">🎫 Your Coupon Code</h3>
-         <div class="coupon-code mb-4" id="coupon-code">
-          VIET0COFFEE
-         </div>
-         <p class="text-sm font-semibold mb-4" style="color: #6b3d23;">Valid on all VietCoffee products</p><button class="copy-btn mb-4" id="copy-btn"> ������ COPY CODE </button>
-         <div class="mt-4 pt-4 border-t-2 border-dashed" style="border-color: #e8ddd4;">
-          <p class="text-sm font-semibold" style="color: #8b5a2b;">⏰ Valid for 24 hours</p>
-          <p class="text-xs mt-2" style="color: #6b3d23;">Expires: <span id="expiry-time"></span></p>
-         </div>
-        </div>
-       </div>
-       <div class="text-center mt-6"><button class="order-btn text-lg px-8 py-4" id="brew-again-btn"> 🔄 BREW AGAIN </button>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- Statistics Panel -->
-   <section class="w-full py-12 px-4" style="background: linear-gradient(180deg, #faf6f1, #e8ddd4);">
-    <div class="max-w-6xl mx-auto">
-     <h2 class="text-4xl md:text-5xl font-bold text-center mb-12" style="color: #2d1810;">☕ Today's Brew Statistics</h2>
-     <div class="stats-container">
-      <div class="grid md:grid-cols-4 gap-6">
-       <div class="stat-box">
-        <div class="text-4xl mb-2">
-         ☕
-        </div>
-        <div class="stat-value" id="brews-today">
-         0
-        </div>
-        <p class="text-sm mt-2 opacity-80">Brews Today</p>
-       </div>
-       <div class="stat-box">
-        <div class="text-4xl mb-2">
-         🏆
-        </div>
-        <div class="stat-value" id="best-brew">
-         0%
-        </div>
-        <p class="text-sm mt-2 opacity-80">Best Brew</p>
-       </div>
-       <div class="stat-box">
-        <div class="text-4xl mb-2">
-         ⚖️
-        </div>
-        <div class="stat-value" id="avg-brew">
-         0%
-        </div>
-        <p class="text-sm mt-2 opacity-80">Average</p>
-       </div>
-       <div class="stat-box">
-        <div class="text-4xl mb-2">
-         ⏰
-        </div>
-        <div class="stat-value text-xl" id="countdown">
-         00:00:00
-        </div>
-        <p class="text-sm mt-2 opacity-80">Next Reset</p>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section>
-  
-   <section class="w-full py-12 px-4" style="background: #e8ddd4;">
-    <div class="max-w-6xl mx-auto">
-     <h2 id="how-it-works-title" class="text-4xl md:text-5xl font-bold text-center mb-12" style="color: #2d1810;">How It Works</h2>
-     <div class="grid md:grid-cols-3 gap-8">
-      <div class="step-card">
-       <div class="step-number">
-        1
-       </div>
-       <div class="text-5xl mb-4">
-        📅
-       </div>
-       <h3 id="step1-title" class="text-2xl font-bold mb-3" style="color: #4a2c1a;">Check Day</h3>
-       <p style="color: #6b3d23;">System checks if today is odd or even for discount range</p>
-      </div>
-      <div class="step-card">
-       <div class="step-number">
-        2
-       </div>
-       <div class="text-5xl mb-4">
-        🫖
-       </div>
-       <h3 id="step2-title" class="text-2xl font-bold mb-3" style="color: #4a2c1a;">Brew Discount</h3>
-       <p style="color: #6b3d23;">Click the phin filter to generate your random discount</p>
-      </div>
-      <div class="step-card">
-       <div class="step-number">
-        3
-       </div>
-       <div class="text-5xl mb-4">
-        😊
-       </div>
-       <h3 id="step3-title" class="text-2xl font-bold mb-3" style="color: #4a2c1a;">Enjoy Coffee</h3>
-       <p style="color: #6b3d23;">Use your coupon code to get discounted Vietnamese coffee</p>
-      </div>
-     </div>
-    </div>
-   </section><!-- Footer -->
-   <footer class="footer-pattern w-full py-12 px-4">
-    <div class="max-w-7xl mx-auto relative z-10"><!-- Main Footer Content -->
-     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8"><!-- Brand Section -->
-      <div class="lg:col-span-2">
-       <div class="flex items-center gap-3 mb-4">
-        <svg class="w-10 h-10" viewbox="0 0 24 24" fill="#8b5a2b"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z" />
-        </svg>
-        <h3 class="text-2xl font-bold" style="color: #8b5a2b;">VietCoffee</h3>
-       </div>
-       <p class="mb-4 leading-relaxed" style="color: #e8ddd4;">Bringing you rich, authentic Vietnamese coffee, VietCoffee is your second home.</p><!-- App Download -->
-       <div class="mt-6">
-        <h5 class="font-bold mb-3" style="color: #8b5a2b;">TẢI APP</h5>
-        <div class="flex flex-col gap-2"><a href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg transition hover:opacity-80" style="background: rgba(250, 246, 241, 0.1); border: 1px solid rgba(139, 90, 43, 0.3); color: #e8ddd4;"> <span class="text-2xl">🍎</span>
-          <div class="text-left">
-           <div class="text-xs opacity-80">
-            Tải về trên
-           </div>
-           <div class="font-bold">
-            App Store
-           </div>
-          </div></a> <a href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg transition hover:opacity-80" style="background: rgba(250, 246, 241, 0.1); border: 1px solid rgba(139, 90, 43, 0.3); color: #e8ddd4;"> <span class="text-2xl">🤖</span>
-          <div class="text-left">
-           <div class="text-xs opacity-80">
-            Tải về trên
-           </div>
-           <div class="font-bold">
-            Google Play
-           </div>
-          </div></a>
-        </div>
-       </div>
-      </div><!-- About Section -->
-      <div>
-       <h4 class="text-lg font-bold mb-4" style="color: #8b5a2b;">GIỚI THI��U</h4>
-       <ul class="space-y-2">
-        <li><a href="/index.html" class="hover:opacity-80 transition" style="color: #e8ddd4;">HOME</a></li>
-        <li><a href="/featureproducts.html" class="hover:opacity-80 transition" style="color: #e8ddd4;">PRODUCTS</a></li>
-        <li><a href="#" class="hover:opacity-80 transition" style="color: #e8ddd4;">DISCOUNTS</a></li>
-        <li><a href="#blog" class="hover:opacity-80 transition" style="color: #e8ddd4;">Blog</a></li>
-        <li><a href="#" class="hover:opacity-80 transition" style="color: #e8ddd4;">Cửa Hàng</a></li>
-        <li><a href="#" class="hover:opacity-80 transition" style="color: #e8ddd4;">Tuyển dụng</a></li>
-       </ul>
-      </div><!-- Terms Section -->
-      <div>
-       <h4 class="text-lg font-bold mb-4" style="color: #8b5a2b;">ĐIỀU KHOẢN</h4>
-       <ul class="space-y-2">
-        <li><a href="#" class="hover:opacity-80 transition" style="color: #e8ddd4;">Điều khoản sử dụng</a></li>
-        <li><a href="#" class="hover:opacity-80 transition" style="color: #e8ddd4;">Chính sách bảo mật</a></li>
-        <li><a href="#" class="hover:opacity-80 transition" style="color: #e8ddd4;">Hướng dẫn xuất hóa đơn</a></li>
-       </ul>
-      </div><!-- Contact Section -->
-      <div>
-       <h4 class="text-lg font-bold mb-4" style="color: #8b5a2b;">LIÊN HỆ</h4>
-       <ul class="space-y-3">
-        <li class="flex items-start gap-2"><span class="text-lg">📍</span> <span style="color: #e8ddd4;">57 Mile End Rd, Bethnal Green, London.</span></li>
-        <li class="flex items-center gap-2"><span class="text-lg">📞</span> <a href="tel:18006936" class="hover:opacity-80 transition" style="color: #e8ddd4;">1800 6936</a></li>
-        <li class="flex items-center gap-2"><span class="text-lg">📧</span> <a href="mailto:support@vietcoffee.vn" class="hover:opacity-80 transition" style="color: #e8ddd4;">support@vietcoffee.vn</a></li>
-       </ul><!-- Social Media -->
-       <div class="mt-6">
-        <div class="flex gap-3"><a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg transition hover:opacity-80" style="background: rgba(250, 246, 241, 0.1); border: 1px solid rgba(139, 90, 43, 0.3);"> <span class="text-xl">📘</span> </a> <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg transition hover:opacity-80" style="background: rgba(250, 246, 241, 0.1); border: 1px solid rgba(139, 90, 43, 0.3);"> <span class="text-xl">📸</span> </a> <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg transition hover:opacity-80" style="background: rgba(250, 246, 241, 0.1); border: 1px solid rgba(139, 90, 43, 0.3);"> <span class="text-xl">🐦</span> </a>
-        </div>
-       </div>
-      </div>
-     </div><!-- Bottom Footer -->
-     <div class="border-t pt-6" style="border-color: rgba(139, 90, 43, 0.3);">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-       <div class="text-center md:text-left">
-        <p class="text-sm mb-1" style="color: #e8ddd4;">© 2025 VietCoffee. Công ty TNHH VietCoffee Việt Nam.</p>
-        <p class="text-xs" style="color: rgba(232, 221, 212, 0.7);">ĐKKD: 0944636084 do Sở KH&amp;ĐT TP.HCM cấp ngày 23/07/2014</p>
-       </div><!-- Payment Methods -->
-       <div class="text-center md:text-right">
-        <p class="text-sm mb-2 font-semibold" style="color: #8b5a2b;">Thanh toán an toàn</p>
+      <div class="flex items-center justify-between h-16 md:h-20">
         <div class="flex items-center gap-3">
-         <div class="px-3 py-2 rounded" style="background: rgba(250, 246, 241, 0.1); border: 1px solid rgba(139, 90, 43, 0.3);"><span class="font-bold text-sm" style="color: #e8ddd4;">💳 VISA</span>
-         </div>
-         <div class="px-3 py-2 rounded" style="background: rgba(250, 246, 241, 0.1); border: 1px solid rgba(139, 90, 43, 0.3);"><span class="font-bold text-sm" style="color: #e8ddd4;">💳 MC</span>
-         </div>
-         <div class="px-3 py-2 rounded" style="background: rgba(250, 246, 241, 0.1); border: 1px solid rgba(139, 90, 43, 0.3);"><span class="font-bold text-sm" style="color: #e8ddd4;">📱 MOMO</span>
-         </div>
+          <a href="/index.html" class="flex items-center gap-3">
+            <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, rgba(157,78,221,0.2), rgba(255,46,99,0.2)); border: 1px solid rgba(157,78,221,0.3);">
+              <svg class="w-6 h-6 md:w-7 md:h-7" viewBox="0 0 24 24" fill="none"><path d="M2 21H20V19H2M20 8H18V5H20M20 3H4V13C4 15.209 5.791 17 8 17H14C16.209 17 18 15.209 18 13V10H20C21.105 10 22 9.105 22 8V5C22 3.895 21.105 3 20 3Z" fill="url(#fnav)"/><defs><linearGradient id="fnav" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9D4EDD"/><stop offset="0.5" stop-color="#FF2E63"/><stop offset="1" stop-color="#FF4FD8"/></linearGradient></defs></svg>
+            </div>
+            <span class="font-display text-lg md:text-xl font-bold" style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">CYBER</span>
+            <span class="text-lg md:text-xl font-bold text-white">COFFEE</span>
+          </a>
         </div>
-       </div>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="/index.html" class="nav-link-cyber">Home</a>
+          <a href="/featureproducts.html" class="nav-link-cyber">Menu</a>
+          <a href="/discount.html" class="nav-link-cyber">Rewards</a>
+          <a href="/blog.html" class="nav-link-cyber">Log</a>
+          <a href="/jobsubmit.html" class="nav-link-cyber">Join</a>
+        </div>
+        <div class="flex items-center gap-4">
+          <button id="hamburger" class="md:hidden p-2 rounded-lg text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
       </div>
-     </div>
     </div>
-   </footer>
-  </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5" style="background: rgba(7,7,11,0.95);">
+      <div class="px-4 py-4 space-y-3">
+        <a href="/index.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Home</a>
+        <a href="/featureproducts.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Menu</a>
+        <a href="/discount.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Rewards</a>
+        <a href="/blog.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Log</a>
+        <a href="/jobsubmit.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Join</a>
+      </div>
+    </div>
+  </nav>
 
+  <main class="w-full pt-20">
+    <!-- Hero -->
+    <section class="relative min-h-[70vh] flex items-center overflow-hidden" style="background: linear-gradient(180deg, #07070B, #11131A, #1A1033);">
+      <div class="absolute inset-0 grid-overlay"></div>
+      <div class="absolute inset-0 hex-grid"></div>
+      <div class="blob blob-crimson" style="top: -10%; right: -5%; animation: floatSlow 8s ease-in-out infinite;"></div>
+      <div class="blob blob-violet" style="bottom: -10%; left: -10%; animation: floatSlow 10s ease-in-out infinite reverse;"></div>
+      <div class="blob blob-cyan" style="top: 40%; left: 50%; animation: floatSlow 12s ease-in-out infinite;"></div>
 
-<script>
-const defaultConfig = {
-    site_name: "VietCoffee",
-    hero_title: "Daily Vietnamese Coffee Discounts",
-    hero_subtitle: "Click the filter to brew your personal discount",
-    button_ready_text: "CLICK TO BREW DISCOUNT",
-    button_brewing_text: "BREWING YOUR DEAL...",
-    result_message: "You got {X}% off Vietnamese coffee!",
-    how_it_works_title: "How It Works",
-    step1_title: "Check Day",
-    step2_title: "Brew Discount",
-    step3_title: "Enjoy Coffee",
-    story_title: "Our Story",
-    story_text: "For generations, Vietnamese coffee culture has been about sharing moments and traditions. We bring this heritage to your home with authentic products and daily discounts that celebrate the spirit of Vietnamese hospitality. Every cup tells a story, every discount shares our passion.",
-    footer_disclaimer: "© 2024 VietCoffee. Random discounts based on day parity. All rights reserved."
-};
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
+        <div class="text-center">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
+            <span class="status-dot alert"></span>
+            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(255, 46, 99, 0.8);">REWARDS // BREW TERMINAL</span>
+          </div>
+          <h1 class="font-display text-4xl md:text-7xl lg:text-8xl font-black mb-4">
+            <span style="background: linear-gradient(135deg, #FF2E63, #FFB703); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">DAILY</span>
+            <span class="text-white"> REWARDS</span>
+          </h1>
+          <p class="font-mono text-sm md:text-base mb-8" style="color: var(--silver);">Pull the lever. Get your discount. Every day is a gamble in the neon grid.</p>
+        </div>
 
-async function onConfigChange(config) {
-    document.getElementById('site-name').textContent = config.site_name || defaultConfig.site_name;
-    document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
-    document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
-    
-    const buttonText = config.button_ready_text || defaultConfig.button_ready_text;
-    document.getElementById('button-text').innerHTML = buttonText.replace(' ', '<br>');
-    
-    document.getElementById('how-it-works-title').textContent = config.how_it_works_title || defaultConfig.how_it_works_title;
-    document.getElementById('step1-title').textContent = config.step1_title || defaultConfig.step1_title;
-    document.getElementById('step2-title').textContent = config.step2_title || defaultConfig.step2_title;
-    document.getElementById('step3-title').textContent = config.step3_title || defaultConfig.step3_title;
-    document.getElementById('story-title').textContent = config.story_title || defaultConfig.story_title;
-    document.getElementById('story-text').textContent = config.story_text || defaultConfig.story_text;
-    document.getElementById('footer-disclaimer').textContent = config.footer_disclaimer || defaultConfig.footer_disclaimer;
-}
+        <div class="flex justify-center" id="button-section">
+          <div id="phin-button" class="phin-button cursor-pointer relative" style="width: 220px; height: 220px;">
+            <div class="phin-glow absolute inset-0 rounded-[30%_30%_50%_50%] opacity-0 transition-opacity duration-300" style="box-shadow: 0 0 40px rgba(255,46,99,0.4);"></div>
+            <div class="phin-filter w-full h-full rounded-[20%_20%_40%_40%] flex items-center justify-center relative" style="background: linear-gradient(135deg, rgba(157,78,221,0.3), rgba(255,46,99,0.3)); border: 2px solid rgba(157,78,221,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.6), inset 0 -10px 30px rgba(0,0,0,0.3);">
+              <div class="text-center">
+                <div class="font-display text-2xl font-bold mb-1" style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">BREW</div>
+                <div id="button-text" class="font-mono text-xs tracking-wider" style="color: var(--silver);">PULL<br>TO START</div>
+              </div>
+              <div class="coffee-drip absolute bottom-[-30px] left-1/2 -translate-x-1/2 w-[6px] h-[20px] rounded-b-full" style="background: linear-gradient(180deg, #9D4EDD, #FF2E63); animation: drip 2s ease-in-out infinite;"></div>
+            </div>
+          </div>
+        </div>
 
-function mapToEditPanelValues(config) {
-    return new Map([
-    ["site_name", config.site_name || defaultConfig.site_name],
-    ["hero_title", config.hero_title || defaultConfig.hero_title],
-    ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
-    ["button_ready_text", config.button_ready_text || defaultConfig.button_ready_text],
-    ["button_brewing_text", config.button_brewing_text || defaultConfig.button_brewing_text],
-    ["result_message", config.result_message || defaultConfig.result_message],
-    ["how_it_works_title", config.how_it_works_title || defaultConfig.how_it_works_title],
-    ["step1_title", config.step1_title || defaultConfig.step1_title],
-    ["step2_title", config.step2_title || defaultConfig.step2_title],
-    ["step3_title", config.step3_title || defaultConfig.step3_title],
-    ["story_title", config.story_title || defaultConfig.story_title],
-    ["story_text", config.story_text || defaultConfig.story_text],
-    ["footer_disclaimer", config.footer_disclaimer || defaultConfig.footer_disclaimer]
-    ]);
-}
+        <!-- Result Section -->
+        <div id="result-section" class="hidden max-w-lg mx-auto mt-8">
+          <div class="cyber-card p-8 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg mb-4" style="background: rgba(0,245,212,0.1);">
+              <span class="status-dot online"></span>
+              <span class="text-[0.6rem] font-mono tracking-widest" style="color: rgba(0, 245, 212, 0.8);" id="day-type-result">ODD DAY BONUS</span>
+            </div>
+            <div class="font-display text-6xl font-black mb-2" id="discount-number" style="background: linear-gradient(135deg, #FF2E63, #FFB703); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">7%</div>
+            <p class="text-sm font-mono mb-2" style="color: var(--silver);" id="result-message">You saved 7% on your order!</p>
+            <div class="glass-light rounded-xl p-4 mb-4">
+              <div class="text-[0.55rem] font-mono tracking-widest" style="color: var(--silver);">COUPON CODE</div>
+              <div class="font-mono text-lg font-bold tracking-wider text-white mt-1" id="coupon-code">VIET7COFFEE</div>
+            </div>
+            <div class="text-[0.55rem] font-mono mb-6" style="color: var(--silver);">Expires: <span id="expiry-time">23:59</span></div>
+            <div class="flex gap-3 justify-center">
+              <button id="copy-btn" class="cyber-btn px-6 py-3 rounded-lg text-xs font-semibold">COPY CODE</button>
+              <button id="brew-again-btn" class="cyber-btn-outline px-6 py-3 rounded-lg text-xs font-semibold">BREW AGAIN</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-function mapToCapabilities(config) {
-    return {
-    recolorables: [],
-    borderables: [],
-    fontEditable: undefined,
-    fontSizeable: undefined
+    <!-- Stats Dashboard -->
+    <section class="py-16 relative" style="background: linear-gradient(180deg, #11131A, #07070B);">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="dashboard-grid">
+          <div class="dashboard-item">
+            <div class="dashboard-value" id="total-brews">0</div>
+            <div class="dashboard-label">Total Brews</div>
+          </div>
+          <div class="dashboard-item">
+            <div class="dashboard-value" id="best-brew">0%</div>
+            <div class="dashboard-label">Best Discount</div>
+          </div>
+          <div class="dashboard-item">
+            <div class="dashboard-value" id="avg-brew">0%</div>
+            <div class="dashboard-label">Average</div>
+          </div>
+          <div class="dashboard-item">
+            <div class="dashboard-value text-glow-amber animate-pulse-neon" style="-webkit-text-fill-color: #FFB703;" id="countdown">24:00</div>
+            <div class="dashboard-label">Until Reset</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Ticker -->
+    <div class="relative py-3" style="background: rgba(17, 19, 26, 0.8); border-top: 1px solid rgba(157,78,221,0.1); border-bottom: 1px solid rgba(157,78,221,0.1); overflow: hidden;">
+      <div class="data-ticker">
+        <div class="data-ticker-inner font-mono text-xs tracking-wider" style="color: rgba(168, 176, 192, 0.4);">
+          <span style="color: var(--violet);">◆</span> SYSTEM BOOT: 00:00:00 <span style="color: var(--crimson);">//</span> CAFFEINE LEVELS: 99.7% <span style="color: var(--crimson);">//</span> NODE STATUS: 7/7 ONLINE <span style="color: var(--crimson);">//</span> UPLINK: 1.2 GBPS <span style="color: var(--crimson);">//</span> ACTIVE SESSIONS: 42 <span style="color: var(--crimson);">//</span> BEAN RESERVES: OPTIMAL <span style="color: var(--violet);">◆</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-cyber">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs font-mono text-center md:text-left" style="color: rgba(168, 176, 192, 0.4);">© 2025 CYBERCOFFEE NETWORK // v2.0.25</p>
+        <div class="flex gap-4">
+          <a href="/index.html" class="text-[0.65rem] font-mono footer-link">HOME</a>
+          <a href="/featureproducts.html" class="text-[0.65rem] font-mono footer-link">MENU</a>
+          <a href="/blog.html" class="text-[0.65rem] font-mono footer-link">LOG</a>
+          <a href="/jobsubmit.html" class="text-[0.65rem] font-mono footer-link">JOIN</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const defaultConfig = {
+      brand_name: 'CYBERCOFFEE',
+      button_ready_text: 'PULL TO START',
+      button_brewing_text: 'BREWING...',
+      result_message: 'You saved {X}% on your order!',
+      background_color: '#07070B',
+      surface_color: '#11131A',
+      text_color: '#F5F7FA',
+      primary_action_color: '#9D4EDD',
+      secondary_action_color: '#FF2E63'
     };
-}
 
-if (window.elementSdk) {
-    window.elementSdk.init({
-    defaultConfig,
-    onConfigChange,
-    mapToCapabilities,
-    mapToEditPanelValues
-    });
-}
+    let brewCount = 0;
+    let isBrewing = false;
+    const discountHistory = [];
 
-// State
-let brewCount = 0;
-let discountHistory = [];
-let isBrewing = false;
-
-// Day detection
-const today = new Date();
-const dayOfMonth = today.getDate();
-const isOddDay = dayOfMonth % 2 !== 0;
-
-// Update day badge
-const dayIcon = document.getElementById('day-icon');
-const dayText = document.getElementById('day-text');
-const currentDate = document.getElementById('current-date');
-
-if (isOddDay) {
-    dayIcon.textContent = '🏔️';
-    dayText.textContent = `ODD DAY ${dayOfMonth}`;
-} else {
-    dayIcon.textContent = '🏠';
-    dayText.textContent = `EVEN DAY ${dayOfMonth}`;
-}
-
-currentDate.textContent = today.toLocaleDateString('en-US', { 
-    weekday: 'long', 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-});
-
-// Countdown timer
-function updateCountdown() {
-    const now = new Date();
-    const tomorrow = new Date(now);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0);
-    
-    const diff = tomorrow - now;
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-    
-    document.getElementById('countdown').textContent = 
-    `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-}
-
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
-// Generate discount
-function generateDiscount() {
-    const availableDiscounts = isOddDay ? [1, 3, 5, 7, 9] : [2, 4, 6, 8];
-    return availableDiscounts[Math.floor(Math.random() * availableDiscounts.length)];
-}
-
-// Create coffee bean particles
-function createBeanParticles(x, y) {
-    for (let i = 0; i < 20; i++) {
-    const bean = document.createElement('div');
-    bean.className = 'bean-particle';
-    bean.style.left = x + 'px';
-    bean.style.top = y + 'px';
-    bean.style.setProperty('--tx', (Math.random() - 0.5) * 300 + 'px');
-    bean.style.setProperty('--ty', (Math.random() - 0.5) * 300 + 'px');
-    document.body.appendChild(bean);
-    
-    setTimeout(() => bean.remove(), 2000);
+    function getDayType() {
+      const now = new Date();
+      return now.getDate() % 2 === 1 ? 'odd' : 'even';
     }
-}
 
-// Update stats
-function updateStats() {
-    document.getElementById('brews-today').textContent = brewCount;
-    
-    if (discountHistory.length > 0) {
-    const best = Math.max(...discountHistory);
-    const avg = (discountHistory.reduce((a, b) => a + b, 0) / discountHistory.length).toFixed(1);
-    
-    document.getElementById('best-brew').textContent = best + '%';
-    document.getElementById('avg-brew').textContent = avg + '%';
+    function generateDiscount() {
+      const isOddDay = getDayType() === 'odd';
+      let min, max;
+      if (isOddDay) { min = 1; max = 9; }
+      else { min = 2; max = 8; }
+      return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-}
 
-// Phin button click
-const phinButton = document.getElementById('phin-button');
-const buttonSection = document.getElementById('button-section');
-const resultSection = document.getElementById('result-section');
+    function updateStats() {
+      document.getElementById('total-brews').textContent = brewCount;
+      if (discountHistory.length > 0) {
+        const best = Math.max(...discountHistory);
+        const avg = (discountHistory.reduce((a, b) => a + b, 0) / discountHistory.length).toFixed(1);
+        document.getElementById('best-brew').textContent = best + '%';
+        document.getElementById('avg-brew').textContent = avg + '%';
+      }
+    }
 
-phinButton.addEventListener('click', function(e) {
-    if (isBrewing) return;
-    
-    isBrewing = true;
-    brewCount++;
-    
-    const rect = this.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
-    
-    // Animation
-    this.classList.add('brewing');
-    const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
-    const brewingText = config.button_brewing_text || defaultConfig.button_brewing_text;
-    document.getElementById('button-text').innerHTML = brewingText.replace(' ', '<br>');
-    
-    // Create particles
-    createBeanParticles(x, y);
-    
-    setTimeout(() => {
-    const discount = generateDiscount();
-    const couponCode = `VIET${discount}COFFEE`;
-    
-    discountHistory.push(discount);
-    
-    // Update result
-    document.getElementById('discount-number').textContent = discount + '%';
-    const resultTemplate = config.result_message || defaultConfig.result_message;
-    document.getElementById('result-message').textContent = resultTemplate.replace('{X}', discount);
-    document.getElementById('coupon-code').textContent = couponCode;
-    document.getElementById('day-type-result').textContent = isOddDay ? '����️ Odd Day Bonus' : '🏠 Even Day Special';
-    
-    // Expiry
-    const expiry = new Date();
-    expiry.setHours(23, 59, 59);
-    document.getElementById('expiry-time').textContent = expiry.toLocaleTimeString();
-    
-    // Show result
-    buttonSection.style.display = 'none';
-    resultSection.style.display = 'block';
-    
-    // Update stats
-    updateStats();
-    
-    // Reset
-    this.classList.remove('brewing');
-    isBrewing = false;
-    }, 1500);
-});
+    function createBeanParticles(x, y) {
+      for (let i = 0; i < 12; i++) {
+        const p = document.createElement('div');
+        p.style.cssText = `position:fixed;width:8px;height:6px;border-radius:50%;background:linear-gradient(135deg,#9D4EDD,#FF2E63);pointer-events:none;z-index:9999;left:${x}px;top:${y}px`;
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 50 + Math.random() * 100;
+        const dur = 500 + Math.random() * 500;
+        const start = performance.now();
+        document.body.appendChild(p);
+        function anim(t) {
+          const dt = (t - start) / dur;
+          if (dt >= 1) { p.remove(); return; }
+          const cx = x + Math.cos(angle) * dist * dt;
+          const cy = y + Math.sin(angle) * dist * dt + 200 * dt * dt;
+          p.style.left = cx + 'px';
+          p.style.top = cy + 'px';
+          p.style.opacity = 1 - dt;
+          p.style.transform = `rotate(${dt * 360}deg)`;
+          requestAnimationFrame(anim);
+        }
+        requestAnimationFrame(anim);
+      }
+    }
 
-// Copy button
-document.getElementById('copy-btn').addEventListener('click', function() {
-    const code = document.getElementById('coupon-code').textContent;
-    navigator.clipboard.writeText(code).then(() => {
-    this.textContent = '✅ COPIED!';
-    this.classList.add('copied');
-    
-    setTimeout(() => {
-        this.textContent = '�� COPY CODE';
-        this.classList.remove('copied');
-    }, 2000);
+    let countdownInterval;
+    function updateCountdown() {
+      const now = new Date();
+      const end = new Date(now);
+      end.setHours(23, 59, 59, 999);
+      const diff = end - now;
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      document.getElementById('countdown').textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+    }
+
+    const phinButton = document.getElementById('phin-button');
+    const buttonSection = document.getElementById('button-section');
+    const resultSection = document.getElementById('result-section');
+
+    phinButton.addEventListener('click', function(e) {
+      if (isBrewing) return;
+      isBrewing = true;
+      brewCount++;
+      const rect = this.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+      this.classList.add('brewing');
+      this.querySelector('.phin-glow').style.opacity = '1';
+      document.getElementById('button-text').innerHTML = 'BREW<br>IN PROGRESS';
+      createBeanParticles(x, y);
+
+      setTimeout(() => {
+        const discount = generateDiscount();
+        const isOddDay = getDayType() === 'odd';
+        const couponCode = `CYBER${discount}CAFE`;
+        discountHistory.push(discount);
+        document.getElementById('discount-number').textContent = discount + '%';
+        document.getElementById('result-message').textContent = `You saved ${discount}% on your order!`;
+        document.getElementById('coupon-code').textContent = couponCode;
+        document.getElementById('day-type-result').textContent = isOddDay ? 'ODD DAY BONUS' : 'EVEN DAY REWARD';
+        const expiry = new Date();
+        expiry.setHours(23, 59, 59);
+        document.getElementById('expiry-time').textContent = expiry.toLocaleTimeString();
+        buttonSection.style.display = 'none';
+        resultSection.style.display = 'block';
+        updateStats();
+        this.classList.remove('brewing');
+        this.querySelector('.phin-glow').style.opacity = '0';
+        isBrewing = false;
+      }, 1500);
     });
-});
 
-// Brew again
-document.getElementById('brew-again-btn').addEventListener('click', function() {
-    resultSection.style.display = 'none';
-    buttonSection.style.display = 'block';
-    
-    const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
-    const buttonText = config.button_ready_text || defaultConfig.button_ready_text;
-    document.getElementById('button-text').innerHTML = buttonText.replace(' ', '<br>');
-});
+    document.getElementById('copy-btn').addEventListener('click', function() {
+      const code = document.getElementById('coupon-code').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        this.textContent = 'COPIED!';
+        setTimeout(() => { this.textContent = 'COPY CODE'; }, 2000);
+      });
+    });
 
-// Mobile menu
-document.getElementById('hamburger').addEventListener('click', function() {
-    document.getElementById('mobile-menu').classList.toggle('active');
-});
-</script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bde3bb234ac135a',t:'MTc2ODQwNTI0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    document.getElementById('brew-again-btn').addEventListener('click', function() {
+      resultSection.style.display = 'none';
+      buttonSection.style.display = 'block';
+      document.getElementById('button-text').innerHTML = 'PULL<br>TO START';
+    });
+
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.borderBottom = '1px solid rgba(157,78,221,0.15)';
+        nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+      } else {
+        nav.style.borderBottom = '1px solid rgba(157,78,221,0.1)';
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    updateCountdown();
+    countdownInterval = setInterval(updateCountdown, 10000);
+
+    function createParticles() {
+      const container = document.getElementById('particle-container');
+      if (!container) return;
+      for (let i = 0; i < 40; i++) {
+        const p = document.createElement('div');
+        p.classList.add('particle');
+        const size = Math.random() * 2 + 1;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        const colors = ['#9D4EDD', '#FF2E63', '#4CC9F0', '#FFB703'];
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
+        p.style.animation = `float ${3 + Math.random() * 4}s ease-in-out ${Math.random() * 5}s infinite`;
+        p.style.opacity = 0.2 + Math.random() * 0.3;
+        container.appendChild(p);
+      }
+    }
+    createParticles();
+  </script>
+</body>
 </html>

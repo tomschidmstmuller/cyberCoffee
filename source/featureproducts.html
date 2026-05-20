@@ -1,1162 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VietCoffee - Premium Vietnamese Coffee & Tea</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CYBERCOFFEE // FULL MENU</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cyber.css">
+  <style>@view-transition { navigation: auto; }</style>
 </head>
-<body class="min-h-screen">
-    
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(250, 246, 241, 0.95); backdrop-filter: blur(10px);">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 md:h-20">
-                <!-- Logo -->
-                <div class="flex items-center gap-3">
-                    <a href="/index.html" class="flex items-center gap-3">
-                        <img src="media-assets/logo.svg" alt="VietCoffee Logo" class="w-10 h-10 md:w-12 md:h-12 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hidden" style="background: linear-gradient(135deg, #4a2c1a, #8b5a2b);">
-                            <svg class="w-6 h-6 md:w-7 md:h-7 text-white" viewbox="0 0 24 24" fill="currentColor">
-                                <path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z" />
-                            </svg>
-                        </div>
-                        <span id="nav-brand" class="font-playfair text-xl md:text-2xl font-bold" style="color: #2d1810;">VietCoffee</span>
-                    </a>
-                </div>
-                
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="/index.html" class="nav-link text-sm font-medium hover:text-amber-800 transition-colors duration-300" style="color: #4a2c1a;">HOME</a>
-                    <a href="#coffee-products" class="nav-link text-sm font-medium hover:text-amber-800 transition-colors duration-300" style="color: #4a2c1a;">COFFEE</a>
-                    <a href="#tea-products" class="nav-link text-sm font-medium hover:text-amber-800 transition-colors duration-300" style="color: #4a2c1a;">TEA</a>
-                    <a href="#location" class="nav-link text-sm font-medium hover:text-amber-800 transition-colors duration-300" style="color: #4a2c1a;">LOCATIONS</a>
-                    <a href="#contact" class="nav-link text-sm font-medium hover:text-amber-800 transition-colors duration-300" style="color: #4a2c1a;">CONTACT</a>
-                    <a href="/blog.html" class="nav-link text-sm font-medium hover:text-amber-800 transition-colors duration-300" style="color: #4a2c1a;">BLOG</a>
-                </div>
-                
-                <!-- CTA Button -->
-                <div class="flex items-center gap-4">
-                    <a href="#menu" class="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-sm font-medium btn-primary hover:opacity-90 transition-all duration-300" style="background: linear-gradient(135deg, #4a2c1a, #6b3d23);">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                        ORDER NOW
-                    </a>
-                    
-                    <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-amber-50 transition-colors duration-300" style="color: #4a2c1a;">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+<body class="font-body overflow-x-hidden">
+  <div class="scanlines"></div>
+  <div class="noise-overlay"></div>
+  <div class="crt-overlay"></div>
+  <div id="particle-container" class="particle-container"></div>
+
+  <!-- Navigation -->
+  <nav class="nav-cyber">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <div class="flex items-center gap-3">
+          <a href="/index.html" class="flex items-center gap-3">
+            <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, rgba(157,78,221,0.2), rgba(255,46,99,0.2)); border: 1px solid rgba(157,78,221,0.3);">
+              <svg class="w-6 h-6 md:w-7 md:h-7" viewBox="0 0 24 24" fill="none"><path d="M2 21H20V19H2M20 8H18V5H20M20 3H4V13C4 15.209 5.791 17 8 17H14C16.209 17 18 15.209 18 13V10H20C21.105 10 22 9.105 22 8V5C22 3.895 21.105 3 20 3Z" fill="url(#fl-nav)"/><defs><linearGradient id="fl-nav" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9D4EDD"/><stop offset="0.5" stop-color="#FF2E63"/><stop offset="1" stop-color="#FF4FD8"/></linearGradient></defs></svg>
             </div>
+            <span class="font-display text-lg md:text-xl font-bold" style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">CYBER</span>
+            <span class="text-lg md:text-xl font-bold text-white">COFFEE</span>
+          </a>
         </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t" style="background: rgba(250, 246, 241, 0.98); border-color: #e8ddd4;">
-            <div class="px-4 py-4 space-y-3">
-                <a href="/index.html" class="block py-2 text-sm font-medium hover:text-amber-800 transition-colors duration-300" style="color: #4a2c1a;">HOME</a>
-                <a href="#coffee-products" class="block py-2 text-sm font-medium hover:text-amber-800 transition-colors duration-300" style="color: #4a2c1a;">COFFEE</a>
-                <a href="#tea-products" class="block py-2 text-sm font-medium hover:text-amber-800 transition-colors duration-300" style="color: #4a2c1a;">TEA</a>
-                <a href="#location  " class="block py-2 text-sm font-medium hover:text-amber-800 transition-colors duration-300" style="color: #4a2c1a;">LOCATIONS</a>
-                <a href="#contact" class="block py-2 text-sm font-medium hover:text-amber-800 transition-colors duration-300" style="color: #4a2c1a;">CONTACT</a>
-                <a href="/blog.html" class="block py-2 text-sm font-medium hover:text-amber-800 transition-colors duration-300" style="color: #4a2c1a;">BLOG</a>
-            </div>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="/index.html" class="nav-link-cyber">Home</a>
+          <a href="#coffee-products" class="nav-link-cyber">Coffee</a>
+          <a href="#tea-products" class="nav-link-cyber">Tea</a>
+          <a href="#location" class="nav-link-cyber">Nodes</a>
+          <a href="#contact" class="nav-link-cyber">Contact</a>
+          <a href="/blog.html" class="nav-link-cyber">Log</a>
         </div>
-    </nav>
-
-    <main class="w-full">
-        
-        
-        
-        <!-- "Our" COLLECTION Section -->
-        <section class="py-16 md:py-24 px-4 md:px-8 bg-white">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-16">
-                    <h1 class="font-serif text-6xl md:text-8xl font-bold mb-5 animate-fade-in">
-                        <span class="primary-text">Viet</span>
-                        <span class="accent-text">Coffee's</span>
-                    </h1>
-                    <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4 primary-text"> <span class="accent-text">COLLECTION</span>
-                    </h2>
-                    <p class="text-lg text-medium-brown max-w-2xl mx-auto">
-                        Diverse choices, from traditional coffee to modern creations
-                    </p>
-                </div>
-                
-                <!-- Category Circles -->
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12">
-                    <!-- Coffee -->
-                    <div class="flex flex-col items-center text-center animate-fade-in">
-                        <div class="category-circle mb-4" style="background: linear-gradient(135deg, var(--espresso), #8B4513);">
-                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            <div class="count-badge" style="background-color: #F5DEB3; color: var(--espresso);">17</div>
-                        </div>
-                        <h3 class="font-serif text-xl font-semibold mb-1 primary-text">COFFEE</h3>
-                        <p class="text-sm text-medium-brown">17 products</p>
-                    </div>
-                    
-                    <!-- Tea -->
-                    <div class="flex flex-col items-center text-center animate-fade-in stagger-1">
-                        <div class="category-circle mb-4" style="background: linear-gradient(135deg, var(--matcha), #9FBD8E);">
-                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                            </svg>
-                            <div class="count-badge" style="background-color: #F5F5DC; color: var(--matcha);">4</div>
-                        </div>
-                        <h3 class="font-serif text-xl font-semibold mb-1 primary-text">TEA</h3>
-                        <p class="text-sm text-medium-brown">4 products</p>
-                    </div>
-                    
-                    <!-- Latte & Frappe -->
-                    <div class="flex flex-col items-center text-center animate-fade-in stagger-2">
-                        <div class="category-circle mb-4" style="background: linear-gradient(135deg, var(--latte), #E6C79C);">
-                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <circle cx="7" cy="19" r="1.5" />
-                                <circle cx="12" cy="19" r="1.5" />
-                                <circle cx="17" cy="19" r="1.5" />
-                                <path d="M18 3H6C4.9 3 4 3.9 4 5v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 12H6V5h12v10z" />
-                            </svg>
-                            <div class="count-badge" style="background-color: #4A3728; color: #E6C79C;">14</div>
-                        </div>
-                        <h3 class="font-serif text-xl font-semibold mb-1 primary-text">LATTE & FRAPPE</h3>
-                        <p class="text-sm text-medium-brown">14 products</p>
-                    </div>
-                    
-                    <!-- Signature Food -->
-                    <div class="flex flex-col items-center text-center animate-fade-in stagger-3">
-                        <div class="category-circle mb-4" style="background: linear-gradient(135deg, var(--berry), #E6A4B4);">
-                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
-                            </svg>
-                            <div class="count-badge" style="background-color: #FFF8DC; color: var(--berry);">7</div>
-                        </div>
-                        <h3 class="font-serif text-xl font-semibold mb-1 primary-text">SIGNATURE FOOD</h3>
-                        <p class="text-sm text-medium-brown">7 products</p>
-                    </div>
-                    
-                    <!-- Pastry & More -->
-                    <div class="flex flex-col items-center text-center animate-fade-in stagger-4">
-                        <div class="category-circle mb-4" style="background: linear-gradient(135deg, #E6B566, #F4D03F);">
-                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                            </svg>
-                            <div class="count-badge" style="background-color: #8B4513; color: #F4D03F;">17</div>
-                        </div>
-                        <h3 class="font-serif text-xl font-semibold mb-1 primary-text">PASTRY & MORE</h3>
-                        <p class="text-sm text-medium-brown">17 products</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Featured Products Section -->
-        <section class="py-16 md:py-24 px-4 md:px-8 section-bg">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16">
-                    <span class="inline-block px-4 py-1.5 text-xs font-medium tracking-[0.2em] rounded-full mb-4" style="background-color: rgba(196, 165, 116, 0.1); color: var(--accent-gold);">FEATURED</span>
-                    <h2 class="font-serif text-4xl md:text-5xl font-semibold mb-4 primary-text">
-                        FEATURED <span class="accent-text">PRODUCTS</span>
-                    </h2>
-                </div>
-                
-                <section id="coffee-products">
-                    <!-- Coffee Section -->
-                    <div class="mb-20">
-                        <div class="flex items-center gap-4 mb-12">
-                            <div class="section-divider flex-1"></div>
-                            <h3 class="font-serif text-2xl md:text-3xl font-semibold primary-text">Premium Coffee Selection</h3>
-                            <div class="section-divider flex-1"></div>
-                        </div>
-                        
-                        <!-- Coffee Subcategories Navigation -->
-                        <div class="flex flex-wrap justify-center gap-3 mb-8">
-                            <button class="coffee-filter px-4 py-2 rounded-full text-sm font-medium nav-pill active" data-filter="all">All Coffee</button>
-                            <button class="coffee-filter px-4 py-2 rounded-full text-sm font-medium nav-pill" data-filter="vietnamese">Vietnamese</button>
-                            <button class="coffee-filter px-4 py-2 rounded-full text-sm font-medium nav-pill" data-filter="espresso">Espresso</button>
-                            <button class="coffee-filter px-4 py-2 rounded-full text-sm font-medium nav-pill" data-filter="specialty">Specialty</button>
-                            <button class="coffee-filter px-4 py-2 rounded-full text-sm font-medium nav-pill" data-filter="coldbrew">Cold Brew</button>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="coffee-grid">
-                            <!-- A-Mê Classic -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in" data-category="vietnamese">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/americanoclassic.png" alt="A-Mê Classic" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">Americano Classic</h4>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.1); color: var(--espresso);">Coffee</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Traditional Vietnamese coffee flavor</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">39,000 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Vietnamese</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- A-Mê Đào -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-1" data-category="vietnamese">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/americanopeach.png" alt="A-Mê Đào" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">Americano Peach</h4>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.1); color: var(--espresso);">Coffee</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Coffee with fragrant peach flavor</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">49,000 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Vietnamese</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Black Tea -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-2" data-category="specialty">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/blacktea.png" alt="Hắc Trà" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">Black Tea</h4>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.1); color: var(--espresso);">Coffee</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Classic black tea with ice</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">30,000 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Specialty</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Fine Grained Bac Siu -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-3" data-category="vietnamese">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/bacsiumay.png" alt="Bac siu tmay" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">Fine Grained Bac Siu</h4>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.1); color: var(--espresso);">Coffee</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Fine Grained coffee with fresh mixed with condensed milk</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">39,000 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Vietnamese</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Americano Chanh -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-4" data-category="vietnamese">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/americanvietquat.png" alt="A-Mê Chanh" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">Americano Chanh</h4>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.1); color: var(--espresso);">Coffee</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Coffee with fragrant lime flavor</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">49,000 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Vietnamese</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Bac siu traditional -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-5" data-category="vietnamese">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/bacsiuclassic.png" alt="Bac siu truyen thong" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">Bac Siu Traditional</h4>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.1); color: var(--espresso);">Coffee</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Coffee with fresh mixed with condensed milk</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">29,000 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Vietnamese</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Cappuccino -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-6" data-category="espresso">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/cappuccino.png" alt="Cappuccino" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">Cappuccino</h4>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.1); color: var(--espresso);">Coffee</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Classic espresso with milk foam</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">55,000 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Espresso</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Bac siu Kem -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-7" data-category="vietnamese">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/bacsiukem.png" alt="Bac Siu Kem" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">Bac Siu Cream</h4>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.1); color: var(--espresso);">Coffee</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Coffee with fresh mixed with condensed milk and cream</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">55,000 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Vietnamese</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Bac Siu Foam -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-8" data-category="vietnamese">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/bacsiufoam.png" alt="Bac Siu Foam" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">Bac Siu Foam</h4>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.1); color: var(--espresso);">Coffee</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Foamy coffee with fresh and condensed milk</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">58,000 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Vietnamese</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Caramel Macchiato Đá -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden" data-category="espresso">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/macchiatoiced.png" alt="Caramel Macchiato Đá" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">Caramel Macchiato Iced</h4>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.1); color: var(--espresso);">Coffee</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Iced caramel macchiato with sweet drizzle</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">65,000 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Espresso</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Cold Brew Traditional -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden stagger-1" data-category="coldbrew">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/coldbrewclassic.png" alt="Cold Brew Traditional" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">Cold Brew Traditional</h4>
-                                        <span class="new-badge text-xs px-2 py-1 rounded-full">Popular</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Traditional 24-hour cold brew coffee</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">45,000 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Cold Brew</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Ethiopia Americano Iced -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden stagger-2" data-category="espresso">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/ethiopiaamericano.png" alt="Ethiopia Americano Iced" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">Ethiopia Americano Iced</h4>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.1); color: var(--espresso);">Coffee</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Premium Ethiopian beans, iced americano</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">34,500 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Espresso</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Ethiopia Americano Hot -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden stagger-3" data-category="espresso">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/ethiopianong.png" alt="Ethiopia Americano Hot" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">Ethiopia Americano Hot</h4>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.1); color: var(--espresso);">Coffee</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Premium Ethiopian beans, hot americano</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">34,500 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Espresso</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- A-Mê Mơ -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden stagger-4" data-category="vietnamese">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/americanomo.png" alt="A-Mê Mơ" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">A-Mê Mơ</h4>
-                                        <span class="new-badge text-xs px-2 py-1 rounded-full">New</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Coffee with apricot flavor</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">49,000 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Vietnamese</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- A-Mê Yuzu -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden stagger-5" data-category="vietnamese">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/americanvietquat.png" alt="A-Mê Yuzu" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">A-Mê Yuzu</h4>
-                                        <span class="new-badge text-xs px-2 py-1 rounded-full">New</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Coffee with Japanese yuzu citrus flavor</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">49,000 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Vietnamese</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Cold Brew Kim Quất -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden stagger-6" data-category="coldbrew">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/coldbrewkumquat.png" alt="Cold Brew Kim Quất" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">Cold Brew Kumquat</h4>
-                                        <span class="new-badge text-xs px-2 py-1 rounded-full">Seasonal</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Cold brew with kumquat citrus</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">49,000 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Cold Brew</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Latte Nóng -->
-                            <div class="product-card bg-white rounded-xl overflow-hidden stagger-7" data-category="espresso">
-                                <div class="aspect-square overflow-hidden">
-                                    <img src="./media-assets/lattenong.png" alt="Latte Nóng" class="w-full h-full object-cover product-image">
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <h4 class="font-serif text-xl font-semibold primary-text">Latte Hot</h4>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.1); color: var(--espresso);">Coffee</span>
-                                    </div>
-                                    <p class="text-sm text-medium-brown mb-4">Hot latte with smooth milk</p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="price-tag px-4 py-2 rounded-full font-bold">59,000 đ</span>
-                                        <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Espresso</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="tea-products">
-                    <!-- Tea Section -->
-                    <div class="mb-20">
-                    <div class="flex items-center gap-4 mb-12">
-                        <div class="section-divider flex-1"></div>
-                        <h3 class="font-serif text-2xl md:text-3xl font-semibold primary-text">Premium Tea Selection</h3>
-                        <div class="section-divider flex-1"></div>
-                    </div>
-
-                    <!-- Tea Subcategories Navigation -->
-                    <div class="flex flex-wrap justify-center gap-3 mb-8">
-                        <button class="tea-filter px-4 py-2 rounded-full text-sm font-medium nav-pill active" data-filter="all">All Tea</button>
-                        <button class="tea-filter px-4 py-2 rounded-full text-sm font-medium nav-pill" data-filter="matcha">Matcha</button>
-                        <button class="tea-filter px-4 py-2 rounded-full text-sm font-medium nav-pill" data-filter="fruit">Fruit Tea</button>
-                        <button class="tea-filter px-4 py-2 rounded-full text-sm font-medium nav-pill" data-filter="milk">Milk Tea</button>
-                        <button class="tea-filter px-4 py-2 rounded-full text-sm font-medium nav-pill" data-filter="chocolate">Chocolate</button>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="tea-grid">
-                        <!-- Matcha Tây Bắc Latte -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in" data-category="matcha">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/matchataybac.png" alt="Matcha Tây Bắc Latte" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Matcha TayBac Latte</h4>
-                                    <span class="new-badge text-xs px-2 py-1 rounded-full">New</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Premium Northwest Matcha with milk</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">45,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(123, 155, 110, 0.1); color: var(--matcha);">Matcha</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Matcha Tây Bắc Latte (Hot) -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-1" data-category="matcha">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/matchataybachot.png" alt="Matcha Tây Bắc Latte Hot" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Matcha Latte Hot</h4>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(123, 155, 110, 0.1); color: var(--matcha);">Matcha</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Hot matcha latte, warm and comforting</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">49,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(123, 155, 110, 0.2); color: var(--matcha);">Hot</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Matcha Latte Oat Milk (Hot) -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-2" data-category="matcha">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/matchalatteoatmilk.png" alt="Matcha Latte Oat Milk" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Matcha Oat Milk Latte Hot</h4>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(123, 155, 110, 0.1); color: var(--matcha);">Matcha</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Matcha with creamy oat milk, hot</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">55,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(123, 155, 110, 0.2); color: var(--matcha);">Hot</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Matcha Latte Oat Milk -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-3" data-category="matcha">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/matchafroat.png" alt="Matcha Latte Oat Milk Iced" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Matcha Froat Latte</h4>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(123, 155, 110, 0.1); color: var(--matcha);">Matcha</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Matcha with creamy oat milk, icecream</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">55,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(123, 155, 110, 0.2); color: var(--matcha);">Iced</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Matcha Latte -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-4" data-category="matcha">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/matchalatteclassic.png" alt="Matcha Latte" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Matcha Latte</h4>
-                                    <span class="new-badge text-xs px-2 py-1 rounded-full">New</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Classic matcha latte, must try</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">55,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(123, 155, 110, 0.1); color: var(--matcha);">Matcha</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                        <!-- Peach Oolong Tea (Hot) -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-6" data-category="fruit">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/peachteahot.png" alt="Peach Oolong Tea Hot" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Peach Oolong Tea Hot</h4>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(201, 123, 132, 0.1); color: var(--berry);">Fruit Tea</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Peach oolong with lemongrass, hot</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">59,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(201, 123, 132, 0.2); color: var(--berry);">Hot</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Peach Oolong Tea (Iced) -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-7" data-category="fruit">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/peachtea.png" alt="Peach Oolong Tea Iced" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Peach Oolong Tea Iced</h4>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(201, 123, 132, 0.1); color: var(--berry);">Fruit Tea</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Peach oolong with lemongrass, iced</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">49,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(201, 123, 132, 0.2); color: var(--berry);">Iced</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Oolong Four Seasons Lotus (Hot) -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-8" data-category="fruit">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/olongtuquysen.png" alt="Oolong Four Seasons Lotus Hot" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Oolong Lotus Tea Hot</h4>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(201, 123, 132, 0.1); color: var(--berry);">Fruit Tea</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Four seasons oolong with lotus, hot</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">59,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(201, 123, 132, 0.2); color: var(--berry);">Hot</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Oolong Four Seasons Lotus (Iced) -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in" data-category="fruit">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/oolongtuquysenda.png" alt="Oolong Four Seasons Lotus Iced" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Oolong Lotus Tea Iced</h4>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(201, 123, 132, 0.1); color: var(--berry);">Fruit Tea</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Four seasons oolong with lotus, iced</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">49,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(201, 123, 132, 0.2); color: var(--berry);">Iced</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Oolong Roasted Milk Tea with Grass Jelly -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-1" data-category="milk">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/oolongsuongsau.png" alt="Oolong Roasted Milk Tea" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Oolong Roasted Milk Tea</h4>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(212, 165, 116, 0.1); color: var(--latte);">Milk Tea</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Roasted oolong milk tea with jelly</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">55,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(212, 165, 116, 0.2); color: var(--latte);">Milk Tea</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Oolong Four Seasons Milk Tea with Grass Jelly -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-2" data-category="milk">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/oolongmilktea.png" alt="Oolong Milk Tea" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Oolong Four Seasons Milk Tea</h4>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(212, 165, 116, 0.1); color: var(--latte);">Milk Tea</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Four seasons oolong milk tea</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">55,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(212, 165, 116, 0.2); color: var(--latte);">Milk Tea</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Black Milk Tea (Hot) -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-3" data-category="milk">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/blackmilktea.png" alt="Black Milk Tea Hot" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Black Milk Tea Hot</h4>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(212, 165, 116, 0.1); color: var(--latte);">Milk Tea</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Classic black milk tea, hot</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">55,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(212, 165, 116, 0.2); color: var(--latte);">Hot</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Black Milk Tea with Pearls -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-4" data-category="milk">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/blackmilkteapearl.png" alt="Black Milk Tea with Pearls" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Black Milk Tea Pearls</h4>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(212, 165, 116, 0.1); color: var(--latte);">Milk Tea</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Black milk tea with tapioca pearls</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">55,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(212, 165, 116, 0.2); color: var(--latte);">Milk Tea</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Black Tea Macchiato -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-5" data-category="milk">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/machiatotea.png" alt="Black Tea Macchiato" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Black Tea Macchiato</h4>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(212, 165, 116, 0.1); color: var(--latte);">Milk Tea</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Black macchiato tea</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">55,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(212, 165, 116, 0.2); color: var(--latte);">Milk Tea</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Oolong B'Lao Milk Tea -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-6" data-category="milk">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/blaomilktea.png" alt="Oolong B'Lao Milk Tea" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Oolong B'Lao Milk Tea</h4>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(212, 165, 116, 0.1); color: var(--latte);">Milk Tea</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Special B'Lao oolong milk tea</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">39,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(212, 165, 116, 0.2); color: var(--latte);">Milk Tea</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Chocolate Iced -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden animate-fade-in stagger-8" data-category="chocolate">
-                            <div class="aspect-square overflow-hidden">
-                                <img src="./media-assets/chocoda.png" alt="Chocolate Iced" class="w-full h-full object-cover product-image">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
-                                    <h4 class="font-serif text-xl font-semibold primary-text">Chocolate Iced</h4>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.1); color: var(--espresso);">Chocolate</span>
-                                </div>
-                                <p class="text-sm text-medium-brown mb-4">Rich chocolate drink, iced</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="price-tag px-4 py-2 rounded-full font-bold">55,000 đ</span>
-                                    <span class="text-xs px-2 py-1 rounded" style="background-color: rgba(111, 78, 55, 0.2); color: var(--espresso);">Hot</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    </div>
-                </section>
-
-            </div>
-        </section>
-        
-        <!-- Store Locator Section -->
-        <section id="location" class="py-16 md:py-24 px-4 md:px-8 bg-white">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6 primary-text">Find Your VietCoffee Home</h2>
-                    <p class="text-lg text-medium-brown max-w-2xl mx-auto mb-8">
-                        Wherever you are, "Home" is always nearby. Find a cozy corner to enjoy your coffee, listen to familiar music, and savor joyful moments in your day.
-                    </p>
-                    <div class="flex flex-col md:flex-row gap-4 justify-center max-w-md mx-auto">
-                        <select class="px-4 py-3 rounded-full border-2 border-accent-gold focus:outline-none focus:ring-2 focus:ring-accent-gold focus:ring-opacity-50">
-                            <option>Select City</option>
-                            <option>Ho Chi Minh City</option>
-                            <option>Hanoi</option>
-                            <option>Hai Phong</option>
-                            <option>Da Nang</option>
-                            <option>Can Tho</option>
-                        </select>
-                        <select class="px-4 py-3 rounded-full border-2 border-accent-gold focus:outline-none focus:ring-2 focus:ring-accent-gold focus:ring-opacity-50">
-                            <option>Select District</option>
-                            <option>District 1</option>
-                            <option>District 3</option>
-                            <option>District 5</option>
-                            <option>District 7</option>
-                        </select>
-                    </div>
-                    <a href="#" class="inline-flex items-center justify-center accent-bg text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-all duration-300 mt-8">
-                        View Store List
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Footer -->
-
-        <footer style="background: #1a0f0a;">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12"><!-- Brand Column -->
-            <div class="col-span-2 md:col-span-4 lg:col-span-1 mb-8 lg:mb-0">
-            <div class="flex items-center gap-3 mb-6">
-            <img src="media-assets/logo.svg" alt="VietCoffee Logo" class="w-12 h-12 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center hidden" style="background: linear-gradient(135deg, #4a2c1a, #8b5a2b);">
-            <svg class="w-7 h-7 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z" />
-            </svg>
-            </div><span id="footer-brand" class="font-playfair text-2xl font-bold text-white">VietCoffee</span>
-            </div>
-            <p class="text-sm leading-relaxed mb-6" style="color: rgba(255,255,255,0.6);">Bringing you rich, authentic Vietnamese coffee, VietCoffee is your second home.</p><!-- Social Icons -->
-            <div class="flex gap-3"><a href="#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition-colors" style="background: rgba(255,255,255,0.1);" onmouseover="this.style.background='#d4a574'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-            <svg class="w-5 h-5 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z" />
-            </svg></a> <a href="#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition-colors" style="background: rgba(255,255,255,0.1);" onmouseover="this.style.background='#d4a574'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-            <svg class="w-5 h-5 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
-            </svg></a> <a href="#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center transition-colors" style="background: rgba(255,255,255,0.1);" onmouseover="this.style.background='#d4a574'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-            <svg class="w-5 h-5 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.5,18.78 17.18,18.84C15.88,18.91 14.69,18.94 13.59,18.94L12,19C7.81,19 5.2,18.84 4.17,18.56C3.27,18.31 2.69,17.73 2.44,16.83C2.31,16.36 2.22,15.73 2.16,14.93C2.09,14.13 2.06,13.44 2.06,12.84L2,12C2,9.81 2.16,8.2 2.44,7.17C2.69,6.27 3.27,5.69 4.17,5.44C4.64,5.31 5.5,5.22 6.82,5.16C8.12,5.09 9.31,5.06 10.41,5.06L12,5C16.19,5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z" />
-            </svg></a>
-            </div>
-            </div><!-- GIỚI THIỆU -->
-            <div>
-            <h4 class="font-semibold text-white mb-4">GIỚI THIỆU</h4>
-            <ul class="space-y-3">
-            <li><a href="/index.html" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">HOME</a></li>
-            <li><a href="/featureproducts.html" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">PRODUCTS</a></li>
-            <li><a href="/discount.html" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">DISCOUNTS</a></li>
-            <li><a href="/blog.html" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">BLOG</a></li>
-            <li><a href="#" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">Cửa Hàng</a></li>
-            <li><a href="#" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">Tuyển dụng</a></li>
-            </ul>
-            </div><!-- ĐIỀU KHOẢN -->
-            <div>
-            <h4 class="font-semibold text-white mb-4">ĐIỀU KHOẢN</h4>
-            <ul class="space-y-3">
-            <li><a href="#" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">Điều khoản sử dụng</a></li>
-            <li><a href="#" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">Chính sách bảo mật</a></li>
-            <li><a href="#" class="text-sm transition-colors hover:text-white" style="color: rgba(255,255,255,0.6);">Hướng dẫn xuất hóa đơn</a></li>
-            </ul>
-            </div>
-            
-            <!-- LIÊN HỆ -->
-            <div>
-            <h4 class="font-semibold text-white mb-4">LIÊN HỆ</h4>
-            <ul class="space-y-3">
-            <li class="flex items-start gap-2">
-            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="currentColor" style="color: #d4a574;" viewbox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
-            </svg><span class="text-sm" style="color: rgba(255,255,255,0.6);">57 Mile End Rd, Bethnal Green, London.</span></li>
-            <li class="flex items-center gap-2">
-            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" style="color: #d4a574;" viewbox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" />
-            </svg><span class="text-sm" style="color: rgba(255,255,255,0.6);">1800 6936</span></li>
-            <li class="flex items-center gap-2">
-            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" style="color: #d4a574;" viewbox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
-            </svg><span class="text-sm" style="color: rgba(255,255,255,0.6);">support@vietcoffee.vn</span></li>
-            </ul>
-            </div><!-- DOWNLOAD APP -->
-            <div>
-            <h4 class="font-semibold text-white mb-4">TẢI APP</h4>
-            <div class="space-y-3"><a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-2 rounded-lg transition-colors" style="background: rgba(255,255,255,0.1);" onmouseover="this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-            <svg class="w-6 h-6 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M17.05,20.28C16.07,20.83 14.89,21 13.5,21C11.55,21 9.84,20.63 8.37,19.91C6.9,19.18 5.82,18.12 5.15,16.73C4.47,15.34 4.14,13.66 4.14,11.68C4.14,9.28 4.66,7.25 5.7,5.59C6.74,3.94 8.19,2.76 10.05,2.06C11.9,1.35 14.09,1 16.61,1C17.77,1 18.7,1.04 19.39,1.12L19.05,3.5C18.36,3.36 17.6,3.29 16.77,3.29C14.96,3.29 13.39,3.58 12.07,4.15C10.74,4.73 9.72,5.56 9,6.66C8.27,7.77 7.91,9.11 7.91,10.68L7.94,10.92C8.5,10.28 9.29,9.77 10.31,9.38C11.32,9 12.47,8.81 13.77,8.81C15.3,8.81 16.62,9.09 17.73,9.67C18.84,10.24 19.71,11.04 20.33,12.08C20.95,13.11 21.26,14.3 21.26,15.65C21.26,17 20.94,18.2 20.3,19.23C19.67,20.27 18.67,21 17.05,20.28M15.5,11.91C14.75,11.91 14.06,12.03 13.42,12.28C12.79,12.53 12.26,12.87 11.82,13.31C11.39,13.75 11.1,14.26 10.95,14.84C10.8,15.42 10.89,16 11.23,16.5C11.57,17 12.03,17.37 12.6,17.62C13.17,17.87 13.79,18 14.45,18C15.3,18 16.04,17.82 16.67,17.45C17.3,17.09 17.8,16.58 18.15,15.93C18.5,15.28 18.67,14.53 18.67,13.69C18.67,12.86 18.43,12.19 17.95,11.69C17.47,11.19 16.65,11.91 15.5,11.91Z" />
-            </svg>
-            <div><span class="block text-xs" style="color: rgba(255,255,255,0.6);">Tải về trên</span> <span class="block text-sm font-semibold text-white">App Store</span>
-            </div></a> <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-2 rounded-lg transition-colors" style="background: rgba(255,255,255,0.1);" onmouseover="this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-            <svg class="w-6 h-6 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-            </svg>
-            <div><span class="block text-xs" style="color: rgba(255,255,255,0.6);">Tải về trên</span> <span class="block text-sm font-semibold text-white">Google Play</span>
-            </div></a>
-            </div>
-            </div>
-        </div><!-- Bottom Footer -->
-        <div class="mt-12 pt-8 border-t" style="border-color: rgba(255,255,255,0.1);">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-sm text-center md:text-left" style="color: rgba(255,255,255,0.5);">© 2025 VietCoffee. Công ty TNHH VietCoffee Việt Nam.<br class="md:hidden">
-            ĐKKD: 0944636084 do Sở KH&amp;ĐT TP.HCM cấp ngày 23/07/2014</p>
-            <div class="flex items-center gap-2"><span class="text-sm" style="color: rgba(255,255,255,0.5);">Thanh toán an toàn</span>
-            <div class="flex gap-2">
-            <div class="w-10 h-6 rounded flex items-center justify-center" style="background: white;"><span class="text-xs font-bold" style="color: #1a0f0a;">VISA</span>
-            </div>
-            <div class="w-10 h-6 rounded flex items-center justify-center" style="background: white;"><span class="text-xs font-bold" style="color: #1a0f0a;">MC</span>
-            </div>
-            <div class="w-10 h-6 rounded flex items-center justify-center" style="background: white;"><span class="text-xs font-bold" style="color: #1a0f0a;">MOMO</span>
-            </div>
-            </div>
-            </div>
-            </div>
+        <div class="flex items-center gap-4">
+          <a href="#menu" class="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-sm font-semibold cyber-btn">ORDER</a>
+          <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
         </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5" style="background: rgba(7,7,11,0.95);">
+      <div class="px-4 py-4 space-y-3">
+        <a href="/index.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Home</a>
+        <a href="#coffee-products" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Coffee</a>
+        <a href="#tea-products" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Tea</a>
+        <a href="#location" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Nodes</a>
+        <a href="#contact" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Contact</a>
+        <a href="/blog.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Log</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="w-full pt-20">
+    <!-- Hero -->
+    <section class="relative py-20 md:py-32 overflow-hidden" style="background: linear-gradient(180deg, #07070B, #11131A, #1A1033);">
+      <div class="absolute inset-0 grid-overlay"></div>
+      <div class="absolute inset-0 hex-grid"></div>
+      <div class="blob blob-violet" style="top: -10%; left: -5%; animation: floatSlow 8s ease-in-out infinite;"></div>
+      <div class="blob blob-crimson" style="bottom: -5%; right: -10%; animation: floatSlow 10s ease-in-out infinite reverse;"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
+          <span class="status-dot active"></span>
+          <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(157, 78, 221, 0.8);">CATALOG // SYSTEM ACTIVE</span>
         </div>
-        </footer>
+        <h1 class="font-display text-4xl md:text-7xl lg:text-8xl font-black mb-4">
+          <span class="text-white">FULL</span>
+          <span style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"> MENU</span>
+        </h1>
+        <p class="text-sm font-mono" style="color: var(--silver);">All fuels catalogued. Select your poison.</p>
+      </div>
+    </section>
 
+    <!-- Category Circles -->
+    <section class="py-16 md:py-24 relative" style="background: linear-gradient(180deg, #1A1033, #11131A);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12">
+          <div class="flex flex-col items-center text-center">
+            <div class="category-circle mb-4" style="background: linear-gradient(135deg, #9D4EDD, #FF2E63); width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(157,78,221,0.2); transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 0 40px rgba(157,78,221,0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 0 30px rgba(157,78,221,0.2)'">
+              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              <div class="count-badge" style="position: absolute; top: -8px; right: -8px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; background: linear-gradient(135deg, #FF2E63, #FFB703); color: white; box-shadow: 0 0 15px rgba(255,46,99,0.4);">36</div>
+            </div>
+            <h3 class="font-display text-sm font-bold mb-1" style="color: var(--white);">COFFEE</h3>
+            <p class="text-[0.6rem] font-mono" style="color: var(--silver);">36 products</p>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <div class="category-circle mb-4" style="background: linear-gradient(135deg, #4CC9F0, #00F5D4); width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(76,201,240,0.2); transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 0 40px rgba(76,201,240,0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 0 30px rgba(76,201,240,0.2)'">
+              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+              <div class="count-badge" style="position: absolute; top: -8px; right: -8px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; background: linear-gradient(135deg, #4CC9F0, #9D4EDD); color: white; box-shadow: 0 0 15px rgba(76,201,240,0.4);">4</div>
+            </div>
+            <h3 class="font-display text-sm font-bold mb-1" style="color: var(--white);">TEA</h3>
+            <p class="text-[0.6rem] font-mono" style="color: var(--silver);">4 products</p>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <div class="category-circle mb-4" style="background: linear-gradient(135deg, #FF4FD8, #9D4EDD); width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(255,79,216,0.2); transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 0 40px rgba(255,79,216,0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 0 30px rgba(255,79,216,0.2)'">
+              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="7" cy="19" r="1.5"/><circle cx="12" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/><path d="M18 3H6C4.9 3 4 3.9 4 5v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 12H6V5h12v10z"/></svg>
+              <div class="count-badge" style="position: absolute; top: -8px; right: -8px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; background: linear-gradient(135deg, #FF4FD8, #FF2E63); color: white; box-shadow: 0 0 15px rgba(255,79,216,0.4);">14</div>
+            </div>
+            <h3 class="font-display text-sm font-bold mb-1" style="color: var(--white);">LATTE & FRAPPE</h3>
+            <p class="text-[0.6rem] font-mono" style="color: var(--silver);">14 products</p>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <div class="category-circle mb-4" style="background: linear-gradient(135deg, #FF2E63, #FFB703); width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(255,46,99,0.2); transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 0 40px rgba(255,46,99,0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 0 30px rgba(255,46,99,0.2)'">
+              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"/></svg>
+              <div class="count-badge" style="position: absolute; top: -8px; right: -8px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; background: linear-gradient(135deg, #FF2E63, #9D4EDD); color: white; box-shadow: 0 0 15px rgba(255,46,99,0.4);">7</div>
+            </div>
+            <h3 class="font-display text-sm font-bold mb-1" style="color: var(--white);">SIGNATURE FOOD</h3>
+            <p class="text-[0.6rem] font-mono" style="color: var(--silver);">7 products</p>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <div class="category-circle mb-4" style="background: linear-gradient(135deg, #FFB703, #FF6B00); width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(255,183,3,0.2); transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 0 40px rgba(255,183,3,0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 0 30px rgba(255,183,3,0.2)'">
+              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+              <div class="count-badge" style="position: absolute; top: -8px; right: -8px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; background: linear-gradient(135deg, #FFB703, #FF6B00); color: #07070B; box-shadow: 0 0 15px rgba(255,183,3,0.4);">17</div>
+            </div>
+            <h3 class="font-display text-sm font-bold mb-1" style="color: var(--white);">PASTRY & MORE</h3>
+            <p class="text-[0.6rem] font-mono" style="color: var(--silver);">17 products</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    </main>
-    
-    <script>
-        // Tea filtering functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const teaFilters = document.querySelectorAll('.tea-filter');
-            const teaGrid = document.getElementById('tea-grid');
-            
-            teaFilters.forEach(filter => {
-                filter.addEventListener('click', function() {
-                    // Update active filter
-                    teaFilters.forEach(f => f.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const filterValue = this.getAttribute('data-filter');
-                    
-                    // Filter products
-                    const allProducts = teaGrid.querySelectorAll('.product-card');
-                    
-                    allProducts.forEach(product => {
-                        const productCategory = product.getAttribute('data-category');
-                        
-                        if (filterValue === 'all' || productCategory === filterValue) {
-                            product.style.display = 'block';
-                            // Add animation
-                            product.style.animation = 'fadeInUp 0.5s ease-out forwards';
-                        } else {
-                            product.style.display = 'none';
-                        }
-                    });
-                });
-            });
-        });
+    <!-- Coffee Products -->
+    <section id="coffee-products" class="py-16 md:py-24 relative" style="background: linear-gradient(180deg, #11131A, #07070B);">
+      <div class="absolute inset-0 hex-grid opacity-30"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
+            <span class="status-dot active"></span>
+            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(157, 78, 221, 0.8);">SECTION // COFFEE PROTOCOLS</span>
+          </div>
+          <h2 class="font-display text-3xl md:text-5xl font-bold"><span style="background: linear-gradient(135deg, #9D4EDD, #FF2E63); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">COFFEE</span> <span class="text-white">SELECTION</span></h2>
+        </div>
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // COFFEE FILTERING
-            const coffeeFilters = document.querySelectorAll('.coffee-filter');
-            const coffeeGrid = document.getElementById('coffee-grid');
-            
-            coffeeFilters.forEach(filter => {
-                filter.addEventListener('click', function() {
-                    // Update active filter
-                    coffeeFilters.forEach(f => f.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const filterValue = this.getAttribute('data-filter');
-                    
-                    // Filter products
-                    const allProducts = coffeeGrid.querySelectorAll('.product-card');
-                    
-                    allProducts.forEach(product => {
-                        const productCategory = product.getAttribute('data-category');
-                        
-                        if (filterValue === 'all' || productCategory === filterValue) {
-                            product.style.display = 'block';
-                            // Add animation
-                            product.style.animation = 'fadeInUp 0.5s ease-out forwards';
-                        } else {
-                            product.style.display = 'none';
-                        }
-                    });
-                });
-            });
-            
-            // TEA FILTERING (separate if you have a tea section)
-            const teaFilters = document.querySelectorAll('.tea-filter');
-            const teaGrid = document.getElementById('tea-grid');
-            
-            if (teaFilters.length > 0 && teaGrid) {
-                teaFilters.forEach(filter => {
-                    filter.addEventListener('click', function() {
-                        // Update active filter
-                        teaFilters.forEach(f => f.classList.remove('active'));
-                        this.classList.add('active');
-                        
-                        const filterValue = this.getAttribute('data-filter');
-                        
-                        // Filter products
-                        const allTeaProducts = teaGrid.querySelectorAll('.product-card');
-                        
-                        allTeaProducts.forEach(product => {
-                            const productCategory = product.getAttribute('data-category');
-                            
-                            if (filterValue === 'all' || productCategory === filterValue) {
-                                product.style.display = 'block';
-                                // Add animation
-                                product.style.animation = 'fadeInUp 0.5s ease-out forwards';
-                            } else {
-                                product.style.display = 'none';
-                            }
-                        });
-                    });
-                });
-            }
-        });
+        <div class="flex flex-wrap justify-center gap-2 mb-8">
+          <button class="coffee-filter cyber-btn px-4 py-2 rounded-lg text-[0.65rem] font-semibold tracking-wider active" data-filter="all">ALL</button>
+          <button class="coffee-filter cyber-btn-outline px-4 py-2 rounded-lg text-[0.65rem] font-semibold tracking-wider" data-filter="vietnamese">VIETNAMESE</button>
+          <button class="coffee-filter cyber-btn-outline px-4 py-2 rounded-lg text-[0.65rem] font-semibold tracking-wider" data-filter="espresso">ESPRESSO</button>
+          <button class="coffee-filter cyber-btn-outline px-4 py-2 rounded-lg text-[0.65rem] font-semibold tracking-wider" data-filter="specialty">SPECIALTY</button>
+          <button class="coffee-filter cyber-btn-outline px-4 py-2 rounded-lg text-[0.65rem] font-semibold tracking-wider" data-filter="coldbrew">COLD BREW</button>
+        </div>
 
-        // Interactive JavaScript
-        document.addEventListener('DOMContentLoaded', function() {
-            // Smooth scroll for navigation
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if(targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Update active nav
-                        document.querySelectorAll('.nav-pill').forEach(pill => {
-                            pill.classList.remove('active');
-                        });
-                        this.classList.add('active');
-                    }
-                });
-            });
-            
-            // Intersection Observer for animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.animationPlayState = 'running';
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe all animated elements
-            document.querySelectorAll('.animate-fade-in').forEach(element => {
-                observer.observe(element);
-            });
-            
-            // Store locator interactivity
-            const citySelect = document.querySelector('select:first-of-type');
-            const districtSelect = document.querySelector('select:last-of-type');
-            
-            if(citySelect && districtSelect) {
-                citySelect.addEventListener('change', function() {
-                    // In a real implementation, you would fetch districts based on selected city
-                    console.log(`Selected city: ${this.value}`);
-                });
-            }
-            
-            // Product card hover effects
-            document.querySelectorAll('.product-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-        });
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6" id="coffee-grid">
+        </div>
+      </div>
+    </section>
 
-          // Mobile menu toggle
-    document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-                
-                // Change icon based on state
-                const icon = mobileMenuBtn.querySelector('svg');
-                if (mobileMenu.classList.contains('hidden')) {
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
-                } else {
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
-                }
-            });
-        }
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    // Close mobile menu if open
-                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                        const icon = mobileMenuBtn.querySelector('svg');
-                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
-                    }
-                    
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
+    <!-- Tea Products -->
+    <section id="tea-products" class="py-16 md:py-24 relative" style="background: linear-gradient(180deg, #07070B, #11131A);">
+      <div class="absolute inset-0 grid-overlay"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
+            <span class="status-dot online"></span>
+            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(0, 245, 212, 0.8);">SECTION // TEA MATRIX</span>
+          </div>
+          <h2 class="font-display text-3xl md:text-5xl font-bold"><span style="background: linear-gradient(135deg, #4CC9F0, #00F5D4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">TEA</span> <span class="text-white">COLLECTION</span></h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6" id="tea-grid">
+        </div>
+      </div>
+    </section>
+
+    <!-- Food Products -->
+    <section class="py-16 md:py-24 relative" style="background: linear-gradient(180deg, #11131A, #1A1033);">
+      <div class="absolute inset-0 hex-grid opacity-30"></div>
+      <div class="blob blob-crimson" style="top: 20%; right: -10%; animation: floatSlow 12s ease-in-out infinite;"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
+            <span class="status-dot alert"></span>
+            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(255, 46, 99, 0.8);">SECTION // FUEL SNACKS</span>
+          </div>
+          <h2 class="font-display text-3xl md:text-5xl font-bold"><span style="background: linear-gradient(135deg, #FF2E63, #FFB703); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">SNACKS</span> <span class="text-white">& DESSERTS</span></h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6" id="food-grid">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-cyber">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs font-mono text-center md:text-left" style="color: rgba(168, 176, 192, 0.4);">© 2025 CYBERCOFFEE NETWORK // v2.0.25</p>
+        <div class="flex gap-4">
+          <a href="/index.html" class="text-[0.65rem] font-mono footer-link">HOME</a>
+          <a href="/discount.html" class="text-[0.65rem] font-mono footer-link">REWARDS</a>
+          <a href="/blog.html" class="text-[0.65rem] font-mono footer-link">LOG</a>
+          <a href="/jobsubmit.html" class="text-[0.65rem] font-mono footer-link">JOIN</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const productData = [
+      { name: 'A-Mê Classic', price: 39000, badge: 'Bestseller', image: 'media-assets/bacsiuclassic.png', category: 'cafe', subcategory: 'vietnamese' },
+      { name: 'A-Mê Đào', price: 49000, badge: null, image: 'media-assets/peachamericano.png', category: 'cafe', subcategory: 'vietnamese' },
+      { name: 'A-Mê Mơ', price: 49000, badge: null, image: 'media-assets/americanomo.png', category: 'cafe', subcategory: 'vietnamese' },
+      { name: 'A-Mê Tuyết Quất', price: 59000, badge: 'New', image: 'media-assets/americanvietquat.png', category: 'cafe', subcategory: 'vietnamese' },
+      { name: 'A-Mê Yuzu', price: 49000, badge: null, image: 'media-assets/yuzuamericano.png', category: 'cafe', subcategory: 'vietnamese' },
+      { name: 'Americano Hot', price: 45000, badge: null, image: 'media-assets/classicamericano.png', category: 'cafe', subcategory: 'vietnamese' },
+      { name: 'Cappuccino', price: 55000, badge: null, image: 'media-assets/cappuccino.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Cappuccino Iced', price: 55000, badge: null, image: 'media-assets/coldcappucino.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Cappuccino Hot', price: 55000, badge: null, image: 'media-assets/hotcappuccino.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Caramel Macchiato', price: 65000, badge: 'Popular', image: 'media-assets/macchiato.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Cold Brew', price: 49000, badge: null, image: 'media-assets/coldbrew.png', category: 'cafe', subcategory: 'coldbrew' },
+      { name: 'Traditional Cold Brew', price: 45000, badge: null, image: 'media-assets/originalcoldbew.png', category: 'cafe', subcategory: 'coldbrew' },
+      { name: 'Cà Phê Phin Đen Đá', price: 35000, badge: null, image: 'media-assets/ca_phe_phin_den_da.png', category: 'cafe', subcategory: 'vietnamese' },
+      { name: 'Cà Phê Phin Đen Nóng', price: 35000, badge: null, image: 'media-assets/ca_phe_phin_den_nong.png', category: 'cafe', subcategory: 'vietnamese' },
+      { name: 'Cà Phê Phin Nâu Đá', price: 38000, badge: null, image: 'media-assets/ca_phe_phin_nau_da.png', category: 'cafe', subcategory: 'vietnamese' },
+      { name: 'Cà Phê Phin Nâu Nóng', price: 38000, badge: null, image: 'media-assets/ca_phe_phin_nau_nong.png', category: 'cafe', subcategory: 'vietnamese' },
+      { name: 'Bạc Xiu Classic', price: 39000, badge: null, image: 'media-assets/bacsiuclassic.png', category: 'cafe', subcategory: 'vietnamese' },
+      { name: 'Bạc Xiu Caramel', price: 45000, badge: null, image: 'media-assets/bacsiu caramel.png', category: 'cafe', subcategory: 'vietnamese' },
+      { name: 'Bạc Xiu Foam', price: 49000, badge: null, image: 'media-assets/bacsiufoam.png', category: 'cafe', subcategory: 'vietnamese' },
+      { name: 'Espresso', price: 35000, badge: null, image: 'media-assets/espresso.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Espresso Hot', price: 35000, badge: null, image: 'media-assets/espressohot.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Espresso Iced', price: 35000, badge: null, image: 'media-assets/espressocold.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Ethiopia', price: 55000, badge: null, image: 'media-assets/ethiopia.png', category: 'cafe', subcategory: 'specialty' },
+      { name: 'Ethiopia Americano', price: 55000, badge: null, image: 'media-assets/ethiopiaamericano.png', category: 'cafe', subcategory: 'specialty' },
+      { name: 'Latte', price: 55000, badge: null, image: 'media-assets/latte.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Latte Hot', price: 55000, badge: null, image: 'media-assets/lattehot.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Caramel Latte', price: 65000, badge: null, image: 'media-assets/latte caramel.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Almond Latte', price: 65000, badge: null, image: 'media-assets/lattealmond.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Hazelnut Latte', price: 65000, badge: null, image: 'media-assets/lattehazzlenut.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Hot Chocolate', price: 55000, badge: null, image: 'media-assets/hotchoco.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Cold Chocolate', price: 55000, badge: null, image: 'media-assets/coldchoco.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Frappe Chocolate', price: 65000, badge: null, image: 'media-assets/frappechoco.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Vanilla Frappe', price: 65000, badge: null, image: 'media-assets/vanillafroat.png', category: 'cafe', subcategory: 'espresso' },
+      { name: 'Matcha Latte Iced', price: 65000, badge: null, image: 'media-assets/matchalattewithice.png', category: 'cafe', subcategory: 'specialty' },
+      { name: 'Matcha Frappe', price: 65000, badge: null, image: 'media-assets/matchafrappe.png', category: 'cafe', subcategory: 'specialty' },
+      { name: 'Matcha Foam', price: 65000, badge: null, image: 'media-assets/matchafroat.png', category: 'cafe', subcategory: 'specialty' },
+      { name: 'Black Tea', price: 55000, badge: null, image: 'media-assets/blacktea.png', category: 'tea', subcategory: 'tea' },
+      { name: 'Red Tea', price: 55000, badge: null, image: 'media-assets/hongtea.png', category: 'tea', subcategory: 'tea' },
+      { name: 'Oolong Tea', price: 55000, badge: null, image: 'media-assets/olongtuquy.png', category: 'tea', subcategory: 'tea' },
+      { name: 'Oolong with Jelly', price: 65000, badge: null, image: 'media-assets/olongtuquysuongsao.png', category: 'tea', subcategory: 'tea' },
+      { name: 'Sandwich', price: 65000, badge: null, image: 'media-assets/sandwich.png', category: 'food', subcategory: 'food' },
+      { name: 'Croissant', price: 45000, badge: null, image: 'media-assets/croissant.png', category: 'food', subcategory: 'food' },
+      { name: 'Cheesecake', price: 75000, badge: null, image: 'media-assets/cheesecake.png', category: 'food', subcategory: 'food' },
+      { name: 'Matcha Cheesecake', price: 85000, badge: 'Popular', image: 'media-assets/matchaburntcheesecake.png', category: 'food', subcategory: 'food' },
+      { name: 'Mochi', price: 45000, badge: null, image: 'media-assets/mochi.png', category: 'food', subcategory: 'food' },
+      { name: 'Raspberry Mochi', price: 55000, badge: null, image: 'media-assets/mochiphucbontu.png', category: 'food', subcategory: 'food' },
+      { name: 'Chocolate Mochi', price: 55000, badge: null, image: 'media-assets/mocchikemchoco.png', category: 'food', subcategory: 'food' },
+      { name: 'Matcha Mochi', price: 55000, badge: null, image: 'media-assets/mitsay.png', category: 'food', subcategory: 'food' }
+    ];
+
+    function formatPrice(p) { return new Intl.NumberFormat('vi-VN').format(p) + ' đ'; }
+
+    function renderProductGrid(gridId, products, filter) {
+      const grid = document.getElementById(gridId);
+      if (!grid) return;
+      let filtered = products;
+      if (filter && filter !== 'all') filtered = products.filter(p => p.subcategory === filter);
+      grid.innerHTML = filtered.map(p => `
+        <div class="product-card group">
+          <div class="relative" style="aspect-ratio: 1;">
+            <img src="${p.image || 'media-assets/coffee.png'}" alt="${p.name}" class="w-full h-full object-cover product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="absolute inset-0 flex items-center justify-center hidden" style="background: linear-gradient(135deg, rgba(157,78,221,0.1), rgba(255,46,99,0.1));">
+              <svg class="w-16 h-16" viewBox="0 0 24 24" fill="#9D4EDD" opacity="0.3"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/></svg>
+            </div>
+            ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
+          </div>
+          <div class="p-4">
+            <span class="text-[0.6rem] font-mono uppercase tracking-widest" style="color: var(--violet);">${p.category.toUpperCase()}</span>
+            <h3 class="font-semibold text-sm mt-1 mb-2 text-white">${p.name}</h3>
+            <div class="flex items-center justify-between">
+              <span class="font-mono font-bold text-sm text-white">${formatPrice(p.price)}</span>
+              <button class="w-8 h-8 rounded-lg flex items-center justify-center cyber-btn" style="padding: 0; min-width: unset; width: 32px; height: 32px;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    renderProductGrid('coffee-grid', productData.filter(p => p.category === 'cafe'), 'all');
+    renderProductGrid('tea-grid', productData.filter(p => p.category === 'tea'), null);
+    renderProductGrid('food-grid', productData.filter(p => p.category === 'food'), null);
+
+    document.querySelectorAll('.coffee-filter').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.coffee-filter').forEach(b => {
+          b.className = b.className.replace('cyber-btn ', 'cyber-btn-outline ');
+          if (b.classList.contains('active')) {
+            b.className = b.className.replace('cyber-btn', 'cyber-btn-outline').trim();
+            b.classList.remove('active');
+          }
         });
-        
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(250, 246, 241, 0.98)';
-                nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
-            } else {
-                nav.style.background = 'rgba(250, 246, 241, 0.95)';
-                nav.style.boxShadow = 'none';
-            }
-        });
+        this.className = 'coffee-filter cyber-btn px-4 py-2 rounded-lg text-[0.65rem] font-semibold tracking-wider active';
+        renderProductGrid('coffee-grid', productData.filter(p => p.category === 'cafe'), this.dataset.filter);
+      });
     });
-    </script>
+
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.borderBottom = '1px solid rgba(157,78,221,0.15)';
+        nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+      } else {
+        nav.style.borderBottom = '1px solid rgba(157,78,221,0.1)';
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    // Particles
+    function createParticles() {
+      const container = document.getElementById('particle-container');
+      if (!container) return;
+      for (let i = 0; i < 30; i++) {
+        const p = document.createElement('div');
+        p.classList.add('particle');
+        const size = Math.random() * 2 + 1;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        const colors = ['#9D4EDD', '#FF2E63', '#4CC9F0', '#00F5D4'];
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
+        p.style.animation = `float ${3 + Math.random() * 4}s ease-in-out ${Math.random() * 5}s infinite`;
+        p.style.opacity = 0.2 + Math.random() * 0.3;
+        container.appendChild(p);
+      }
+    }
+    createParticles();
+  </script>
 </body>
 </html>

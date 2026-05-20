@@ -1,446 +1,235 @@
 <!doctype html>
 <html lang="en" class="h-full">
- <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cross's Coffee</title>
+  <title>CYBERCOFFEE // LOG TERMINAL</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;family=Source+Sans+3:wght@300;400;500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="/_sdk/element_sdk.js"></script>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    body {
-      box-sizing: border-box;
-    }
-    
-    .font-serif-display {
-      font-family: 'Playfair Display', Georgia, serif;
-    }
-    
-    .font-sans-body {
-      font-family: 'Source Sans 3', system-ui, sans-serif;
-    }
-    
-    .grain-overlay {
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      opacity: 0.03;
-      pointer-events: none;
-    }
-    
-    .hero-gradient {
-      background: linear-gradient(135deg, #2C1810 0%, #4A3728 40%, #3D2B1F 100%);
-    }
-    
-    .text-cream { color: #F5F0E8; }
-    .text-caramel { color: #C4A574; }
-    .text-espresso { color: #1a0f08; }
-    .text-warm-gray { color: #3d2f25; }
-    .bg-cream { background-color: #F5F0E8; }
-    .bg-latte { background-color: #EDE5D8; }
-    .bg-espresso { background-color: #2C1810; }
-    .border-caramel { border-color: #C4A574; }
-    
-    .line-height-relaxed {
-      line-height: 1.85;
-    }
-    
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-    
-    @keyframes slideInFromLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-    
-    @keyframes slideInFromRight {
-      from {
-        opacity: 0;
-        transform: translateX(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-    
-    @keyframes gentleFloat {
-      0%, 100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-    
-    .animate-fade-up {
-      animation: fadeUp 0.8s ease-out forwards;
-    }
-    
-    .animate-fade-in {
-      animation: fadeIn 1s ease-out forwards;
-    }
-    
-    .animate-slide-left {
-      animation: slideInFromLeft 0.8s ease-out forwards;
-    }
-    
-    .animate-slide-right {
-      animation: slideInFromRight 0.8s ease-out forwards;
-    }
-    
-    .animate-float {
-      animation: gentleFloat 6s ease-in-out infinite;
-    }
-    
-    .animate-delay-1 { animation-delay: 0.2s; opacity: 0; }
-    .animate-delay-2 { animation-delay: 0.4s; opacity: 0; }
-    .animate-delay-3 { animation-delay: 0.6s; opacity: 0; }
-    .animate-delay-4 { animation-delay: 0.8s; opacity: 0; }
-    .animate-delay-5 { animation-delay: 1s; opacity: 0; }
-    
-    .stagger-children > * {
-      opacity: 0;
-      animation: fadeUp 0.6s ease-out forwards;
-    }
-    
-    .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
-    .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
-    .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
-    .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
-    .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
-  </style>
+  <link rel="stylesheet" href="cyber.css">
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="h-full font-sans-body bg-cream text-espresso overflow-auto">
-  <div class="w-full min-h-full relative"><!-- Grain Texture Overlay -->
-   <div class="grain-overlay fixed inset-0 z-50"></div><!-- Navigation -->
+</head>
+<body class="h-full font-body overflow-x-hidden">
+  <div class="scanlines"></div>
+  <div class="noise-overlay"></div>
+  <div class="crt-overlay"></div>
 
-      <nav class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm">
-        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- Logo -->
-            <a href="./index.html" class="flex items-center gap-2">
-                <svg class="w-6 h-6 text-brown-700" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z" />
-                </svg>
-                <span class="font-medium text-gray-800">VietCoffee</span>
-            </a>
-            
-            <!-- Navigation Links -->
-            <div class="flex gap-5 text-sm text-gray-600">
-                <a href="#about" class="hover:text-gray-900">About</a>
-                <a href="#journal" class="hover:text-gray-900">Journal</a>
-                <a href="#visit" class="hover:text-gray-900">Visit</a>
+  <!-- Navigation -->
+  <nav class="nav-cyber">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <div class="flex items-center gap-3">
+          <a href="/index.html" class="flex items-center gap-3">
+            <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, rgba(157,78,221,0.2), rgba(255,46,99,0.2)); border: 1px solid rgba(157,78,221,0.3);">
+              <svg class="w-6 h-6 md:w-7 md:h-7" viewBox="0 0 24 24" fill="none"><path d="M2 21H20V19H2M20 8H18V5H20M20 3H4V13C4 15.209 5.791 17 8 17H14C16.209 17 18 15.209 18 13V10H20C21.105 10 22 9.105 22 8V5C22 3.895 21.105 3 20 3Z" fill="url(#bnav)"/><defs><linearGradient id="bnav" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9D4EDD"/><stop offset="0.5" stop-color="#FF2E63"/><stop offset="1" stop-color="#FF4FD8"/></linearGradient></defs></svg>
             </div>
+            <span class="font-display text-lg md:text-xl font-bold" style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">CYBER</span>
+            <span class="text-lg md:text-xl font-bold text-white">COFFEE</span>
+          </a>
         </div>
-      </nav>
-   
-   <!-- Hero Section -->
-   <section id="about" class="hero-gradient min-h-screen flex items-center relative overflow-hidden">
-    <div class="absolute inset-0 opacity-20">
-     <svg class="w-full h-full" viewbox="0 0 100 100" preserveaspectratio="none"><defs>
-       <pattern id="coffee-steam" x="0" y="0" width="40" height="40" patternunits="userSpaceOnUse">
-        <path d="M20 40 Q25 30 20 20 Q15 10 20 0" stroke="#C4A574" stroke-width="0.3" fill="none" opacity="0.3" />
-       </pattern>
-      </defs> <rect width="100%" height="100%" fill="url(#coffee-steam)" />
-     </svg>
-    </div>
-    <div class="max-w-3xl mx-auto px-6 py-32 pt-40 relative z-10">
-     <div class="animate-fade-up">
-      <h1 class="font-serif-display text-cream text-3xl md:text-4xl lg:text-5xl font-normal leading-tight mb-12">Hi. My name is <span class="text-caramel italic">Cross</span>.</h1>
-     </div>
-     <div class="space-y-8 text-cream text-lg md:text-xl font-light line-height-relaxed animate-fade-up animate-delay-1">
-      <p>I'm a retired sergeant. After years of structure, pressure, and long days that never really ended, coffee became the one thing that stayed consistent.</p>
-      <p>I drink coffee every day. Not for energy. Not for trends.<br><span class="text-caramel">It's a ritual. A pause. A moment where things make sense again.</span></p>
-      <p>Opening this café wasn't a business decision.<br><em class="font-serif-display">It was a necessity.</em></p>
-      <p class="pt-4 border-t border-caramel border-opacity-30">This website exists for one reason:<br><strong class="font-medium">to show how much I care about coffee</strong> — every cup, every detail, every quiet moment it creates.</p>
-     </div>
-    </div><!-- Decorative coffee cup silhouette -->
-    <div class="absolute bottom-0 right-0 w-64 h-64 opacity-10 animate-float">
-     <svg viewbox="0 0 100 100" class="w-full h-full"><ellipse cx="40" cy="70" rx="30" ry="20" fill="#C4A574" /> <rect x="15" y="30" width="50" height="40" rx="5" fill="#C4A574" /> <path d="M65 40 Q80 45 80 55 Q80 65 65 70" stroke="#C4A574" stroke-width="4" fill="none" /> <path d="M25 25 Q30 10 35 25 M35 25 Q40 10 45 25 M45 25 Q50 10 55 25" stroke="#C4A574" stroke-width="2" fill="none" opacity="0.6" />
-     </svg>
-    </div>
-   </section><!-- Discipline Section -->
-   <section class="bg-latte py-24 md:py-32 relative">
-    <div class="absolute inset-0 grain-overlay opacity-5"></div>
-    <div class="max-w-3xl mx-auto px-6 relative z-10">
-     <div class="space-y-8 text-espresso text-lg line-height-relaxed animate-fade-up">
-      <p>I might have been a sergeant back then, but now I'm just a normal civilian. No rank, no formation, no commands being shouted from across the room. What stayed with me wasn't the title — it was the discipline. These days, that discipline shows up in quieter places, like the gym, where effort still has consequences and consistency still means something. Every session begins the same way, long before the weights are touched. There's coffee first — hard-earned, deliberate, and taken in silence. It's not about stimulation or hype. It's a ritual before the battle, a moment to settle the mind before the body is asked to suffer honestly.</p>
-      <p>Training, especially leg day, has a strange clarity to it. There's no pretending when the weight is heavy and the movement is slow. When my glutes are burning and my legs are shaking, there's no space left for distraction, ego, or overthinking. I don't romanticize it. I let it crush me, because that pressure is the point. Just like math, just like coffee, the gym rewards those who respect the process and punishes those who rush it. You don't get stronger by wanting it. You get stronger by showing up and letting the work do its damage.</p>
-      <div class="my-12 py-8 border-t border-b border-caramel border-opacity-30">
-       <blockquote class="font-serif-display text-2xl md:text-3xl text-espresso italic text-center leading-relaxed">
-        Before the battle, there is coffee.
-       </blockquote>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="/index.html" class="nav-link-cyber">Home</a>
+          <a href="/featureproducts.html" class="nav-link-cyber">Menu</a>
+          <a href="/discount.html" class="nav-link-cyber">Rewards</a>
+          <a href="/blog.html" class="nav-link-cyber">Log</a>
+          <a href="/jobsubmit.html" class="nav-link-cyber">Join</a>
+        </div>
+        <div class="flex items-center gap-4">
+          <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
       </div>
-      <p>Coffee bridges everything. It's the quiet moment before exertion, the same way it's the quiet moment before thought. Measuring, brewing, drinking — it reminds me to slow down, to be precise, to treat preparation as part of the work, not something separate from it. By the time I walk into the gym, the ritual is already complete. The coffee has done its job, not by energizing me, but by grounding me.</p>
-      <p>I don't train to look like something or prove anything. I train because effort still matters to me. Because strain is honest. Because letting the weights compress you and force adaptation feels real in a world that often doesn't. I'm not a sergeant anymore. I'm just a civilian who drinks his coffee carefully, trains his body seriously, and respects the quiet systems that keep him grounded — repetition, discipline, and the willingness to be uncomfortable without making noise about it.</p>
-     </div>
     </div>
-   </section><!-- Journal Section -->
-   <section id="journal" class="bg-cream py-24 md:py-32">
-    <div class="max-w-4xl mx-auto px-6">
-     <header class="mb-16 text-center"><span class="text-caramel text-sm tracking-widest uppercase">From the Counter</span>
-      <h2 class="font-serif-display text-espresso text-3xl md:text-4xl mt-3">The Journal</h2>
-      <div class="w-16 h-px bg-caramel mx-auto mt-6 opacity-50"></div>
-     </header><!-- Blog Post List -->
-     <div class="space-y-16 stagger-children"><!-- Post 1 -->
-      <article class="group"><time class="text-warm-gray text-sm tracking-wide">December 18, 2024</time>
-       <h3 class="font-serif-display text-2xl md:text-3xl text-espresso mt-2 mb-4 group-hover:text-caramel transition-colors duration-300 cursor-pointer">Math, Coffee, and the Discipline of Care</h3>
-       <div class="text-warm-gray line-height-relaxed text-lg space-y-6">
-        <p>Math has always been the only place where my mind feels truly aligned with the world, because numbers don't perform, they don't negotiate, and they don't care who you are — they either hold or they collapse, and that kind of honesty shaped how I learned to live. I fell in love with math not because it was easy or impressive, but because it demanded patience, silence, and a willingness to sit with discomfort until clarity earned its way in.</p>
-        <p>The truth is, the first few months of the math grind were brutal — progress was slow, everything felt heavy, and motivation barely existed. I showed up anyway, staring at problems that refused to move, rereading definitions that didn't click, learning firsthand that discipline often comes long before passion. Every theorem, every exercise, every failed attempt taught me that understanding is not something you grab — it's something you approach slowly, respecting every assumption and every step, knowing that skipping even one small detail will poison the whole structure.</p>
-        <p>Coffee entered my life the same way math did: quietly, persistently, and then completely. Over time, brewing coffee stopped being a habit and started feeling like a proof — a sequence of decisions where every variable mattered, where grind size was no different from precision, where water temperature mirrored constraints, and where timing carried the same weight as logical order. I don't rush a cup the same way I don't rush a problem, because rushing is how you lie to yourself.</p>
-        <p>In both math and coffee, the process is the point; the result is just evidence that you respected it. There's something deeply grounding about repeating a ritual where effort correlates with outcome, where consistency sharpens intuition, and where mistakes aren't failures but data. Some mornings the coffee is perfect, balanced and clean, and other mornings it's off — bitter, flat, unfinished — and instead of frustration I analyze it the same way I would analyze a broken solution: what changed, what variable drifted, what assumption I made without realizing it.</p>
-        <p>Math taught me to trust slow accumulation, to believe that depth beats speed every time, and coffee became the physical expression of that belief, a way to carry abstract discipline into my hands and into my body. When I stand there measuring beans, pouring water, waiting, I'm not chasing caffeine or productivity; I'm entering a controlled system where attention is rewarded and care is visible.</p>
-        <p>Both math and coffee require surrendering ego — you don't get to force them, you don't get shortcuts, and you don't get credit for intention alone. They demand presence. They demand honesty. They demand that you show up even on days when your head feels heavy and your thoughts resist order.</p>
-        <p>In a world obsessed with speed, hacks, and shortcuts, math taught me that real understanding is quiet and often invisible, and coffee taught me how to practice that understanding daily without needing an audience. Each cup is a reminder that structure can be beautiful, that repetition can be meaningful, and that discipline doesn't have to be loud to be powerful.</p>
-        <p class="text-caramel italic">I love math because it trained my mind to respect systems, and I love coffee because it gives those systems a rhythm, a warmth, and a tangible form. Together, they built a ritual that keeps me grounded — a daily proof that care, patience, and consistency still matter, even when nothing else seems to hold.</p>
-       </div>
-      </article>
-      <div class="border-t border-espresso border-opacity-10"></div><!-- Post 2 -->
-      <article class="group"><time class="text-warm-gray text-sm tracking-wide">December 12, 2024</time>
-       <h3 class="font-serif-display text-2xl md:text-3xl text-espresso mt-2 mb-4 group-hover:text-caramel transition-colors duration-300 cursor-pointer">The Weight of a Morning Cup</h3>
-       <div class="text-warm-gray line-height-relaxed text-lg space-y-6">
-        <p>There's a specific moment, around 7:00am, when the café is still closed and the world hasn't fully decided to wake up yet. The lights are low, the street outside is quiet, and the machines are cold. That's the hour I trust the most. Nothing is performing. Nothing is asking to be seen. It's just me, the counter, and the weight of a single cup about to be made.</p>
-        <p>Morning coffee isn't about comfort for me. It carries weight. It's the first deliberate action of the day, the first choice that requires attention instead of reaction. Before the doors open, before conversations begin, before the noise and expectations creep in, I stand there and repeat a process I know by heart. Measure. Grind. Heat. Pour. Wait. Every step matters, and none of them can be rushed without consequence. That's what I respect about it. Coffee doesn't reward impatience. It exposes it.</p>
-        <p>At that hour, I'm not thinking about customers or plans or outcomes. I'm thinking about control in the smallest, most honest sense. Water temperature. Timing. The sound of the bloom. The smell as it opens up. It reminds me that discipline doesn't have to be loud to be real. It can exist quietly, early in the morning, when no one is watching and nothing needs to be proven.</p>
-        <p>I drink that first cup slowly. Not because it's precious, but because it deserves to be treated with care. It's the same care I try to bring into everything else — thinking, training, working, showing up. That cup grounds me before the day starts pulling in different directions. It sets a baseline. If I respect this moment, I'm more likely to respect the ones that follow.</p>
-        <p>Some mornings feel heavy. Others feel empty. The coffee doesn't fix that, and it isn't meant to. It just gives structure to the beginning. A quiet reminder that even on days when motivation is thin, ritual can still carry you forward. You don't need to feel ready to begin. You just need to begin correctly.</p>
-        <p>By the time the café opens and the noise returns, the most important cup has already been made. It wasn't for anyone else. It wasn't for show. It was a private act of alignment — a way to steady myself before the day applies pressure. That's the weight of a morning cup. Not caffeine. Not comfort. Just a small, deliberate proof that care still exists, and that I'm willing to practice it, one quiet morning at a time.</p>
-       </div>
-      </article>
-      <div class="border-t border-espresso border-opacity-10"></div><!-- Post 3 -->
-      <article class="group"><time class="text-warm-gray text-sm tracking-wide">November 28, 2024</time>
-       <h3 class="font-serif-display text-2xl md:text-3xl text-espresso mt-2 mb-4 group-hover:text-caramel transition-colors duration-300 cursor-pointer">Why I Don't Do Pour-Over Performances</h3>
-       <p class="text-warm-gray line-height-relaxed text-lg">Someone asked why I turn away from the counter when I make their coffee. Simple: brewing isn't a show. It's a conversation between me and the grounds. Some things don't need an audience.</p><a href="#" class="inline-block mt-4 text-caramel text-sm tracking-wide hover:text-espresso transition-colors duration-300">Continue reading →</a>
-      </article>
-      <div class="border-t border-espresso border-opacity-10"></div><!-- Post 4 -->
-      <article class="group"><time class="text-warm-gray text-sm tracking-wide">November 15, 2024</time>
-       <h3 class="font-serif-display text-2xl md:text-3xl text-espresso mt-2 mb-4 group-hover:text-caramel transition-colors duration-300 cursor-pointer">The Cup That Sat There for Two Hours</h3>
-       <p class="text-warm-gray line-height-relaxed text-lg">A regular came in last Tuesday. Ordered a black coffee. Sat by the window. Didn't touch it for almost two hours. When he finally drank it — cold by then — he smiled. Sometimes coffee isn't about the coffee.</p><a href="#" class="inline-block mt-4 text-caramel text-sm tracking-wide hover:text-espresso transition-colors duration-300">Continue reading →</a>
-      </article>
-      <div class="border-t border-espresso border-opacity-10"></div><!-- Post 5 -->
-      <article class="group"><time class="text-warm-gray text-sm tracking-wide">October 30, 2024</time>
-       <h3 class="font-serif-display text-2xl md:text-3xl text-espresso mt-2 mb-4 group-hover:text-caramel transition-colors duration-300 cursor-pointer">Silence as a Menu Item</h3>
-       <p class="text-warm-gray line-height-relaxed text-lg">No music. People ask about it every week. The grinder hums. Steam hisses. Cups meet saucers. These are the sounds. Adding anything else felt dishonest.</p><a href="#" class="inline-block mt-4 text-caramel text-sm tracking-wide hover:text-espresso transition-colors duration-300">Continue reading →</a>
-      </article>
-     </div>
-    </div>
-   </section><!-- Philosophy Quote Section -->
-   <section class="bg-latte py-24 md:py-32 relative">
-    <div class="absolute inset-0 grain-overlay opacity-5"></div>
-    <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
-     <svg class="w-12 h-12 mx-auto mb-8 text-caramel opacity-40 animate-fade-in" viewbox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-     </svg>
-     <blockquote id="quote-text" class="font-serif-display text-2xl md:text-3xl lg:text-4xl text-espresso italic leading-relaxed animate-fade-up animate-delay-1">
-      Coffee doesn't fix anything. It just gives you a few minutes where nothing needs fixing.
-     </blockquote><cite id="quote-attribution" class="block mt-8 text-warm-gray text-sm tracking-widest uppercase not-italic animate-fade-in animate-delay-2">— Cross</cite>
-    </div>
-   </section><!-- Visit Section -->
-   <section id="visit" class="bg-espresso py-24 md:py-32 text-cream">
-    <div class="max-w-4xl mx-auto px-6">
-     <div class="grid md:grid-cols-2 gap-16 items-center">
-      <div class="animate-slide-left"><span class="text-caramel text-sm tracking-widest uppercase">Find Us</span>
-       <h2 class="font-serif-display text-3xl md:text-4xl mt-3 mb-8">The Café</h2>
-       <div class="space-y-6 text-lg font-light opacity-90">
-        <p><span class="text-caramel block text-sm tracking-wide uppercase mb-1">Address</span> 214 Garrison Street<br>
-          Portland, OR 97201</p>
-        <p><span class="text-caramel block text-sm tracking-wide uppercase mb-1">Hours</span> Tuesday – Sunday<br>
-          5:30am – 2:00pm</p>
-        <p><span class="text-caramel block text-sm tracking-wide uppercase mb-1">Note</span> No reservations. No Wi-Fi.<br>
-          Just coffee and quiet.</p>
-       </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5" style="background: rgba(7,7,11,0.95);">
+      <div class="px-4 py-4 space-y-3">
+        <a href="/index.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Home</a>
+        <a href="/featureproducts.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Menu</a>
+        <a href="/discount.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Rewards</a>
+        <a href="/blog.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Log</a>
+        <a href="/jobsubmit.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Join</a>
       </div>
-      <div class="relative animate-slide-right"><!-- Abstract coffee cup illustration -->
-       <svg viewbox="0 0 200 200" class="w-full max-w-xs mx-auto opacity-20 animate-float"><circle cx="100" cy="100" r="80" fill="none" stroke="#C4A574" stroke-width="1" /> <circle cx="100" cy="100" r="60" fill="none" stroke="#C4A574" stroke-width="1" /> <circle cx="100" cy="100" r="40" fill="#C4A574" opacity="0.3" /> <path d="M100 20 L100 40 M100 160 L100 180 M20 100 L40 100 M160 100 L180 100" stroke="#C4A574" stroke-width="1" /> <ellipse cx="100" cy="100" rx="25" ry="25" fill="#C4A574" opacity="0.5" />
-       </svg>
+    </div>
+  </nav>
+
+  <main class="w-full">
+    <!-- Hero -->
+    <section class="relative min-h-[70vh] flex items-center overflow-hidden" style="background: linear-gradient(180deg, #07070B, #11131A, #1A1033);">
+      <div class="absolute inset-0 grid-overlay"></div>
+      <div class="blob blob-cyan" style="top: -10%; left: -5%; animation: floatSlow 8s ease-in-out infinite;"></div>
+      <div class="blob blob-violet" style="bottom: -10%; right: -5%; animation: floatSlow 10s ease-in-out infinite reverse;"></div>
+      <div class="max-w-4xl mx-auto px-6 relative z-10 pt-20">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
+            <span class="status-dot online"></span>
+            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(0, 245, 212, 0.8);">LOG // TERMINAL ONLINE</span>
+          </div>
+          <h1 class="font-display text-4xl md:text-7xl font-black">
+            <span style="background: linear-gradient(135deg, #4CC9F0, #9D4EDD); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">OPERATOR</span>
+            <span class="text-white"> LOG</span>
+          </h1>
+          <p class="font-mono text-sm mt-2" style="color: var(--silver);">Cross — Retired sergeant. Café runner. Math enthusiast.</p>
+        </div>
+
+        <div class="cyber-card p-8 md:p-12 max-w-3xl mx-auto">
+          <div class="font-mono text-sm leading-relaxed space-y-6" style="color: var(--silver);">
+            <p class="text-white font-semibold">Hi. My name is <span style="color: var(--cyan);">Cross</span>.</p>
+            <p>I'm a retired sergeant. After years of structure, pressure, and long days that never really ended, coffee became the one thing that stayed consistent.</p>
+            <p>I drink coffee every day. Not for energy. Not for trends. <span style="color: var(--cyan);">It's a ritual. A pause. A moment where things make sense again.</span></p>
+            <p><em style="color: var(--violet);">Opening this café wasn't a business decision. It was a necessity.</em></p>
+            <p>This log exists to document every cup, every detail, every quiet moment.</p>
+          </div>
+        </div>
       </div>
-     </div>
+    </section>
+
+    <!-- Journal Entries -->
+    <section class="py-20 md:py-32 relative" style="background: linear-gradient(180deg, #11131A, #07070B);">
+      <div class="absolute inset-0 hex-grid opacity-30"></div>
+      <div class="blob blob-crimson" style="top: 30%; right: -10%; animation: floatSlow 12s ease-in-out infinite;"></div>
+      <div class="max-w-4xl mx-auto px-6 relative">
+        <div class="text-center mb-16">
+          <span class="text-[0.6rem] font-mono tracking-[0.3em]" style="color: rgba(157, 78, 221, 0.5);">FROM THE COUNTER</span>
+          <h2 class="font-display text-3xl md:text-5xl font-bold mt-3">THE JOURNAL</h2>
+          <div style="width: 40px; height: 1px; background: linear-gradient(90deg, transparent, rgba(157,78,221,0.3), transparent); margin: 1rem auto 0;"></div>
+        </div>
+
+        <div class="space-y-16">
+          <article class="cyber-card p-8 group">
+            <div class="text-[0.6rem] font-mono" style="color: var(--violet);">DECEMBER 18, 2024</div>
+            <h3 class="font-display text-xl md:text-2xl font-bold text-white mt-2 mb-4 group-hover:text-glow transition-all duration-300 cursor-pointer">Math, Coffee, and the Discipline of Care</h3>
+            <div class="text-sm font-mono leading-relaxed space-y-4" style="color: var(--silver);">
+              <p>Math has always been the only place where my mind feels truly aligned with the world, because numbers don't perform, they don't negotiate, and they don't care who you are — they either hold or they collapse, and that kind of honesty shaped how I learned to live.</p>
+              <p>I fell in love with math not because it was easy or impressive, but because it demanded patience, silence, and a willingness to sit with discomfort until clarity earned its way in.</p>
+              <p>In both math and coffee, the process is the point; the result is just evidence that you respected it.</p>
+            </div>
+          </article>
+
+          <article class="cyber-card p-8 group">
+            <div class="text-[0.6rem] font-mono" style="color: var(--violet);">DECEMBER 12, 2024</div>
+            <h3 class="font-display text-xl md:text-2xl font-bold text-white mt-2 mb-4 group-hover:text-glow transition-all duration-300 cursor-pointer">The Weight of a Morning Cup</h3>
+            <div class="text-sm font-mono leading-relaxed space-y-4" style="color: var(--silver);">
+              <p>There's a specific moment, around 7:00am, when the café is still closed and the world hasn't fully decided to wake up yet. The lights are low, the street outside is quiet, and the machines are cold. That's the hour I trust the most.</p>
+              <p>Morning coffee isn't about comfort for me. It carries weight. It's the first deliberate action of the day, the first choice that requires attention instead of reaction.</p>
+              <p>Some mornings feel heavy. Others feel empty. The coffee doesn't fix that, and it isn't meant to. It just gives structure to the beginning.</p>
+            </div>
+          </article>
+
+          <article class="cyber-card p-8 group">
+            <div class="text-[0.6rem] font-mono" style="color: var(--violet);">NOVEMBER 28, 2024</div>
+            <h3 class="font-display text-xl md:text-2xl font-bold text-white mt-2 mb-4 group-hover:text-glow transition-all duration-300 cursor-pointer">Why I Don't Do Pour-Over Performances</h3>
+            <p class="text-sm font-mono leading-relaxed" style="color: var(--silver);">Someone asked why I turn away from the counter when I make their coffee. Simple: brewing isn't a show. It's a conversation between me and the grounds. Some things don't need an audience.</p>
+          </article>
+
+          <article class="cyber-card p-8 group">
+            <div class="text-[0.6rem] font-mono" style="color: var(--violet);">NOVEMBER 15, 2024</div>
+            <h3 class="font-display text-xl md:text-2xl font-bold text-white mt-2 mb-4 group-hover:text-glow transition-all duration-300 cursor-pointer">The Cup That Sat There for Two Hours</h3>
+            <p class="text-sm font-mono leading-relaxed" style="color: var(--silver);">A regular came in last Tuesday. Ordered a black coffee. Sat by the window. Didn't touch it for almost two hours. When he finally drank it — cold by then — he smiled. Sometimes coffee isn't about the coffee.</p>
+          </article>
+
+          <article class="cyber-card p-8 group">
+            <div class="text-[0.6rem] font-mono" style="color: var(--violet);">OCTOBER 30, 2024</div>
+            <h3 class="font-display text-xl md:text-2xl font-bold text-white mt-2 mb-4 group-hover:text-glow transition-all duration-300 cursor-pointer">Silence as a Menu Item</h3>
+            <p class="text-sm font-mono leading-relaxed" style="color: var(--silver);">No music. People ask about it every week. The grinder hums. Steam hisses. Cups meet saucers. These are the sounds. Adding anything else felt dishonest.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote -->
+    <section class="py-20 relative" style="background: linear-gradient(180deg, #07070B, #11131A);">
+      <div class="absolute inset-0 grid-overlay"></div>
+      <div class="max-w-3xl mx-auto px-6 text-center relative">
+        <svg class="w-8 h-8 mx-auto mb-6" style="color: rgba(157,78,221,0.3);" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+        <blockquote id="quote-text" class="font-display text-2xl md:text-3xl text-white italic leading-relaxed">
+          Coffee doesn't fix anything. It just gives you a few minutes where nothing needs fixing.
+        </blockquote>
+        <cite id="quote-attribution" class="block mt-6 text-xs font-mono tracking-widest" style="color: var(--violet);">— CROSS</cite>
+      </div>
+    </section>
+
+    <!-- Visit -->
+    <section class="py-20 relative" style="background: linear-gradient(180deg, #1A1033, #07070B);">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <span class="text-[0.55rem] font-mono tracking-[0.3em]" style="color: var(--cyan);">FIND US</span>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-white mt-3 mb-8">THE NODE</h2>
+            <div class="space-y-6 text-sm font-mono" style="color: var(--silver);">
+              <p><span style="color: var(--cyan); display: block; font-size: 0.65rem; letter-spacing: 0.15em; margin-bottom: 4px;">ADDRESS</span> 214 Garrison Street<br>Portland, OR 97201</p>
+              <p><span style="color: var(--cyan); display: block; font-size: 0.65rem; letter-spacing: 0.15em; margin-bottom: 4px;">HOURS</span> Tuesday – Sunday<br>5:30am – 2:00pm</p>
+              <p><span style="color: var(--cyan); display: block; font-size: 0.65rem; letter-spacing: 0.15em; margin-bottom: 4px;">NOTE</span> No reservations. No Wi-Fi. Just coffee and quiet.</p>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <svg viewBox="0 0 200 200" class="w-48 h-48 opacity-30 animate-float-slow">
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#9D4EDD" stroke-width="0.5"/>
+              <circle cx="100" cy="100" r="60" fill="none" stroke="#FF2E63" stroke-width="0.5"/>
+              <circle cx="100" cy="100" r="40" fill="#9D4EDD" opacity="0.1"/>
+              <path d="M100 20 L100 40 M100 160 L100 180 M20 100 L40 100 M160 100 L180 100" stroke="#4CC9F0" stroke-width="0.5"/>
+              <ellipse cx="100" cy="100" rx="25" ry="25" fill="#FF4FD8" opacity="0.15"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-cyber">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p id="footer-text" class="text-xs font-mono text-center md:text-left" style="color: rgba(168, 176, 192, 0.4);">Made with care. Served without pretense.</p>
+        <div class="flex gap-4">
+          <a href="/index.html" class="text-[0.65rem] font-mono footer-link">HOME</a>
+          <a href="/featureproducts.html" class="text-[0.65rem] font-mono footer-link">MENU</a>
+          <a href="/discount.html" class="text-[0.65rem] font-mono footer-link">REWARDS</a>
+          <a href="/jobsubmit.html" class="text-[0.65rem] font-mono footer-link">JOIN</a>
+        </div>
+      </div>
     </div>
-   </section><!-- Footer -->
-   <footer class="bg-espresso py-12 border-t border-caramel border-opacity-20">
-    <div class="max-w-4xl mx-auto px-6 text-center animate-fade-in">
-     <p id="footer-text" class="text-cream opacity-60 text-sm font-light">Made with care. Served without pretense.</p>
-     <p class="text-warm-gray text-xs mt-4 opacity-40">© 2024 Cross's Coffee</p>
-    </div>
-   </footer>
-  </div>
+  </footer>
+
   <script>
     const defaultConfig = {
-      site_name: "Cross's Coffee",
+      site_name: "CYBERCOFFEE",
       nav_about: "About",
       nav_journal: "Journal",
       nav_visit: "Visit",
       quote_text: "Coffee doesn't fix anything. It just gives you a few minutes where nothing needs fixing.",
-      quote_attribution: "— Cross",
+      quote_attribution: "— CROSS",
       footer_text: "Made with care. Served without pretense.",
-      background_color: "#F5F0E8",
-      text_color: "#1a0f08",
-      accent_color: "#C4A574",
-      secondary_color: "#EDE5D8",
-      hero_color: "#2C1810",
-      font_family: "Playfair Display",
+      background_color: "#07070B",
+      text_color: "#F5F7FA",
+      accent_color: "#9D4EDD",
+      secondary_color: "#11131A",
+      hero_color: "#1A1033",
+      font_family: "Space Grotesk",
       font_size: 16
     };
 
     async function onConfigChange(config) {
-      const siteName = config.site_name || defaultConfig.site_name;
-      const navAbout = config.nav_about || defaultConfig.nav_about;
-      const navJournal = config.nav_journal || defaultConfig.nav_journal;
-      const navVisit = config.nav_visit || defaultConfig.nav_visit;
-      const quoteText = config.quote_text || defaultConfig.quote_text;
-      const quoteAttribution = config.quote_attribution || defaultConfig.quote_attribution;
-      const footerText = config.footer_text || defaultConfig.footer_text;
-      
-      const bgColor = config.background_color || defaultConfig.background_color;
-      const textColor = config.text_color || defaultConfig.text_color;
-      const accentColor = config.accent_color || defaultConfig.accent_color;
-      const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
-      const heroColor = config.hero_color || defaultConfig.hero_color;
-      
-      const fontFamily = config.font_family || defaultConfig.font_family;
-      const fontSize = config.font_size || defaultConfig.font_size;
-      
-      // Update text content
-      document.getElementById('nav-site-name').textContent = siteName;
-      document.getElementById('nav-about-link').textContent = navAbout;
-      document.getElementById('nav-journal-link').textContent = navJournal;
-      document.getElementById('nav-visit-link').textContent = navVisit;
-      document.getElementById('quote-text').textContent = quoteText;
-      document.getElementById('quote-attribution').textContent = quoteAttribution;
-      document.getElementById('footer-text').textContent = footerText;
-      
-      // Update colors
-      document.body.style.backgroundColor = bgColor;
-      document.body.style.color = textColor;
-      
-      // Update section backgrounds
-      document.querySelectorAll('.bg-cream').forEach(el => {
-        el.style.backgroundColor = bgColor;
-      });
-      document.querySelectorAll('.bg-latte').forEach(el => {
-        el.style.backgroundColor = secondaryColor;
-      });
-      document.querySelectorAll('.bg-espresso').forEach(el => {
-        el.style.backgroundColor = heroColor;
-      });
-      
-      // Update accent colors
-      document.querySelectorAll('.text-caramel').forEach(el => {
-        el.style.color = accentColor;
-      });
-      document.querySelectorAll('.border-caramel').forEach(el => {
-        el.style.borderColor = accentColor;
-      });
-      
-      // Update text colors
-      document.querySelectorAll('.text-espresso').forEach(el => {
-        el.style.color = textColor;
-      });
-      
-      // Update fonts
-      const baseFontStack = 'Georgia, serif';
-      document.querySelectorAll('.font-serif-display').forEach(el => {
-        el.style.fontFamily = `${fontFamily}, ${baseFontStack}`;
-      });
-      
-      // Update font sizes proportionally
-      document.querySelectorAll('p, .line-height-relaxed').forEach(el => {
-        el.style.fontSize = `${fontSize}px`;
-      });
-      document.querySelectorAll('h1').forEach(el => {
-        el.style.fontSize = `${fontSize * 2.5}px`;
-      });
-      document.querySelectorAll('h2').forEach(el => {
-        el.style.fontSize = `${fontSize * 2}px`;
-      });
-      document.querySelectorAll('h3').forEach(el => {
-        el.style.fontSize = `${fontSize * 1.5}px`;
-      });
-      document.querySelectorAll('blockquote').forEach(el => {
-        el.style.fontSize = `${fontSize * 1.75}px`;
-      });
+      document.getElementById('quote-text').textContent = config.quote_text || defaultConfig.quote_text;
+      document.getElementById('quote-attribution').textContent = config.quote_attribution || defaultConfig.quote_attribution;
+      document.getElementById('footer-text').textContent = config.footer_text || defaultConfig.footer_text;
     }
 
     function mapToCapabilities(config) {
       return {
         recolorables: [
-          {
-            get: () => config.background_color || defaultConfig.background_color,
-            set: (value) => {
-              config.background_color = value;
-              window.elementSdk.setConfig({ background_color: value });
-            }
-          },
-          {
-            get: () => config.secondary_color || defaultConfig.secondary_color,
-            set: (value) => {
-              config.secondary_color = value;
-              window.elementSdk.setConfig({ secondary_color: value });
-            }
-          },
-          {
-            get: () => config.text_color || defaultConfig.text_color,
-            set: (value) => {
-              config.text_color = value;
-              window.elementSdk.setConfig({ text_color: value });
-            }
-          },
-          {
-            get: () => config.accent_color || defaultConfig.accent_color,
-            set: (value) => {
-              config.accent_color = value;
-              window.elementSdk.setConfig({ accent_color: value });
-            }
-          },
-          {
-            get: () => config.hero_color || defaultConfig.hero_color,
-            set: (value) => {
-              config.hero_color = value;
-              window.elementSdk.setConfig({ hero_color: value });
-            }
-          }
+          { get: () => config.background_color || defaultConfig.background_color, set: (value) => { config.background_color = value; if (window.elementSdk) window.elementSdk.setConfig({ background_color: value }); } },
+          { get: () => config.secondary_color || defaultConfig.secondary_color, set: (value) => { config.secondary_color = value; if (window.elementSdk) window.elementSdk.setConfig({ secondary_color: value }); } },
+          { get: () => config.text_color || defaultConfig.text_color, set: (value) => { config.text_color = value; if (window.elementSdk) window.elementSdk.setConfig({ text_color: value }); } },
+          { get: () => config.accent_color || defaultConfig.accent_color, set: (value) => { config.accent_color = value; if (window.elementSdk) window.elementSdk.setConfig({ accent_color: value }); } },
+          { get: () => config.hero_color || defaultConfig.hero_color, set: (value) => { config.hero_color = value; if (window.elementSdk) window.elementSdk.setConfig({ hero_color: value }); } }
         ],
         borderables: [],
-        fontEditable: {
-          get: () => config.font_family || defaultConfig.font_family,
-          set: (value) => {
-            config.font_family = value;
-            window.elementSdk.setConfig({ font_family: value });
-          }
-        },
-        fontSizeable: {
-          get: () => config.font_size || defaultConfig.font_size,
-          set: (value) => {
-            config.font_size = value;
-            window.elementSdk.setConfig({ font_size: value });
-          }
-        }
+        fontEditable: undefined,
+        fontSizeable: undefined
       };
     }
 
@@ -457,13 +246,23 @@
     }
 
     if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange,
-        mapToCapabilities,
-        mapToEditPanelValues
-      });
+      window.elementSdk.init({ defaultConfig, onConfigChange, mapToCapabilities, mapToEditPanelValues });
     }
+
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.borderBottom = '1px solid rgba(157,78,221,0.15)';
+        nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+      } else {
+        nav.style.borderBottom = '1px solid rgba(157,78,221,0.1)';
+        nav.style.boxShadow = 'none';
+      }
+    });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bd5edde421c705c',t:'MTc2ODMxODE2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
