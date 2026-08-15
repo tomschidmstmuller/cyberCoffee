@@ -1,330 +1,355 @@
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CYBERCOFFEE // REWARDS TERMINAL</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <link rel="stylesheet" href="cyber.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="arasaka.css">
   <style>@view-transition { navigation: auto; }</style>
+  <style>
+    .phin-machine { display: flex; flex-direction: column; align-items: center; }
+    .phin-button {
+      width: 200px; height: 200px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #2a2a3a, #111118 70%);
+      border: 2px solid var(--red);
+      box-shadow: 0 0 50px var(--red-glow), inset 0 0 40px rgba(0,0,0,0.6);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;
+    }
+    .phin-button:hover { transform: scale(1.03); box-shadow: 0 0 80px var(--red-glow), inset 0 0 40px rgba(0,0,0,0.6); }
+    .phin-button:active { transform: scale(0.97); }
+    .phin-button.brewing { animation: phinPulse 0.6s ease-in-out infinite; }
+    .phin-label { font-family: var(--font-cyber); font-weight: 900; font-size: 1.6rem; letter-spacing: 3px; color: #fff; text-shadow: 0 0 20px var(--red-glow); }
+    .phin-text { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 2px; color: var(--text-2); margin-top: 6px; text-align: center; }
+    .phin-glow { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, rgba(255,0,51,0.25), transparent 70%); opacity: 0; transition: opacity 0.3s ease; }
+    @keyframes phinPulse {
+      0%, 100% { box-shadow: 0 0 50px var(--red-glow), inset 0 0 40px rgba(0,0,0,0.6); }
+      50% { box-shadow: 0 0 100px var(--red-glow), inset 0 0 60px rgba(0,0,0,0.6); }
+    }
+    .coupon-box {
+      background: var(--bg-raised); border: 1px dashed var(--gold); border-radius: 8px;
+      padding: 12px 16px; text-align: center; margin: 16px 0;
+    }
+    .coupon-box .coupon-code { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; letter-spacing: 3px; color: var(--gold); }
+    .result-big {
+      font-family: var(--font-cyber); font-weight: 900; font-size: 3.4rem;
+      color: var(--gold); text-shadow: 0 0 40px var(--gold-glow); line-height: 1;
+    }
+  </style>
 </head>
-<body class="h-full font-body overflow-x-hidden">
-  <div class="scanlines"></div>
-  <div class="scanline-anim"></div>
-  <div class="noise-overlay"></div>
-  <div class="crt-overlay"></div>
-  <div id="particle-container" class="particle-container"></div>
+<body>
 
-  <!-- Navigation -->
-  <nav class="nav-cyber">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 md:h-20">
-        <div class="flex items-center gap-3">
-          <a href="/index.html" class="flex items-center gap-3">
-            <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, rgba(157,78,221,0.2), rgba(255,46,99,0.2)); border: 1px solid rgba(157,78,221,0.3);">
-              <svg class="w-6 h-6 md:w-7 md:h-7" viewBox="0 0 24 24" fill="none"><path d="M2 21H20V19H2M20 8H18V5H20M20 3H4V13C4 15.209 5.791 17 8 17H14C16.209 17 18 15.209 18 13V10H20C21.105 10 22 9.105 22 8V5C22 3.895 21.105 3 20 3Z" fill="url(#fnav)"/><defs><linearGradient id="fnav" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9D4EDD"/><stop offset="0.5" stop-color="#FF2E63"/><stop offset="1" stop-color="#FF4FD8"/></linearGradient></defs></svg>
-            </div>
-            <span class="font-display text-lg md:text-xl font-bold" style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">CYBER</span>
-            <span class="text-lg md:text-xl font-bold text-white">COFFEE</span>
-          </a>
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark">☕</div>
+      <div class="brand-text">
+        <span class="brand-main">CYBERCOFFEE</span>
+        <span class="brand-sub">ARASAKA CORP v2.0.25</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group-label">主要 MENU</div>
+
+      <a href="index.html" class="nav-item" data-nav="dashboard">
+        <span class="nav-icon">▣</span>
+        <span class="nav-label-wrap"><span class="nav-label">DASHBOARD</span><span class="nav-jp">ダッシュボード</span></span>
+      </a>
+      <a href="featureproducts.html" class="nav-item" data-nav="orders">
+        <span class="nav-icon">◈</span>
+        <span class="nav-label-wrap"><span class="nav-label">ORDERS</span><span class="nav-jp">注文</span></span>
+        <span class="nav-badge pulse">●3</span>
+      </a>
+      <a href="featureproducts.html" class="nav-item" data-nav="menu">
+        <span class="nav-icon">☕</span>
+        <span class="nav-label-wrap"><span class="nav-label">MENU</span><span class="nav-jp">メニュー</span></span>
+      </a>
+      <a href="index.html#nodes" class="nav-item" data-nav="nodes">
+        <span class="nav-icon">◉</span>
+        <span class="nav-label-wrap"><span class="nav-label">NODES</span><span class="nav-jp">ノード</span></span>
+      </a>
+      <a href="index.html#network" class="nav-item" data-nav="network">
+        <span class="nav-icon">⬡</span>
+        <span class="nav-label-wrap"><span class="nav-label">NETWORK</span><span class="nav-jp">ネットワーク</span></span>
+      </a>
+      <a href="discount.html" class="nav-item" data-nav="rewards">
+        <span class="nav-icon">★</span>
+        <span class="nav-label-wrap"><span class="nav-label">REWARDS</span><span class="nav-jp">報酬</span></span>
+        <span class="nav-badge gold">Lv.4</span>
+      </a>
+      <a href="blog.html" class="nav-item" data-nav="logs">
+        <span class="nav-icon">⌘</span>
+        <span class="nav-label-wrap"><span class="nav-label">LOGS</span><span class="nav-jp">ログ</span></span>
+      </a>
+
+      <div class="nav-group-label">システム</div>
+
+      <a href="jobsubmit.html" class="nav-item" data-nav="join">
+        <span class="nav-icon">✛</span>
+        <span class="nav-label-wrap"><span class="nav-label">JOIN</span><span class="nav-jp">採用</span></span>
+      </a>
+      <a href="#" class="nav-item" data-nav="settings">
+        <span class="nav-icon">⚙</span>
+        <span class="nav-label-wrap"><span class="nav-label">SETTINGS</span><span class="nav-jp">設定</span></span>
+      </a>
+      <a href="#" class="nav-item" data-nav="profile">
+        <span class="nav-icon">👤</span>
+        <span class="nav-label-wrap"><span class="nav-label">PROFILE</span><span class="nav-jp">プロフィール</span></span>
+      </a>
+      <a href="#" class="nav-item" data-nav="logout">
+        <span class="nav-icon">⏻</span>
+        <span class="nav-label-wrap"><span class="nav-label">LOGOUT</span><span class="nav-jp">ログアウト</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="employee-card">
+        <div class="employee-rank">
+          <span class="rank-label">社員 STATUS</span>
+          <span class="rank-value">EXEC</span>
         </div>
-        <div class="hidden md:flex items-center gap-8">
-          <a href="/index.html" class="nav-link-cyber">Home</a>
-          <a href="/featureproducts.html" class="nav-link-cyber">Menu</a>
-          <a href="/discount.html" class="nav-link-cyber">Rewards</a>
-          <a href="/blog.html" class="nav-link-cyber">Log</a>
-          <a href="/jobsubmit.html" class="nav-link-cyber">Join</a>
-        </div>
-        <div class="flex items-center gap-4">
-          <button id="hamburger" class="md:hidden p-2 rounded-lg text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-          </button>
+        <div class="rank-bar"><div class="rank-bar-fill" style="width: 80%;"></div></div>
+        <div class="rank-level">Lv.4 → Lv.5 // 80%</div>
+        <div class="emp-stats">
+          <div class="emp-stat"><div class="stat-value">☕2.4K</div><div class="stat-label">Patrons</div></div>
+          <div class="emp-stat"><div class="stat-value">⚡99%</div><div class="stat-label">Caffeine</div></div>
+          <div class="emp-stat"><div class="stat-value">📶1.2</div><div class="stat-label">Gbps</div></div>
         </div>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5" style="background: rgba(7,7,11,0.95);">
-      <div class="px-4 py-4 space-y-3">
-        <a href="/index.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Home</a>
-        <a href="/featureproducts.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Menu</a>
-        <a href="/discount.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Rewards</a>
-        <a href="/blog.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Log</a>
-        <a href="/jobsubmit.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Join</a>
-      </div>
-    </div>
-  </nav>
+  </aside>
 
-  <main class="w-full pt-20">
-    <!-- Hero -->
-    <section class="relative min-h-[70vh] flex items-center overflow-hidden" style="background: linear-gradient(180deg, #07070B, #11131A, #1A1033);">
-      <div class="absolute inset-0 grid-overlay"></div>
-      <div class="absolute inset-0 hex-grid"></div>
-      <div class="blob blob-crimson" style="top: -10%; right: -5%; animation: floatSlow 8s ease-in-out infinite;"></div>
-      <div class="blob blob-violet" style="bottom: -10%; left: -10%; animation: floatSlow 10s ease-in-out infinite reverse;"></div>
-      <div class="blob blob-cyan" style="top: 40%; left: 50%; animation: floatSlow 12s ease-in-out infinite;"></div>
+  <div class="sidebar-overlay"></div>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
-        <div class="text-center">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
-            <span class="status-dot alert"></span>
-            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(255, 46, 99, 0.8);">REWARDS // BREW TERMINAL</span>
-          </div>
-          <h1 class="font-display text-4xl md:text-7xl lg:text-8xl font-black mb-4">
-            <span style="background: linear-gradient(135deg, #FF2E63, #FFB703); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">DAILY</span>
-            <span class="text-white"> REWARDS</span>
-          </h1>
-          <p class="font-mono text-sm md:text-base mb-8" style="color: var(--silver);">Pull the lever. Get your discount. Every day is a gamble in the neon grid.</p>
+  <!-- MAIN -->
+  <div class="main-shell">
+
+    <!-- STATUS BAR -->
+    <header class="status-bar">
+      <div class="status-left">
+        <button class="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+        <div class="system-status">
+          <span class="status-dot"></span>
+          <span class="status-text">SYSTEM ONLINE</span>
+          <span class="status-version">v2.0.25</span>
         </div>
+      </div>
+      <div class="status-right">
+        <div class="status-metrics">
+          <div class="metric"><span class="metric-icon">☕</span><span class="metric-value">2.4K</span><span class="metric-label">PATRONS</span></div>
+          <div class="metric"><span class="metric-icon">⚡</span><span class="metric-value">99%</span><span class="metric-label">CAFFEINE</span></div>
+          <div class="metric"><span class="metric-icon">📶</span><span class="metric-value">1.2</span><span class="metric-label">GBPS</span></div>
+          <div class="metric"><span class="metric-icon">🕒</span><span class="metric-value">24/7</span><span class="metric-label">UPTIME</span></div>
+        </div>
+        <span class="status-time">--:--:-- JST</span>
+      </div>
+    </header>
 
-        <div class="flex justify-center" id="button-section">
-          <div id="phin-button" class="phin-button cursor-pointer relative" style="width: 220px; height: 220px;">
-            <div class="phin-glow absolute inset-0 rounded-[30%_30%_50%_50%] opacity-0 transition-opacity duration-300" style="box-shadow: 0 0 40px rgba(255,46,99,0.4);"></div>
-            <div class="phin-filter w-full h-full rounded-[20%_20%_40%_40%] flex items-center justify-center relative" style="background: linear-gradient(135deg, rgba(157,78,221,0.3), rgba(255,46,99,0.3)); border: 2px solid rgba(157,78,221,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.6), inset 0 -10px 30px rgba(0,0,0,0.3);">
-              <div class="text-center">
-                <div class="font-display text-2xl font-bold mb-1" style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">BREW</div>
-                <div id="button-text" class="font-mono text-xs tracking-wider" style="color: var(--silver);">PULL<br>TO START</div>
-              </div>
-              <div class="coffee-drip absolute bottom-[-30px] left-1/2 -translate-x-1/2 w-[6px] h-[20px] rounded-b-full" style="background: linear-gradient(180deg, #9D4EDD, #FF2E63); animation: drip 2s ease-in-out infinite;"></div>
+    <!-- CONTENT -->
+    <main class="page-content">
+      <div class="section-header">
+        <span class="section-kicker">// BREW TERMINAL</span>
+        <h1 class="section-title">DAILY REWARDS</h1>
+        <p class="section-sub">毎日の報酬 // PULL THE LEVER — GET YOUR DISCOUNT</p>
+      </div>
+
+      <div class="panel" style="text-align: center; max-width: 640px; margin: 0 auto 32px;">
+        <div class="phin-machine">
+          <div id="button-section">
+            <div id="phin-button" class="phin-button">
+              <div class="phin-glow"></div>
+              <span class="phin-label">BREW</span>
+              <span class="phin-text" id="button-text">PULL<br>TO START</span>
+            </div>
+          </div>
+
+          <div id="result-section" class="hidden" style="display:none; width: 100%;">
+            <div class="system-status-line" style="justify-content: center; margin-bottom: 8px;">
+              <span class="status-pulse">●</span>
+              <span class="status-label mono" id="day-type-result">ODD DAY BONUS</span>
+            </div>
+            <div class="result-big" id="discount-number">7%</div>
+            <p class="mono" style="color: var(--text-2); font-size: 0.8rem; margin-top: 8px;" id="result-message">You saved 7% on your order!</p>
+            <div class="coupon-box">
+              <div class="mono" style="font-size: 0.6rem; letter-spacing: 3px; color: var(--text-3); margin-bottom: 6px;">COUPON CODE</div>
+              <div class="coupon-code" id="coupon-code">VIET7COFFEE</div>
+            </div>
+            <div class="mono" style="font-size: 0.65rem; color: var(--text-3); margin-bottom: 20px;">Expires: <span id="expiry-time">23:59</span></div>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+              <button id="copy-btn" class="order-btn primary">COPY CODE</button>
+              <button id="brew-again-btn" class="order-btn">BREW AGAIN</button>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Result Section -->
-        <div id="result-section" class="hidden max-w-lg mx-auto mt-8">
-          <div class="cyber-card p-8 text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg mb-4" style="background: rgba(0,245,212,0.1);">
-              <span class="status-dot online"></span>
-              <span class="text-[0.6rem] font-mono tracking-widest" style="color: rgba(0, 245, 212, 0.8);" id="day-type-result">ODD DAY BONUS</span>
-            </div>
-            <div class="font-display text-6xl font-black mb-2" id="discount-number" style="background: linear-gradient(135deg, #FF2E63, #FFB703); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">7%</div>
-            <p class="text-sm font-mono mb-2" style="color: var(--silver);" id="result-message">You saved 7% on your order!</p>
-            <div class="glass-light rounded-xl p-4 mb-4">
-              <div class="text-[0.55rem] font-mono tracking-widest" style="color: var(--silver);">COUPON CODE</div>
-              <div class="font-mono text-lg font-bold tracking-wider text-white mt-1" id="coupon-code">VIET7COFFEE</div>
-            </div>
-            <div class="text-[0.55rem] font-mono mb-6" style="color: var(--silver);">Expires: <span id="expiry-time">23:59</span></div>
-            <div class="flex gap-3 justify-center">
-              <button id="copy-btn" class="cyber-btn px-6 py-3 rounded-lg text-xs font-semibold">COPY CODE</button>
-              <button id="brew-again-btn" class="cyber-btn-outline px-6 py-3 rounded-lg text-xs font-semibold">BREW AGAIN</button>
-            </div>
+      <!-- Stats -->
+      <div class="section-header" style="margin-top: 40px;">
+        <span class="section-kicker">// SESSION METRICS</span>
+        <h2 class="section-title">BREW STATS</h2>
+      </div>
+
+      <div class="product-grid">
+        <div class="coffee-card">
+          <div class="card-glow"></div>
+          <div class="card-content" style="text-align: center;">
+            <div class="card-meta" style="justify-content: center;"><span class="meta-prep">TOTAL BREWS</span></div>
+            <div class="result-big" style="font-size: 2rem; color: var(--text-1); text-shadow: none;" id="total-brews">0</div>
+          </div>
+        </div>
+        <div class="coffee-card featured">
+          <div class="card-glow gold"></div>
+          <div class="card-content" style="text-align: center;">
+            <div class="card-meta" style="justify-content: center;"><span class="meta-prep">BEST DISCOUNT</span></div>
+            <div class="result-big" style="font-size: 2rem; color: var(--gold); text-shadow: none;" id="best-brew">0%</div>
+          </div>
+        </div>
+        <div class="coffee-card premium">
+          <div class="card-glow"></div>
+          <div class="card-content" style="text-align: center;">
+            <div class="card-meta" style="justify-content: center;"><span class="meta-prep">AVERAGE</span></div>
+            <div class="result-big" style="font-size: 2rem; color: var(--red); text-shadow: none;" id="avg-brew">0%</div>
+          </div>
+        </div>
+        <div class="coffee-card">
+          <div class="card-glow"></div>
+          <div class="card-content" style="text-align: center;">
+            <div class="card-meta" style="justify-content: center;"><span class="meta-prep">UNTIL RESET</span></div>
+            <div class="result-big" style="font-size: 2rem; color: var(--blue); text-shadow: none;" id="countdown">24:00</div>
           </div>
         </div>
       </div>
-    </section>
+    </main>
 
-    <!-- Stats Dashboard -->
-    <section class="py-16 relative" style="background: linear-gradient(180deg, #11131A, #07070B);">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="dashboard-grid">
-          <div class="dashboard-item">
-            <div class="dashboard-value" id="total-brews">0</div>
-            <div class="dashboard-label">Total Brews</div>
-          </div>
-          <div class="dashboard-item">
-            <div class="dashboard-value" id="best-brew">0%</div>
-            <div class="dashboard-label">Best Discount</div>
-          </div>
-          <div class="dashboard-item">
-            <div class="dashboard-value" id="avg-brew">0%</div>
-            <div class="dashboard-label">Average</div>
-          </div>
-          <div class="dashboard-item">
-            <div class="dashboard-value text-glow-amber animate-pulse-neon" style="-webkit-text-fill-color: #FFB703;" id="countdown">24:00</div>
-            <div class="dashboard-label">Until Reset</div>
-          </div>
-        </div>
+    <!-- TERMINAL FOOTER -->
+    <footer class="terminal-footer">
+      <div class="terminal-line">
+        <span class="term-accent">cyber@arasaka:~$</span> ./rewards --pull
+        <span class="term-accent">//</span> SYSTEM ONLINE // v2.0.25 // LUCK_ENGINE READY
       </div>
-    </section>
-
-    <!-- Data Ticker -->
-    <div class="relative py-3" style="background: rgba(17, 19, 26, 0.8); border-top: 1px solid rgba(157,78,221,0.1); border-bottom: 1px solid rgba(157,78,221,0.1); overflow: hidden;">
-      <div class="data-ticker">
-        <div class="data-ticker-inner font-mono text-xs tracking-wider" style="color: rgba(168, 176, 192, 0.4);">
-          <span style="color: var(--violet);">◆</span> SYSTEM BOOT: 00:00:00 <span style="color: var(--crimson);">//</span> CAFFEINE LEVELS: 99.7% <span style="color: var(--crimson);">//</span> NODE STATUS: 7/7 ONLINE <span style="color: var(--crimson);">//</span> UPLINK: 1.2 GBPS <span style="color: var(--crimson);">//</span> ACTIVE SESSIONS: 42 <span style="color: var(--crimson);">//</span> BEAN RESERVES: OPTIMAL <span style="color: var(--violet);">◆</span>
-        </div>
+      <div class="terminal-chips">
+        <span class="term-chip gold">REWARDS ACTIVE</span>
+        <span class="term-chip ok">CAFFEINE 99%</span>
+        <span class="term-chip">© 2025 CYBERCOFFEE</span>
       </div>
-    </div>
-  </main>
+    </footer>
+  </div>
+</div>
 
-  <!-- Footer -->
-  <footer class="footer-cyber">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-xs font-mono text-center md:text-left" style="color: rgba(168, 176, 192, 0.4);">© 2025 CYBERCOFFEE NETWORK // v2.0.25</p>
-        <div class="flex gap-4">
-          <a href="/index.html" class="text-[0.65rem] font-mono footer-link">HOME</a>
-          <a href="/featureproducts.html" class="text-[0.65rem] font-mono footer-link">MENU</a>
-          <a href="/blog.html" class="text-[0.65rem] font-mono footer-link">LOG</a>
-          <a href="/jobsubmit.html" class="text-[0.65rem] font-mono footer-link">JOIN</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+<script src="arasaka.js"></script>
+<script>
+  let brewCount = 0;
+  let isBrewing = false;
+  const discountHistory = [];
 
-  <script>
-    const defaultConfig = {
-      brand_name: 'CYBERCOFFEE',
-      button_ready_text: 'PULL TO START',
-      button_brewing_text: 'BREWING...',
-      result_message: 'You saved {X}% on your order!',
-      background_color: '#07070B',
-      surface_color: '#11131A',
-      text_color: '#F5F7FA',
-      primary_action_color: '#9D4EDD',
-      secondary_action_color: '#FF2E63'
-    };
+  function getDayType() {
+    return new Date().getDate() % 2 === 1 ? 'odd' : 'even';
+  }
 
-    let brewCount = 0;
-    let isBrewing = false;
-    const discountHistory = [];
+  function generateDiscount() {
+    const isOddDay = getDayType() === 'odd';
+    const min = isOddDay ? 1 : 2;
+    const max = isOddDay ? 9 : 8;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
-    function getDayType() {
-      const now = new Date();
-      return now.getDate() % 2 === 1 ? 'odd' : 'even';
+  function updateStats() {
+    document.getElementById('total-brews').textContent = brewCount;
+    if (discountHistory.length > 0) {
+      document.getElementById('best-brew').textContent = Math.max(...discountHistory) + '%';
+      document.getElementById('avg-brew').textContent = (discountHistory.reduce((a, b) => a + b, 0) / discountHistory.length).toFixed(1) + '%';
     }
+  }
 
-    function generateDiscount() {
-      const isOddDay = getDayType() === 'odd';
-      let min, max;
-      if (isOddDay) { min = 1; max = 9; }
-      else { min = 2; max = 8; }
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    function updateStats() {
-      document.getElementById('total-brews').textContent = brewCount;
-      if (discountHistory.length > 0) {
-        const best = Math.max(...discountHistory);
-        const avg = (discountHistory.reduce((a, b) => a + b, 0) / discountHistory.length).toFixed(1);
-        document.getElementById('best-brew').textContent = best + '%';
-        document.getElementById('avg-brew').textContent = avg + '%';
-      }
-    }
-
-    function createBeanParticles(x, y) {
-      for (let i = 0; i < 12; i++) {
-        const p = document.createElement('div');
-        p.style.cssText = `position:fixed;width:8px;height:6px;border-radius:50%;background:linear-gradient(135deg,#9D4EDD,#FF2E63);pointer-events:none;z-index:9999;left:${x}px;top:${y}px`;
-        const angle = Math.random() * Math.PI * 2;
-        const dist = 50 + Math.random() * 100;
-        const dur = 500 + Math.random() * 500;
-        const start = performance.now();
-        document.body.appendChild(p);
-        function anim(t) {
-          const dt = (t - start) / dur;
-          if (dt >= 1) { p.remove(); return; }
-          const cx = x + Math.cos(angle) * dist * dt;
-          const cy = y + Math.sin(angle) * dist * dt + 200 * dt * dt;
-          p.style.left = cx + 'px';
-          p.style.top = cy + 'px';
-          p.style.opacity = 1 - dt;
-          p.style.transform = `rotate(${dt * 360}deg)`;
-          requestAnimationFrame(anim);
-        }
+  function createBeanParticles(x, y) {
+    for (let i = 0; i < 12; i++) {
+      const p = document.createElement('div');
+      p.style.cssText = `position:fixed;width:8px;height:6px;border-radius:50%;background:linear-gradient(135deg,#ff0033,#ffd700);pointer-events:none;z-index:9999;left:${x}px;top:${y}px`;
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 50 + Math.random() * 100;
+      const dur = 500 + Math.random() * 500;
+      const start = performance.now();
+      document.body.appendChild(p);
+      function anim(t) {
+        const dt = (t - start) / dur;
+        if (dt >= 1) { p.remove(); return; }
+        p.style.left = (x + Math.cos(angle) * dist * dt) + 'px';
+        p.style.top = (y + Math.sin(angle) * dist * dt + 200 * dt * dt) + 'px';
+        p.style.opacity = 1 - dt;
+        p.style.transform = `rotate(${dt * 360}deg)`;
         requestAnimationFrame(anim);
       }
+      requestAnimationFrame(anim);
     }
+  }
 
-    let countdownInterval;
-    function updateCountdown() {
-      const now = new Date();
-      const end = new Date(now);
-      end.setHours(23, 59, 59, 999);
-      const diff = end - now;
-      const h = Math.floor(diff / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      document.getElementById('countdown').textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
-    }
+  let countdownInterval;
+  function updateCountdown() {
+    const now = new Date();
+    const end = new Date(now);
+    end.setHours(23, 59, 59, 999);
+    const diff = end - now;
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    document.getElementById('countdown').textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+  }
 
-    const phinButton = document.getElementById('phin-button');
-    const buttonSection = document.getElementById('button-section');
-    const resultSection = document.getElementById('result-section');
+  const phinButton = document.getElementById('phin-button');
+  const buttonSection = document.getElementById('button-section');
+  const resultSection = document.getElementById('result-section');
 
-    phinButton.addEventListener('click', function(e) {
-      if (isBrewing) return;
-      isBrewing = true;
-      brewCount++;
-      const rect = this.getBoundingClientRect();
-      const x = rect.left + rect.width / 2;
-      const y = rect.top + rect.height / 2;
-      this.classList.add('brewing');
-      this.querySelector('.phin-glow').style.opacity = '1';
-      document.getElementById('button-text').innerHTML = 'BREW<br>IN PROGRESS';
-      createBeanParticles(x, y);
+  phinButton.addEventListener('click', function () {
+    if (isBrewing) return;
+    isBrewing = true;
+    brewCount++;
+    const rect = this.getBoundingClientRect();
+    createBeanParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    this.classList.add('brewing');
+    this.querySelector('.phin-glow').style.opacity = '1';
+    document.getElementById('button-text').innerHTML = 'BREW<br>IN PROGRESS';
 
-      setTimeout(() => {
-        const discount = generateDiscount();
-        const isOddDay = getDayType() === 'odd';
-        const couponCode = `CYBER${discount}CAFE`;
-        discountHistory.push(discount);
-        document.getElementById('discount-number').textContent = discount + '%';
-        document.getElementById('result-message').textContent = `You saved ${discount}% on your order!`;
-        document.getElementById('coupon-code').textContent = couponCode;
-        document.getElementById('day-type-result').textContent = isOddDay ? 'ODD DAY BONUS' : 'EVEN DAY REWARD';
-        const expiry = new Date();
-        expiry.setHours(23, 59, 59);
-        document.getElementById('expiry-time').textContent = expiry.toLocaleTimeString();
-        buttonSection.style.display = 'none';
-        resultSection.style.display = 'block';
-        updateStats();
-        this.classList.remove('brewing');
-        this.querySelector('.phin-glow').style.opacity = '0';
-        isBrewing = false;
-      }, 1500);
+    setTimeout(() => {
+      const discount = generateDiscount();
+      const isOddDay = getDayType() === 'odd';
+      const couponCode = `CYBER${discount}CAFE`;
+      discountHistory.push(discount);
+      document.getElementById('discount-number').textContent = discount + '%';
+      document.getElementById('result-message').textContent = `You saved ${discount}% on your order!`;
+      document.getElementById('coupon-code').textContent = couponCode;
+      document.getElementById('day-type-result').textContent = isOddDay ? 'ODD DAY BONUS' : 'EVEN DAY REWARD';
+      const expiry = new Date();
+      expiry.setHours(23, 59, 59);
+      document.getElementById('expiry-time').textContent = expiry.toLocaleTimeString();
+      buttonSection.style.display = 'none';
+      resultSection.style.display = 'block';
+      updateStats();
+      this.classList.remove('brewing');
+      this.querySelector('.phin-glow').style.opacity = '0';
+      isBrewing = false;
+    }, 1500);
+  });
+
+  document.getElementById('copy-btn').addEventListener('click', function () {
+    navigator.clipboard.writeText(document.getElementById('coupon-code').textContent).then(() => {
+      this.textContent = 'COPIED!';
+      setTimeout(() => { this.textContent = 'COPY CODE'; }, 2000);
     });
+  });
 
-    document.getElementById('copy-btn').addEventListener('click', function() {
-      const code = document.getElementById('coupon-code').textContent;
-      navigator.clipboard.writeText(code).then(() => {
-        this.textContent = 'COPIED!';
-        setTimeout(() => { this.textContent = 'COPY CODE'; }, 2000);
-      });
-    });
+  document.getElementById('brew-again-btn').addEventListener('click', function () {
+    resultSection.style.display = 'none';
+    buttonSection.style.display = 'block';
+    document.getElementById('button-text').innerHTML = 'PULL<br>TO START';
+  });
 
-    document.getElementById('brew-again-btn').addEventListener('click', function() {
-      resultSection.style.display = 'none';
-      buttonSection.style.display = 'block';
-      document.getElementById('button-text').innerHTML = 'PULL<br>TO START';
-    });
-
-    document.getElementById('hamburger').addEventListener('click', function() {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
-
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('nav');
-      if (window.scrollY > 50) {
-        nav.style.borderBottom = '1px solid rgba(157,78,221,0.15)';
-        nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
-      } else {
-        nav.style.borderBottom = '1px solid rgba(157,78,221,0.1)';
-        nav.style.boxShadow = 'none';
-      }
-    });
-
-    updateCountdown();
-    countdownInterval = setInterval(updateCountdown, 10000);
-
-    function createParticles() {
-      const container = document.getElementById('particle-container');
-      if (!container) return;
-      for (let i = 0; i < 40; i++) {
-        const p = document.createElement('div');
-        p.classList.add('particle');
-        const size = Math.random() * 2 + 1;
-        p.style.width = size + 'px';
-        p.style.height = size + 'px';
-        p.style.left = Math.random() * 100 + '%';
-        p.style.top = Math.random() * 100 + '%';
-        const colors = ['#9D4EDD', '#FF2E63', '#4CC9F0', '#FFB703'];
-        p.style.background = colors[Math.floor(Math.random() * colors.length)];
-        p.style.animation = `float ${3 + Math.random() * 4}s ease-in-out ${Math.random() * 5}s infinite`;
-        p.style.opacity = 0.2 + Math.random() * 0.3;
-        container.appendChild(p);
-      }
-    }
-    createParticles();
-  </script>
+  updateCountdown();
+  countdownInterval = setInterval(updateCountdown, 10000);
+</script>
 </body>
 </html>

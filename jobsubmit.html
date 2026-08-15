@@ -1,398 +1,399 @@
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CYBERCOFFEE // JOIN THE NETWORK</title>
-  <script src="/_sdk/data_sdk.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="cyber.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="arasaka.css">
   <style>@view-transition { navigation: auto; }</style>
   <style>
-    .cyber-input { background: rgba(17,19,26,0.7); border: 1px solid rgba(157,78,221,0.2); border-radius: 12px; color: #F5F7FA; outline: none; transition: all 0.3s ease; width: 100%; padding: 14px 18px; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; }
-    .cyber-input:focus { border-color: rgba(157,78,221,0.4); box-shadow: 0 0 20px rgba(157,78,221,0.1); }
-    .cyber-input::placeholder { color: rgba(168,176,192,0.4); }
-    .skill-tag { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); color: var(--silver); cursor: pointer; transition: all 0.2s ease; }
-    .skill-tag:hover { border-color: rgba(157,78,221,0.3); background: rgba(157,78,221,0.05); }
-    .skill-tag.selected { background: rgba(157,78,221,0.15); border-color: rgba(157,78,221,0.4); color: var(--white); box-shadow: 0 0 15px rgba(157,78,221,0.1); }
-    .cup-fill { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(180deg, #9D4EDD, #FF2E63); border-radius: 0 0 40px 40px; transition: height 1s ease; }
-    .toast { position: fixed; top: 20px; right: 20px; padding: 16px 24px; border-radius: 12px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; z-index: 1000; box-shadow: 0 0 30px rgba(157,78,221,0.2); animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards; }
-    @keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; transform: translateX(400px); } }
+    .cyber-input {
+      background: var(--bg-raised); border: 1px solid var(--border); border-radius: 8px;
+      color: var(--text-1); outline: none; transition: all 0.3s ease;
+      width: 100%; padding: 12px 14px; font-size: 0.82rem; font-family: var(--font-mono);
+    }
+    .cyber-input:focus { border-color: var(--red); box-shadow: 0 0 20px var(--red-glow); }
+    .cyber-input::placeholder { color: var(--text-3); }
+    select.cyber-input { appearance: none; }
+    .skill-tag {
+      display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 6px;
+      font-size: 0.72rem; font-family: var(--font-mono); background: var(--bg-raised);
+      border: 1px solid var(--border); color: var(--text-2); cursor: pointer; transition: all 0.2s ease;
+    }
+    .skill-tag:hover { border-color: var(--text-3); color: var(--text-1); }
+    .skill-tag.selected { background: var(--bg-active); border-color: var(--red); color: #fff; box-shadow: 0 0 15px var(--red-glow); }
+    .form-section-title { font-family: var(--font-cyber); font-size: 0.82rem; font-weight: 800; letter-spacing: 1px; color: var(--text-1); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .form-section-title .num { color: var(--red); }
+    .radio-label { display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-2); font-size: 0.8rem; transition: color 0.2s ease; }
+    .radio-label:hover { color: var(--text-1); }
+    .radio-label input { accent-color: var(--red); }
+    .progress-track { height: 8px; background: var(--border-dark); border-radius: 4px; overflow: hidden; flex: 1; }
+    .progress-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--red), var(--gold)); box-shadow: 0 0 12px var(--red-glow); transition: width 0.4s ease; }
+    .cup-meter { position: relative; width: 40px; height: 56px; flex-shrink: 0; }
+    .cup-outline { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; border: 2px solid var(--red-2); border-radius: 0 0 18px 18px; border-top: none; opacity: 0.5; }
+    .cup-fill { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(180deg, var(--red), var(--gold)); border-radius: 0 0 16px 16px; transition: height 0.4s ease; }
+    .field-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 2px; color: var(--text-3); text-transform: uppercase; }
+    .submit-btn {
+      width: 100%; padding: 14px; border-radius: 8px; border: none; cursor: pointer;
+      background: linear-gradient(135deg, var(--red), var(--red-2)); color: #fff;
+      font-family: var(--font-cyber); font-weight: 800; font-size: 0.82rem; letter-spacing: 2px;
+      box-shadow: 0 0 30px var(--red-glow); transition: all 0.2s ease;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .submit-btn:hover { box-shadow: 0 0 50px var(--red-glow); transform: translateY(-1px); }
+    .submit-btn:disabled { opacity: 0.6; cursor: default; }
+    .modal-overlay { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; background: rgba(10,10,15,0.85); backdrop-filter: blur(10px); }
+    .modal-overlay.show { display: flex; }
   </style>
 </head>
-<body class="h-full font-body overflow-x-hidden">
-  <div class="scanlines"></div>
-  <div class="noise-overlay"></div>
-  <div class="crt-overlay"></div>
+<body>
 
-  <!-- Navigation -->
-  <nav class="nav-cyber">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 md:h-20">
-        <div class="flex items-center gap-3">
-          <a href="/index.html" class="flex items-center gap-3">
-            <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, rgba(157,78,221,0.2), rgba(255,46,99,0.2)); border: 1px solid rgba(157,78,221,0.3);">
-              <svg class="w-6 h-6 md:w-7 md:h-7" viewBox="0 0 24 24" fill="none"><path d="M2 21H20V19H2M20 8H18V5H20M20 3H4V13C4 15.209 5.791 17 8 17H14C16.209 17 18 15.209 18 13V10H20C21.105 10 22 9.105 22 8V5C22 3.895 21.105 3 20 3Z" fill="url(#jnav)"/><defs><linearGradient id="jnav" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9D4EDD"/><stop offset="0.5" stop-color="#FF2E63"/><stop offset="1" stop-color="#FF4FD8"/></linearGradient></defs></svg>
-            </div>
-            <span class="font-display text-lg md:text-xl font-bold" style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">CYBER</span>
-            <span class="text-lg md:text-xl font-bold text-white">COFFEE</span>
-          </a>
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark">☕</div>
+      <div class="brand-text">
+        <span class="brand-main">CYBERCOFFEE</span>
+        <span class="brand-sub">ARASAKA CORP v2.0.25</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group-label">主要 MENU</div>
+
+      <a href="index.html" class="nav-item" data-nav="dashboard">
+        <span class="nav-icon">▣</span>
+        <span class="nav-label-wrap"><span class="nav-label">DASHBOARD</span><span class="nav-jp">ダッシュボード</span></span>
+      </a>
+      <a href="featureproducts.html" class="nav-item" data-nav="orders">
+        <span class="nav-icon">◈</span>
+        <span class="nav-label-wrap"><span class="nav-label">ORDERS</span><span class="nav-jp">注文</span></span>
+        <span class="nav-badge pulse">●3</span>
+      </a>
+      <a href="featureproducts.html" class="nav-item" data-nav="menu">
+        <span class="nav-icon">☕</span>
+        <span class="nav-label-wrap"><span class="nav-label">MENU</span><span class="nav-jp">メニュー</span></span>
+      </a>
+      <a href="index.html#nodes" class="nav-item" data-nav="nodes">
+        <span class="nav-icon">◉</span>
+        <span class="nav-label-wrap"><span class="nav-label">NODES</span><span class="nav-jp">ノード</span></span>
+      </a>
+      <a href="index.html#network" class="nav-item" data-nav="network">
+        <span class="nav-icon">⬡</span>
+        <span class="nav-label-wrap"><span class="nav-label">NETWORK</span><span class="nav-jp">ネットワーク</span></span>
+      </a>
+      <a href="discount.html" class="nav-item" data-nav="rewards">
+        <span class="nav-icon">★</span>
+        <span class="nav-label-wrap"><span class="nav-label">REWARDS</span><span class="nav-jp">報酬</span></span>
+        <span class="nav-badge gold">Lv.4</span>
+      </a>
+      <a href="blog.html" class="nav-item" data-nav="logs">
+        <span class="nav-icon">⌘</span>
+        <span class="nav-label-wrap"><span class="nav-label">LOGS</span><span class="nav-jp">ログ</span></span>
+      </a>
+
+      <div class="nav-group-label">システム</div>
+
+      <a href="jobsubmit.html" class="nav-item" data-nav="join">
+        <span class="nav-icon">✛</span>
+        <span class="nav-label-wrap"><span class="nav-label">JOIN</span><span class="nav-jp">採用</span></span>
+      </a>
+      <a href="#" class="nav-item" data-nav="settings">
+        <span class="nav-icon">⚙</span>
+        <span class="nav-label-wrap"><span class="nav-label">SETTINGS</span><span class="nav-jp">設定</span></span>
+      </a>
+      <a href="#" class="nav-item" data-nav="profile">
+        <span class="nav-icon">👤</span>
+        <span class="nav-label-wrap"><span class="nav-label">PROFILE</span><span class="nav-jp">プロフィール</span></span>
+      </a>
+      <a href="#" class="nav-item" data-nav="logout">
+        <span class="nav-icon">⏻</span>
+        <span class="nav-label-wrap"><span class="nav-label">LOGOUT</span><span class="nav-jp">ログアウト</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="employee-card">
+        <div class="employee-rank">
+          <span class="rank-label">社員 STATUS</span>
+          <span class="rank-value">EXEC</span>
         </div>
-        <div class="hidden md:flex items-center gap-8">
-          <a href="/index.html" class="nav-link-cyber">Home</a>
-          <a href="/featureproducts.html" class="nav-link-cyber">Menu</a>
-          <a href="/discount.html" class="nav-link-cyber">Rewards</a>
-          <a href="/blog.html" class="nav-link-cyber">Log</a>
-          <a href="/jobsubmit.html" class="nav-link-cyber">Join</a>
-        </div>
-        <div class="flex items-center gap-4">
-          <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-          </button>
+        <div class="rank-bar"><div class="rank-bar-fill" style="width: 80%;"></div></div>
+        <div class="rank-level">Lv.4 → Lv.5 // 80%</div>
+        <div class="emp-stats">
+          <div class="emp-stat"><div class="stat-value">☕2.4K</div><div class="stat-label">Patrons</div></div>
+          <div class="emp-stat"><div class="stat-value">⚡99%</div><div class="stat-label">Caffeine</div></div>
+          <div class="emp-stat"><div class="stat-value">📶1.2</div><div class="stat-label">Gbps</div></div>
         </div>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5" style="background: rgba(7,7,11,0.95);">
-      <div class="px-4 py-4 space-y-3">
-        <a href="/index.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Home</a>
-        <a href="/featureproducts.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Menu</a>
-        <a href="/discount.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Rewards</a>
-        <a href="/blog.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Log</a>
-        <a href="/jobsubmit.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Join</a>
-      </div>
-    </div>
-  </nav>
+  </aside>
 
-  <main class="w-full pt-20">
-    <!-- Hero -->
-    <section class="relative min-h-[60vh] flex items-center overflow-hidden" style="background: linear-gradient(180deg, #07070B, #11131A, #1A1033);">
-      <div class="absolute inset-0 grid-overlay"></div>
-      <div class="absolute inset-0 hex-grid"></div>
-      <div class="blob blob-violet" style="top: -5%; right: -5%; animation: floatSlow 8s ease-in-out infinite;"></div>
-      <div class="blob blob-crimson" style="bottom: -5%; left: -5%; animation: floatSlow 10s ease-in-out infinite reverse;"></div>
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center pt-12">
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
-          <span class="status-dot alert"></span>
-          <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(255, 46, 99, 0.8);">RECRUITMENT // NODE OPEN</span>
+  <div class="sidebar-overlay"></div>
+
+  <!-- MAIN -->
+  <div class="main-shell">
+
+    <!-- STATUS BAR -->
+    <header class="status-bar">
+      <div class="status-left">
+        <button class="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+        <div class="system-status">
+          <span class="status-dot"></span>
+          <span class="status-text">SYSTEM ONLINE</span>
+          <span class="status-version">v2.0.25</span>
         </div>
-        <h1 class="font-display text-4xl md:text-7xl lg:text-8xl font-black mb-4">
-          <span style="background: linear-gradient(135deg, #FF2E63, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">JOIN</span>
-          <span class="text-white"> THE CREW</span>
-        </h1>
-        <p class="font-mono text-sm md:text-base max-w-xl mx-auto" style="color: var(--silver);">The network is expanding. We're looking for operators who understand the ritual. Apply below.</p>
       </div>
-    </section>
+      <div class="status-right">
+        <div class="status-metrics">
+          <div class="metric"><span class="metric-icon">☕</span><span class="metric-value">2.4K</span><span class="metric-label">PATRONS</span></div>
+          <div class="metric"><span class="metric-icon">⚡</span><span class="metric-value">99%</span><span class="metric-label">CAFFEINE</span></div>
+          <div class="metric"><span class="metric-icon">📶</span><span class="metric-value">1.2</span><span class="metric-label">GBPS</span></div>
+          <div class="metric"><span class="metric-icon">🕒</span><span class="metric-value">24/7</span><span class="metric-label">UPTIME</span></div>
+        </div>
+        <span class="status-time">--:--:-- JST</span>
+      </div>
+    </header>
 
-    <!-- Application Form -->
-    <section class="py-16 md:py-24 relative" style="background: linear-gradient(180deg, #1A1033, #11131A, #07070B);">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div class="cyber-card p-8 md:p-12">
-          <!-- Progress Bar -->
-          <div class="flex items-center gap-4 mb-8">
-            <div class="flex-1">
-              <div class="flex justify-between text-[0.55rem] font-mono mb-2" style="color: var(--silver);"><span>APPLICATION PROGRESS</span><span id="progress-percent">0%</span></div>
-              <div class="progress-bar"><div class="progress-bar-fill" id="progress-fill" style="width: 0%;"></div></div>
+    <!-- CONTENT -->
+    <main class="page-content">
+      <div class="section-header">
+        <span class="section-kicker">// RECRUITMENT — NODE OPEN</span>
+        <h1 class="section-title">JOIN THE CREW</h1>
+        <p class="section-sub">採用 // THE NETWORK IS EXPANDING — WE'RE LOOKING FOR OPERATORS</p>
+      </div>
+
+      <div class="panel" style="max-width: 760px; margin: 0 auto;">
+        <!-- Progress -->
+        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 28px;">
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+              <span class="field-label">APPLICATION PROGRESS</span>
+              <span class="field-label" id="progress-percent">0%</span>
             </div>
-            <div class="relative w-12 h-16 flex-shrink-0">
-              <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; border: 2px solid rgba(157,78,221,0.2); border-radius: 0 0 40px 40px; border-top: none;"></div>
-              <div class="cup-fill" id="cup-fill" style="height: 0%;"></div>
+            <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width: 0%;"></div></div>
+          </div>
+          <div class="cup-meter">
+            <div class="cup-outline"></div>
+            <div class="cup-fill" id="cup-fill" style="height: 0%;"></div>
+          </div>
+        </div>
+
+        <form id="application-form" style="display: flex; flex-direction: column; gap: 26px;">
+          <div>
+            <h3 class="form-section-title"><span class="num">01</span> PERSONAL BLEND</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <input type="text" id="name" placeholder="Full Name" class="cyber-input" required>
+              <input type="email" id="email" placeholder="Email Address" class="cyber-input" required>
+              <input type="tel" id="phone" placeholder="Phone Number" class="cyber-input" required>
+              <input type="text" id="location" placeholder="Location" class="cyber-input" required>
             </div>
           </div>
 
-          <form id="application-form" class="space-y-6">
-            <!-- Personal Blend -->
-            <div>
-              <h3 class="font-display text-sm font-bold text-white mb-4 flex items-center gap-2">
-                <span style="color: var(--violet);">01</span> PERSONAL BLEND
-              </h3>
-              <div class="grid md:grid-cols-2 gap-4">
-                <input type="text" id="name" placeholder="Full Name" class="cyber-input" required>
-                <input type="email" id="email" placeholder="Email Address" class="cyber-input" required>
-                <input type="tel" id="phone" placeholder="Phone Number" class="cyber-input" required>
-                <input type="text" id="location" placeholder="Location" class="cyber-input" required>
-              </div>
-            </div>
-
-            <!-- Education -->
-            <div>
-              <h3 class="font-display text-sm font-bold text-white mb-4 flex items-center gap-2">
-                <span style="color: var(--violet);">02</span> EDUCATION GRIND
-              </h3>
-              <div class="grid md:grid-cols-2 gap-4">
-                <select id="education" class="cyber-input" required>
-                  <option value="" disabled selected>Education Level</option>
-                  <option value="high-school">High School</option>
-                  <option value="bachelors">Bachelor's</option>
-                  <option value="masters">Master's</option>
-                  <option value="phd">PhD</option>
-                  <option value="self-taught">Self-Taught</option>
-                </select>
-                <input type="text" id="institution" placeholder="Institution / School" class="cyber-input">
-              </div>
-            </div>
-
-            <!-- Skills -->
-            <div>
-              <h3 class="font-display text-sm font-bold text-white mb-4 flex items-center gap-2">
-                <span style="color: var(--violet);">03</span> SKILLS EXTRACTION
-              </h3>
-              <div class="flex flex-wrap gap-2" id="skills-container">
-                <span class="skill-tag" data-skill="Coffee Brewing">☕ Coffee Brewing</span>
-                <span class="skill-tag" data-skill="Customer Service">🤝 Customer Service</span>
-                <span class="skill-tag" data-skill="Latte Art">🎨 Latte Art</span>
-                <span class="skill-tag" data-skill="Espresso">⚡ Espresso</span>
-                <span class="skill-tag" data-skill="Inventory Management">📊 Inventory</span>
-                <span class="skill-tag" data-skill="Social Media">📱 Social Media</span>
-                <span class="skill-tag" data-skill="Coding">💻 Coding</span>
-                <span class="skill-tag" data-skill="Music Production">🎵 Music</span>
-                <span class="skill-tag" data-skill="Design">🎨 Design</span>
-                <span class="skill-tag" data-skill="Writing">✍️ Writing</span>
-              </div>
-              <div id="selected-skills" class="flex flex-wrap gap-2 mt-3 min-h-[32px]"></div>
-            </div>
-
-            <!-- Background -->
-            <div>
-              <h3 class="font-display text-sm font-bold text-white mb-4 flex items-center gap-2">
-                <span style="color: var(--violet);">04</span> BACKGROUND FILTER
-              </h3>
-              <div class="space-y-3">
-                <label class="flex items-center gap-3 cursor-pointer group">
-                  <input type="radio" name="background" value="food-service" class="accent-[#9D4EDD]" checked>
-                  <span class="text-sm" style="color: var(--silver);">Food Service / Hospitality</span>
-                </label>
-                <label class="flex items-center gap-3 cursor-pointer group">
-                  <input type="radio" name="background" value="tech" class="accent-[#9D4EDD]">
-                  <span class="text-sm" style="color: var(--silver);">Tech / IT</span>
-                </label>
-                <label class="flex items-center gap-3 cursor-pointer group">
-                  <input type="radio" name="background" value="creative" class="accent-[#9D4EDD]">
-                  <span class="text-sm" style="color: var(--silver);">Creative / Arts</span>
-                </label>
-                <label class="flex items-center gap-3 cursor-pointer group">
-                  <input type="radio" name="background" value="student" class="accent-[#9D4EDD]">
-                  <span class="text-sm" style="color: var(--silver);">Student</span>
-                </label>
-                <label class="flex items-center gap-3 cursor-pointer group">
-                  <input type="radio" name="background" value="other" class="accent-[#9D4EDD]">
-                  <span class="text-sm" style="color: var(--silver);">Other</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- Employment Type -->
-            <div>
-              <h3 class="font-display text-sm font-bold text-white mb-4 flex items-center gap-2">
-                <span style="color: var(--violet);">05</span> SHIFT PREFERENCE
-              </h3>
-              <select id="employment-type" class="cyber-input" required>
-                <option value="" disabled selected>Select Preference</option>
-                <option value="full-time">Full-Time</option>
-                <option value="part-time">Part-Time</option>
-                <option value="night-shift">Night Shift (Cyber Hours)</option>
-                <option value="weekend">Weekends</option>
+          <div>
+            <h3 class="form-section-title"><span class="num">02</span> EDUCATION GRIND</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <select id="education" class="cyber-input" required>
+                <option value="" disabled selected>Education Level</option>
+                <option value="high-school">High School</option>
+                <option value="bachelors">Bachelor's</option>
+                <option value="masters">Master's</option>
+                <option value="phd">PhD</option>
+                <option value="self-taught">Self-Taught</option>
               </select>
+              <input type="text" id="institution" placeholder="Institution / School" class="cyber-input">
             </div>
+          </div>
 
-            <button type="submit" id="submit-btn" class="cyber-btn w-full py-4 rounded-xl font-semibold text-sm flex items-center justify-center gap-2">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-              <span id="submit-text">SUBMIT APPLICATION</span>
-            </button>
-          </form>
-        </div>
-      </div>
-    </section>
+          <div>
+            <h3 class="form-section-title"><span class="num">03</span> SKILLS EXTRACTION</h3>
+            <div id="skills-container" style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span class="skill-tag" data-skill="Coffee Brewing">☕ Coffee Brewing</span>
+              <span class="skill-tag" data-skill="Customer Service">🤝 Customer Service</span>
+              <span class="skill-tag" data-skill="Latte Art">🎨 Latte Art</span>
+              <span class="skill-tag" data-skill="Espresso">⚡ Espresso</span>
+              <span class="skill-tag" data-skill="Inventory Management">📊 Inventory</span>
+              <span class="skill-tag" data-skill="Social Media">📱 Social Media</span>
+              <span class="skill-tag" data-skill="Coding">💻 Coding</span>
+              <span class="skill-tag" data-skill="Music Production">🎵 Music</span>
+              <span class="skill-tag" data-skill="Design">🎨 Design</span>
+              <span class="skill-tag" data-skill="Writing">✍️ Writing</span>
+            </div>
+            <div id="selected-skills" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; min-height: 0;"></div>
+          </div>
 
-    <!-- Success Modal -->
-    <div id="success-modal" class="hidden fixed inset-0 z-[200] flex items-center justify-center" style="background: rgba(7,7,11,0.85); backdrop-filter: blur(10px);">
-      <div class="cyber-card p-8 md:p-12 text-center max-w-md mx-4">
-        <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style="background: linear-gradient(135deg, rgba(0,245,212,0.1), rgba(157,78,221,0.1)); border: 1px solid rgba(0,245,212,0.2);">
-          <svg class="w-8 h-8" style="color: var(--signal);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        </div>
-        <h3 class="font-display text-2xl font-bold text-white mb-2">APPLICATION RECEIVED</h3>
-        <p class="text-sm font-mono mb-4" style="color: var(--silver);">Your application ID has been generated.</p>
-        <div class="glass-light rounded-xl p-4 mb-6">
-          <div class="text-[0.55rem] font-mono tracking-widest" style="color: var(--silver);">BREW ID</div>
-          <div class="font-mono text-lg font-bold text-white mt-1" id="brew-code">BREW-XXXX</div>
-        </div>
-        <p class="text-xs font-mono mb-6" style="color: var(--silver);">We'll reach out within 48 hours if your profile matches our current needs.</p>
-        <button id="close-modal" class="cyber-btn-outline px-8 py-3 rounded-lg text-xs font-semibold">CLOSE TERMINAL</button>
+          <div>
+            <h3 class="form-section-title"><span class="num">04</span> BACKGROUND FILTER</h3>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <label class="radio-label"><input type="radio" name="background" value="food-service" checked> Food Service / Hospitality</label>
+              <label class="radio-label"><input type="radio" name="background" value="tech"> Tech / IT</label>
+              <label class="radio-label"><input type="radio" name="background" value="creative"> Creative / Arts</label>
+              <label class="radio-label"><input type="radio" name="background" value="student"> Student</label>
+              <label class="radio-label"><input type="radio" name="background" value="other"> Other</label>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="form-section-title"><span class="num">05</span> SHIFT PREFERENCE</h3>
+            <select id="employment-type" class="cyber-input" required>
+              <option value="" disabled selected>Select Preference</option>
+              <option value="full-time">Full-Time</option>
+              <option value="part-time">Part-Time</option>
+              <option value="night-shift">Night Shift (Cyber Hours)</option>
+              <option value="weekend">Weekends</option>
+            </select>
+          </div>
+
+          <button type="submit" id="submit-btn" class="submit-btn">
+            <span id="submit-text">SUBMIT APPLICATION</span>
+          </button>
+        </form>
       </div>
+    </main>
+
+    <!-- TERMINAL FOOTER -->
+    <footer class="terminal-footer">
+      <div class="terminal-line">
+        <span class="term-accent">cyber@arasaka:~$</span> ./recruit --open
+        <span class="term-accent">//</span> SYSTEM ONLINE // v2.0.25 // SLOTS_AVAILABLE
+      </div>
+      <div class="terminal-chips">
+        <span class="term-chip gold">REWARDS ACTIVE</span>
+        <span class="term-chip ok">CAFFEINE 99%</span>
+        <span class="term-chip">© 2025 CYBERCOFFEE</span>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div id="success-modal" class="modal-overlay">
+  <div class="panel" style="max-width: 420px; width: 100%; text-align: center;">
+    <div style="width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.3); font-size: 1.4rem;">✓</div>
+    <h3 class="section-title" style="font-size: 1.2rem; margin-bottom: 10px;">APPLICATION RECEIVED</h3>
+    <p class="mono" style="font-size: 0.75rem; color: var(--text-2); margin-bottom: 14px;">Your application ID has been generated.</p>
+    <div class="coupon-box" style="background: var(--bg-raised); border: 1px dashed var(--gold); border-radius: 8px; padding: 12px; margin-bottom: 14px;">
+      <div class="field-label" style="margin-bottom: 6px;">BREW ID</div>
+      <div id="brew-code" style="font-family: var(--font-mono); font-size: 1rem; font-weight: 700; letter-spacing: 2px; color: var(--gold);">BREW-XXXX</div>
     </div>
-  </main>
+    <p class="mono" style="font-size: 0.7rem; color: var(--text-3); margin-bottom: 18px;">We'll reach out within 48 hours if your profile matches our current needs.</p>
+    <button id="close-modal" class="order-btn primary" style="padding: 10px 28px;">CLOSE TERMINAL</button>
+  </div>
+</div>
 
-  <!-- Footer -->
-  <footer class="footer-cyber">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-xs font-mono text-center md:text-left" style="color: rgba(168, 176, 192, 0.4);">© 2025 CYBERCOFFEE NETWORK // v2.0.25</p>
-        <div class="flex gap-4">
-          <a href="/index.html" class="text-[0.65rem] font-mono footer-link">HOME</a>
-          <a href="/featureproducts.html" class="text-[0.65rem] font-mono footer-link">MENU</a>
-          <a href="/discount.html" class="text-[0.65rem] font-mono footer-link">REWARDS</a>
-          <a href="/blog.html" class="text-[0.65rem] font-mono footer-link">LOG</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+<script src="arasaka.js"></script>
+<script>
+  const selectedSkills = new Set();
 
-  <script>
-    // SDK Init
-    async function initializeDataSdk() {
-      if (window.dataSdk) {
-        try { await window.dataSdk.init(); } catch(e) {}
+  document.querySelectorAll('.skill-tag').forEach(tag => {
+    tag.addEventListener('click', function () {
+      const skill = this.dataset.skill;
+      if (selectedSkills.has(skill)) {
+        selectedSkills.delete(skill);
+        this.classList.remove('selected');
+      } else {
+        selectedSkills.add(skill);
+        this.classList.add('selected');
       }
-    }
-
-    async function initializeElementSdk() {
-      const defaultConfig = {
-        brand_name: 'CYBERCOFFEE',
-        site_name: 'CYBERCOFFEE',
-        background_color: '#07070B',
-        surface_color: '#11131A',
-        text_color: '#F5F7FA',
-        primary_action_color: '#9D4EDD',
-        secondary_action_color: '#FF2E63'
-      };
-
-      function onConfigChange(config) {}
-      function mapToCapabilities(config) { return { recolorables: [], borderables: [], fontEditable: undefined, fontSizeable: undefined }; }
-      function mapToEditPanelValues(config) { return new Map(); }
-
-      if (window.elementSdk) {
-        window.elementSdk.init({ defaultConfig, onConfigChange, mapToCapabilities, mapToEditPanelValues });
-      }
-    }
-
-    const selectedSkills = new Set();
-
-    document.querySelectorAll('.skill-tag').forEach(tag => {
-      tag.addEventListener('click', function() {
-        const skill = this.dataset.skill;
-        if (selectedSkills.has(skill)) {
-          selectedSkills.delete(skill);
-          this.classList.remove('selected');
-        } else {
-          selectedSkills.add(skill);
-          this.classList.add('selected');
-        }
-        updateSelectedSkills();
-        updateProgress();
-      });
+      updateSelectedSkills();
+      updateProgress();
     });
+  });
 
-    function updateSelectedSkills() {
-      const container = document.getElementById('selected-skills');
-      container.innerHTML = Array.from(selectedSkills).map(s =>
-        `<span class="skill-tag selected text-[0.65rem]">${s} <span style="cursor:pointer;margin-left:4px;color:var(--crimson);" onclick="this.parentElement.click()">×</span></span>`
-      ).join('');
+  function updateSelectedSkills() {
+    const container = document.getElementById('selected-skills');
+    container.innerHTML = Array.from(selectedSkills).map(s =>
+      `<span class="skill-tag selected" style="font-size: 0.65rem;">${s} <span style="cursor:pointer;margin-left:4px;color:var(--red);" onclick="this.parentElement.click()">×</span></span>`
+    ).join('');
+  }
+
+  function updateProgress() {
+    const fields = ['name', 'email', 'phone', 'location', 'education', 'institution'];
+    let filled = fields.filter(id => document.getElementById(id).value.trim()).length;
+    if (selectedSkills.size > 0) filled += 1;
+    const bg = document.querySelector('input[name="background"]:checked') ? 1 : 0;
+    filled += bg;
+    const emp = document.getElementById('employment-type').value ? 1 : 0;
+    filled += emp;
+    const total = fields.length + 3;
+    const pct = Math.min(100, Math.round((filled / total) * 100));
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-percent').textContent = pct + '%';
+    document.getElementById('cup-fill').style.height = pct + '%';
+  }
+
+  document.getElementById('application-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (selectedSkills.size === 0) {
+      showToast('Please select at least one skill.', 'error');
+      return;
     }
 
-    function updateProgress() {
-      const fields = ['name', 'email', 'phone', 'location', 'education', 'institution'];
-      let filled = fields.filter(id => document.getElementById(id).value.trim()).length;
-      if (selectedSkills.size > 0) filled += 1;
-      const bg = document.querySelector('input[name="background"]:checked') ? 1 : 0;
-      filled += bg;
-      const emp = document.getElementById('employment-type').value ? 1 : 0;
-      filled += emp;
-      const total = fields.length + 3;
-      const pct = Math.round((filled / total) * 100);
-      document.getElementById('progress-fill').style.width = Math.min(pct, 100) + '%';
-      document.getElementById('progress-percent').textContent = Math.min(pct, 100) + '%';
-      document.getElementById('cup-fill').style.height = Math.min(pct, 100) + '%';
-    }
+    const submitBtn = document.getElementById('submit-btn');
+    const submitText = document.getElementById('submit-text');
+    submitBtn.disabled = true;
+    submitText.textContent = 'BREWING...';
 
-    document.getElementById('application-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      if (selectedSkills.size === 0) {
-        showToast('Please select at least one skill.', 'error');
-        return;
-      }
+    const formData = {
+      id: 'BREW-' + Math.random().toString(36).substr(2, 9).toUpperCase(),
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      location: document.getElementById('location').value,
+      education_level: document.getElementById('education').value,
+      institution: document.getElementById('institution').value,
+      skills: Array.from(selectedSkills).join(', '),
+      background_check: document.querySelector('input[name="background"]:checked').value,
+      employment_type: document.getElementById('employment-type').value,
+      submitted_at: new Date().toISOString()
+    };
 
-      const submitBtn = document.getElementById('submit-btn');
-      const submitText = document.getElementById('submit-text');
-      submitBtn.disabled = true;
-      submitText.textContent = 'BREWING...';
-
-      const formData = {
-        id: 'BREW-' + Math.random().toString(36).substr(2, 9).toUpperCase(),
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        location: document.getElementById('location').value,
-        education_level: document.getElementById('education').value,
-        institution: document.getElementById('institution').value,
-        skills: Array.from(selectedSkills).join(', '),
-        background_check: document.querySelector('input[name="background"]:checked').value,
-        employment_type: document.getElementById('employment-type').value,
-        submitted_at: new Date().toISOString()
-      };
-
-      if (window.dataSdk) {
+    let isOk = true;
+    if (window.dataSdk) {
+      try {
         const result = await window.dataSdk.create(formData);
-        if (result.isOk) {
-          document.getElementById('brew-code').textContent = formData.id;
-          document.getElementById('success-modal').classList.remove('hidden');
-          document.getElementById('application-form').reset();
-          selectedSkills.clear();
-          updateSelectedSkills();
-          updateProgress();
-        } else {
-          showToast('Submission failed. Please try again.', 'error');
-        }
-      } else {
-        document.getElementById('brew-code').textContent = formData.id;
-        document.getElementById('success-modal').classList.remove('hidden');
-        document.getElementById('application-form').reset();
-        selectedSkills.clear();
-        updateSelectedSkills();
-        updateProgress();
-      }
-
-      submitBtn.disabled = false;
-      submitText.textContent = 'SUBMIT APPLICATION';
-    });
-
-    document.getElementById('close-modal').addEventListener('click', () => {
-      document.getElementById('success-modal').classList.add('hidden');
-    });
-
-    function showToast(message, type = 'success') {
-      const toast = document.createElement('div');
-      toast.className = 'toast';
-      toast.textContent = message;
-      toast.style.background = type === 'error' ? 'rgba(255,46,99,0.9)' : 'rgba(0,245,212,0.9)';
-      document.body.appendChild(toast);
-      setTimeout(() => toast.remove(), 3000);
+        isOk = result && result.isOk;
+      } catch (e) { isOk = false; }
     }
 
-    document.querySelectorAll('input, select').forEach(input => {
-      input.addEventListener('input', updateProgress);
-      input.addEventListener('change', updateProgress);
-    });
+    if (isOk) {
+      document.getElementById('brew-code').textContent = formData.id;
+      document.getElementById('success-modal').classList.add('show');
+      document.getElementById('application-form').reset();
+      selectedSkills.clear();
+      updateSelectedSkills();
+      updateProgress();
+    } else {
+      showToast('Submission failed. Please try again.', 'error');
+    }
 
-    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
+    submitBtn.disabled = false;
+    submitText.textContent = 'SUBMIT APPLICATION';
+  });
 
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('nav');
-      if (window.scrollY > 50) {
-        nav.style.borderBottom = '1px solid rgba(157,78,221,0.15)';
-        nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
-      } else {
-        nav.style.borderBottom = '1px solid rgba(157,78,221,0.1)';
-        nav.style.boxShadow = 'none';
-      }
-    });
+  document.getElementById('close-modal').addEventListener('click', () => {
+    document.getElementById('success-modal').classList.remove('show');
+  });
 
-    initializeDataSdk();
-    initializeElementSdk();
-    updateProgress();
-  </script>
+  function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.style.cssText = `position:fixed;top:20px;right:20px;padding:14px 20px;border-radius:8px;font-family:var(--font-mono);font-size:0.75rem;z-index:1000;box-shadow:0 0 30px rgba(0,0,0,0.6);color:#fff;background:${type === 'error' ? 'rgba(255,0,51,0.9)' : 'rgba(0,255,136,0.9)'};`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }
+
+  document.querySelectorAll('input, select').forEach(input => {
+    input.addEventListener('input', updateProgress);
+    input.addEventListener('change', updateProgress);
+  });
+
+  updateProgress();
+</script>
 </body>
 </html>

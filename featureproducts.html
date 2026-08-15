@@ -1,348 +1,328 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CYBERCOFFEE // FULL MENU</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="cyber.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="arasaka.css">
   <style>@view-transition { navigation: auto; }</style>
 </head>
-<body class="font-body overflow-x-hidden">
-  <div class="scanlines"></div>
-  <div class="noise-overlay"></div>
-  <div class="crt-overlay"></div>
-  <div id="particle-container" class="particle-container"></div>
+<body>
 
-  <!-- Navigation -->
-  <nav class="nav-cyber">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 md:h-20">
-        <div class="flex items-center gap-3">
-          <a href="/index.html" class="flex items-center gap-3">
-            <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, rgba(157,78,221,0.2), rgba(255,46,99,0.2)); border: 1px solid rgba(157,78,221,0.3);">
-              <svg class="w-6 h-6 md:w-7 md:h-7" viewBox="0 0 24 24" fill="none"><path d="M2 21H20V19H2M20 8H18V5H20M20 3H4V13C4 15.209 5.791 17 8 17H14C16.209 17 18 15.209 18 13V10H20C21.105 10 22 9.105 22 8V5C22 3.895 21.105 3 20 3Z" fill="url(#fl-nav)"/><defs><linearGradient id="fl-nav" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9D4EDD"/><stop offset="0.5" stop-color="#FF2E63"/><stop offset="1" stop-color="#FF4FD8"/></linearGradient></defs></svg>
-            </div>
-            <span class="font-display text-lg md:text-xl font-bold" style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">CYBER</span>
-            <span class="text-lg md:text-xl font-bold text-white">COFFEE</span>
-          </a>
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark">☕</div>
+      <div class="brand-text">
+        <span class="brand-main">CYBERCOFFEE</span>
+        <span class="brand-sub">ARASAKA CORP v2.0.25</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group-label">主要 MENU</div>
+
+      <a href="index.html" class="nav-item" data-nav="dashboard">
+        <span class="nav-icon">▣</span>
+        <span class="nav-label-wrap"><span class="nav-label">DASHBOARD</span><span class="nav-jp">ダッシュボード</span></span>
+      </a>
+      <a href="featureproducts.html" class="nav-item" data-nav="orders">
+        <span class="nav-icon">◈</span>
+        <span class="nav-label-wrap"><span class="nav-label">ORDERS</span><span class="nav-jp">注文</span></span>
+        <span class="nav-badge pulse">●3</span>
+      </a>
+      <a href="featureproducts.html" class="nav-item" data-nav="menu">
+        <span class="nav-icon">☕</span>
+        <span class="nav-label-wrap"><span class="nav-label">MENU</span><span class="nav-jp">メニュー</span></span>
+      </a>
+      <a href="index.html#nodes" class="nav-item" data-nav="nodes">
+        <span class="nav-icon">◉</span>
+        <span class="nav-label-wrap"><span class="nav-label">NODES</span><span class="nav-jp">ノード</span></span>
+      </a>
+      <a href="index.html#network" class="nav-item" data-nav="network">
+        <span class="nav-icon">⬡</span>
+        <span class="nav-label-wrap"><span class="nav-label">NETWORK</span><span class="nav-jp">ネットワーク</span></span>
+      </a>
+      <a href="discount.html" class="nav-item" data-nav="rewards">
+        <span class="nav-icon">★</span>
+        <span class="nav-label-wrap"><span class="nav-label">REWARDS</span><span class="nav-jp">報酬</span></span>
+        <span class="nav-badge gold">Lv.4</span>
+      </a>
+      <a href="blog.html" class="nav-item" data-nav="logs">
+        <span class="nav-icon">⌘</span>
+        <span class="nav-label-wrap"><span class="nav-label">LOGS</span><span class="nav-jp">ログ</span></span>
+      </a>
+
+      <div class="nav-group-label">システム</div>
+
+      <a href="jobsubmit.html" class="nav-item" data-nav="join">
+        <span class="nav-icon">✛</span>
+        <span class="nav-label-wrap"><span class="nav-label">JOIN</span><span class="nav-jp">採用</span></span>
+      </a>
+      <a href="#" class="nav-item" data-nav="settings">
+        <span class="nav-icon">⚙</span>
+        <span class="nav-label-wrap"><span class="nav-label">SETTINGS</span><span class="nav-jp">設定</span></span>
+      </a>
+      <a href="#" class="nav-item" data-nav="profile">
+        <span class="nav-icon">👤</span>
+        <span class="nav-label-wrap"><span class="nav-label">PROFILE</span><span class="nav-jp">プロフィール</span></span>
+      </a>
+      <a href="#" class="nav-item" data-nav="logout">
+        <span class="nav-icon">⏻</span>
+        <span class="nav-label-wrap"><span class="nav-label">LOGOUT</span><span class="nav-jp">ログアウト</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="employee-card">
+        <div class="employee-rank">
+          <span class="rank-label">社員 STATUS</span>
+          <span class="rank-value">EXEC</span>
         </div>
-        <div class="hidden md:flex items-center gap-8">
-          <a href="/index.html" class="nav-link-cyber">Home</a>
-          <a href="#coffee-products" class="nav-link-cyber">Coffee</a>
-          <a href="#tea-products" class="nav-link-cyber">Tea</a>
-          <a href="#location" class="nav-link-cyber">Nodes</a>
-          <a href="#contact" class="nav-link-cyber">Contact</a>
-          <a href="/blog.html" class="nav-link-cyber">Log</a>
-        </div>
-        <div class="flex items-center gap-4">
-          <a href="#menu" class="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-sm font-semibold cyber-btn">ORDER</a>
-          <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-          </button>
+        <div class="rank-bar"><div class="rank-bar-fill" style="width: 80%;"></div></div>
+        <div class="rank-level">Lv.4 → Lv.5 // 80%</div>
+        <div class="emp-stats">
+          <div class="emp-stat"><div class="stat-value">☕2.4K</div><div class="stat-label">Patrons</div></div>
+          <div class="emp-stat"><div class="stat-value">⚡99%</div><div class="stat-label">Caffeine</div></div>
+          <div class="emp-stat"><div class="stat-value">📶1.2</div><div class="stat-label">Gbps</div></div>
         </div>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5" style="background: rgba(7,7,11,0.95);">
-      <div class="px-4 py-4 space-y-3">
-        <a href="/index.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Home</a>
-        <a href="#coffee-products" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Coffee</a>
-        <a href="#tea-products" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Tea</a>
-        <a href="#location" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Nodes</a>
-        <a href="#contact" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Contact</a>
-        <a href="/blog.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Log</a>
-      </div>
-    </div>
-  </nav>
+  </aside>
 
-  <main class="w-full pt-20">
-    <!-- Hero -->
-    <section class="relative py-20 md:py-32 overflow-hidden" style="background: linear-gradient(180deg, #07070B, #11131A, #1A1033);">
-      <div class="absolute inset-0 grid-overlay"></div>
-      <div class="absolute inset-0 hex-grid"></div>
-      <div class="blob blob-violet" style="top: -10%; left: -5%; animation: floatSlow 8s ease-in-out infinite;"></div>
-      <div class="blob blob-crimson" style="bottom: -5%; right: -10%; animation: floatSlow 10s ease-in-out infinite reverse;"></div>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
-          <span class="status-dot active"></span>
-          <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(157, 78, 221, 0.8);">CATALOG // SYSTEM ACTIVE</span>
+  <div class="sidebar-overlay"></div>
+
+  <!-- MAIN -->
+  <div class="main-shell">
+
+    <!-- STATUS BAR -->
+    <header class="status-bar">
+      <div class="status-left">
+        <button class="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+        <div class="system-status">
+          <span class="status-dot"></span>
+          <span class="status-text">SYSTEM ONLINE</span>
+          <span class="status-version">v2.0.25</span>
         </div>
-        <h1 class="font-display text-4xl md:text-7xl lg:text-8xl font-black mb-4">
-          <span class="text-white">FULL</span>
-          <span style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"> MENU</span>
-        </h1>
-        <p class="text-sm font-mono" style="color: var(--silver);">All fuels catalogued. Select your poison.</p>
       </div>
-    </section>
+      <div class="status-right">
+        <div class="status-metrics">
+          <div class="metric"><span class="metric-icon">☕</span><span class="metric-value">2.4K</span><span class="metric-label">PATRONS</span></div>
+          <div class="metric"><span class="metric-icon">⚡</span><span class="metric-value">99%</span><span class="metric-label">CAFFEINE</span></div>
+          <div class="metric"><span class="metric-icon">📶</span><span class="metric-value">1.2</span><span class="metric-label">GBPS</span></div>
+          <div class="metric"><span class="metric-icon">🕒</span><span class="metric-value">24/7</span><span class="metric-label">UPTIME</span></div>
+        </div>
+        <span class="status-time">--:--:-- JST</span>
+      </div>
+    </header>
 
-    <!-- Category Circles -->
-    <section class="py-16 md:py-24 relative" style="background: linear-gradient(180deg, #1A1033, #11131A);">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12">
-          <div class="flex flex-col items-center text-center">
-            <div class="category-circle mb-4" style="background: linear-gradient(135deg, #9D4EDD, #FF2E63); width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(157,78,221,0.2); transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 0 40px rgba(157,78,221,0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 0 30px rgba(157,78,221,0.2)'">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-              <div class="count-badge" style="position: absolute; top: -8px; right: -8px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; background: linear-gradient(135deg, #FF2E63, #FFB703); color: white; box-shadow: 0 0 15px rgba(255,46,99,0.4);">36</div>
+    <!-- CONTENT -->
+    <main class="page-content">
+      <div class="section-header">
+        <span class="section-kicker">// FULL CATALOG</span>
+        <h1 class="section-title">FUEL SELECTION</h1>
+        <p class="section-sub">全メニュー // ALL FUELS CATALOGUED — SELECT YOUR POISON</p>
+      </div>
+
+      <!-- FUEL CAROUSEL -->
+      <section class="coffee-carousel" id="fuel-selection" aria-label="Featured fuel selection">
+
+        <div class="carousel-header">
+          <div class="carousel-title">
+            <h2 class="title-main">FUEL CAROUSEL</h2>
+            <span class="title-sub">SCROLL THE FULL SELECTION — スクロールして閲覧</span>
+            <div class="system-status-line">
+              <span class="status-pulse">●</span>
+              <span class="status-label">CATALOG SYNCED // LIVE INVENTORY</span>
             </div>
-            <h3 class="font-display text-sm font-bold mb-1" style="color: var(--white);">COFFEE</h3>
-            <p class="text-[0.6rem] font-mono" style="color: var(--silver);">36 products</p>
           </div>
-          <div class="flex flex-col items-center text-center">
-            <div class="category-circle mb-4" style="background: linear-gradient(135deg, #4CC9F0, #00F5D4); width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(76,201,240,0.2); transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 0 40px rgba(76,201,240,0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 0 30px rgba(76,201,240,0.2)'">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-              <div class="count-badge" style="position: absolute; top: -8px; right: -8px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; background: linear-gradient(135deg, #4CC9F0, #9D4EDD); color: white; box-shadow: 0 0 15px rgba(76,201,240,0.4);">4</div>
-            </div>
-            <h3 class="font-display text-sm font-bold mb-1" style="color: var(--white);">TEA</h3>
-            <p class="text-[0.6rem] font-mono" style="color: var(--silver);">4 products</p>
-          </div>
-          <div class="flex flex-col items-center text-center">
-            <div class="category-circle mb-4" style="background: linear-gradient(135deg, #FF4FD8, #9D4EDD); width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(255,79,216,0.2); transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 0 40px rgba(255,79,216,0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 0 30px rgba(255,79,216,0.2)'">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="7" cy="19" r="1.5"/><circle cx="12" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/><path d="M18 3H6C4.9 3 4 3.9 4 5v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 12H6V5h12v10z"/></svg>
-              <div class="count-badge" style="position: absolute; top: -8px; right: -8px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; background: linear-gradient(135deg, #FF4FD8, #FF2E63); color: white; box-shadow: 0 0 15px rgba(255,79,216,0.4);">14</div>
-            </div>
-            <h3 class="font-display text-sm font-bold mb-1" style="color: var(--white);">LATTE & FRAPPE</h3>
-            <p class="text-[0.6rem] font-mono" style="color: var(--silver);">14 products</p>
-          </div>
-          <div class="flex flex-col items-center text-center">
-            <div class="category-circle mb-4" style="background: linear-gradient(135deg, #FF2E63, #FFB703); width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(255,46,99,0.2); transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 0 40px rgba(255,46,99,0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 0 30px rgba(255,46,99,0.2)'">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"/></svg>
-              <div class="count-badge" style="position: absolute; top: -8px; right: -8px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; background: linear-gradient(135deg, #FF2E63, #9D4EDD); color: white; box-shadow: 0 0 15px rgba(255,46,99,0.4);">7</div>
-            </div>
-            <h3 class="font-display text-sm font-bold mb-1" style="color: var(--white);">SIGNATURE FOOD</h3>
-            <p class="text-[0.6rem] font-mono" style="color: var(--silver);">7 products</p>
-          </div>
-          <div class="flex flex-col items-center text-center">
-            <div class="category-circle mb-4" style="background: linear-gradient(135deg, #FFB703, #FF6B00); width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(255,183,3,0.2); transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 0 40px rgba(255,183,3,0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 0 30px rgba(255,183,3,0.2)'">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
-              <div class="count-badge" style="position: absolute; top: -8px; right: -8px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; background: linear-gradient(135deg, #FFB703, #FF6B00); color: #07070B; box-shadow: 0 0 15px rgba(255,183,3,0.4);">17</div>
-            </div>
-            <h3 class="font-display text-sm font-bold mb-1" style="color: var(--white);">PASTRY & MORE</h3>
-            <p class="text-[0.6rem] font-mono" style="color: var(--silver);">17 products</p>
+          <div class="carousel-controls">
+            <button class="control-btn" data-direction="left" aria-label="Previous">‹</button>
+            <span class="carousel-counter"><span class="current-slide">1</span><span class="total-slides"> / 0</span></span>
+            <button class="control-btn" data-direction="right" aria-label="Next">›</button>
           </div>
         </div>
+
+        <div class="filter-categories" role="tablist" aria-label="Product filters">
+          <button class="filter-btn active" data-filter="all" role="tab">ALL <span class="filter-count">0</span></button>
+          <button class="filter-btn" data-filter="cafe" role="tab">☕ COFFEE <span class="filter-count">0</span></button>
+          <button class="filter-btn" data-filter="tea" role="tab">🍵 TEA <span class="filter-count">0</span></button>
+          <button class="filter-btn" data-filter="food" role="tab">🍩 SNACKS <span class="filter-count">0</span></button>
+          <button class="filter-btn premium" data-filter="bestseller" role="tab">★ BESTSELLER <span class="filter-count">0</span></button>
+          <button class="filter-btn new" data-filter="new" role="tab">✦ NEW <span class="filter-count">0</span><span class="filter-badge">NEW</span></button>
+        </div>
+
+        <div class="carousel-track-wrapper">
+          <div class="carousel-track" id="fuel-track" role="list"></div>
+        </div>
+
+        <div class="carousel-pagination" role="tablist" aria-label="Carousel pages"></div>
+      </section>
+
+      <!-- COFFEE -->
+      <section id="coffee-products" class="section-header" style="margin-top: 40px;">
+        <span class="section-kicker">// SECTION 01 — COFFEE PROTOCOLS</span>
+        <h2 class="section-title">COFFEE SELECTION</h2>
+        <p class="section-sub">コーヒー // ALL GRIND PROTOCOLS</p>
+      </section>
+
+      <div class="filter-categories" style="margin-bottom: 18px;" role="tablist" aria-label="Coffee subcategory filters">
+        <button class="filter-btn active" data-grid-filter="all">ALL</button>
+        <button class="filter-btn" data-grid-filter="vietnamese">VIETNAMESE</button>
+        <button class="filter-btn" data-grid-filter="espresso">ESPRESSO</button>
+        <button class="filter-btn" data-grid-filter="specialty">SPECIALTY</button>
+        <button class="filter-btn" data-grid-filter="coldbrew">COLD BREW</button>
       </div>
-    </section>
+      <div class="product-grid" id="coffee-grid"></div>
 
-    <!-- Coffee Products -->
-    <section id="coffee-products" class="py-16 md:py-24 relative" style="background: linear-gradient(180deg, #11131A, #07070B);">
-      <div class="absolute inset-0 hex-grid opacity-30"></div>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
-            <span class="status-dot active"></span>
-            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(157, 78, 221, 0.8);">SECTION // COFFEE PROTOCOLS</span>
-          </div>
-          <h2 class="font-display text-3xl md:text-5xl font-bold"><span style="background: linear-gradient(135deg, #9D4EDD, #FF2E63); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">COFFEE</span> <span class="text-white">SELECTION</span></h2>
-        </div>
+      <!-- TEA -->
+      <section id="tea-products" class="section-header" style="margin-top: 48px;">
+        <span class="section-kicker">// SECTION 02 — TEA MATRIX</span>
+        <h2 class="section-title">TEA COLLECTION</h2>
+        <p class="section-sub">お茶 // LEAF PROTOCOLS</p>
+      </section>
+      <div class="product-grid" id="tea-grid"></div>
 
-        <div class="flex flex-wrap justify-center gap-2 mb-8">
-          <button class="coffee-filter cyber-btn px-4 py-2 rounded-lg text-[0.65rem] font-semibold tracking-wider active" data-filter="all">ALL</button>
-          <button class="coffee-filter cyber-btn-outline px-4 py-2 rounded-lg text-[0.65rem] font-semibold tracking-wider" data-filter="vietnamese">VIETNAMESE</button>
-          <button class="coffee-filter cyber-btn-outline px-4 py-2 rounded-lg text-[0.65rem] font-semibold tracking-wider" data-filter="espresso">ESPRESSO</button>
-          <button class="coffee-filter cyber-btn-outline px-4 py-2 rounded-lg text-[0.65rem] font-semibold tracking-wider" data-filter="specialty">SPECIALTY</button>
-          <button class="coffee-filter cyber-btn-outline px-4 py-2 rounded-lg text-[0.65rem] font-semibold tracking-wider" data-filter="coldbrew">COLD BREW</button>
-        </div>
+      <!-- FOOD -->
+      <section id="food-products" class="section-header" style="margin-top: 48px;">
+        <span class="section-kicker">// SECTION 03 — FUEL SNACKS</span>
+        <h2 class="section-title">SNACKS & DESSERTS</h2>
+        <p class="section-sub">スナック // ENERGY PACKETS</p>
+      </section>
+      <div class="product-grid" id="food-grid"></div>
+    </main>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6" id="coffee-grid">
-        </div>
+    <!-- TERMINAL FOOTER -->
+    <footer class="terminal-footer">
+      <div class="terminal-line">
+        <span class="term-accent">cyber@arasaka:~$</span> ./menu --export=all
+        <span class="term-accent">//</span> 49 ITEMS // SYSTEM ONLINE // v2.0.25
       </div>
-    </section>
-
-    <!-- Tea Products -->
-    <section id="tea-products" class="py-16 md:py-24 relative" style="background: linear-gradient(180deg, #07070B, #11131A);">
-      <div class="absolute inset-0 grid-overlay"></div>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
-            <span class="status-dot online"></span>
-            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(0, 245, 212, 0.8);">SECTION // TEA MATRIX</span>
-          </div>
-          <h2 class="font-display text-3xl md:text-5xl font-bold"><span style="background: linear-gradient(135deg, #4CC9F0, #00F5D4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">TEA</span> <span class="text-white">COLLECTION</span></h2>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6" id="tea-grid">
-        </div>
+      <div class="terminal-chips">
+        <span class="term-chip gold">REWARDS ACTIVE</span>
+        <span class="term-chip ok">CAFFEINE 99%</span>
+        <span class="term-chip">© 2025 CYBERCOFFEE</span>
       </div>
-    </section>
+    </footer>
+  </div>
+</div>
 
-    <!-- Food Products -->
-    <section class="py-16 md:py-24 relative" style="background: linear-gradient(180deg, #11131A, #1A1033);">
-      <div class="absolute inset-0 hex-grid opacity-30"></div>
-      <div class="blob blob-crimson" style="top: 20%; right: -10%; animation: floatSlow 12s ease-in-out infinite;"></div>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
-            <span class="status-dot alert"></span>
-            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(255, 46, 99, 0.8);">SECTION // FUEL SNACKS</span>
-          </div>
-          <h2 class="font-display text-3xl md:text-5xl font-bold"><span style="background: linear-gradient(135deg, #FF2E63, #FFB703); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">SNACKS</span> <span class="text-white">& DESSERTS</span></h2>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6" id="food-grid">
-        </div>
-      </div>
-    </section>
-  </main>
+<script>
+  window.fuelProducts = [
+    { name: 'A-Mê Classic', price: 39000, badge: 'Bestseller', image: 'media-assets/bacsiuclassic.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'A-Mê Đào', price: 49000, badge: null, image: 'media-assets/peachamericano.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'A-Mê Mơ', price: 49000, badge: null, image: 'media-assets/americanomo.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'A-Mê Tuyết Quất', price: 59000, badge: 'New', image: 'media-assets/americanvietquat.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'A-Mê Yuzu', price: 49000, badge: null, image: 'media-assets/yuzuamericano.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'Americano Hot', price: 45000, badge: null, image: 'media-assets/classicamericano.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'Cappuccino', price: 55000, badge: null, image: 'media-assets/cappuccino.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Cappuccino Iced', price: 55000, badge: null, image: 'media-assets/coldcappucino.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Cappuccino Hot', price: 55000, badge: null, image: 'media-assets/hotcappuccino.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Caramel Macchiato', price: 65000, badge: 'Popular', image: 'media-assets/macchiato.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Cold Brew', price: 49000, badge: null, image: 'media-assets/coldbrewclassic.png', category: 'cafe', subcategory: 'coldbrew' },
+    { name: 'Traditional Cold Brew', price: 45000, badge: null, image: 'media-assets/originalcoldbew.png', category: 'cafe', subcategory: 'coldbrew' },
+    { name: 'Cà Phê Phin Đen Đá', price: 35000, badge: null, image: 'media-assets/ca_phe_phin_den_da.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'Cà Phê Phin Đen Nóng', price: 35000, badge: null, image: 'media-assets/ca_phe_phin_den_nong.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'Cà Phê Phin Nâu Đá', price: 38000, badge: null, image: 'media-assets/ca_phe_phin_nau_da.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'Cà Phê Phin Nâu Nóng', price: 38000, badge: null, image: 'media-assets/ca_phe_phin_nau_nong.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'Bạc Xiu Classic', price: 39000, badge: null, image: 'media-assets/bacsiuclassic.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'Bạc Xiu Caramel', price: 45000, badge: null, image: 'media-assets/bacsiucaramel.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'Bạc Xiu Foam', price: 49000, badge: null, image: 'media-assets/bacsiufoam.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'Espresso', price: 35000, badge: null, image: 'media-assets/espresso.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Espresso Hot', price: 35000, badge: null, image: 'media-assets/espressohot.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Espresso Iced', price: 35000, badge: null, image: 'media-assets/espressocold.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Ethiopia', price: 55000, badge: null, image: 'media-assets/ethiopia.png', category: 'cafe', subcategory: 'specialty' },
+    { name: 'Ethiopia Americano', price: 55000, badge: null, image: 'media-assets/ethiopiaamericano.png', category: 'cafe', subcategory: 'specialty' },
+    { name: 'Latte', price: 55000, badge: null, image: 'media-assets/latte.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Latte Hot', price: 55000, badge: null, image: 'media-assets/lattehot.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Caramel Latte', price: 65000, badge: null, image: 'media-assets/latte caramel.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Almond Latte', price: 65000, badge: null, image: 'media-assets/lattealmond.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Hazelnut Latte', price: 65000, badge: null, image: 'media-assets/lattehazzlenut.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Hot Chocolate', price: 55000, badge: null, image: 'media-assets/hotchoco.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Cold Chocolate', price: 55000, badge: null, image: 'media-assets/coldchoco.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Frappe Chocolate', price: 65000, badge: null, image: 'media-assets/frappechoco.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Vanilla Frappe', price: 65000, badge: null, image: 'media-assets/vanillafroat.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Matcha Latte Iced', price: 65000, badge: null, image: 'media-assets/matchalattewithice.png', category: 'cafe', subcategory: 'specialty' },
+    { name: 'Matcha Frappe', price: 65000, badge: null, image: 'media-assets/matchafrappe.png', category: 'cafe', subcategory: 'specialty' },
+    { name: 'Matcha Foam', price: 65000, badge: null, image: 'media-assets/matchafroat.png', category: 'cafe', subcategory: 'specialty' },
+    { name: 'Black Tea', price: 55000, badge: null, image: 'media-assets/blacktea.png', category: 'tea', subcategory: 'tea' },
+    { name: 'Red Tea', price: 55000, badge: null, image: 'media-assets/hongtea.png', category: 'tea', subcategory: 'tea' },
+    { name: 'Oolong Tea', price: 55000, badge: null, image: 'media-assets/olongtuquy.png', category: 'tea', subcategory: 'tea' },
+    { name: 'Oolong with Jelly', price: 65000, badge: null, image: 'media-assets/olongtuquysuongsao.png', category: 'tea', subcategory: 'tea' },
+    { name: 'Sandwich', price: 65000, badge: null, image: 'media-assets/sandwich.png', category: 'food', subcategory: 'food' },
+    { name: 'Croissant', price: 45000, badge: null, image: 'media-assets/croissant.png', category: 'food', subcategory: 'food' },
+    { name: 'Cheesecake', price: 75000, badge: null, image: 'media-assets/cheesecake.png', category: 'food', subcategory: 'food' },
+    { name: 'Matcha Cheesecake', price: 85000, badge: 'Popular', image: 'media-assets/matchaburntcheesecake.png', category: 'food', subcategory: 'food' },
+    { name: 'Mochi', price: 45000, badge: null, image: 'media-assets/mochi.png', category: 'food', subcategory: 'food' },
+    { name: 'Raspberry Mochi', price: 55000, badge: null, image: 'media-assets/mochiphucbontu.png', category: 'food', subcategory: 'food' },
+    { name: 'Chocolate Mochi', price: 55000, badge: null, image: 'media-assets/mocchikemchoco.png', category: 'food', subcategory: 'food' },
+    { name: 'Matcha Mochi', price: 55000, badge: null, image: 'media-assets/mitsay.png', category: 'food', subcategory: 'food' },
+    { name: 'Classic Americano', price: 39000, badge: null, image: 'media-assets/americanoclassic.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Peach Americano Đá', price: 49000, badge: null, image: 'media-assets/americanopeach.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'Bạc Xỉ Kem', price: 49000, badge: null, image: 'media-assets/bacsiukem.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'Bạc Xỉ Mây', price: 49000, badge: null, image: 'media-assets/bacsiumay.png', category: 'cafe', subcategory: 'vietnamese' },
+    { name: 'Cold Cappuccino', price: 55000, badge: null, image: 'media-assets/cappuccinoiced.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Choco Đá', price: 55000, badge: null, image: 'media-assets/chocoda.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Cold Brew Kumquat', price: 59000, badge: 'New', image: 'media-assets/coldbrewkumquat.png', category: 'cafe', subcategory: 'coldbrew' },
+    { name: 'Ethiopia Hot', price: 55000, badge: null, image: 'media-assets/ethiopianong.png', category: 'cafe', subcategory: 'specialty' },
+    { name: 'Latte Nóng', price: 55000, badge: null, image: 'media-assets/lattenong.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Iced Macchiato', price: 65000, badge: null, image: 'media-assets/macchiatoiced.png', category: 'cafe', subcategory: 'espresso' },
+    { name: 'Matcha Latte', price: 65000, badge: null, image: 'media-assets/matchalatte.png', category: 'cafe', subcategory: 'specialty' },
+    { name: 'Matcha Latte Classic', price: 65000, badge: null, image: 'media-assets/matchalatteclassic.png', category: 'cafe', subcategory: 'specialty' },
+    { name: 'Matcha Oat Latte', price: 69000, badge: null, image: 'media-assets/matchalatteoatmilk.png', category: 'cafe', subcategory: 'specialty' },
+    { name: 'Matcha Fine Latte', price: 65000, badge: null, image: 'media-assets/matchafined.png', category: 'cafe', subcategory: 'specialty' },
+    { name: 'Matcha Tây Bắc', price: 65000, badge: null, image: 'media-assets/matchataybac.png', category: 'cafe', subcategory: 'specialty' },
+    { name: 'Matcha Tây Bắc Đá', price: 65000, badge: null, image: 'media-assets/matchataybacda.png', category: 'cafe', subcategory: 'specialty' },
+    { name: 'Matcha Tây Bắc Nóng', price: 65000, badge: null, image: 'media-assets/matchataybachot.png', category: 'cafe', subcategory: 'specialty' },
+    { name: 'Oolong Sương Sáo', price: 65000, badge: null, image: 'media-assets/oolongsuongsau.png', category: 'tea', subcategory: 'tea' },
+    { name: 'Oolong Tứ Quý Sen', price: 65000, badge: null, image: 'media-assets/olongtuquysen.png', category: 'tea', subcategory: 'tea' },
+    { name: 'Oolong Tứ Quý Đá', price: 65000, badge: null, image: 'media-assets/oolongtuquysenda.png', category: 'tea', subcategory: 'tea' },
+    { name: 'Peach Tea', price: 55000, badge: null, image: 'media-assets/peachtea.png', category: 'tea', subcategory: 'tea' },
+    { name: 'Peach Tea Hot', price: 55000, badge: null, image: 'media-assets/peachteahot.png', category: 'tea', subcategory: 'tea' },
+    { name: 'Machiatto Tea', price: 65000, badge: null, image: 'media-assets/machiatotea.png', category: 'tea', subcategory: 'tea' },
+    { name: 'Black Milk Tea', price: 55000, badge: null, image: 'media-assets/blackmilktea.png', category: 'tea', subcategory: 'tea' },
+    { name: 'Black Milk Tea Pearl', price: 65000, badge: null, image: 'media-assets/blackmilkteapearl.png', category: 'tea', subcategory: 'tea' },
+    { name: 'Bláo Milk Tea', price: 55000, badge: null, image: 'media-assets/blaomilktea.png', category: 'tea', subcategory: 'tea' },
+    { name: 'Bláo Oolong', price: 55000, badge: null, image: 'media-assets/blaoolong.png', category: 'tea', subcategory: 'tea' },
+    { name: 'Oolong Milk Tea', price: 55000, badge: null, image: 'media-assets/oolongmilktea.png', category: 'tea', subcategory: 'tea' },
+    { name: 'Cheese Pizza', price: 79000, badge: null, image: 'media-assets/cheesepizza.png', category: 'food', subcategory: 'food' },
+    { name: 'Beef Sauce Pizza', price: 85000, badge: null, image: 'media-assets/beefsaucepizza.png', category: 'food', subcategory: 'food' },
+    { name: 'Pepperoni Pizza', price: 89000, badge: null, image: 'media-assets/pepperoni.png', category: 'food', subcategory: 'food' },
+    { name: 'Rocket Salad', price: 69000, badge: null, image: 'media-assets/rocketsalad.png', category: 'food', subcategory: 'food' },
+    { name: 'Yuzu Salad', price: 69000, badge: null, image: 'media-assets/saladyuzu.png', category: 'food', subcategory: 'food' }
+  ];
+</script>
+<script src="arasaka.js"></script>
+<script>
+  (function () {
+    if (!window.renderFuelCards) return;
 
-  <!-- Footer -->
-  <footer class="footer-cyber">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-xs font-mono text-center md:text-left" style="color: rgba(168, 176, 192, 0.4);">© 2025 CYBERCOFFEE NETWORK // v2.0.25</p>
-        <div class="flex gap-4">
-          <a href="/index.html" class="text-[0.65rem] font-mono footer-link">HOME</a>
-          <a href="/discount.html" class="text-[0.65rem] font-mono footer-link">REWARDS</a>
-          <a href="/blog.html" class="text-[0.65rem] font-mono footer-link">LOG</a>
-          <a href="/jobsubmit.html" class="text-[0.65rem] font-mono footer-link">JOIN</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const productData = [
-      { name: 'A-Mê Classic', price: 39000, badge: 'Bestseller', image: 'media-assets/bacsiuclassic.png', category: 'cafe', subcategory: 'vietnamese' },
-      { name: 'A-Mê Đào', price: 49000, badge: null, image: 'media-assets/peachamericano.png', category: 'cafe', subcategory: 'vietnamese' },
-      { name: 'A-Mê Mơ', price: 49000, badge: null, image: 'media-assets/americanomo.png', category: 'cafe', subcategory: 'vietnamese' },
-      { name: 'A-Mê Tuyết Quất', price: 59000, badge: 'New', image: 'media-assets/americanvietquat.png', category: 'cafe', subcategory: 'vietnamese' },
-      { name: 'A-Mê Yuzu', price: 49000, badge: null, image: 'media-assets/yuzuamericano.png', category: 'cafe', subcategory: 'vietnamese' },
-      { name: 'Americano Hot', price: 45000, badge: null, image: 'media-assets/classicamericano.png', category: 'cafe', subcategory: 'vietnamese' },
-      { name: 'Cappuccino', price: 55000, badge: null, image: 'media-assets/cappuccino.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Cappuccino Iced', price: 55000, badge: null, image: 'media-assets/coldcappucino.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Cappuccino Hot', price: 55000, badge: null, image: 'media-assets/hotcappuccino.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Caramel Macchiato', price: 65000, badge: 'Popular', image: 'media-assets/macchiato.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Cold Brew', price: 49000, badge: null, image: 'media-assets/coldbrew.png', category: 'cafe', subcategory: 'coldbrew' },
-      { name: 'Traditional Cold Brew', price: 45000, badge: null, image: 'media-assets/originalcoldbew.png', category: 'cafe', subcategory: 'coldbrew' },
-      { name: 'Cà Phê Phin Đen Đá', price: 35000, badge: null, image: 'media-assets/ca_phe_phin_den_da.png', category: 'cafe', subcategory: 'vietnamese' },
-      { name: 'Cà Phê Phin Đen Nóng', price: 35000, badge: null, image: 'media-assets/ca_phe_phin_den_nong.png', category: 'cafe', subcategory: 'vietnamese' },
-      { name: 'Cà Phê Phin Nâu Đá', price: 38000, badge: null, image: 'media-assets/ca_phe_phin_nau_da.png', category: 'cafe', subcategory: 'vietnamese' },
-      { name: 'Cà Phê Phin Nâu Nóng', price: 38000, badge: null, image: 'media-assets/ca_phe_phin_nau_nong.png', category: 'cafe', subcategory: 'vietnamese' },
-      { name: 'Bạc Xiu Classic', price: 39000, badge: null, image: 'media-assets/bacsiuclassic.png', category: 'cafe', subcategory: 'vietnamese' },
-      { name: 'Bạc Xiu Caramel', price: 45000, badge: null, image: 'media-assets/bacsiu caramel.png', category: 'cafe', subcategory: 'vietnamese' },
-      { name: 'Bạc Xiu Foam', price: 49000, badge: null, image: 'media-assets/bacsiufoam.png', category: 'cafe', subcategory: 'vietnamese' },
-      { name: 'Espresso', price: 35000, badge: null, image: 'media-assets/espresso.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Espresso Hot', price: 35000, badge: null, image: 'media-assets/espressohot.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Espresso Iced', price: 35000, badge: null, image: 'media-assets/espressocold.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Ethiopia', price: 55000, badge: null, image: 'media-assets/ethiopia.png', category: 'cafe', subcategory: 'specialty' },
-      { name: 'Ethiopia Americano', price: 55000, badge: null, image: 'media-assets/ethiopiaamericano.png', category: 'cafe', subcategory: 'specialty' },
-      { name: 'Latte', price: 55000, badge: null, image: 'media-assets/latte.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Latte Hot', price: 55000, badge: null, image: 'media-assets/lattehot.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Caramel Latte', price: 65000, badge: null, image: 'media-assets/latte caramel.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Almond Latte', price: 65000, badge: null, image: 'media-assets/lattealmond.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Hazelnut Latte', price: 65000, badge: null, image: 'media-assets/lattehazzlenut.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Hot Chocolate', price: 55000, badge: null, image: 'media-assets/hotchoco.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Cold Chocolate', price: 55000, badge: null, image: 'media-assets/coldchoco.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Frappe Chocolate', price: 65000, badge: null, image: 'media-assets/frappechoco.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Vanilla Frappe', price: 65000, badge: null, image: 'media-assets/vanillafroat.png', category: 'cafe', subcategory: 'espresso' },
-      { name: 'Matcha Latte Iced', price: 65000, badge: null, image: 'media-assets/matchalattewithice.png', category: 'cafe', subcategory: 'specialty' },
-      { name: 'Matcha Frappe', price: 65000, badge: null, image: 'media-assets/matchafrappe.png', category: 'cafe', subcategory: 'specialty' },
-      { name: 'Matcha Foam', price: 65000, badge: null, image: 'media-assets/matchafroat.png', category: 'cafe', subcategory: 'specialty' },
-      { name: 'Black Tea', price: 55000, badge: null, image: 'media-assets/blacktea.png', category: 'tea', subcategory: 'tea' },
-      { name: 'Red Tea', price: 55000, badge: null, image: 'media-assets/hongtea.png', category: 'tea', subcategory: 'tea' },
-      { name: 'Oolong Tea', price: 55000, badge: null, image: 'media-assets/olongtuquy.png', category: 'tea', subcategory: 'tea' },
-      { name: 'Oolong with Jelly', price: 65000, badge: null, image: 'media-assets/olongtuquysuongsao.png', category: 'tea', subcategory: 'tea' },
-      { name: 'Sandwich', price: 65000, badge: null, image: 'media-assets/sandwich.png', category: 'food', subcategory: 'food' },
-      { name: 'Croissant', price: 45000, badge: null, image: 'media-assets/croissant.png', category: 'food', subcategory: 'food' },
-      { name: 'Cheesecake', price: 75000, badge: null, image: 'media-assets/cheesecake.png', category: 'food', subcategory: 'food' },
-      { name: 'Matcha Cheesecake', price: 85000, badge: 'Popular', image: 'media-assets/matchaburntcheesecake.png', category: 'food', subcategory: 'food' },
-      { name: 'Mochi', price: 45000, badge: null, image: 'media-assets/mochi.png', category: 'food', subcategory: 'food' },
-      { name: 'Raspberry Mochi', price: 55000, badge: null, image: 'media-assets/mochiphucbontu.png', category: 'food', subcategory: 'food' },
-      { name: 'Chocolate Mochi', price: 55000, badge: null, image: 'media-assets/mocchikemchoco.png', category: 'food', subcategory: 'food' },
-      { name: 'Matcha Mochi', price: 55000, badge: null, image: 'media-assets/mitsay.png', category: 'food', subcategory: 'food' }
-    ];
-
-    function formatPrice(p) { return new Intl.NumberFormat('vi-VN').format(p) + ' đ'; }
-
-    function renderProductGrid(gridId, products, filter) {
+    function renderGrid(gridId, products) {
       const grid = document.getElementById(gridId);
-      if (!grid) return;
-      let filtered = products;
-      if (filter && filter !== 'all') filtered = products.filter(p => p.subcategory === filter);
-      grid.innerHTML = filtered.map(p => `
-        <div class="product-card group">
-          <div class="relative" style="aspect-ratio: 1;">
-            <img src="${p.image || 'media-assets/coffee.png'}" alt="${p.name}" class="w-full h-full object-cover product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="absolute inset-0 flex items-center justify-center hidden" style="background: linear-gradient(135deg, rgba(157,78,221,0.1), rgba(255,46,99,0.1));">
-              <svg class="w-16 h-16" viewBox="0 0 24 24" fill="#9D4EDD" opacity="0.3"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/></svg>
-            </div>
-            ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
-          </div>
-          <div class="p-4">
-            <span class="text-[0.6rem] font-mono uppercase tracking-widest" style="color: var(--violet);">${p.category.toUpperCase()}</span>
-            <h3 class="font-semibold text-sm mt-1 mb-2 text-white">${p.name}</h3>
-            <div class="flex items-center justify-between">
-              <span class="font-mono font-bold text-sm text-white">${formatPrice(p.price)}</span>
-              <button class="w-8 h-8 rounded-lg flex items-center justify-center cyber-btn" style="padding: 0; min-width: unset; width: 32px; height: 32px;">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      `).join('');
+      if (grid) window.renderFuelCards(grid, products);
     }
 
-    renderProductGrid('coffee-grid', productData.filter(p => p.category === 'cafe'), 'all');
-    renderProductGrid('tea-grid', productData.filter(p => p.category === 'tea'), null);
-    renderProductGrid('food-grid', productData.filter(p => p.category === 'food'), null);
+    renderGrid('coffee-grid', window.fuelProducts.filter(p => p.category === 'cafe'));
+    renderGrid('tea-grid', window.fuelProducts.filter(p => p.category === 'tea'));
+    renderGrid('food-grid', window.fuelProducts.filter(p => p.category === 'food'));
 
-    document.querySelectorAll('.coffee-filter').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.coffee-filter').forEach(b => {
-          b.className = b.className.replace('cyber-btn ', 'cyber-btn-outline ');
-          if (b.classList.contains('active')) {
-            b.className = b.className.replace('cyber-btn', 'cyber-btn-outline').trim();
-            b.classList.remove('active');
-          }
-        });
-        this.className = 'coffee-filter cyber-btn px-4 py-2 rounded-lg text-[0.65rem] font-semibold tracking-wider active';
-        renderProductGrid('coffee-grid', productData.filter(p => p.category === 'cafe'), this.dataset.filter);
+    document.querySelectorAll('[data-grid-filter]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-grid-filter]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.gridFilter;
+        const list = filter === 'all'
+          ? window.fuelProducts.filter(p => p.category === 'cafe')
+          : window.fuelProducts.filter(p => p.category === 'cafe' && p.subcategory === filter);
+        renderGrid('coffee-grid', list);
       });
     });
-
-    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
-
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', function(e) {
-        e.preventDefault();
-        const t = document.querySelector(this.getAttribute('href'));
-        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('nav');
-      if (window.scrollY > 50) {
-        nav.style.borderBottom = '1px solid rgba(157,78,221,0.15)';
-        nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
-      } else {
-        nav.style.borderBottom = '1px solid rgba(157,78,221,0.1)';
-        nav.style.boxShadow = 'none';
-      }
-    });
-
-    // Particles
-    function createParticles() {
-      const container = document.getElementById('particle-container');
-      if (!container) return;
-      for (let i = 0; i < 30; i++) {
-        const p = document.createElement('div');
-        p.classList.add('particle');
-        const size = Math.random() * 2 + 1;
-        p.style.width = size + 'px';
-        p.style.height = size + 'px';
-        p.style.left = Math.random() * 100 + '%';
-        p.style.top = Math.random() * 100 + '%';
-        const colors = ['#9D4EDD', '#FF2E63', '#4CC9F0', '#00F5D4'];
-        p.style.background = colors[Math.floor(Math.random() * colors.length)];
-        p.style.animation = `float ${3 + Math.random() * 4}s ease-in-out ${Math.random() * 5}s infinite`;
-        p.style.opacity = 0.2 + Math.random() * 0.3;
-        container.appendChild(p);
-      }
-    }
-    createParticles();
-  </script>
+  })();
+</script>
 </body>
 </html>

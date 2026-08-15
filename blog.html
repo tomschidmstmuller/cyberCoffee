@@ -1,268 +1,213 @@
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CYBERCOFFEE // LOG TERMINAL</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>CYBERCOFFEE // OPERATOR LOG</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="/_sdk/element_sdk.js"></script>
-  <link rel="stylesheet" href="cyber.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="arasaka.css">
   <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
 </head>
-<body class="h-full font-body overflow-x-hidden">
-  <div class="scanlines"></div>
-  <div class="noise-overlay"></div>
-  <div class="crt-overlay"></div>
+<body>
 
-  <!-- Navigation -->
-  <nav class="nav-cyber">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 md:h-20">
-        <div class="flex items-center gap-3">
-          <a href="/index.html" class="flex items-center gap-3">
-            <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, rgba(157,78,221,0.2), rgba(255,46,99,0.2)); border: 1px solid rgba(157,78,221,0.3);">
-              <svg class="w-6 h-6 md:w-7 md:h-7" viewBox="0 0 24 24" fill="none"><path d="M2 21H20V19H2M20 8H18V5H20M20 3H4V13C4 15.209 5.791 17 8 17H14C16.209 17 18 15.209 18 13V10H20C21.105 10 22 9.105 22 8V5C22 3.895 21.105 3 20 3Z" fill="url(#bnav)"/><defs><linearGradient id="bnav" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9D4EDD"/><stop offset="0.5" stop-color="#FF2E63"/><stop offset="1" stop-color="#FF4FD8"/></linearGradient></defs></svg>
-            </div>
-            <span class="font-display text-lg md:text-xl font-bold" style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">CYBER</span>
-            <span class="text-lg md:text-xl font-bold text-white">COFFEE</span>
-          </a>
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark">☕</div>
+      <div class="brand-text">
+        <span class="brand-main">CYBERCOFFEE</span>
+        <span class="brand-sub">ARASAKA CORP v2.0.25</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group-label">主要 MENU</div>
+
+      <a href="index.html" class="nav-item" data-nav="dashboard">
+        <span class="nav-icon">▣</span>
+        <span class="nav-label-wrap"><span class="nav-label">DASHBOARD</span><span class="nav-jp">ダッシュボード</span></span>
+      </a>
+      <a href="featureproducts.html" class="nav-item" data-nav="orders">
+        <span class="nav-icon">◈</span>
+        <span class="nav-label-wrap"><span class="nav-label">ORDERS</span><span class="nav-jp">注文</span></span>
+        <span class="nav-badge pulse">●3</span>
+      </a>
+      <a href="featureproducts.html" class="nav-item" data-nav="menu">
+        <span class="nav-icon">☕</span>
+        <span class="nav-label-wrap"><span class="nav-label">MENU</span><span class="nav-jp">メニュー</span></span>
+      </a>
+      <a href="index.html#nodes" class="nav-item" data-nav="nodes">
+        <span class="nav-icon">◉</span>
+        <span class="nav-label-wrap"><span class="nav-label">NODES</span><span class="nav-jp">ノード</span></span>
+      </a>
+      <a href="index.html#network" class="nav-item" data-nav="network">
+        <span class="nav-icon">⬡</span>
+        <span class="nav-label-wrap"><span class="nav-label">NETWORK</span><span class="nav-jp">ネットワーク</span></span>
+      </a>
+      <a href="discount.html" class="nav-item" data-nav="rewards">
+        <span class="nav-icon">★</span>
+        <span class="nav-label-wrap"><span class="nav-label">REWARDS</span><span class="nav-jp">報酬</span></span>
+        <span class="nav-badge gold">Lv.4</span>
+      </a>
+      <a href="blog.html" class="nav-item" data-nav="logs">
+        <span class="nav-icon">⌘</span>
+        <span class="nav-label-wrap"><span class="nav-label">LOGS</span><span class="nav-jp">ログ</span></span>
+      </a>
+
+      <div class="nav-group-label">システム</div>
+
+      <a href="jobsubmit.html" class="nav-item" data-nav="join">
+        <span class="nav-icon">✛</span>
+        <span class="nav-label-wrap"><span class="nav-label">JOIN</span><span class="nav-jp">採用</span></span>
+      </a>
+      <a href="#" class="nav-item" data-nav="settings">
+        <span class="nav-icon">⚙</span>
+        <span class="nav-label-wrap"><span class="nav-label">SETTINGS</span><span class="nav-jp">設定</span></span>
+      </a>
+      <a href="#" class="nav-item" data-nav="profile">
+        <span class="nav-icon">👤</span>
+        <span class="nav-label-wrap"><span class="nav-label">PROFILE</span><span class="nav-jp">プロフィール</span></span>
+      </a>
+      <a href="#" class="nav-item" data-nav="logout">
+        <span class="nav-icon">⏻</span>
+        <span class="nav-label-wrap"><span class="nav-label">LOGOUT</span><span class="nav-jp">ログアウト</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="employee-card">
+        <div class="employee-rank">
+          <span class="rank-label">社員 STATUS</span>
+          <span class="rank-value">EXEC</span>
         </div>
-        <div class="hidden md:flex items-center gap-8">
-          <a href="/index.html" class="nav-link-cyber">Home</a>
-          <a href="/featureproducts.html" class="nav-link-cyber">Menu</a>
-          <a href="/discount.html" class="nav-link-cyber">Rewards</a>
-          <a href="/blog.html" class="nav-link-cyber">Log</a>
-          <a href="/jobsubmit.html" class="nav-link-cyber">Join</a>
-        </div>
-        <div class="flex items-center gap-4">
-          <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-          </button>
+        <div class="rank-bar"><div class="rank-bar-fill" style="width: 80%;"></div></div>
+        <div class="rank-level">Lv.4 → Lv.5 // 80%</div>
+        <div class="emp-stats">
+          <div class="emp-stat"><div class="stat-value">☕2.4K</div><div class="stat-label">Patrons</div></div>
+          <div class="emp-stat"><div class="stat-value">⚡99%</div><div class="stat-label">Caffeine</div></div>
+          <div class="emp-stat"><div class="stat-value">📶1.2</div><div class="stat-label">Gbps</div></div>
         </div>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5" style="background: rgba(7,7,11,0.95);">
-      <div class="px-4 py-4 space-y-3">
-        <a href="/index.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Home</a>
-        <a href="/featureproducts.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Menu</a>
-        <a href="/discount.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Rewards</a>
-        <a href="/blog.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Log</a>
-        <a href="/jobsubmit.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Join</a>
-      </div>
-    </div>
-  </nav>
+  </aside>
 
-  <main class="w-full">
-    <!-- Hero -->
-    <section class="relative min-h-[70vh] flex items-center overflow-hidden" style="background: linear-gradient(180deg, #07070B, #11131A, #1A1033);">
-      <div class="absolute inset-0 grid-overlay"></div>
-      <div class="blob blob-cyan" style="top: -10%; left: -5%; animation: floatSlow 8s ease-in-out infinite;"></div>
-      <div class="blob blob-violet" style="bottom: -10%; right: -5%; animation: floatSlow 10s ease-in-out infinite reverse;"></div>
-      <div class="max-w-4xl mx-auto px-6 relative z-10 pt-20">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
-            <span class="status-dot online"></span>
-            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(0, 245, 212, 0.8);">LOG // TERMINAL ONLINE</span>
+  <div class="sidebar-overlay"></div>
+
+  <!-- MAIN -->
+  <div class="main-shell">
+
+    <!-- STATUS BAR -->
+    <header class="status-bar">
+      <div class="status-left">
+        <button class="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+        <div class="system-status">
+          <span class="status-dot"></span>
+          <span class="status-text">SYSTEM ONLINE</span>
+          <span class="status-version">v2.0.25</span>
+        </div>
+      </div>
+      <div class="status-right">
+        <div class="status-metrics">
+          <div class="metric"><span class="metric-icon">☕</span><span class="metric-value">2.4K</span><span class="metric-label">PATRONS</span></div>
+          <div class="metric"><span class="metric-icon">⚡</span><span class="metric-value">99%</span><span class="metric-label">CAFFEINE</span></div>
+          <div class="metric"><span class="metric-icon">📶</span><span class="metric-value">1.2</span><span class="metric-label">GBPS</span></div>
+          <div class="metric"><span class="metric-icon">🕒</span><span class="metric-value">24/7</span><span class="metric-label">UPTIME</span></div>
+        </div>
+        <span class="status-time">--:--:-- JST</span>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="page-content">
+      <div class="section-header">
+        <span class="section-kicker">// LOG TERMINAL</span>
+        <h1 class="section-title">OPERATOR LOG</h1>
+        <p class="section-sub">オペレーターログ // CROSS — RETIRED SERGEANT. CAFÉ RUNNER.</p>
+      </div>
+
+      <div class="panel" style="margin-bottom: 32px;">
+        <div class="mono" style="font-size: 0.85rem; line-height: 1.8; color: var(--text-2);">
+          <p style="color: var(--text-1); font-weight: 700;">Hi. My name is <span style="color: var(--blue);">Cross</span>.</p>
+          <p style="margin-top: 12px;">I'm a retired sergeant. After years of structure, pressure, and long days that never really ended, coffee became the one thing that stayed consistent.</p>
+          <p style="margin-top: 12px;">I drink coffee every day. Not for energy. Not for trends. <span style="color: var(--blue);">It's a ritual. A pause. A moment where things make sense again.</span></p>
+          <p style="margin-top: 12px; color: var(--red); font-style: italic;">Opening this café wasn't a business decision. It was a necessity.</p>
+          <p style="margin-top: 12px;">This log exists to document every cup, every detail, every quiet moment.</p>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <span class="section-kicker">// FROM THE COUNTER</span>
+        <h2 class="section-title">THE JOURNAL</h2>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <article class="panel">
+          <div class="mono" style="font-size: 0.65rem; color: var(--red); letter-spacing: 2px; margin-bottom: 10px;">DECEMBER 18, 2024</div>
+          <h3 class="section-title" style="font-size: 1.15rem; margin-bottom: 14px;">Math, Coffee, and the Discipline of Care</h3>
+          <div class="mono" style="font-size: 0.8rem; line-height: 1.8; color: var(--text-2);">
+            <p>Math has always been the only place where my mind feels truly aligned with the world, because numbers don't perform, they don't negotiate, and they don't care who you are — they either hold or they collapse, and that kind of honesty shaped how I learned to live.</p>
+            <p style="margin-top: 10px;">I fell in love with math not because it was easy or impressive, but because it demanded patience, silence, and a willingness to sit with discomfort until clarity earned its way in.</p>
+            <p style="margin-top: 10px;">In both math and coffee, the process is the point; the result is just evidence that you respected it.</p>
           </div>
-          <h1 class="font-display text-4xl md:text-7xl font-black">
-            <span style="background: linear-gradient(135deg, #4CC9F0, #9D4EDD); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">OPERATOR</span>
-            <span class="text-white"> LOG</span>
-          </h1>
-          <p class="font-mono text-sm mt-2" style="color: var(--silver);">Cross — Retired sergeant. Café runner. Math enthusiast.</p>
-        </div>
+        </article>
 
-        <div class="cyber-card p-8 md:p-12 max-w-3xl mx-auto">
-          <div class="font-mono text-sm leading-relaxed space-y-6" style="color: var(--silver);">
-            <p class="text-white font-semibold">Hi. My name is <span style="color: var(--cyan);">Cross</span>.</p>
-            <p>I'm a retired sergeant. After years of structure, pressure, and long days that never really ended, coffee became the one thing that stayed consistent.</p>
-            <p>I drink coffee every day. Not for energy. Not for trends. <span style="color: var(--cyan);">It's a ritual. A pause. A moment where things make sense again.</span></p>
-            <p><em style="color: var(--violet);">Opening this café wasn't a business decision. It was a necessity.</em></p>
-            <p>This log exists to document every cup, every detail, every quiet moment.</p>
+        <article class="panel">
+          <div class="mono" style="font-size: 0.65rem; color: var(--red); letter-spacing: 2px; margin-bottom: 10px;">DECEMBER 12, 2024</div>
+          <h3 class="section-title" style="font-size: 1.15rem; margin-bottom: 14px;">The Weight of a Morning Cup</h3>
+          <div class="mono" style="font-size: 0.8rem; line-height: 1.8; color: var(--text-2);">
+            <p>There's a specific moment, around 7:00am, when the café is still closed and the world hasn't fully decided to wake up yet. The lights are low, the street outside is quiet, and the machines are cold. That's the hour I trust the most.</p>
+            <p style="margin-top: 10px;">Morning coffee isn't about comfort for me. It carries weight. It's the first deliberate action of the day, the first choice that requires attention instead of reaction.</p>
+            <p style="margin-top: 10px;">Some mornings feel heavy. Others feel empty. The coffee doesn't fix that, and it isn't meant to. It just gives structure to the beginning.</p>
           </div>
-        </div>
+        </article>
+
+        <article class="panel">
+          <div class="mono" style="font-size: 0.65rem; color: var(--red); letter-spacing: 2px; margin-bottom: 10px;">NOVEMBER 28, 2024</div>
+          <h3 class="section-title" style="font-size: 1.15rem; margin-bottom: 14px;">Why I Don't Do Pour-Over Performances</h3>
+          <p class="mono" style="font-size: 0.8rem; line-height: 1.8; color: var(--text-2);">Someone asked why I turn away from the counter when I make their coffee. Simple: brewing isn't a show. It's a conversation between me and the grounds. Some things don't need an audience.</p>
+        </article>
+
+        <article class="panel">
+          <div class="mono" style="font-size: 0.65rem; color: var(--red); letter-spacing: 2px; margin-bottom: 10px;">NOVEMBER 15, 2024</div>
+          <h3 class="section-title" style="font-size: 1.15rem; margin-bottom: 14px;">The Cup That Sat There for Two Hours</h3>
+          <p class="mono" style="font-size: 0.8rem; line-height: 1.8; color: var(--text-2);">A regular came in last Tuesday. Ordered a black coffee. Sat by the window. Didn't touch it for almost two hours. When he finally drank it — cold by then — he smiled. Sometimes coffee isn't about the coffee.</p>
+        </article>
+
+        <article class="panel">
+          <div class="mono" style="font-size: 0.65rem; color: var(--red); letter-spacing: 2px; margin-bottom: 10px;">OCTOBER 30, 2024</div>
+          <h3 class="section-title" style="font-size: 1.15rem; margin-bottom: 14px;">Silence as a Menu Item</h3>
+          <p class="mono" style="font-size: 0.8rem; line-height: 1.8; color: var(--text-2);">No music. People ask about it every week. The grinder hums. Steam hisses. Cups meet saucers. These are the sounds. Adding anything else felt dishonest.</p>
+        </article>
       </div>
-    </section>
 
-    <!-- Journal Entries -->
-    <section class="py-20 md:py-32 relative" style="background: linear-gradient(180deg, #11131A, #07070B);">
-      <div class="absolute inset-0 hex-grid opacity-30"></div>
-      <div class="blob blob-crimson" style="top: 30%; right: -10%; animation: floatSlow 12s ease-in-out infinite;"></div>
-      <div class="max-w-4xl mx-auto px-6 relative">
-        <div class="text-center mb-16">
-          <span class="text-[0.6rem] font-mono tracking-[0.3em]" style="color: rgba(157, 78, 221, 0.5);">FROM THE COUNTER</span>
-          <h2 class="font-display text-3xl md:text-5xl font-bold mt-3">THE JOURNAL</h2>
-          <div style="width: 40px; height: 1px; background: linear-gradient(90deg, transparent, rgba(157,78,221,0.3), transparent); margin: 1rem auto 0;"></div>
-        </div>
-
-        <div class="space-y-16">
-          <article class="cyber-card p-8 group">
-            <div class="text-[0.6rem] font-mono" style="color: var(--violet);">DECEMBER 18, 2024</div>
-            <h3 class="font-display text-xl md:text-2xl font-bold text-white mt-2 mb-4 group-hover:text-glow transition-all duration-300 cursor-pointer">Math, Coffee, and the Discipline of Care</h3>
-            <div class="text-sm font-mono leading-relaxed space-y-4" style="color: var(--silver);">
-              <p>Math has always been the only place where my mind feels truly aligned with the world, because numbers don't perform, they don't negotiate, and they don't care who you are — they either hold or they collapse, and that kind of honesty shaped how I learned to live.</p>
-              <p>I fell in love with math not because it was easy or impressive, but because it demanded patience, silence, and a willingness to sit with discomfort until clarity earned its way in.</p>
-              <p>In both math and coffee, the process is the point; the result is just evidence that you respected it.</p>
-            </div>
-          </article>
-
-          <article class="cyber-card p-8 group">
-            <div class="text-[0.6rem] font-mono" style="color: var(--violet);">DECEMBER 12, 2024</div>
-            <h3 class="font-display text-xl md:text-2xl font-bold text-white mt-2 mb-4 group-hover:text-glow transition-all duration-300 cursor-pointer">The Weight of a Morning Cup</h3>
-            <div class="text-sm font-mono leading-relaxed space-y-4" style="color: var(--silver);">
-              <p>There's a specific moment, around 7:00am, when the café is still closed and the world hasn't fully decided to wake up yet. The lights are low, the street outside is quiet, and the machines are cold. That's the hour I trust the most.</p>
-              <p>Morning coffee isn't about comfort for me. It carries weight. It's the first deliberate action of the day, the first choice that requires attention instead of reaction.</p>
-              <p>Some mornings feel heavy. Others feel empty. The coffee doesn't fix that, and it isn't meant to. It just gives structure to the beginning.</p>
-            </div>
-          </article>
-
-          <article class="cyber-card p-8 group">
-            <div class="text-[0.6rem] font-mono" style="color: var(--violet);">NOVEMBER 28, 2024</div>
-            <h3 class="font-display text-xl md:text-2xl font-bold text-white mt-2 mb-4 group-hover:text-glow transition-all duration-300 cursor-pointer">Why I Don't Do Pour-Over Performances</h3>
-            <p class="text-sm font-mono leading-relaxed" style="color: var(--silver);">Someone asked why I turn away from the counter when I make their coffee. Simple: brewing isn't a show. It's a conversation between me and the grounds. Some things don't need an audience.</p>
-          </article>
-
-          <article class="cyber-card p-8 group">
-            <div class="text-[0.6rem] font-mono" style="color: var(--violet);">NOVEMBER 15, 2024</div>
-            <h3 class="font-display text-xl md:text-2xl font-bold text-white mt-2 mb-4 group-hover:text-glow transition-all duration-300 cursor-pointer">The Cup That Sat There for Two Hours</h3>
-            <p class="text-sm font-mono leading-relaxed" style="color: var(--silver);">A regular came in last Tuesday. Ordered a black coffee. Sat by the window. Didn't touch it for almost two hours. When he finally drank it — cold by then — he smiled. Sometimes coffee isn't about the coffee.</p>
-          </article>
-
-          <article class="cyber-card p-8 group">
-            <div class="text-[0.6rem] font-mono" style="color: var(--violet);">OCTOBER 30, 2024</div>
-            <h3 class="font-display text-xl md:text-2xl font-bold text-white mt-2 mb-4 group-hover:text-glow transition-all duration-300 cursor-pointer">Silence as a Menu Item</h3>
-            <p class="text-sm font-mono leading-relaxed" style="color: var(--silver);">No music. People ask about it every week. The grinder hums. Steam hisses. Cups meet saucers. These are the sounds. Adding anything else felt dishonest.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Quote -->
-    <section class="py-20 relative" style="background: linear-gradient(180deg, #07070B, #11131A);">
-      <div class="absolute inset-0 grid-overlay"></div>
-      <div class="max-w-3xl mx-auto px-6 text-center relative">
-        <svg class="w-8 h-8 mx-auto mb-6" style="color: rgba(157,78,221,0.3);" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-        <blockquote id="quote-text" class="font-display text-2xl md:text-3xl text-white italic leading-relaxed">
+      <div id="network" class="panel" style="margin-top: 40px; text-align: center;">
+        <svg class="mono" style="font-size: 1.2rem; color: var(--gold); margin-bottom: 12px;">❝</svg>
+        <blockquote id="quote-text" style="font-family: var(--font-cyber); font-size: 1.4rem; color: var(--text-1); line-height: 1.6; font-weight: 800;">
           Coffee doesn't fix anything. It just gives you a few minutes where nothing needs fixing.
         </blockquote>
-        <cite id="quote-attribution" class="block mt-6 text-xs font-mono tracking-widest" style="color: var(--violet);">— CROSS</cite>
+        <cite id="quote-attribution" class="mono" style="display: block; margin-top: 14px; font-size: 0.7rem; letter-spacing: 3px; color: var(--red);">— CROSS</cite>
       </div>
-    </section>
+    </main>
 
-    <!-- Visit -->
-    <section class="py-20 relative" style="background: linear-gradient(180deg, #1A1033, #07070B);">
-      <div class="max-w-4xl mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <span class="text-[0.55rem] font-mono tracking-[0.3em]" style="color: var(--cyan);">FIND US</span>
-            <h2 class="font-display text-3xl md:text-4xl font-bold text-white mt-3 mb-8">THE NODE</h2>
-            <div class="space-y-6 text-sm font-mono" style="color: var(--silver);">
-              <p><span style="color: var(--cyan); display: block; font-size: 0.65rem; letter-spacing: 0.15em; margin-bottom: 4px;">ADDRESS</span> 214 Garrison Street<br>Portland, OR 97201</p>
-              <p><span style="color: var(--cyan); display: block; font-size: 0.65rem; letter-spacing: 0.15em; margin-bottom: 4px;">HOURS</span> Tuesday – Sunday<br>5:30am – 2:00pm</p>
-              <p><span style="color: var(--cyan); display: block; font-size: 0.65rem; letter-spacing: 0.15em; margin-bottom: 4px;">NOTE</span> No reservations. No Wi-Fi. Just coffee and quiet.</p>
-            </div>
-          </div>
-          <div class="flex justify-center">
-            <svg viewBox="0 0 200 200" class="w-48 h-48 opacity-30 animate-float-slow">
-              <circle cx="100" cy="100" r="80" fill="none" stroke="#9D4EDD" stroke-width="0.5"/>
-              <circle cx="100" cy="100" r="60" fill="none" stroke="#FF2E63" stroke-width="0.5"/>
-              <circle cx="100" cy="100" r="40" fill="#9D4EDD" opacity="0.1"/>
-              <path d="M100 20 L100 40 M100 160 L100 180 M20 100 L40 100 M160 100 L180 100" stroke="#4CC9F0" stroke-width="0.5"/>
-              <ellipse cx="100" cy="100" rx="25" ry="25" fill="#FF4FD8" opacity="0.15"/>
-            </svg>
-          </div>
-        </div>
+    <!-- TERMINAL FOOTER -->
+    <footer class="terminal-footer">
+      <div class="terminal-line">
+        <span class="term-accent">cyber@arasaka:~$</span> ./log --read
+        <span class="term-accent">//</span> 5 ENTRIES // SYSTEM ONLINE // v2.0.25
       </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer-cyber">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p id="footer-text" class="text-xs font-mono text-center md:text-left" style="color: rgba(168, 176, 192, 0.4);">Made with care. Served without pretense.</p>
-        <div class="flex gap-4">
-          <a href="/index.html" class="text-[0.65rem] font-mono footer-link">HOME</a>
-          <a href="/featureproducts.html" class="text-[0.65rem] font-mono footer-link">MENU</a>
-          <a href="/discount.html" class="text-[0.65rem] font-mono footer-link">REWARDS</a>
-          <a href="/jobsubmit.html" class="text-[0.65rem] font-mono footer-link">JOIN</a>
-        </div>
+      <div class="terminal-chips">
+        <span class="term-chip gold">REWARDS ACTIVE</span>
+        <span class="term-chip ok">CAFFEINE 99%</span>
+        <span class="term-chip">© 2025 CYBERCOFFEE</span>
       </div>
-    </div>
-  </footer>
+    </footer>
+  </div>
+</div>
 
-  <script>
-    const defaultConfig = {
-      site_name: "CYBERCOFFEE",
-      nav_about: "About",
-      nav_journal: "Journal",
-      nav_visit: "Visit",
-      quote_text: "Coffee doesn't fix anything. It just gives you a few minutes where nothing needs fixing.",
-      quote_attribution: "— CROSS",
-      footer_text: "Made with care. Served without pretense.",
-      background_color: "#07070B",
-      text_color: "#F5F7FA",
-      accent_color: "#9D4EDD",
-      secondary_color: "#11131A",
-      hero_color: "#1A1033",
-      font_family: "Space Grotesk",
-      font_size: 16
-    };
-
-    async function onConfigChange(config) {
-      document.getElementById('quote-text').textContent = config.quote_text || defaultConfig.quote_text;
-      document.getElementById('quote-attribution').textContent = config.quote_attribution || defaultConfig.quote_attribution;
-      document.getElementById('footer-text').textContent = config.footer_text || defaultConfig.footer_text;
-    }
-
-    function mapToCapabilities(config) {
-      return {
-        recolorables: [
-          { get: () => config.background_color || defaultConfig.background_color, set: (value) => { config.background_color = value; if (window.elementSdk) window.elementSdk.setConfig({ background_color: value }); } },
-          { get: () => config.secondary_color || defaultConfig.secondary_color, set: (value) => { config.secondary_color = value; if (window.elementSdk) window.elementSdk.setConfig({ secondary_color: value }); } },
-          { get: () => config.text_color || defaultConfig.text_color, set: (value) => { config.text_color = value; if (window.elementSdk) window.elementSdk.setConfig({ text_color: value }); } },
-          { get: () => config.accent_color || defaultConfig.accent_color, set: (value) => { config.accent_color = value; if (window.elementSdk) window.elementSdk.setConfig({ accent_color: value }); } },
-          { get: () => config.hero_color || defaultConfig.hero_color, set: (value) => { config.hero_color = value; if (window.elementSdk) window.elementSdk.setConfig({ hero_color: value }); } }
-        ],
-        borderables: [],
-        fontEditable: undefined,
-        fontSizeable: undefined
-      };
-    }
-
-    function mapToEditPanelValues(config) {
-      return new Map([
-        ["site_name", config.site_name || defaultConfig.site_name],
-        ["nav_about", config.nav_about || defaultConfig.nav_about],
-        ["nav_journal", config.nav_journal || defaultConfig.nav_journal],
-        ["nav_visit", config.nav_visit || defaultConfig.nav_visit],
-        ["quote_text", config.quote_text || defaultConfig.quote_text],
-        ["quote_attribution", config.quote_attribution || defaultConfig.quote_attribution],
-        ["footer_text", config.footer_text || defaultConfig.footer_text]
-      ]);
-    }
-
-    if (window.elementSdk) {
-      window.elementSdk.init({ defaultConfig, onConfigChange, mapToCapabilities, mapToEditPanelValues });
-    }
-
-    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
-
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('nav');
-      if (window.scrollY > 50) {
-        nav.style.borderBottom = '1px solid rgba(157,78,221,0.15)';
-        nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
-      } else {
-        nav.style.borderBottom = '1px solid rgba(157,78,221,0.1)';
-        nav.style.boxShadow = 'none';
-      }
-    });
-  </script>
+<script src="arasaka.js"></script>
 </body>
 </html>

@@ -1,848 +1,353 @@
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CYBERCOFFEE // NIGHT CAFÉ TERMINAL</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>CYBERCOFFEE // DASHBOARD</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="cyber.css">
-  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="arasaka.css">
   <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <style>
-    .view-transition-main { view-transition-name: main; }
-  </style>
 </head>
-<body class="h-full font-body overflow-x-hidden">
-  <div class="scanlines"></div>
-  <div class="scanline-anim"></div>
-  <div class="noise-overlay"></div>
-  <div class="crt-overlay"></div>
+<body>
 
-  <div id="particle-container" class="particle-container"></div>
+<div class="app-shell">
 
-  <div class="w-full h-full relative z-10">
-
-    <!-- Navigation -->
-    <nav class="nav-cyber">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16 md:h-20">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center relative" style="background: linear-gradient(135deg, rgba(157,78,221,0.2), rgba(255,46,99,0.2)); border: 1px solid rgba(157,78,221,0.3);">
-              <svg class="w-6 h-6 md:w-7 md:h-7" viewBox="0 0 24 24" fill="none">
-                <path d="M2 21H20V19H2M20 8H18V5H20M20 3H4V13C4 15.209 5.791 17 8 17H14C16.209 17 18 15.209 18 13V10H20C21.105 10 22 9.105 22 8V5C22 3.895 21.105 3 20 3Z" fill="url(#neon-grad)"/>
-                <defs><linearGradient id="neon-grad" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9D4EDD"/><stop offset="0.5" stop-color="#FF2E63"/><stop offset="1" stop-color="#FF4FD8"/></linearGradient></defs>
-              </svg>
-            </div>
-            <span id="nav-brand" class="font-display text-lg md:text-xl font-bold" style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">CYBER</span>
-            <span class="text-lg md:text-xl font-bold text-white">COFFEE</span>
-          </div>
-          <div class="hidden md:flex items-center gap-8">
-            <a href="#home" class="nav-link-cyber">Home</a>
-            <a href="./featureproducts.html" class="nav-link-cyber">Menu</a>
-            <a href="#story" class="nav-link-cyber">Network</a>
-            <a href="#stores" class="nav-link-cyber">Nodes</a>
-            <a href="./discount.html" class="nav-link-cyber">Rewards</a>
-            <a href="./blog.html" class="nav-link-cyber">Log</a>
-          </div>
-          <div class="flex items-center gap-4">
-            <button class="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-sm font-semibold cyber-btn">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-              ORDER
-            </button>
-            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-white">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div id="mobile-menu" class="hidden md:hidden border-t border-white/5" style="background: rgba(7,7,11,0.95);">
-        <div class="px-4 py-4 space-y-3">
-          <a href="#home" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Home</a>
-          <a href="./featureproducts.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Menu</a>
-          <a href="#story" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Network</a>
-          <a href="#stores" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Nodes</a>
-          <a href="./discount.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Rewards</a>
-          <a href="./blog.html" class="block py-2 text-sm font-medium text-white/70 hover:text-white">Log</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero-cyber pt-20">
-      <div class="absolute inset-0 grid-overlay"></div>
-      <div class="absolute inset-0 hex-grid"></div>
-
-      <div class="blob blob-violet" style="top: -10%; left: -10%; animation: floatSlow 8s ease-in-out infinite;"></div>
-      <div class="blob blob-crimson" style="bottom: -10%; right: -5%; animation: floatSlow 10s ease-in-out infinite reverse;"></div>
-      <div class="blob blob-cyan" style="top: 40%; right: 20%; animation: floatSlow 12s ease-in-out infinite;"></div>
-
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <!-- Content -->
-          <div class="text-center lg:text-left space-y-8">
-            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-lg glass-purple">
-              <span class="status-dot online"></span>
-              <span class="text-xs font-mono font-medium tracking-widest" style="color: rgba(0, 245, 212, 0.8);">SYS.ONLINE // v2.0.25</span>
-            </div>
-
-            <h1 class="space-y-2">
-              <span class="block font-display text-5xl md:text-7xl lg:text-8xl font-black tracking-tight">
-                <span class="text-white glitch-text" data-text="WAKE">WAKE</span>
-                <span style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">&</span>
-                <span class="text-white glitch-text" data-text="BREW">BREW</span>
-              </span>
-              <span class="block font-display text-3xl md:text-5xl lg:text-6xl font-bold mt-2" style="background: linear-gradient(135deg, #9D4EDD, #FF2E63, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-                CYBER COFFEE
-              </span>
-            </h1>
-
-            <div class="glitch-text" data-text="> The café runs on code, caffeine, and chaos.">
-              <p class="font-mono text-sm md:text-base" style="color: rgba(245, 247, 250, 0.5);">
-                > <span class="terminal-text" style="color: rgba(0, 245, 212, 0.7);">The café runs on code, caffeine, and chaos.</span>
-              </p>
-            </div>
-
-            <p class="text-base leading-relaxed max-w-xl mx-auto lg:mx-0" style="color: var(--silver);">
-              Underground hub for hackers, night coders, gamers, and creatives. 
-              Open 24/7. Neon fuel. Bass-heavy silence. Caffeine IV drip included.
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button class="cyber-btn px-8 py-4 rounded-xl text-white font-semibold flex items-center justify-center gap-2 text-sm">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-                ACCESS MENU
-              </button>
-              <button class="cyber-btn-outline px-8 py-4 rounded-xl flex items-center justify-center gap-2 text-sm">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                LOCATE NODE
-              </button>
-            </div>
-
-            <!-- Dashboard -->
-            <div class="dashboard-grid max-w-lg mx-auto lg:mx-0 pt-4">
-              <div class="dashboard-item">
-                <div class="dashboard-value" id="stat-patrons">2.4K</div>
-                <div class="dashboard-label">Night Patrons</div>
-              </div>
-              <div class="dashboard-item">
-                <div class="dashboard-value" id="stat-caffeine">99<span style="font-size: 0.8rem;">%</span></div>
-                <div class="dashboard-label">Caffeine Level</div>
-              </div>
-              <div class="dashboard-item">
-                <div class="dashboard-value"><span class="text-glow-cyan" style="-webkit-text-fill-color: #4CC9F0;" id="stat-wifi">1.2</span><span style="font-size: 0.8rem;">Gbps</span></div>
-                <div class="dashboard-label">Uplink Speed</div>
-              </div>
-              <div class="dashboard-item">
-                <div class="dashboard-value text-glow-amber animate-pulse-neon" style="-webkit-text-fill-color: #FFB703;" id="stat-uptime">24/7</div>
-                <div class="dashboard-label">Uptime Status</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Holographic Coffee Cup -->
-          <div class="relative flex justify-center">
-            <div class="relative">
-              <div class="w-72 h-72 md:w-96 md:h-96 relative">
-                <div class="absolute inset-0 rounded-full animate-pulse-neon" style="background: radial-gradient(circle, rgba(157,78,221,0.08), transparent 70%);"></div>
-                <div class="absolute inset-4 rounded-full animate-spin-slow" style="background: conic-gradient(from 0deg, rgba(157,78,221,0.05), rgba(255,46,99,0.05), rgba(76,201,240,0.05), rgba(157,78,221,0.05));"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <svg class="w-48 h-48 md:w-64 md:h-64" viewBox="0 0 120 120" fill="none">
-                    <defs>
-                      <linearGradient id="cupGrad" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stop-color="#9D4EDD" stop-opacity="0.6"/>
-                        <stop offset="50%" stop-color="#FF2E63" stop-opacity="0.4"/>
-                        <stop offset="100%" stop-color="#4CC9F0" stop-opacity="0.3"/>
-                      </linearGradient>
-                      <linearGradient id="steamGrad" x1="0" y1="1" x2="0" y2="0">
-                        <stop offset="0%" stop-color="#9D4EDD" stop-opacity="0.4"/>
-                        <stop offset="100%" stop-color="#4CC9F0" stop-opacity="0"/>
-                      </linearGradient>
-                    </defs>
-                    <!-- Glow under cup -->
-                    <ellipse cx="60" cy="95" rx="35" ry="6" fill="#9D4EDD" opacity="0.15"/>
-                    <ellipse cx="60" cy="95" rx="20" ry="4" fill="#FF2E63" opacity="0.2"/>
-                    <!-- Cup body -->
-                    <path d="M30 45 L30 80 Q30 92 60 92 Q90 92 90 80 L90 45 Z" fill="rgba(17,19,26,0.6)" stroke="url(#cupGrad)" stroke-width="1.5"/>
-                    <!-- Cup top -->
-                    <path d="M30 45 Q30 55 60 55 Q90 55 90 45 Q90 35 60 35 Q30 35 30 45" fill="rgba(17,19,26,0.8)" stroke="url(#cupGrad)" stroke-width="1.5"/>
-                    <!-- Coffee surface -->
-                    <ellipse cx="60" cy="45" rx="28" ry="8" fill="#FF2E63" opacity="0.15"/>
-                    <ellipse cx="60" cy="45" rx="20" ry="5" fill="#9D4EDD" opacity="0.2"/>
-                    <!-- Handle -->
-                    <path d="M90 50 Q108 50 108 68 Q108 85 90 80" fill="none" stroke="url(#cupGrad)" stroke-width="2.5" stroke-linecap="round"/>
-                    <!-- Neon steam -->
-                    <path d="M45 30 Q40 20 45 10" stroke="url(#steamGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.6">
-                      <animate attributeName="d" values="M45 30 Q40 20 45 10;M45 30 Q50 20 45 10;M45 30 Q40 20 45 10" dur="2s" repeatCount="indefinite"/>
-                    </path>
-                    <path d="M60 28 Q62 18 60 8" stroke="url(#steamGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.5">
-                      <animate attributeName="d" values="M60 28 Q62 18 60 8;M60 28 Q58 18 60 8;M60 28 Q62 18 60 8" dur="2.5s" repeatCount="indefinite"/>
-                    </path>
-                    <path d="M75 30 Q80 20 75 10" stroke="url(#steamGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.4">
-                      <animate attributeName="d" values="M75 30 Q80 20 75 10;M75 30 Q70 20 75 10;M75 30 Q80 20 75 10" dur="1.8s" repeatCount="indefinite"/>
-                    </path>
-                    <!-- Holographic rings -->
-                    <ellipse cx="60" cy="45" rx="32" ry="10" fill="none" stroke="#4CC9F0" stroke-width="0.5" opacity="0.2" transform="rotate(-5 60 45)"/>
-                    <ellipse cx="60" cy="45" rx="36" ry="12" fill="none" stroke="#9D4EDD" stroke-width="0.5" opacity="0.15" transform="rotate(5 60 45)"/>
-                  </svg>
-                </div>
-              </div>
-              <!-- Orbiting particles -->
-              <svg class="absolute top-0 left-0 w-full h-full animate-spin-slow" viewBox="0 0 100 100" style="animation-duration: 15s;">
-                <circle cx="50" cy="5" r="2" fill="#FF4FD8" opacity="0.6"/>
-                <circle cx="95" cy="50" r="1.5" fill="#4CC9F0" opacity="0.5"/>
-                <circle cx="5" cy="50" r="2" fill="#FFB703" opacity="0.4"/>
-                <circle cx="50" cy="95" r="1.5" fill="#00F5D4" opacity="0.5"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Scroll Indicator -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-float">
-        <span class="text-[0.6rem] font-mono uppercase tracking-[0.2em]" style="color: rgba(168, 176, 192, 0.4);">Scroll to initialize</span>
-        <div style="width: 1px; height: 30px; background: linear-gradient(180deg, rgba(157,78,221,0.5), transparent);"></div>
-      </div>
-    </section>
-
-    <!-- Menu Section -->
-    <section class="py-20 md:py-32 relative overflow-hidden" style="background: linear-gradient(180deg, #1A1033, #11131A, #07070B);">
-      <div class="absolute inset-0 hex-grid opacity-50"></div>
-      <div class="blob blob-violet" style="top: 20%; left: -15%; animation: floatSlow 12s ease-in-out infinite;"></div>
-      <div class="blob blob-crimson" style="bottom: 30%; right: -10%; animation: floatSlow 14s ease-in-out infinite reverse;"></div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div class="menu-section-header">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
-            <span class="status-dot active"></span>
-            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(157, 78, 221, 0.8);">MENU // SYSTEM ACTIVE</span>
-          </div>
-          <h2>FUEL SELECTION</h2>
-          <p>Choose your weapon. All drinks overclocked with neon essence.</p>
-        </div>
-
-        <!-- Category Filters -->
-        <div class="flex flex-wrap justify-center gap-3 mb-12">
-          <button class="cyber-btn px-5 py-2.5 rounded-lg text-xs font-semibold tracking-wider" onclick="filterProducts('all', this)">ALL</button>
-          <button class="cyber-btn-outline px-5 py-2.5 rounded-lg text-xs font-semibold tracking-wider" onclick="filterProducts('cafe', this)">COFFEE</button>
-          <button class="cyber-btn-outline px-5 py-2.5 rounded-lg text-xs font-semibold tracking-wider" onclick="filterProducts('boba', this)">BOBA</button>
-          <button class="cyber-btn-outline px-5 py-2.5 rounded-lg text-xs font-semibold tracking-wider" onclick="filterProducts('food', this)">SNACKS</button>
-        </div>
-
-        <!-- Products Grid -->
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="products-grid">
-        </div>
-
-        <div class="text-center mt-12">
-          <a href="./featureproducts.html" class="cyber-btn-outline inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold">
-            VIEW FULL MENU
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Network Story Section -->
-    <section id="story" class="py-20 md:py-32 relative overflow-hidden" style="background: linear-gradient(180deg, #07070B, #11131A, #1A1033);">
-      <div class="absolute inset-0 grid-overlay"></div>
-      <div class="blob blob-cyan" style="top: -5%; right: -10%; animation: floatSlow 10s ease-in-out infinite;"></div>
-      <div class="blob blob-violet" style="bottom: 10%; left: -5%; animation: floatSlow 12s ease-in-out infinite reverse;"></div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
-            <span class="status-dot online"></span>
-            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(0, 245, 212, 0.8);">NETWORK // NODES ACTIVE</span>
-          </div>
-          <h2 class="font-display text-3xl md:text-5xl font-bold">
-            <span style="background: linear-gradient(135deg, #4CC9F0, #9D4EDD); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">CORE</span>
-            <span class="text-white"> INFRASTRUCTURE</span>
-          </h2>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6 md:gap-8">
-          <!-- Coffee Node -->
-          <div class="cyber-card p-8 md:p-12 group relative overflow-hidden">
-            <div class="corner-bracket tl"></div>
-            <div class="corner-bracket tr"></div>
-            <div class="corner-bracket bl"></div>
-            <div class="corner-bracket br"></div>
-            <div class="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-violet/5 blur-3xl group-hover:bg-violet/10 transition-all duration-700"></div>
-            <div class="relative">
-              <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, rgba(157,78,221,0.15), rgba(255,46,99,0.15)); border: 1px solid rgba(157,78,221,0.2);">
-                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none"><path d="M2 21H20V19H2M20 8H18V5H20M20 3H4V13C4 15.209 5.791 17 8 17H14C16.209 17 18 15.209 18 13V10H20C21.105 10 22 9.105 22 8V5C22 3.895 21.105 3 20 3Z" fill="url(#story-grad1)"/><defs><linearGradient id="story-grad1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9D4EDD"/><stop offset="1" stop-color="#FF2E63"/></linearGradient></defs></svg>
-              </div>
-              <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-3">BEAN PROTOCOL</h3>
-              <div class="progress-bar mb-4"><div class="progress-bar-fill" style="width: 94%;"></div></div>
-              <p class="text-sm leading-relaxed" style="color: var(--silver);">Single-origin beans sourced from the highlands. Small-batch roasted with precision. Every cup is a compiled executable of flavor.</p>
-              <button class="mt-6 text-xs font-mono font-semibold tracking-wider flex items-center gap-2" style="color: var(--violet);">READ_MORE <span class="text-glow">→</span></button>
-            </div>
-          </div>
-
-          <!-- Tea Node -->
-          <div class="cyber-card p-8 md:p-12 group relative overflow-hidden">
-            <div class="corner-bracket tl"></div>
-            <div class="corner-bracket tr"></div>
-            <div class="corner-bracket bl"></div>
-            <div class="corner-bracket br"></div>
-            <div class="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-cyan/5 blur-3xl group-hover:bg-cyan/10 transition-all duration-700"></div>
-            <div class="relative">
-              <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, rgba(76,201,240,0.15), rgba(0,245,212,0.15)); border: 1px solid rgba(76,201,240,0.2);">
-                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22L6.66 19.7C7.14 19.87 7.64 20 8 20C19 20 22 3 22 3C21 5 14 5.25 9 6.25C4 7.25 2 11.5 2 13.5C2 15.5 3.75 17.25 3.75 17.25C7 8 17 8 17 8Z" fill="url(#story-grad2)"/><defs><linearGradient id="story-grad2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4CC9F0"/><stop offset="1" stop-color="#00F5D4"/></linearGradient></defs></svg>
-              </div>
-              <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-3">MATCHA MATRIX</h3>
-              <div class="progress-bar mb-4"><div class="progress-bar-fill" style="width: 88%;"></div></div>
-              <p class="text-sm leading-relaxed" style="color: var(--silver);">Ceremonial-grade matcha from selected estates. Stone-ground, antioxidant-rich, cyber-monk approved for extended hacking sessions.</p>
-              <button class="mt-6 text-xs font-mono font-semibold tracking-wider flex items-center gap-2" style="color: var(--cyan);">READ_MORE <span style="color: var(--cyan);">→</span></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Data Ticker -->
-    <div class="relative py-4" style="background: rgba(17, 19, 26, 0.8); border-top: 1px solid rgba(157,78,221,0.1); border-bottom: 1px solid rgba(157,78,221,0.1); overflow: hidden;">
-      <div class="data-ticker">
-        <div class="data-ticker-inner font-mono text-xs tracking-wider" style="color: rgba(168, 176, 192, 0.5);">
-          <span style="color: var(--violet);">◆</span> SYSTEM BOOT: 00:00:00 <span style="color: var(--crimson);">//</span> CAFFEINE LEVELS: 99.7% <span style="color: var(--crimson);">//</span> NODE STATUS: 7/7 ONLINE <span style="color: var(--crimson);">//</span> UPLINK: 1.2 GBPS <span style="color: var(--crimson);">//</span> ACTIVE SESSIONS: 42 <span style="color: var(--crimson);">//</span> BEAN RESERVES: OPTIMAL <span style="color: var(--crimson);">//</span> BREW TEMP: 93°C <span style="color: var(--violet);">◆</span> SYSTEM BOOT: 00:00:00 <span style="color: var(--crimson);">//</span> CAFFEINE LEVELS: 99.7% <span style="color: var(--crimson);">//</span> NODE STATUS: 7/7 ONLINE <span style="color: var(--crimson);">//</span> UPLINK: 1.2 GBPS <span style="color: var(--crimson);">//</span> ACTIVE SESSIONS: 42 <span style="color: var(--crimson);">//</span> BEAN RESERVES: OPTIMAL <span style="color: var(--crimson);">//</span> BREW TEMP: 93°C
-        </div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark">☕</div>
+      <div class="brand-text">
+        <span class="brand-main">CYBERCOFFEE</span>
+        <span class="brand-sub">ARASAKA CORP v2.0.25</span>
       </div>
     </div>
 
-    <!-- Store Locator Section -->
-    <section id="stores" class="py-20 md:py-32 relative overflow-hidden" style="background: linear-gradient(180deg, #11131A, #1A1033, #11131A);">
-      <div class="absolute inset-0 hex-grid opacity-30"></div>
-      <div class="blob blob-crimson" style="top: 30%; left: -20%; animation: floatSlow 11s ease-in-out infinite;"></div>
-      <div class="blob blob-cyan" style="bottom: 20%; right: -15%; animation: floatSlow 13s ease-in-out infinite reverse;"></div>
+    <nav class="sidebar-nav">
+      <div class="nav-group-label">主要 MENU</div>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div class="text-center lg:text-left">
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
-              <span class="status-dot alert"></span>
-              <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(255, 46, 99, 0.8);">GEOLOCATE // SIGNAL ACTIVE</span>
-            </div>
-            <h2 class="font-display text-3xl md:text-5xl font-bold mb-4">
-              <span class="text-white">FIND A</span>
-              <span style="background: linear-gradient(135deg, #FF2E63, #FFB703); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"> NODE</span>
-            </h2>
-            <p class="text-base mb-2 font-mono" style="color: rgba(76, 201, 240, 0.6);">&gt; "Connect to the nearest cyber café terminal."</p>
-            <p class="text-sm mb-8 leading-relaxed" style="color: var(--silver);">With 150+ nodes across the network, there's always a terminal nearby. Find your station and boot up.</p>
+      <a href="index.html" class="nav-item" data-nav="dashboard">
+        <span class="nav-icon">▣</span>
+        <span class="nav-label-wrap"><span class="nav-label">DASHBOARD</span><span class="nav-jp">ダッシュボード</span></span>
+      </a>
+      <a href="featureproducts.html" class="nav-item" data-nav="orders">
+        <span class="nav-icon">◈</span>
+        <span class="nav-label-wrap"><span class="nav-label">ORDERS</span><span class="nav-jp">注文</span></span>
+        <span class="nav-badge pulse">●3</span>
+      </a>
+      <a href="featureproducts.html" class="nav-item" data-nav="menu">
+        <span class="nav-icon">☕</span>
+        <span class="nav-label-wrap"><span class="nav-label">MENU</span><span class="nav-jp">メニュー</span></span>
+      </a>
+      <a href="index.html#nodes" class="nav-item" data-nav="nodes">
+        <span class="nav-icon">◉</span>
+        <span class="nav-label-wrap"><span class="nav-label">NODES</span><span class="nav-jp">ノード</span></span>
+      </a>
+      <a href="index.html#network" class="nav-item" data-nav="network">
+        <span class="nav-icon">⬡</span>
+        <span class="nav-label-wrap"><span class="nav-label">NETWORK</span><span class="nav-jp">ネットワーク</span></span>
+      </a>
+      <a href="discount.html" class="nav-item" data-nav="rewards">
+        <span class="nav-icon">★</span>
+        <span class="nav-label-wrap"><span class="nav-label">REWARDS</span><span class="nav-jp">報酬</span></span>
+        <span class="nav-badge gold">Lv.4</span>
+      </a>
+      <a href="blog.html" class="nav-item" data-nav="logs">
+        <span class="nav-icon">⌘</span>
+        <span class="nav-label-wrap"><span class="nav-label">LOGS</span><span class="nav-jp">ログ</span></span>
+      </a>
 
-            <div class="space-y-4 max-w-md mx-auto lg:mx-0">
-              <div class="relative">
-                <select class="cyber-input w-full px-5 py-4 rounded-xl appearance-none cursor-pointer text-sm" id="city-select">
-                  <option value="" class="bg-graphite">Select City</option>
-                  <option value="hcm">Ho Chi Minh</option>
-                  <option value="hn">Hanoi</option>
-                  <option value="dn">Da Nang</option>
-                  <option value="hp">Hai Phong</option>
-                  <option value="ct">Can Tho</option>
-                  <option value="bd">Binh Duong</option>
-                  <option value="dl">Da Lat</option>
-                </select>
-                <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none" style="color: var(--violet);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-              </div>
-              <div class="relative">
-                <select class="cyber-input w-full px-5 py-4 rounded-xl appearance-none cursor-pointer text-sm" id="district-select">
-                  <option value="">Select District</option>
-                </select>
-                <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none" style="color: var(--violet);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-              </div>
-              <button class="cyber-btn w-full px-8 py-4 rounded-xl font-semibold flex items-center justify-center gap-2 text-sm">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                SCAN FOR NODES
-              </button>
+      <div class="nav-group-label">システム</div>
+
+      <a href="jobsubmit.html" class="nav-item" data-nav="join">
+        <span class="nav-icon">✛</span>
+        <span class="nav-label-wrap"><span class="nav-label">JOIN</span><span class="nav-jp">採用</span></span>
+      </a>
+      <a href="#" class="nav-item" data-nav="settings">
+        <span class="nav-icon">⚙</span>
+        <span class="nav-label-wrap"><span class="nav-label">SETTINGS</span><span class="nav-jp">設定</span></span>
+      </a>
+      <a href="#" class="nav-item" data-nav="profile">
+        <span class="nav-icon">👤</span>
+        <span class="nav-label-wrap"><span class="nav-label">PROFILE</span><span class="nav-jp">プロフィール</span></span>
+      </a>
+      <a href="#" class="nav-item" data-nav="logout">
+        <span class="nav-icon">⏻</span>
+        <span class="nav-label-wrap"><span class="nav-label">LOGOUT</span><span class="nav-jp">ログアウト</span></span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="employee-card">
+        <div class="employee-rank">
+          <span class="rank-label">社員 STATUS</span>
+          <span class="rank-value">EXEC</span>
+        </div>
+        <div class="rank-bar"><div class="rank-bar-fill" style="width: 80%;"></div></div>
+        <div class="rank-level">Lv.4 → Lv.5 // 80%</div>
+        <div class="emp-stats">
+          <div class="emp-stat"><div class="stat-value">☕2.4K</div><div class="stat-label">Patrons</div></div>
+          <div class="emp-stat"><div class="stat-value">⚡99%</div><div class="stat-label">Caffeine</div></div>
+          <div class="emp-stat"><div class="stat-value">📶1.2</div><div class="stat-label">Gbps</div></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay"></div>
+
+  <!-- MAIN -->
+  <div class="main-shell">
+
+    <!-- STATUS BAR -->
+    <header class="status-bar">
+      <div class="status-left">
+        <button class="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+        <div class="system-status">
+          <span class="status-dot"></span>
+          <span class="status-text">SYSTEM ONLINE</span>
+          <span class="status-version">v2.0.25</span>
+        </div>
+      </div>
+      <div class="status-right">
+        <div class="status-metrics">
+          <div class="metric"><span class="metric-icon">☕</span><span class="metric-value">2.4K</span><span class="metric-label">PATRONS</span></div>
+          <div class="metric"><span class="metric-icon">⚡</span><span class="metric-value">99%</span><span class="metric-label">CAFFEINE</span></div>
+          <div class="metric"><span class="metric-icon">📶</span><span class="metric-value">1.2</span><span class="metric-label">GBPS</span></div>
+          <div class="metric"><span class="metric-icon">🕒</span><span class="metric-value">24/7</span><span class="metric-label">UPTIME</span></div>
+        </div>
+        <span class="status-time">--:--:-- JST</span>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="page-content">
+      <div class="section-header">
+        <span class="section-kicker">// SYSTEM OVERVIEW</span>
+        <h1 class="section-title">FUEL SELECTION</h1>
+        <p class="section-sub">燃料選択 // BROWSE THE FULL CATALOG — ORDER DIRECTLY FROM TERMINAL</p>
+      </div>
+
+      <!-- FUEL CAROUSEL -->
+      <section class="coffee-carousel" id="fuel-selection" aria-label="Featured fuel selection">
+
+        <div class="carousel-header">
+          <div class="carousel-title">
+            <h2 class="title-main">FUEL SELECTION</h2>
+            <span class="title-sub">CHOOSE YOUR WEAPON — 燃料を選択してください</span>
+            <div class="system-status-line">
+              <span class="status-pulse">●</span>
+              <span class="status-label">CATALOG SYNCED // LIVE INVENTORY</span>
             </div>
           </div>
+          <div class="carousel-controls">
+            <button class="control-btn" data-direction="left" aria-label="Previous">‹</button>
+            <span class="carousel-counter"><span class="current-slide">1</span><span class="total-slides"> / 0</span></span>
+            <button class="control-btn" data-direction="right" aria-label="Next">›</button>
+          </div>
+        </div>
 
-          <!-- Cyber Map -->
-          <div class="relative flex justify-center">
-            <div class="relative w-full max-w-lg">
-              <div class="cyber-card p-6">
-                <svg class="w-full h-auto" viewBox="0 0 400 400" fill="none">
-                  <path d="M200 20 C250 30 280 80 290 120 C300 160 310 200 300 250 C290 300 270 340 230 370 C200 390 170 380 150 350 C130 320 120 280 130 230 C140 180 160 130 180 80 C190 50 195 25 200 20" fill="rgba(157,78,221,0.05)" stroke="url(#mapGrad)" stroke-width="1.5"/>
-                  <defs>
-                    <linearGradient id="mapGrad" x1="0" y1="0" x2="1" y2="1">
-                      <stop stop-color="#9D4EDD"/>
-                      <stop offset="0.5" stop-color="#FF2E63"/>
-                      <stop offset="1" stop-color="#4CC9F0"/>
-                    </linearGradient>
-                  </defs>
-                  <!-- Network Nodes -->
-                  <g>
-                    <circle cx="200" cy="180" r="6" fill="#9D4EDD"/>
-                    <circle cx="200" cy="180" r="12" fill="#9D4EDD" opacity="0.2" class="animate-neon-ping"/>
-                    <text x="200" y="195" text-anchor="middle" font-size="9" fill="#9D4EDD" font-family="monospace" font-weight="bold">HCM</text>
-                  </g>
-                  <g>
-                    <circle cx="190" cy="80" r="5" fill="#4CC9F0"/>
-                    <circle cx="190" cy="80" r="10" fill="#4CC9F0" opacity="0.2" class="animate-neon-ping" style="animation-delay: 0.5s;"/>
-                    <text x="190" y="95" text-anchor="middle" font-size="8" fill="#4CC9F0" font-family="monospace" font-weight="bold">HN</text>
-                  </g>
-                  <g>
-                    <circle cx="260" cy="140" r="4" fill="#FF2E63"/>
-                    <circle cx="260" cy="140" r="8" fill="#FF2E63" opacity="0.2" class="animate-neon-ping" style="animation-delay: 1s;"/>
-                    <text x="260" y="155" text-anchor="middle" font-size="8" fill="#FF2E63" font-family="monospace" font-weight="bold">DN</text>
-                  </g>
-                  <g>
-                    <circle cx="170" cy="280" r="4" fill="#FFB703"/>
-                    <circle cx="170" cy="280" r="8" fill="#FFB703" opacity="0.2" class="animate-neon-ping" style="animation-delay: 1.5s;"/>
-                    <text x="170" y="295" text-anchor="middle" font-size="8" fill="#FFB703" font-family="monospace" font-weight="bold">CT</text>
-                  </g>
-                  <!-- Connection lines -->
-                  <line x1="200" y1="180" x2="190" y2="80" stroke="rgba(157,78,221,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
-                  <line x1="200" y1="180" x2="260" y2="140" stroke="rgba(255,46,99,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
-                  <line x1="200" y1="180" x2="170" y2="280" stroke="rgba(76,201,240,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
-                </svg>
-              </div>
+        <div class="filter-categories" role="tablist" aria-label="Product filters">
+          <button class="filter-btn active" data-filter="all" role="tab">ALL <span class="filter-count">0</span></button>
+          <button class="filter-btn" data-filter="cafe" role="tab">☕ COFFEE <span class="filter-count">0</span></button>
+          <button class="filter-btn" data-filter="boba" role="tab">🧋 BOBA <span class="filter-count">0</span></button>
+          <button class="filter-btn" data-filter="food" role="tab">🍩 SNACKS <span class="filter-count">0</span></button>
+          <button class="filter-btn premium" data-filter="bestseller" role="tab">★ BESTSELLER <span class="filter-count">0</span></button>
+          <button class="filter-btn new" data-filter="new" role="tab">✦ NEW <span class="filter-count">0</span><span class="filter-badge">NEW</span></button>
+        </div>
 
-              <!-- Stats overlay -->
-              <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-6 px-6 py-4 rounded-xl glass" style="min-width: 240px;">
-                <div class="text-center">
-                  <div class="font-display text-xl font-bold" style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">150+</div>
-                  <div class="text-[0.6rem] font-mono tracking-wider" style="color: var(--silver);">NODES</div>
-                </div>
-                <div style="width: 1px; background: rgba(255,255,255,0.06);"></div>
-                <div class="text-center">
-                  <div class="font-display text-xl font-bold" style="background: linear-gradient(135deg, #4CC9F0, #00F5D4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">20+</div>
-                  <div class="text-[0.6rem] font-mono tracking-wider" style="color: var(--silver);">REGIONS</div>
-                </div>
-              </div>
+        <div class="carousel-track-wrapper">
+          <div class="carousel-track" id="fuel-track" role="list"></div>
+        </div>
+
+        <div class="carousel-pagination" role="tablist" aria-label="Carousel pages"></div>
+      </section>
+
+      <!-- NODES / NETWORK STATUS -->
+      <span id="nodes" style="position: absolute; visibility: hidden;"></span>
+      <section id="network" class="section-header" style="margin-top: 40px;">
+        <span class="section-kicker">// NETWORK STATUS</span>
+        <h2 class="section-title">NODE MATRIX</h2>
+        <p class="section-sub">24/7 OPEN — 150+ NODES ACROSS THE GRID</p>
+      </section>
+
+      <div class="product-grid">
+        <div class="coffee-card">
+          <div class="card-glow"></div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">HO CHI MINH</h3>
+              <span class="card-japanese">ホーチミン // HCM</span>
+            </div>
+            <div class="card-meta">
+              <div class="meta-rating"><span class="stars">★★★★★</span><span class="rating-count">NODE 01</span></div>
+              <span class="meta-prep">● ONLINE</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-container"><span class="price-current" style="font-size: 0.8rem;">150+ TERMINALS</span></div>
+              <button class="control-btn" style="pointer-events: none;">SCAN ▶</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="coffee-card featured">
+          <div class="card-glow gold"></div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">HANOI</h3>
+              <span class="card-japanese">ハノイ // HN</span>
+            </div>
+            <div class="card-meta">
+              <div class="meta-rating"><span class="stars">★★★★★</span><span class="rating-count">NODE 02</span></div>
+              <span class="meta-prep">● ONLINE</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-container"><span class="price-current" style="font-size: 0.8rem;">48 TERMINALS</span></div>
+              <button class="control-btn" style="pointer-events: none;">SCAN ▶</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="coffee-card premium">
+          <div class="card-glow"></div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">DA NANG</h3>
+              <span class="card-japanese">ダナン // DN</span>
+            </div>
+            <div class="card-meta">
+              <div class="meta-rating"><span class="stars">★★★★★</span><span class="rating-count">NODE 03</span></div>
+              <span class="meta-prep">● ONLINE</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-container"><span class="price-current" style="font-size: 0.8rem;">32 TERMINALS</span></div>
+              <button class="control-btn" style="pointer-events: none;">SCAN ▶</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="coffee-card">
+          <div class="card-glow"></div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">WORLDWIDE</h3>
+              <span class="card-japanese">グローバル // 24/7</span>
+            </div>
+            <div class="card-meta">
+              <div class="meta-rating"><span class="stars">★★★★★</span><span class="rating-count">GLOBAL</span></div>
+              <span class="meta-prep">● LIVE</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-container"><span class="price-current" style="font-size: 0.8rem;">20+ REGIONS</span></div>
+              <button class="control-btn" style="pointer-events: none;">SCAN ▶</button>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </main>
 
-    <!-- Instagram Section -->
-    <section class="py-20 md:py-32 relative overflow-hidden" style="background: linear-gradient(180deg, #11131A, #07070B);">
-      <div class="absolute inset-0 grid-overlay"></div>
-      <div class="blob blob-violet" style="top: 40%; left: -10%; animation: floatSlow 9s ease-in-out infinite;"></div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-purple mb-4">
-            <span class="status-dot online"></span>
-            <span class="text-[0.65rem] font-mono tracking-widest" style="color: rgba(0, 245, 212, 0.8);">FEED // LIVE STREAM</span>
-          </div>
-          <h2 class="font-display text-3xl md:text-5xl font-bold">
-            <span style="background: linear-gradient(135deg, #FF4FD8, #9D4EDD); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">#CYBER</span>
-            <span class="text-white">CAFÉ</span>
-          </h2>
-          <p class="text-sm mt-2" style="color: var(--silver);">Tag your late-night sessions with #CyberCafé to join the feed.</p>
-          <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg cyber-btn-outline text-xs font-semibold mt-4">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
-            FOLLOW FEED
-          </a>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4" id="instagram-grid"></div>
+    <!-- TERMINAL FOOTER -->
+    <footer class="terminal-footer">
+      <div class="terminal-line">
+        <span class="term-accent">cyber@arasaka:~$</span> ./serve --mode=brew
+        <span class="term-accent">//</span> SYSTEM ONLINE // v2.0.25 // ALL SYSTEMS NOMINAL
       </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer-cyber">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
-          <!-- Brand -->
-          <div class="col-span-2 md:col-span-4 lg:col-span-1 mb-8 lg:mb-0">
-            <div class="flex items-center gap-3 mb-6">
-              <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, rgba(157,78,221,0.2), rgba(255,46,99,0.2)); border: 1px solid rgba(157,78,221,0.3);">
-                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none"><path d="M2 21H20V19H2M20 8H18V5H20M20 3H4V13C4 15.209 5.791 17 8 17H14C16.209 17 18 15.209 18 13V10H20C21.105 10 22 9.105 22 8V5C22 3.895 21.105 3 20 3Z" fill="url(#footer-grad)"/><defs><linearGradient id="footer-grad" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9D4EDD"/><stop offset="1" stop-color="#FF2E63"/></linearGradient></defs></svg>
-              </div>
-              <span class="font-display text-xl font-bold" style="background: linear-gradient(135deg, #9D4EDD, #FF4FD8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">CYBER</span>
-              <span class="text-xl font-bold text-white">COFFEE</span>
-            </div>
-            <p class="text-sm leading-relaxed mb-6" style="color: var(--silver);">Underground cyber café network. Fuel for the overclocked. Open 24/7.</p>
-            <div class="flex gap-3">
-              <a href="#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);" onmouseover="this.style.borderColor='rgba(157,78,221,0.4)'; this.style.boxShadow='0 0 15px rgba(157,78,221,0.15)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.boxShadow='none'">
-                <svg class="w-5 h-5" style="color: var(--silver);" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);" onmouseover="this.style.borderColor='rgba(157,78,221,0.4)'; this.style.boxShadow='0 0 15px rgba(157,78,221,0.15)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.boxShadow='none'">
-                <svg class="w-5 h-5" style="color: var(--silver);" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);" onmouseover="this.style.borderColor='rgba(157,78,221,0.4)'; this.style.boxShadow='0 0 15px rgba(157,78,221,0.15)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.boxShadow='none'">
-                <svg class="w-5 h-5" style="color: var(--silver);" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.46 3.5 12 3.5 12 3.5S4.54 3.5 2.62 4.05A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.92.55 9.38.55 9.38.55s7.46 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- SYSTEM -->
-          <div>
-            <h4 class="font-display text-xs font-bold tracking-widest mb-4" style="color: var(--violet);">SYSTEM</h4>
-            <ul class="space-y-3">
-              <li><a href="#" class="footer-link font-mono text-xs">> about.exe</a></li>
-              <li><a href="/featureproducts.html" class="footer-link font-mono text-xs">> menu.db</a></li>
-              <li><a href="/discount.html" class="footer-link font-mono text-xs">> rewards.sh</a></li>
-              <li><a href="/blog.html" class="footer-link font-mono text-xs">> log.txt</a></li>
-              <li><a href="#" class="footer-link font-mono text-xs">> nodes.map</a></li>
-              <li><a href="/jobsubmit.html" class="footer-link font-mono text-xs">> join.exe</a></li>
-            </ul>
-          </div>
-
-          <!-- PROTOCOLS -->
-          <div>
-            <h4 class="font-display text-xs font-bold tracking-widest mb-4" style="color: var(--crimson);">PROTOCOLS</h4>
-            <ul class="space-y-3">
-              <li><a href="#" class="footer-link font-mono text-xs">> terms.cfg</a></li>
-              <li><a href="#" class="footer-link font-mono text-xs">> privacy.enc</a></li>
-              <li><a href="#" class="footer-link font-mono text-xs">> billing.sys</a></li>
-              <li><a href="#" class="footer-link font-mono text-xs">> license.key</a></li>
-            </ul>
-          </div>
-
-          <!-- CONTACT -->
-          <div>
-            <h4 class="font-display text-xs font-bold tracking-widest mb-4" style="color: var(--cyan);">CONTACT</h4>
-            <ul class="space-y-3">
-              <li class="flex items-start gap-2">
-                <svg class="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style="color: var(--cyan);" fill="currentColor" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/></svg>
-                <span class="text-xs font-mono" style="color: var(--silver);">57 Mile End Rd, London</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-3.5 h-3.5 flex-shrink-0" style="color: var(--cyan);" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
-                <span class="text-xs font-mono" style="color: var(--silver);">1800 6936</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <svg class="w-3.5 h-3.5 flex-shrink-0" style="color: var(--cyan);" fill="currentColor" viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
-                <span class="text-xs font-mono" style="color: var(--silver);">support@cybercoffee.io</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- DOWNLOAD -->
-          <div>
-            <h4 class="font-display text-xs font-bold tracking-widest mb-4" style="color: var(--amber);">CONNECT</h4>
-            <div class="space-y-3">
-              <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'; this.style.background='rgba(157,78,221,0.05)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.05)'; this.style.background='rgba(255,255,255,0.03)'">
-                <svg class="w-5 h-5" style="color: var(--silver);" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05,20.28C16.07,20.83 14.89,21 13.5,21C11.55,21 9.84,20.63 8.37,19.91C6.9,19.18 5.82,18.12 5.15,16.73C4.47,15.34 4.14,13.66 4.14,11.68C4.14,9.28 4.66,7.25 5.7,5.59C6.74,3.94 8.19,2.76 10.05,2.06C11.9,1.35 14.09,1 16.61,1C17.77,1 18.7,1.04 19.39,1.12L19.05,3.5C18.36,3.36 17.6,3.29 16.77,3.29C14.96,3.29 13.39,3.58 12.07,4.15C10.74,4.73 9.72,5.56 9,6.66C8.27,7.77 7.91,9.11 7.91,10.68L7.94,10.92C8.5,10.28 9.29,9.77 10.31,9.38C11.32,9 12.47,8.81 13.77,8.81C15.3,8.81 16.62,9.09 17.73,9.67C18.84,10.24 19.71,11.04 20.33,12.08C20.95,13.11 21.26,14.3 21.26,15.65C21.26,17 20.94,18.2 20.3,19.23C19.67,20.27 18.67,21 17.05,20.28M15.5,11.91C14.75,11.91 14.06,12.03 13.42,12.28C12.79,12.53 12.26,12.87 11.82,13.31C11.39,13.75 11.1,14.26 10.95,14.84C10.8,15.42 10.89,16 11.23,16.5C11.57,17 12.03,17.37 12.6,17.62C13.17,17.87 13.79,18 14.45,18C15.3,18 16.04,17.82 16.67,17.45C17.3,17.09 17.8,16.58 18.15,15.93C18.5,15.28 18.67,14.53 18.67,13.69C18.67,12.86 18.43,12.19 17.95,11.69C17.47,11.19 16.65,11.91 15.5,11.91Z"/></svg>
-                <div>
-                  <span class="block text-[0.6rem] font-mono" style="color: var(--silver);">DOWNLOAD FOR</span>
-                  <span class="block text-xs font-semibold text-white">iOS</span>
-                </div>
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);" onmouseover="this.style.borderColor='rgba(157,78,221,0.3)'; this.style.background='rgba(157,78,221,0.05)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.05)'; this.style.background='rgba(255,255,255,0.03)'">
-                <svg class="w-5 h-5" style="color: var(--silver);" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-                <div>
-                  <span class="block text-[0.6rem] font-mono" style="color: var(--silver);">DOWNLOAD FOR</span>
-                  <span class="block text-xs font-semibold text-white">Android</span>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-12 pt-8 border-t border-white/5">
-          <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-xs font-mono text-center md:text-left" style="color: rgba(168, 176, 192, 0.4);">© 2025 CYBERCOFFEE NETWORK // ALL RIGHTS RESERVED // SYS v2.0.25</p>
-            <div class="flex items-center gap-3">
-              <span class="text-[0.6rem] font-mono" style="color: rgba(168, 176, 192, 0.4);">SECURE PAYMENT:</span>
-              <div class="flex gap-2">
-                <div class="px-2 py-1 rounded text-[0.55rem] font-mono font-bold" style="background: rgba(255,255,255,0.05); color: var(--silver);">VISA</div>
-                <div class="px-2 py-1 rounded text-[0.55rem] font-mono font-bold" style="background: rgba(255,255,255,0.05); color: var(--silver);">MC</div>
-                <div class="px-2 py-1 rounded text-[0.55rem] font-mono font-bold" style="background: rgba(255,255,255,0.05); color: var(--silver);">MOMO</div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="terminal-chips">
+        <span class="term-chip gold">REWARDS ACTIVE</span>
+        <span class="term-chip ok">CAFFEINE 99%</span>
+        <span class="term-chip">© 2025 CYBERCOFFEE</span>
       </div>
     </footer>
   </div>
+</div>
 
-  <script>
-    const defaultConfig = {
-      brand_name: 'CYBER',
-      hero_headline: 'WAKE BREW CYBER COFFEE',
-      hero_tagline: 'The café runs on code, caffeine, and chaos.',
-      collection_title: 'COLLECTION CORE',
-      featured_title: 'FEATURED FUEL',
-      store_title: 'FIND "NODE" NEAR YOU',
-      background_color: '#07070B',
-      surface_color: '#11131A',
-      text_color: '#F5F7FA',
-      primary_action_color: '#9D4EDD',
-      secondary_action_color: '#FF2E63'
-    };
-
-    const products = {
-      cafe: [
-        { name: 'Iced Americano', price: 39000, badge: 'Bestseller', image: 'media-assets/bacsiuclassic.png' },
-        { name: 'Peach Americano', price: 49000, badge: null, image: 'media-assets/peachamericano.png' },
-        { name: 'Plum Americano', price: 49000, badge: null, image: 'media-assets/americanomo.png' },
-        { name: 'Blueberry Americano', price: 59000, badge: 'New', image: 'media-assets/americanvietquat.png' },
-        { name: 'Yuzu Americano', price: 49000, badge: null, image: 'media-assets/yuzuamericano.png' },
-        { name: 'Hot Americano', price: 45000, badge: null, image: 'media-assets/classicamericano.png' },
-        { name: 'Cappuccino', price: 55000, badge: null, image: 'media-assets/cappuccino.png' },
-        { name: 'Iced Cappuccino', price: 55000, badge: null, image: 'media-assets/coldcappucino.png' },
-        { name: 'Hot Cappuccino', price: 55000, badge: null, image: 'media-assets/hotcappuccino.png' },
-        { name: 'Caramel Macchiato', price: 65000, badge: 'Popular', image: 'media-assets/macchiato.png' },
-        { name: 'Cold Brew', price: 49000, badge: null, image: 'media-assets/coldbrew.png' },
-        { name: 'Traditional Cold Brew', price: 45000, badge: null, image: 'media-assets/originalcoldbew.png' },
-        { name: 'Black Coffee', price: 35000, badge: null, image: 'media-assets/ca_phe_phin_den_da.png' },
-        { name: 'Hot Black Coffee', price: 35000, badge: null, image: 'media-assets/ca_phe_phin_den_nong.png' },
-        { name: 'Brown Coffee', price: 38000, badge: null, image: 'media-assets/ca_phe_phin_nau_da.png' },
-        { name: 'Hot Brown Coffee', price: 38000, badge: null, image: 'media-assets/ca_phe_phin_nau_nong.png' },
-        { name: 'Espresso', price: 35000, badge: null, image: 'media-assets/espresso.png' },
-        { name: 'Hot Espresso', price: 35000, badge: null, image: 'media-assets/espressohot.png' },
-        { name: 'Iced Espresso', price: 35000, badge: null, image: 'media-assets/espressocold.png' },
-        { name: 'Ethiopia', price: 55000, badge: null, image: 'media-assets/ethiopia.png' },
-        { name: 'Ethiopia Americano', price: 55000, badge: null, image: 'media-assets/ethiopiaamericano.png' },
-        { name: 'Latte', price: 55000, badge: null, image: 'media-assets/latte.png' },
-        { name: 'Hot Latte', price: 55000, badge: null, image: 'media-assets/lattehot.png' },
-        { name: 'Caramel Latte', price: 65000, badge: null, image: 'media-assets/latte caramel.png' },
-        { name: 'Classic Latte', price: 55000, badge: null, image: 'media-assets/latteclassic.png' },
-        { name: 'Almond Latte', price: 65000, badge: null, image: 'media-assets/lattealmond.png' },
-        { name: 'Hazelnut Latte', price: 65000, badge: null, image: 'media-assets/lattehazzlenut.png' },
-        { name: 'Hot Chocolate', price: 55000, badge: null, image: 'media-assets/hotchoco.png' },
-        { name: 'Cold Chocolate', price: 55000, badge: null, image: 'media-assets/coldchoco.png' },
-        { name: 'Chocolate Frappe', price: 65000, badge: null, image: 'media-assets/frappechoco.png' },
-        { name: 'Vanilla Frappe', price: 65000, badge: null, image: 'media-assets/vanillafroat.png' },
-        { name: 'Iced Matcha Latte', price: 65000, badge: null, image: 'media-assets/matchalattewithice.png' },
-        { name: 'Matcha Frappe', price: 65000, badge: null, image: 'media-assets/matchafrappe.png' },
-        { name: 'Matcha Foam', price: 65000, badge: null, image: 'media-assets/matchafroat.png' },
-        { name: 'Oolong Tea', price: 55000, badge: null, image: 'media-assets/olongtuquy.png' },
-        { name: 'Oolong with Jelly', price: 65000, badge: null, image: 'media-assets/olongtuquysuongsao.png' },
-        { name: 'Red Tea', price: 55000, badge: null, image: 'media-assets/hongtea.png' },
-        { name: 'Black Tea', price: 55000, badge: null, image: 'media-assets/blacktea.png' }
-      ],
-      boba: [
-        { name: 'Matcha Boba Peach', price: 75000, badge: 'New', image: 'media-assets/matchabobapeach.png' },
-        { name: 'Red Tea Boba', price: 65000, badge: null, image: 'media-assets/hongteaboba.png' },
-        { name: 'Oolong Boba', price: 65000, badge: null, image: 'media-assets/olongbobatea.png' }
-      ],
-      food: [
-        { name: 'Sandwich', price: 65000, badge: null, image: 'media-assets/sandwich.png' },
-        { name: 'Croissant', price: 45000, badge: null, image: 'media-assets/croissant.png' },
-        { name: 'Cheesecake', price: 75000, badge: null, image: 'media-assets/cheesecake.png' },
-        { name: 'Matcha Cheesecake', price: 85000, badge: 'Popular', image: 'media-assets/matchaburntcheesecake.png' },
-        { name: 'Mochi', price: 45000, badge: null, image: 'media-assets/mochi.png' },
-        { name: 'Raspberry Mochi', price: 55000, badge: null, image: 'media-assets/mochiphucbontu.png' },
-        { name: 'Chocolate Mochi', price: 55000, badge: null, image: 'media-assets/mocchikemchoco.png' },
-        { name: 'Matcha Mochi', price: 55000, badge: null, image: 'media-assets/mitsay.png' }
-      ]
-    };
-
-    const instagramPosts = [
-      { image: 'media-assets/imgs/1.jpg' },
-      { image: 'media-assets/imgs/2.jpg' },
-      { image: 'media-assets/imgs/3.jpg' },
-      { image: 'media-assets/imgs/4.jpg' },
-      { image: 'media-assets/imgs/5.jpg' },
-      { image: 'media-assets/imgs/6.jpg' }
-    ];
-
-    const districts = {
-      hcm: ['District 1', 'District 2', 'District 3', 'District 7', 'Binh Thanh', 'Phu Nhuan', 'Tan Binh', 'Thu Duc'],
-      hn: ['Hoan Kiem', 'Ba Dinh', 'Dong Da', 'Hai Ba Trung', 'Cau Giay', 'Thanh Xuan', 'Hoang Mai'],
-      dn: ['Hai Chau', 'Thanh Khe', 'Son Tra', 'Ngu Hanh Son', 'Lien Chieu'],
-      hp: ['Hong Bang', 'Le Chan', 'Ngo Quyen', 'Kien An'],
-      ct: ['Ninh Kieu', 'Binh Thuy', 'Cai Rang'],
-      bd: ['Thu Dau Mot', 'Di An', 'Thuan An'],
-      dl: ['Ward 1', 'Ward 2', 'Ward 3', 'Ward 4']
-    };
-
-    function formatPrice(price) {
-      return new Intl.NumberFormat('vi-VN').format(price) + ' đ';
-    }
-
-    let activeFilter = 'all';
-
-    function filterProducts(category, btn) {
-      activeFilter = category;
-      document.querySelectorAll('.flex-wrap.justify-center.gap-3.mb-12 button').forEach(b => {
-        if (b === btn) {
-          b.className = 'cyber-btn px-5 py-2.5 rounded-lg text-xs font-semibold tracking-wider';
-        } else {
-          b.className = 'cyber-btn-outline px-5 py-2.5 rounded-lg text-xs font-semibold tracking-wider';
-        }
-      });
-      renderProducts(defaultConfig);
-    }
-
-    function renderProducts(config) {
-      const grid = document.getElementById('products-grid');
-      if (!grid) return;
-
-      let items = [];
-      if (activeFilter === 'all') {
-        Object.entries(products).forEach(([cat, prods]) => {
-          prods.forEach(p => items.push({ ...p, category: cat }));
-        });
-      } else {
-        (products[activeFilter] || []).forEach(p => items.push({ ...p, category: activeFilter }));
-      }
-
-      items = items.slice(0, 8);
-
-      grid.innerHTML = items.map(product => `
-        <div class="product-card group">
-          <div class="relative" style="aspect-ratio: 1;">
-            <img src="${product.image || 'media-assets/coffee.png'}" alt="${product.name}" class="w-full h-full object-cover product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="absolute inset-0 flex items-center justify-center hidden" style="background: linear-gradient(135deg, rgba(157,78,221,0.1), rgba(255,46,99,0.1));">
-              <svg class="w-16 h-16 md:w-20 md:h-20" viewBox="0 0 24 24" fill="#9D4EDD" opacity="0.3"><path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z"/></svg>
-            </div>
-            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
-          <div class="p-4">
-            <span class="text-[0.6rem] font-mono font-medium uppercase tracking-widest" style="color: var(--violet);">${product.category === 'cafe' ? 'COFFEE' : product.category === 'boba' ? 'BOBA' : 'SNACK'}</span>
-            <h3 class="font-semibold text-sm mt-1 mb-2 text-white">${product.name}</h3>
-            <div class="flex items-center justify-between">
-              <span class="font-mono font-bold text-sm" style="color: var(--white);">${formatPrice(product.price)}</span>
-              <button class="w-8 h-8 rounded-lg flex items-center justify-center cyber-btn" style="padding: 0; min-width: unset; width: 32px; height: 32px;" onclick="event.stopPropagation()">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function renderInstagram(config) {
-      const grid = document.getElementById('instagram-grid');
-      if (!grid) return;
-      grid.innerHTML = instagramPosts.map((post, index) => `
-        <div class="instagram-item group">
-          <img src="${post.image}" alt="Cyber feed ${index + 1}" class="w-full h-full object-cover" style="aspect-ratio: 1;">
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: linear-gradient(135deg, rgba(157,78,221,0.3), rgba(255,46,99,0.2));">
-            <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    async function onConfigChange(config) {
-      document.getElementById('nav-brand').textContent = (config.brand_name || defaultConfig.brand_name) + 'COFFEE';
-      renderProducts(config);
-      renderInstagram(config);
-    }
-
-    function mapToCapabilities(config) {
-      return {
-        recolorables: [
-          {
-            get: () => config.background_color || defaultConfig.background_color,
-            set: (value) => { config.background_color = value; if (window.elementSdk) window.elementSdk.setConfig({ background_color: value }); }
-          },
-          {
-            get: () => config.surface_color || defaultConfig.surface_color,
-            set: (value) => { config.surface_color = value; if (window.elementSdk) window.elementSdk.setConfig({ surface_color: value }); }
-          },
-          {
-            get: () => config.text_color || defaultConfig.text_color,
-            set: (value) => { config.text_color = value; if (window.elementSdk) window.elementSdk.setConfig({ text_color: value }); }
-          },
-          {
-            get: () => config.primary_action_color || defaultConfig.primary_action_color,
-            set: (value) => { config.primary_action_color = value; if (window.elementSdk) window.elementSdk.setConfig({ primary_action_color: value }); }
-          },
-          {
-            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
-            set: (value) => { config.secondary_action_color = value; if (window.elementSdk) window.elementSdk.setConfig({ secondary_action_color: value }); }
-          }
-        ],
-        borderables: [],
-        fontEditable: undefined,
-        fontSizeable: undefined
-      };
-    }
-
-    function mapToEditPanelValues(config) {
-      return new Map([
-        ['brand_name', config.brand_name || defaultConfig.brand_name],
-        ['hero_headline', config.hero_headline || defaultConfig.hero_headline],
-        ['hero_tagline', config.hero_tagline || defaultConfig.hero_tagline],
-        ['collection_title', config.collection_title || defaultConfig.collection_title],
-        ['featured_title', config.featured_title || defaultConfig.featured_title],
-        ['store_title', config.store_title || defaultConfig.store_title]
-      ]);
-    }
-
-    if (window.elementSdk) {
-      window.elementSdk.init({ defaultConfig, onConfigChange, mapToCapabilities, mapToEditPanelValues });
-    } else {
-      onConfigChange(defaultConfig);
-    }
-
-    // Particle system
-    function createParticles() {
-      const container = document.getElementById('particle-container');
-      if (!container) return;
-      const count = 60;
-      for (let i = 0; i < count; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        const size = Math.random() * 3 + 1;
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        const colors = ['#9D4EDD', '#FF2E63', '#FF4FD8', '#4CC9F0', '#00F5D4', '#FFB703'];
-        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-        particle.style.boxShadow = `0 0 ${size * 3}px ${particle.style.background}`;
-        const duration = 3 + Math.random() * 4;
-        const delay = Math.random() * 5;
-        particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
-        particle.style.opacity = 0.3 + Math.random() * 0.4;
-        container.appendChild(particle);
-      }
-    }
-    createParticles();
-
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
-
-    // City selection handler
-    document.getElementById('city-select').addEventListener('change', (e) => {
-      const districtSelect = document.getElementById('district-select');
-      const cityDistricts = districts[e.target.value] || [];
-      districtSelect.innerHTML = '<option value="">Select District</option>' +
-        cityDistricts.map(d => `<option value="${d}">${d}</option>`).join('');
-    });
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          document.getElementById('mobile-menu').classList.add('hidden');
-        }
-      });
-    });
-
-    // Navbar scroll effect
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('nav');
-      const currentScroll = window.pageYOffset;
-      if (currentScroll > 100) {
-        nav.style.borderBottom = '1px solid rgba(157,78,221,0.15)';
-        nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
-      } else {
-        nav.style.borderBottom = '1px solid rgba(157,78,221,0.1)';
-        nav.style.boxShadow = 'none';
-      }
-      lastScroll = currentScroll;
-    });
-
-    // Parallax effect on blobs
-    document.addEventListener('mousemove', (e) => {
-      const blobs = document.querySelectorAll('.blob');
-      const x = (e.clientX / window.innerWidth - 0.5) * 20;
-      const y = (e.clientY / window.innerHeight - 0.5) * 20;
-      blobs.forEach((blob, i) => {
-        blob.style.transform = `translate(${x * (i + 1)}px, ${y * (i + 1)}px)`;
-      });
-    });
-  </script>
+<script>
+  window.fuelProducts = [
+    { name: 'Iced Americano', price: 39000, badge: 'Bestseller', image: 'media-assets/bacsiuclassic.png', category: 'cafe' },
+    { name: 'Peach Americano', price: 49000, badge: null, image: 'media-assets/peachamericano.png', category: 'cafe' },
+    { name: 'Plum Americano', price: 49000, badge: null, image: 'media-assets/americanomo.png', category: 'cafe' },
+    { name: 'Blueberry Americano', price: 59000, badge: 'New', image: 'media-assets/americanvietquat.png', category: 'cafe' },
+    { name: 'Yuzu Americano', price: 49000, badge: null, image: 'media-assets/yuzuamericano.png', category: 'cafe' },
+    { name: 'Hot Americano', price: 45000, badge: null, image: 'media-assets/classicamericano.png', category: 'cafe' },
+    { name: 'Cappuccino', price: 55000, badge: null, image: 'media-assets/cappuccino.png', category: 'cafe' },
+    { name: 'Iced Cappuccino', price: 55000, badge: null, image: 'media-assets/coldcappucino.png', category: 'cafe' },
+    { name: 'Hot Cappuccino', price: 55000, badge: null, image: 'media-assets/hotcappuccino.png', category: 'cafe' },
+    { name: 'Caramel Macchiato', price: 65000, badge: 'Popular', image: 'media-assets/macchiato.png', category: 'cafe' },
+    { name: 'Cold Brew', price: 49000, badge: null, image: 'media-assets/coldbrewclassic.png', category: 'cafe' },
+    { name: 'Traditional Cold Brew', price: 45000, badge: null, image: 'media-assets/originalcoldbew.png', category: 'cafe' },
+    { name: 'Black Coffee', price: 35000, badge: null, image: 'media-assets/ca_phe_phin_den_da.png', category: 'cafe' },
+    { name: 'Hot Black Coffee', price: 35000, badge: null, image: 'media-assets/ca_phe_phin_den_nong.png', category: 'cafe' },
+    { name: 'Brown Coffee', price: 38000, badge: null, image: 'media-assets/ca_phe_phin_nau_da.png', category: 'cafe' },
+    { name: 'Hot Brown Coffee', price: 38000, badge: null, image: 'media-assets/ca_phe_phin_nau_nong.png', category: 'cafe' },
+    { name: 'Espresso', price: 35000, badge: null, image: 'media-assets/espresso.png', category: 'cafe' },
+    { name: 'Hot Espresso', price: 35000, badge: null, image: 'media-assets/espressohot.png', category: 'cafe' },
+    { name: 'Iced Espresso', price: 35000, badge: null, image: 'media-assets/espressocold.png', category: 'cafe' },
+    { name: 'Ethiopia', price: 55000, badge: null, image: 'media-assets/ethiopia.png', category: 'cafe' },
+    { name: 'Ethiopia Americano', price: 55000, badge: null, image: 'media-assets/ethiopiaamericano.png', category: 'cafe' },
+    { name: 'Latte', price: 55000, badge: null, image: 'media-assets/latte.png', category: 'cafe' },
+    { name: 'Hot Latte', price: 55000, badge: null, image: 'media-assets/lattehot.png', category: 'cafe' },
+    { name: 'Caramel Latte', price: 65000, badge: null, image: 'media-assets/latte caramel.png', category: 'cafe' },
+    { name: 'Classic Latte', price: 55000, badge: null, image: 'media-assets/latteclassic.png', category: 'cafe' },
+    { name: 'Almond Latte', price: 65000, badge: null, image: 'media-assets/lattealmond.png', category: 'cafe' },
+    { name: 'Hazelnut Latte', price: 65000, badge: null, image: 'media-assets/lattehazzlenut.png', category: 'cafe' },
+    { name: 'Hot Chocolate', price: 55000, badge: null, image: 'media-assets/hotchoco.png', category: 'cafe' },
+    { name: 'Cold Chocolate', price: 55000, badge: null, image: 'media-assets/coldchoco.png', category: 'cafe' },
+    { name: 'Chocolate Frappe', price: 65000, badge: null, image: 'media-assets/frappechoco.png', category: 'cafe' },
+    { name: 'Vanilla Frappe', price: 65000, badge: null, image: 'media-assets/vanillafroat.png', category: 'cafe' },
+    { name: 'Iced Matcha Latte', price: 65000, badge: null, image: 'media-assets/matchalattewithice.png', category: 'cafe' },
+    { name: 'Matcha Frappe', price: 65000, badge: null, image: 'media-assets/matchafrappe.png', category: 'cafe' },
+    { name: 'Matcha Foam', price: 65000, badge: null, image: 'media-assets/matchafroat.png', category: 'cafe' },
+    { name: 'Oolong Tea', price: 55000, badge: null, image: 'media-assets/olongtuquy.png', category: 'cafe' },
+    { name: 'Oolong with Jelly', price: 65000, badge: null, image: 'media-assets/olongtuquysuongsao.png', category: 'cafe' },
+    { name: 'Red Tea', price: 55000, badge: null, image: 'media-assets/hongtea.png', category: 'cafe' },
+    { name: 'Black Tea', price: 55000, badge: null, image: 'media-assets/blacktea.png', category: 'cafe' },
+    { name: 'Matcha Boba Peach', price: 75000, badge: 'New', image: 'media-assets/matchabobapeach.png', category: 'boba' },
+    { name: 'Red Tea Boba', price: 65000, badge: null, image: 'media-assets/hongteaboba.png', category: 'boba' },
+    { name: 'Oolong Boba', price: 65000, badge: null, image: 'media-assets/olongbobatea.png', category: 'boba' },
+    { name: 'Sandwich', price: 65000, badge: null, image: 'media-assets/sandwich.png', category: 'food' },
+    { name: 'Croissant', price: 45000, badge: null, image: 'media-assets/croissant.png', category: 'food' },
+    { name: 'Cheesecake', price: 75000, badge: null, image: 'media-assets/cheesecake.png', category: 'food' },
+    { name: 'Matcha Cheesecake', price: 85000, badge: 'Popular', image: 'media-assets/matchaburntcheesecake.png', category: 'food' },
+    { name: 'Mochi', price: 45000, badge: null, image: 'media-assets/mochi.png', category: 'food' },
+    { name: 'Raspberry Mochi', price: 55000, badge: null, image: 'media-assets/mochiphucbontu.png', category: 'food' },
+    { name: 'Chocolate Mochi', price: 55000, badge: null, image: 'media-assets/mocchikemchoco.png', category: 'food' },
+    { name: 'Matcha Mochi', price: 55000, badge: null, image: 'media-assets/mitsay.png', category: 'food' },
+    { name: 'Classic Americano', price: 39000, badge: null, image: 'media-assets/americanoclassic.png', category: 'cafe' },
+    { name: 'Peach Americano Đá', price: 49000, badge: null, image: 'media-assets/americanopeach.png', category: 'cafe' },
+    { name: 'Bạc Xỉ Kem', price: 49000, badge: null, image: 'media-assets/bacsiukem.png', category: 'cafe' },
+    { name: 'Bạc Xỉ Mây', price: 49000, badge: null, image: 'media-assets/bacsiumay.png', category: 'cafe' },
+    { name: 'Cappuccino Iced', price: 55000, badge: null, image: 'media-assets/cappuccinoiced.png', category: 'cafe' },
+    { name: 'Choco Đá', price: 55000, badge: null, image: 'media-assets/chocoda.png', category: 'cafe' },
+    { name: 'Cold Brew Kumquat', price: 59000, badge: 'New', image: 'media-assets/coldbrewkumquat.png', category: 'cafe' },
+    { name: 'Ethiopia Hot', price: 55000, badge: null, image: 'media-assets/ethiopianong.png', category: 'cafe' },
+    { name: 'Latte Nóng', price: 55000, badge: null, image: 'media-assets/lattenong.png', category: 'cafe' },
+    { name: 'Iced Macchiato', price: 65000, badge: null, image: 'media-assets/macchiatoiced.png', category: 'cafe' },
+    { name: 'Matcha Latte', price: 65000, badge: null, image: 'media-assets/matchalatte.png', category: 'cafe' },
+    { name: 'Matcha Latte Classic', price: 65000, badge: null, image: 'media-assets/matchalatteclassic.png', category: 'cafe' },
+    { name: 'Matcha Oat Latte', price: 69000, badge: null, image: 'media-assets/matchalatteoatmilk.png', category: 'cafe' },
+    { name: 'Matcha Fine Latte', price: 65000, badge: null, image: 'media-assets/matchafined.png', category: 'cafe' },
+    { name: 'Matcha Tây Bắc', price: 65000, badge: null, image: 'media-assets/matchataybac.png', category: 'cafe' },
+    { name: 'Matcha Tây Bắc Đá', price: 65000, badge: null, image: 'media-assets/matchataybacda.png', category: 'cafe' },
+    { name: 'Matcha Tây Bắc Nóng', price: 65000, badge: null, image: 'media-assets/matchataybachot.png', category: 'cafe' },
+    { name: 'Oolong Sương Sáo', price: 65000, badge: null, image: 'media-assets/oolongsuongsau.png', category: 'cafe' },
+    { name: 'Oolong Tứ Quý Sen', price: 65000, badge: null, image: 'media-assets/olongtuquysen.png', category: 'cafe' },
+    { name: 'Oolong Tứ Quý Đá', price: 65000, badge: null, image: 'media-assets/oolongtuquysenda.png', category: 'cafe' },
+    { name: 'Peach Tea', price: 55000, badge: null, image: 'media-assets/peachtea.png', category: 'cafe' },
+    { name: 'Peach Tea Hot', price: 55000, badge: null, image: 'media-assets/peachteahot.png', category: 'cafe' },
+    { name: 'Machiatto Tea', price: 65000, badge: null, image: 'media-assets/machiatotea.png', category: 'cafe' },
+    { name: 'Black Milk Tea', price: 55000, badge: null, image: 'media-assets/blackmilktea.png', category: 'boba' },
+    { name: 'Black Milk Tea Pearl', price: 65000, badge: null, image: 'media-assets/blackmilkteapearl.png', category: 'boba' },
+    { name: 'Bláo Milk Tea', price: 55000, badge: null, image: 'media-assets/blaomilktea.png', category: 'boba' },
+    { name: 'Bláo Oolong', price: 55000, badge: null, image: 'media-assets/blaoolong.png', category: 'boba' },
+    { name: 'Oolong Milk Tea', price: 55000, badge: null, image: 'media-assets/oolongmilktea.png', category: 'boba' },
+    { name: 'Cheese Pizza', price: 79000, badge: null, image: 'media-assets/cheesepizza.png', category: 'food' },
+    { name: 'Beef Sauce Pizza', price: 85000, badge: null, image: 'media-assets/beefsaucepizza.png', category: 'food' },
+    { name: 'Pepperoni Pizza', price: 89000, badge: null, image: 'media-assets/pepperoni.png', category: 'food' },
+    { name: 'Rocket Salad', price: 69000, badge: null, image: 'media-assets/rocketsalad.png', category: 'food' },
+    { name: 'Yuzu Salad', price: 69000, badge: null, image: 'media-assets/saladyuzu.png', category: 'food' }
+  ];
+</script>
+<script src="arasaka.js"></script>
 </body>
 </html>
