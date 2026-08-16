@@ -1,0 +1,19 @@
+{
+  "name": "cybercoffee",
+  "version": "1.0.0",
+  "description": "Completely redesign and refactor the current CyberCoffee website UI. **Do not preserve the existing visual decisions just because they already exist. Be ruthless.** The current design looks like generic AI-generated cyberpunk slop: excessive gradients, weak typography hierarchy, decorative noise, oversized empty areas, inconsistent visual weight, and too many effects competing for attention.",
+  "main": "arasaka.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomschidmstmuller/cyberCoffee.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/tomschidmstmuller/cyberCoffee/issues"
+  },
+  "homepage": "https://github.com/tomschidmstmuller/cyberCoffee#readme"
+}

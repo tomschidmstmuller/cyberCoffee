@@ -623,15 +623,25 @@ button { font-family: inherit; }
   padding: 8px;
   overflow: hidden;
   border-radius: 8px;
+  touch-action: pan-y;
+  cursor: grab;
 }
+.carousel-track-wrapper.dragging { cursor: grabbing; user-select: none; }
 
 .carousel-track {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: calc((100% - 48px) / 4);
-  gap: 16px;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: block;
+  min-height: 260px;
 }
+
+.carousel-track .coffee-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, top 0.3s ease;
+}
+.carousel-track .coffee-card:hover { top: -6px; }
 
 /* Cards */
 .coffee-card {
@@ -828,13 +838,8 @@ button { font-family: inherit; }
   color: var(--bg-base);
 }
 
-/* Pagination */
-.carousel-pagination {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
-}
+/* Pagination (hidden for infinite conveyor) */
+.carousel-pagination { display: none; }
 .pagination-dot {
   width: 8px;
   height: 8px;
@@ -974,12 +979,10 @@ button { font-family: inherit; }
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1200px) {
-  .carousel-track { grid-auto-columns: calc((100% - 32px) / 3); }
   .status-metrics .metric:nth-child(4) { display: none; }
 }
 
 @media (max-width: 992px) {
-  .carousel-track { grid-auto-columns: calc((100% - 16px) / 2); }
   .status-metrics .metric:nth-child(3) { display: none; }
   .page-content { padding: 18px 18px 32px; }
 }
