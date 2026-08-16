@@ -153,6 +153,7 @@
           <button class="filter-btn" data-filter="cafe" role="tab">☕ COFFEE <span class="filter-count">0</span></button>
           <button class="filter-btn" data-filter="tea" role="tab">🍵 TEA <span class="filter-count">0</span></button>
           <button class="filter-btn" data-filter="food" role="tab">🍩 SNACKS <span class="filter-count">0</span></button>
+          <button class="filter-btn" data-filter="beer" role="tab">🍺 BEER <span class="filter-count">0</span></button>
           <button class="filter-btn premium" data-filter="bestseller" role="tab">★ BESTSELLER <span class="filter-count">0</span></button>
           <button class="filter-btn new" data-filter="new" role="tab">✦ NEW <span class="filter-count">0</span><span class="filter-badge">NEW</span></button>
         </div>
@@ -172,11 +173,11 @@
       </section>
 
       <div class="filter-categories" style="margin-bottom: 18px;" role="tablist" aria-label="Coffee subcategory filters">
-        <button class="filter-btn active" data-grid-filter="all">ALL</button>
-        <button class="filter-btn" data-grid-filter="vietnamese">VIETNAMESE</button>
-        <button class="filter-btn" data-grid-filter="espresso">ESPRESSO</button>
-        <button class="filter-btn" data-grid-filter="specialty">SPECIALTY</button>
-        <button class="filter-btn" data-grid-filter="coldbrew">COLD BREW</button>
+        <button class="filter-btn active" data-grid-filter="all" data-grid-category="cafe">ALL</button>
+        <button class="filter-btn" data-grid-filter="vietnamese" data-grid-category="cafe">VIETNAMESE</button>
+        <button class="filter-btn" data-grid-filter="espresso" data-grid-category="cafe">ESPRESSO</button>
+        <button class="filter-btn" data-grid-filter="specialty" data-grid-category="cafe">SPECIALTY</button>
+        <button class="filter-btn" data-grid-filter="coldbrew" data-grid-category="cafe">COLD BREW</button>
       </div>
       <div class="product-grid" id="coffee-grid"></div>
 
@@ -195,6 +196,21 @@
         <p class="section-sub">スナック // ENERGY PACKETS</p>
       </section>
       <div class="product-grid" id="food-grid"></div>
+
+      <!-- BEER -->
+      <section id="beer-products" class="section-header" style="margin-top: 48px;">
+        <span class="section-kicker">// SECTION 04 — ALCOHOLIC BEVERAGES</span>
+        <h2 class="section-title">BEER & ALCOHOL</h2>
+        <p class="section-sub">ビール // BREW PROTOCOLS — 18+ ONLY, AGE VERIFICATION REQUIRED</p>
+      </section>
+      <div class="filter-categories" style="margin-bottom: 18px;" role="tablist" aria-label="Beer subcategory filters">
+        <button class="filter-btn active" data-grid-filter="all" data-grid-category="beer">ALL</button>
+        <button class="filter-btn" data-grid-filter="lager" data-grid-category="beer">🍺 LAGER</button>
+        <button class="filter-btn" data-grid-filter="ale" data-grid-category="beer">🍻 ALE</button>
+        <button class="filter-btn" data-grid-filter="rose" data-grid-category="beer">🌹 ROSÉ</button>
+        <button class="filter-btn" data-grid-filter="cocktail" data-grid-category="beer">🍹 COCKTAIL</button>
+      </div>
+      <div class="product-grid" id="beer-grid"></div>
     </main>
 
     <!-- TERMINAL FOOTER -->
@@ -294,7 +310,13 @@
     { name: 'Beef Sauce Pizza', price: 85000, badge: null, image: 'media-assets/beefsaucepizza.png', category: 'food', subcategory: 'food' },
     { name: 'Pepperoni Pizza', price: 89000, badge: null, image: 'media-assets/pepperoni.png', category: 'food', subcategory: 'food' },
     { name: 'Rocket Salad', price: 69000, badge: null, image: 'media-assets/rocketsalad.png', category: 'food', subcategory: 'food' },
-    { name: 'Yuzu Salad', price: 69000, badge: null, image: 'media-assets/saladyuzu.png', category: 'food', subcategory: 'food' }
+    { name: 'Yuzu Salad', price: 69000, badge: null, image: 'media-assets/saladyuzu.png', category: 'food', subcategory: 'food' },
+    { name: 'HODN Beer', price: 32000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/hODNBeer.webp', category: 'beer', subcategory: 'lager' },
+    { name: 'HODN Lager Beer', price: 35000, badge: 'New', image: 'media-assets/sevenElevenProds/alcoholicBeverages/hODNLagerBeer.webp', category: 'beer', subcategory: 'lager' },
+    { name: 'Westside Pilsner', price: 69000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/pilsnerWestsideBeer.webp', category: 'beer', subcategory: 'lager' },
+    { name: 'Westside Pale Ale', price: 79000, badge: 'Popular', image: 'media-assets/sevenElevenProds/alcoholicBeverages/paleAleWestsideBeer.webp', category: 'beer', subcategory: 'ale' },
+    { name: 'Westside Rosé', price: 85000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/roseWestsideBeer.webp', category: 'beer', subcategory: 'rose' },
+    { name: 'MX Tape Peach', price: 45000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/mXTapePeachCT.webp', category: 'beer', subcategory: 'cocktail' }
   ];
 </script>
 <script src="arasaka.js"></script>
@@ -310,16 +332,18 @@
     renderGrid('coffee-grid', window.fuelProducts.filter(p => p.category === 'cafe'));
     renderGrid('tea-grid', window.fuelProducts.filter(p => p.category === 'tea'));
     renderGrid('food-grid', window.fuelProducts.filter(p => p.category === 'food'));
+    renderGrid('beer-grid', window.fuelProducts.filter(p => p.category === 'beer'));
 
     document.querySelectorAll('[data-grid-filter]').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('[data-grid-filter]').forEach(b => b.classList.remove('active'));
+        const cat = btn.dataset.gridCategory || 'cafe';
+        document.querySelectorAll(`[data-grid-category="${cat}"]`).forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const filter = btn.dataset.gridFilter;
         const list = filter === 'all'
-          ? window.fuelProducts.filter(p => p.category === 'cafe')
-          : window.fuelProducts.filter(p => p.category === 'cafe' && p.subcategory === filter);
-        renderGrid('coffee-grid', list);
+          ? window.fuelProducts.filter(p => p.category === cat)
+          : window.fuelProducts.filter(p => p.category === cat && p.subcategory === filter);
+        renderGrid(cat + '-grid', list);
       });
     });
   })();

@@ -199,12 +199,13 @@
       const p = this.products[idx];
       const cat = p.category === 'cafe' ? 'COFFEE'
         : p.category === 'tea' ? 'TEA'
-        : p.category === 'boba' ? 'BOBA' : 'SNACK';
+        : p.category === 'boba' ? 'BOBA'
+        : p.category === 'beer' ? 'BEER' : 'SNACK';
       const price = new Intl.NumberFormat('vi-VN').format(p.price);
       const badge = p.badge ? `<span class="badge ${(p.badge || '').toLowerCase()}">${p.badge}</span>` : '';
       const rating = (4.5 + ((idx * 7) % 5) / 10).toFixed(1);
       const prep = 3 + (idx % 9);
-      const jp = ['コーヒー', 'ラテ', '抹茶', 'ボバ', 'スナック', 'デザート'][idx % 6];
+      const jp = p.category === 'beer' ? 'ビール' : ['コーヒー', 'ラテ', '抹茶', 'ボバ', 'スナック', 'デザート'][idx % 6];
       return `
           <div class="card-glow${p.badge === 'Bestseller' ? ' gold' : ''}"></div>
           <div class="card-image">
@@ -469,13 +470,14 @@
     track.innerHTML = products.map((p, i) => {
       const cat = p.category === 'cafe' ? 'COFFEE'
         : p.category === 'tea' ? 'TEA'
-        : p.category === 'boba' ? 'BOBA' : 'SNACK';
+        : p.category === 'boba' ? 'BOBA'
+        : p.category === 'beer' ? 'BEER' : 'SNACK';
       const price = new Intl.NumberFormat('vi-VN').format(p.price);
       const badge = p.badge ? `<span class="badge ${(p.badge || '').toLowerCase()}">${p.badge}</span>` : '';
       const featured = p.badge === 'Bestseller' ? ' featured' : p.badge === 'New' ? ' premium' : '';
       const rating = (4.5 + ((i * 7) % 5) / 10).toFixed(1);
       const prep = 3 + (i % 9);
-      const jp = ['コーヒー', 'ラテ', '抹茶', 'ボバ', 'スナック', 'デザート'][i % 6];
+      const jp = p.category === 'beer' ? 'ビール' : ['コーヒー', 'ラテ', '抹茶', 'ボバ', 'スナック', 'デザート'][i % 6];
       return `
         <article class="coffee-card${featured}" data-category="${p.category}" role="listitem">
           <div class="card-glow${p.badge === 'Bestseller' ? ' gold' : ''}"></div>
