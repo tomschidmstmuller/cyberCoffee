@@ -153,7 +153,9 @@
           <button class="filter-btn" data-filter="cafe" role="tab">☕ COFFEE <span class="filter-count">0</span></button>
           <button class="filter-btn" data-filter="tea" role="tab">🍵 TEA <span class="filter-count">0</span></button>
           <button class="filter-btn" data-filter="food" role="tab">🍩 SNACKS <span class="filter-count">0</span></button>
+          <button class="filter-btn" data-filter="icecream" role="tab">🍦 ICECREAM <span class="filter-count">0</span></button>
           <button class="filter-btn" data-filter="beer" role="tab">🍺 BEER <span class="filter-count">0</span></button>
+          <button class="filter-btn" data-filter="energy" role="tab">⚡ ENERGY <span class="filter-count">0</span></button>
           <button class="filter-btn premium" data-filter="bestseller" role="tab">★ BESTSELLER <span class="filter-count">0</span></button>
           <button class="filter-btn new" data-filter="new" role="tab">✦ NEW <span class="filter-count">0</span><span class="filter-badge">NEW</span></button>
         </div>
@@ -211,6 +213,33 @@
         <button class="filter-btn" data-grid-filter="cocktail" data-grid-category="beer">🍹 COCKTAIL</button>
       </div>
       <div class="product-grid" id="beer-grid"></div>
+
+      <!-- ICECREAM -->
+      <section id="icecream-products" class="section-header" style="margin-top: 48px;">
+        <span class="section-kicker">// SECTION 05 — FROZEN DESSERTS</span>
+        <h2 class="section-title">ICE CREAM & FROZEN</h2>
+        <p class="section-sub">アイスクリーム // CRYO PROTOCOLS — STORED AT -18°C</p>
+      </section>
+      <div class="filter-categories" style="margin-bottom: 18px;" role="tablist" aria-label="Ice cream subcategory filters">
+        <button class="filter-btn active" data-grid-filter="all" data-grid-category="icecream">ALL</button>
+        <button class="filter-btn" data-grid-filter="icecream" data-grid-category="icecream">🍦 ICE CREAM</button>
+        <button class="filter-btn" data-grid-filter="popsicle" data-grid-category="icecream">🧊 POPSICLE</button>
+      </div>
+      <div class="product-grid" id="icecream-grid"></div>
+
+      <!-- ENERGY -->
+      <section id="energy-products" class="section-header" style="margin-top: 48px;">
+        <span class="section-kicker">// SECTION 06 — ENERGY DRINKS</span>
+        <h2 class="section-title">ENERGY DRINKS</h2>
+        <p class="section-sub">エナジードリンク // POWER PROTOCOLS — RECHARGE UNIT</p>
+      </section>
+      <div class="filter-categories" style="margin-bottom: 18px;" role="tablist" aria-label="Energy drink subcategory filters">
+        <button class="filter-btn active" data-grid-filter="all" data-grid-category="energy">ALL</button>
+        <button class="filter-btn" data-grid-filter="classic" data-grid-category="energy">🔋 CLASSIC</button>
+        <button class="filter-btn" data-grid-filter="zero" data-grid-category="energy">⚡ ZERO SUGAR</button>
+        <button class="filter-btn" data-grid-filter="fusion" data-grid-category="energy">🥤 FUSION</button>
+      </div>
+      <div class="product-grid" id="energy-grid"></div>
     </main>
 
     <!-- TERMINAL FOOTER -->
@@ -311,12 +340,33 @@
     { name: 'Pepperoni Pizza', price: 89000, badge: null, image: 'media-assets/pepperoni.png', category: 'food', subcategory: 'food' },
     { name: 'Rocket Salad', price: 69000, badge: null, image: 'media-assets/rocketsalad.png', category: 'food', subcategory: 'food' },
     { name: 'Yuzu Salad', price: 69000, badge: null, image: 'media-assets/saladyuzu.png', category: 'food', subcategory: 'food' },
-    { name: 'HODN Beer', price: 32000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/hODNBeer.webp', category: 'beer', subcategory: 'lager' },
-    { name: 'HODN Lager Beer', price: 35000, badge: 'New', image: 'media-assets/sevenElevenProds/alcoholicBeverages/hODNLagerBeer.webp', category: 'beer', subcategory: 'lager' },
-    { name: 'Westside Pilsner', price: 69000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/pilsnerWestsideBeer.webp', category: 'beer', subcategory: 'lager' },
-    { name: 'Westside Pale Ale', price: 79000, badge: 'Popular', image: 'media-assets/sevenElevenProds/alcoholicBeverages/paleAleWestsideBeer.webp', category: 'beer', subcategory: 'ale' },
-    { name: 'Westside Rosé', price: 85000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/roseWestsideBeer.webp', category: 'beer', subcategory: 'rose' },
-    { name: 'MX Tape Peach', price: 45000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/mXTapePeachCT.webp', category: 'beer', subcategory: 'cocktail' }
+    { name: 'HODN Beer', price: 32000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/hODNBeer.png', category: 'beer', subcategory: 'lager' },
+    { name: 'HODN Lager Beer', price: 35000, badge: 'New', image: 'media-assets/sevenElevenProds/alcoholicBeverages/hODNLagerBeer.png', category: 'beer', subcategory: 'lager' },
+    { name: 'Westside Pilsner', price: 69000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/pilsnerWestsideBeer.png', category: 'beer', subcategory: 'lager' },
+    { name: 'Westside Pale Ale', price: 79000, badge: 'Popular', image: 'media-assets/sevenElevenProds/alcoholicBeverages/paleAleWestsideBeer.png', category: 'beer', subcategory: 'ale' },
+    { name: 'Westside Rosé', price: 85000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/roseWestsideBeer.png', category: 'beer', subcategory: 'rose' },
+    { name: 'MX Tape Peach', price: 45000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/mXTapePeachCT.png', category: 'beer', subcategory: 'cocktail' },
+    { name: 'Belgian Choco Ice Cream', price: 45000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/belgianChocoIceCream.png', category: 'icecream', subcategory: 'icecream' },
+    { name: 'Findi Hazelnut Choco Ice Cream', price: 59000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/findiHazelNutChocoIceCream.png', category: 'icecream', subcategory: 'icecream' },
+    { name: 'Magnum Choco Milk Ice Cream', price: 55000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/magnumChocoMilkIceCream.png', category: 'icecream', subcategory: 'icecream' },
+    { name: 'Nut Ice Cream', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/nutIceCream.png', category: 'icecream', subcategory: 'icecream' },
+    { name: 'Strawberry Jam Ice Cream', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/strawberryJamIceCream.png', category: 'icecream', subcategory: 'icecream' },
+    { name: 'Vanilla Ice Cream', price: 32000, badge: 'New', image: 'media-assets/sevenElevenProds/coldSoftFood/vanillaIceCream.png', category: 'icecream', subcategory: 'icecream' },
+    { name: 'Full Choco Milk Popsicle', price: 29000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/fullChocoMilkPopcicle.png', category: 'icecream', subcategory: 'popsicle' },
+    { name: 'KitKat Pink Strawberry Popsicle', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/kitkatPinkStrawberryPopcicle.png', category: 'icecream', subcategory: 'popsicle' },
+    { name: 'Lychee Blueberry Milk Popsicle', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/lycheeBlueBerryMilkPopcicle.png', category: 'icecream', subcategory: 'popsicle' },
+    { name: 'Milo Choco Popsicle', price: 29000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/miloChocoPopcicle.png', category: 'icecream', subcategory: 'popsicle' },
+    { name: 'Salty Cream Coffee Popsicle', price: 45000, badge: 'Popular', image: 'media-assets/sevenElevenProds/coldSoftFood/saltyCreamCoffeePopcicle.png', category: 'icecream', subcategory: 'popsicle' },
+    { name: 'Celsius Sparkling', price: 45000, badge: 'Popular', image: 'media-assets/sevenElevenProds/energyDrinks/energyLPCelcius.png', category: 'energy', subcategory: 'zero' },
+    { name: 'Fusion Cosmic', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPFusionCosmic.png', category: 'energy', subcategory: 'fusion' },
+    { name: 'Fusion Galactic', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPFusionGalactic.png', category: 'energy', subcategory: 'fusion' },
+    { name: 'Fusion Paradise', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPFusionParadise.png', category: 'energy', subcategory: 'fusion' },
+    { name: 'Fusion Rockin', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPFusionRockin.png', category: 'energy', subcategory: 'fusion' },
+    { name: 'Monster Energy', price: 40000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPMonster.png', category: 'energy', subcategory: 'classic' },
+    { name: 'Red Bull Energy', price: 32000, badge: 'New', image: 'media-assets/sevenElevenProds/energyDrinks/energyLPRedBull.png', category: 'energy', subcategory: 'classic' },
+    { name: 'Reign Energy', price: 45000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPReign.png', category: 'energy', subcategory: 'zero' },
+    { name: 'Rockstar Energy', price: 38000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPRockstar.png', category: 'energy', subcategory: 'classic' },
+    { name: 'ZOA Energy', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPZoa.png', category: 'energy', subcategory: 'zero' }
   ];
 </script>
 <script src="arasaka.js"></script>
@@ -333,6 +383,8 @@
     renderGrid('tea-grid', window.fuelProducts.filter(p => p.category === 'tea'));
     renderGrid('food-grid', window.fuelProducts.filter(p => p.category === 'food'));
     renderGrid('beer-grid', window.fuelProducts.filter(p => p.category === 'beer'));
+    renderGrid('icecream-grid', window.fuelProducts.filter(p => p.category === 'icecream'));
+    renderGrid('energy-grid', window.fuelProducts.filter(p => p.category === 'energy'));
 
     document.querySelectorAll('[data-grid-filter]').forEach(btn => {
       btn.addEventListener('click', () => {

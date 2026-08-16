@@ -200,12 +200,17 @@
       const cat = p.category === 'cafe' ? 'COFFEE'
         : p.category === 'tea' ? 'TEA'
         : p.category === 'boba' ? 'BOBA'
-        : p.category === 'beer' ? 'BEER' : 'SNACK';
+        : p.category === 'beer' ? 'BEER'
+        : p.category === 'icecream' ? 'ICECREAM'
+        : p.category === 'energy' ? 'ENERGY' : 'SNACK';
       const price = new Intl.NumberFormat('vi-VN').format(p.price);
       const badge = p.badge ? `<span class="badge ${(p.badge || '').toLowerCase()}">${p.badge}</span>` : '';
       const rating = (4.5 + ((idx * 7) % 5) / 10).toFixed(1);
       const prep = 3 + (idx % 9);
-      const jp = p.category === 'beer' ? 'ビール' : ['コーヒー', 'ラテ', '抹茶', 'ボバ', 'スナック', 'デザート'][idx % 6];
+      const jp = p.category === 'beer' ? 'ビール'
+        : p.category === 'icecream' ? 'アイスクリーム'
+        : p.category === 'energy' ? 'エナジードリンク'
+        : ['コーヒー', 'ラテ', '抹茶', 'ボバ', 'スナック', 'デザート'][idx % 6];
       return `
           <div class="card-glow${p.badge === 'Bestseller' ? ' gold' : ''}"></div>
           <div class="card-image">
@@ -471,13 +476,18 @@
       const cat = p.category === 'cafe' ? 'COFFEE'
         : p.category === 'tea' ? 'TEA'
         : p.category === 'boba' ? 'BOBA'
-        : p.category === 'beer' ? 'BEER' : 'SNACK';
+        : p.category === 'beer' ? 'BEER'
+        : p.category === 'icecream' ? 'ICECREAM'
+        : p.category === 'energy' ? 'ENERGY' : 'SNACK';
       const price = new Intl.NumberFormat('vi-VN').format(p.price);
       const badge = p.badge ? `<span class="badge ${(p.badge || '').toLowerCase()}">${p.badge}</span>` : '';
       const featured = p.badge === 'Bestseller' ? ' featured' : p.badge === 'New' ? ' premium' : '';
       const rating = (4.5 + ((i * 7) % 5) / 10).toFixed(1);
       const prep = 3 + (i % 9);
-      const jp = p.category === 'beer' ? 'ビール' : ['コーヒー', 'ラテ', '抹茶', 'ボバ', 'スナック', 'デザート'][i % 6];
+      const jp = p.category === 'beer' ? 'ビール'
+        : p.category === 'icecream' ? 'アイスクリーム'
+        : p.category === 'energy' ? 'エナジードリンク'
+        : ['コーヒー', 'ラテ', '抹茶', 'ボバ', 'スナック', 'デザート'][i % 6];
       return `
         <article class="coffee-card${featured}" data-category="${p.category}" role="listitem">
           <div class="card-glow${p.badge === 'Bestseller' ? ' gold' : ''}"></div>

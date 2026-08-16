@@ -153,7 +153,9 @@
           <button class="filter-btn" data-filter="cafe" role="tab">☕ COFFEE <span class="filter-count">0</span></button>
           <button class="filter-btn" data-filter="boba" role="tab">🧋 BOBA <span class="filter-count">0</span></button>
           <button class="filter-btn" data-filter="food" role="tab">🍩 SNACKS <span class="filter-count">0</span></button>
+          <button class="filter-btn" data-filter="icecream" role="tab">🍦 ICECREAM <span class="filter-count">0</span></button>
           <button class="filter-btn" data-filter="beer" role="tab">🍺 BEER <span class="filter-count">0</span></button>
+          <button class="filter-btn" data-filter="energy" role="tab">⚡ ENERGY <span class="filter-count">0</span></button>
           <button class="filter-btn premium" data-filter="bestseller" role="tab">★ BESTSELLER <span class="filter-count">0</span></button>
           <button class="filter-btn new" data-filter="new" role="tab">✦ NEW <span class="filter-count">0</span><span class="filter-badge">NEW</span></button>
         </div>
@@ -347,12 +349,33 @@
     { name: 'Pepperoni Pizza', price: 89000, badge: null, image: 'media-assets/pepperoni.png', category: 'food' },
     { name: 'Rocket Salad', price: 69000, badge: null, image: 'media-assets/rocketsalad.png', category: 'food' },
     { name: 'Yuzu Salad', price: 69000, badge: null, image: 'media-assets/saladyuzu.png', category: 'food' },
-    { name: 'HODN Beer', price: 32000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/hODNBeer.webp', category: 'beer' },
-    { name: 'HODN Lager Beer', price: 35000, badge: 'New', image: 'media-assets/sevenElevenProds/alcoholicBeverages/hODNLagerBeer.webp', category: 'beer' },
-    { name: 'Westside Pilsner', price: 69000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/pilsnerWestsideBeer.webp', category: 'beer' },
-    { name: 'Westside Pale Ale', price: 79000, badge: 'Popular', image: 'media-assets/sevenElevenProds/alcoholicBeverages/paleAleWestsideBeer.webp', category: 'beer' },
-    { name: 'Westside Rosé', price: 85000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/roseWestsideBeer.webp', category: 'beer' },
-    { name: 'MX Tape Peach', price: 45000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/mXTapePeachCT.webp', category: 'beer' }
+    { name: 'HODN Beer', price: 32000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/hODNBeer.png', category: 'beer' },
+    { name: 'HODN Lager Beer', price: 35000, badge: 'New', image: 'media-assets/sevenElevenProds/alcoholicBeverages/hODNLagerBeer.png', category: 'beer' },
+    { name: 'Westside Pilsner', price: 69000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/pilsnerWestsideBeer.png', category: 'beer' },
+    { name: 'Westside Pale Ale', price: 79000, badge: 'Popular', image: 'media-assets/sevenElevenProds/alcoholicBeverages/paleAleWestsideBeer.png', category: 'beer' },
+    { name: 'Westside Rosé', price: 85000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/roseWestsideBeer.png', category: 'beer' },
+    { name: 'MX Tape Peach', price: 45000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/mXTapePeachCT.png', category: 'beer' },
+    { name: 'Belgian Choco Ice Cream', price: 45000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/belgianChocoIceCream.png', category: 'icecream' },
+    { name: 'Findi Hazelnut Choco Ice Cream', price: 59000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/findiHazelNutChocoIceCream.png', category: 'icecream' },
+    { name: 'Magnum Choco Milk Ice Cream', price: 55000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/magnumChocoMilkIceCream.png', category: 'icecream' },
+    { name: 'Nut Ice Cream', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/nutIceCream.png', category: 'icecream' },
+    { name: 'Strawberry Jam Ice Cream', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/strawberryJamIceCream.png', category: 'icecream' },
+    { name: 'Vanilla Ice Cream', price: 32000, badge: 'New', image: 'media-assets/sevenElevenProds/coldSoftFood/vanillaIceCream.png', category: 'icecream' },
+    { name: 'Full Choco Milk Popsicle', price: 29000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/fullChocoMilkPopcicle.png', category: 'icecream' },
+    { name: 'KitKat Pink Strawberry Popsicle', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/kitkatPinkStrawberryPopcicle.png', category: 'icecream' },
+    { name: 'Lychee Blueberry Milk Popsicle', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/lycheeBlueBerryMilkPopcicle.png', category: 'icecream' },
+    { name: 'Milo Choco Popsicle', price: 29000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/miloChocoPopcicle.png', category: 'icecream' },
+    { name: 'Salty Cream Coffee Popsicle', price: 45000, badge: 'Popular', image: 'media-assets/sevenElevenProds/coldSoftFood/saltyCreamCoffeePopcicle.png', category: 'icecream' },
+    { name: 'Celsius Sparkling', price: 45000, badge: 'Popular', image: 'media-assets/sevenElevenProds/energyDrinks/energyLPCelcius.png', category: 'energy' },
+    { name: 'Fusion Cosmic', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPFusionCosmic.png', category: 'energy' },
+    { name: 'Fusion Galactic', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPFusionGalactic.png', category: 'energy' },
+    { name: 'Fusion Paradise', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPFusionParadise.png', category: 'energy' },
+    { name: 'Fusion Rockin', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPFusionRockin.png', category: 'energy' },
+    { name: 'Monster Energy', price: 40000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPMonster.png', category: 'energy' },
+    { name: 'Red Bull Energy', price: 32000, badge: 'New', image: 'media-assets/sevenElevenProds/energyDrinks/energyLPRedBull.png', category: 'energy' },
+    { name: 'Reign Energy', price: 45000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPReign.png', category: 'energy' },
+    { name: 'Rockstar Energy', price: 38000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPRockstar.png', category: 'energy' },
+    { name: 'ZOA Energy', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPZoa.png', category: 'energy' }
   ];
 </script>
 <script src="arasaka.js"></script>
