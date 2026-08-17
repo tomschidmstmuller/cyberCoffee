@@ -202,7 +202,8 @@
         : p.category === 'boba' ? 'BOBA'
         : p.category === 'beer' ? 'BEER'
         : p.category === 'icecream' ? 'ICECREAM'
-        : p.category === 'energy' ? 'ENERGY' : 'SNACK';
+        : p.category === 'energy' ? 'ENERGY'
+        : p.category === 'fastfood' ? 'FASTFOOD' : 'SNACK';
       const price = new Intl.NumberFormat('vi-VN').format(p.price);
       const badge = p.badge ? `<span class="badge ${(p.badge || '').toLowerCase()}">${p.badge}</span>` : '';
       const rating = (4.5 + ((idx * 7) % 5) / 10).toFixed(1);
@@ -210,6 +211,7 @@
       const jp = p.category === 'beer' ? 'ビール'
         : p.category === 'icecream' ? 'アイスクリーム'
         : p.category === 'energy' ? 'エナジードリンク'
+        : p.category === 'fastfood' ? 'ファストフード'
         : ['コーヒー', 'ラテ', '抹茶', 'ボバ', 'スナック', 'デザート'][idx % 6];
       return `
           <div class="card-glow${p.badge === 'Bestseller' ? ' gold' : ''}"></div>
@@ -478,7 +480,8 @@
         : p.category === 'boba' ? 'BOBA'
         : p.category === 'beer' ? 'BEER'
         : p.category === 'icecream' ? 'ICECREAM'
-        : p.category === 'energy' ? 'ENERGY' : 'SNACK';
+        : p.category === 'energy' ? 'ENERGY'
+        : p.category === 'fastfood' ? 'FASTFOOD' : 'SNACK';
       const price = new Intl.NumberFormat('vi-VN').format(p.price);
       const badge = p.badge ? `<span class="badge ${(p.badge || '').toLowerCase()}">${p.badge}</span>` : '';
       const featured = p.badge === 'Bestseller' ? ' featured' : p.badge === 'New' ? ' premium' : '';
@@ -487,6 +490,7 @@
       const jp = p.category === 'beer' ? 'ビール'
         : p.category === 'icecream' ? 'アイスクリーム'
         : p.category === 'energy' ? 'エナジードリンク'
+        : p.category === 'fastfood' ? 'ファストフード'
         : ['コーヒー', 'ラテ', '抹茶', 'ボバ', 'スナック', 'デザート'][i % 6];
       return `
         <article class="coffee-card${featured}" data-category="${p.category}" role="listitem">

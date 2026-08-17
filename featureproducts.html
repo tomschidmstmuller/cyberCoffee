@@ -156,6 +156,7 @@
           <button class="filter-btn" data-filter="icecream" role="tab">🍦 ICECREAM <span class="filter-count">0</span></button>
           <button class="filter-btn" data-filter="beer" role="tab">🍺 BEER <span class="filter-count">0</span></button>
           <button class="filter-btn" data-filter="energy" role="tab">⚡ ENERGY <span class="filter-count">0</span></button>
+          <button class="filter-btn" data-filter="fastfood" role="tab">🍕 FASTFOOD <span class="filter-count">0</span></button>
           <button class="filter-btn premium" data-filter="bestseller" role="tab">★ BESTSELLER <span class="filter-count">0</span></button>
           <button class="filter-btn new" data-filter="new" role="tab">✦ NEW <span class="filter-count">0</span><span class="filter-badge">NEW</span></button>
         </div>
@@ -240,6 +241,19 @@
         <button class="filter-btn" data-grid-filter="fusion" data-grid-category="energy">🥤 FUSION</button>
       </div>
       <div class="product-grid" id="energy-grid"></div>
+
+      <!-- FAST FOOD -->
+      <section id="fastfood-products" class="section-header" style="margin-top: 48px;">
+        <span class="section-kicker">// SECTION 07 — FAST FOOD</span>
+        <h2 class="section-title">FAST FOOD</h2>
+        <p class="section-sub">ファストフード // QUICK FUEL — HEAT & EAT PROTOCOL</p>
+      </section>
+      <div class="filter-categories" style="margin-bottom: 18px;" role="tablist" aria-label="Fast food subcategory filters">
+        <button class="filter-btn active" data-grid-filter="all" data-grid-category="fastfood">ALL</button>
+        <button class="filter-btn" data-grid-filter="pizza" data-grid-category="fastfood">🍕 PIZZA</button>
+        <button class="filter-btn" data-grid-filter="pancake" data-grid-category="fastfood">🥞 PANCAKE</button>
+      </div>
+      <div class="product-grid" id="fastfood-grid"></div>
     </main>
 
     <!-- TERMINAL FOOTER -->
@@ -346,17 +360,17 @@
     { name: 'Westside Pale Ale', price: 79000, badge: 'Popular', image: 'media-assets/sevenElevenProds/alcoholicBeverages/paleAleWestsideBeer.png', category: 'beer', subcategory: 'ale' },
     { name: 'Westside Rosé', price: 85000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/roseWestsideBeer.png', category: 'beer', subcategory: 'rose' },
     { name: 'MX Tape Peach', price: 45000, badge: null, image: 'media-assets/sevenElevenProds/alcoholicBeverages/mXTapePeachCT.png', category: 'beer', subcategory: 'cocktail' },
-    { name: 'Belgian Choco Ice Cream', price: 45000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/belgianChocoIceCream.png', category: 'icecream', subcategory: 'icecream' },
-    { name: 'Findi Hazelnut Choco Ice Cream', price: 59000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/findiHazelNutChocoIceCream.png', category: 'icecream', subcategory: 'icecream' },
-    { name: 'Magnum Choco Milk Ice Cream', price: 55000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/magnumChocoMilkIceCream.png', category: 'icecream', subcategory: 'icecream' },
-    { name: 'Nut Ice Cream', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/nutIceCream.png', category: 'icecream', subcategory: 'icecream' },
-    { name: 'Strawberry Jam Ice Cream', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/strawberryJamIceCream.png', category: 'icecream', subcategory: 'icecream' },
-    { name: 'Vanilla Ice Cream', price: 32000, badge: 'New', image: 'media-assets/sevenElevenProds/coldSoftFood/vanillaIceCream.png', category: 'icecream', subcategory: 'icecream' },
-    { name: 'Full Choco Milk Popsicle', price: 29000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/fullChocoMilkPopcicle.png', category: 'icecream', subcategory: 'popsicle' },
-    { name: 'KitKat Pink Strawberry Popsicle', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/kitkatPinkStrawberryPopcicle.png', category: 'icecream', subcategory: 'popsicle' },
-    { name: 'Lychee Blueberry Milk Popsicle', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/lycheeBlueBerryMilkPopcicle.png', category: 'icecream', subcategory: 'popsicle' },
-    { name: 'Milo Choco Popsicle', price: 29000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFood/miloChocoPopcicle.png', category: 'icecream', subcategory: 'popsicle' },
-    { name: 'Salty Cream Coffee Popsicle', price: 45000, badge: 'Popular', image: 'media-assets/sevenElevenProds/coldSoftFood/saltyCreamCoffeePopcicle.png', category: 'icecream', subcategory: 'popsicle' },
+    { name: 'Belgian Choco Ice Cream', price: 45000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFoods/belgianChocoIceCream.png', category: 'icecream', subcategory: 'icecream' },
+    { name: 'Findi Hazelnut Choco Ice Cream', price: 59000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFoods/findiHazelNutChocoIceCream.png', category: 'icecream', subcategory: 'icecream' },
+    { name: 'Magnum Choco Milk Ice Cream', price: 55000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFoods/magnumChocoMilkIceCream.png', category: 'icecream', subcategory: 'icecream' },
+    { name: 'Nut Ice Cream', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFoods/nutIceCream.png', category: 'icecream', subcategory: 'icecream' },
+    { name: 'Strawberry Jam Ice Cream', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFoods/strawberryJamIceCream.png', category: 'icecream', subcategory: 'icecream' },
+    { name: 'Vanilla Ice Cream', price: 32000, badge: 'New', image: 'media-assets/sevenElevenProds/coldSoftFoods/vanillaIceCream.png', category: 'icecream', subcategory: 'icecream' },
+    { name: 'Full Choco Milk Popsicle', price: 29000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFoods/fullChocoMilkPopcicle.png', category: 'icecream', subcategory: 'popsicle' },
+    { name: 'KitKat Pink Strawberry Popsicle', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFoods/kitkatPinkStrawberryPopcicle.png', category: 'icecream', subcategory: 'popsicle' },
+    { name: 'Lychee Blueberry Milk Popsicle', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFoods/lycheeBlueBerryMilkPopcicle.png', category: 'icecream', subcategory: 'popsicle' },
+    { name: 'Milo Choco Popsicle', price: 29000, badge: null, image: 'media-assets/sevenElevenProds/coldSoftFoods/miloChocoPopcicle.png', category: 'icecream', subcategory: 'popsicle' },
+    { name: 'Salty Cream Coffee Popsicle', price: 45000, badge: 'Popular', image: 'media-assets/sevenElevenProds/coldSoftFoods/saltyCreamCoffeePopcicle.png', category: 'icecream', subcategory: 'popsicle' },
     { name: 'Celsius Sparkling', price: 45000, badge: 'Popular', image: 'media-assets/sevenElevenProds/energyDrinks/energyLPCelcius.png', category: 'energy', subcategory: 'zero' },
     { name: 'Fusion Cosmic', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPFusionCosmic.png', category: 'energy', subcategory: 'fusion' },
     { name: 'Fusion Galactic', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPFusionGalactic.png', category: 'energy', subcategory: 'fusion' },
@@ -366,7 +380,18 @@
     { name: 'Red Bull Energy', price: 32000, badge: 'New', image: 'media-assets/sevenElevenProds/energyDrinks/energyLPRedBull.png', category: 'energy', subcategory: 'classic' },
     { name: 'Reign Energy', price: 45000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPReign.png', category: 'energy', subcategory: 'zero' },
     { name: 'Rockstar Energy', price: 38000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPRockstar.png', category: 'energy', subcategory: 'classic' },
-    { name: 'ZOA Energy', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPZoa.png', category: 'energy', subcategory: 'zero' }
+    { name: 'ZOA Energy', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/energyDrinks/energyLPZoa.png', category: 'energy', subcategory: 'zero' },
+    { name: '4-Minute Cheese Pizza', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/fastFoods/pizza4MinCheese.webp', category: 'fastfood', subcategory: 'pizza' },
+    { name: '4-Minute Margherita Pizza', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/fastFoods/pizza4MinMagheretta.webp', category: 'fastfood', subcategory: 'pizza' },
+    { name: '4-Minute Teriyaki Pizza', price: 39000, badge: null, image: 'media-assets/sevenElevenProds/fastFoods/pizza4MinTerriyaki.webp', category: 'fastfood', subcategory: 'pizza' },
+    { name: 'Beef Bulgogi Pizza', price: 79000, badge: 'Popular', image: 'media-assets/sevenElevenProds/fastFoods/pizzaBeefBulgogi.webp', category: 'fastfood', subcategory: 'pizza' },
+    { name: 'Buldak Square Pizza', price: 65000, badge: null, image: 'media-assets/sevenElevenProds/fastFoods/pizzaBuldakSquare.webp', category: 'fastfood', subcategory: 'pizza' },
+    { name: 'Full Cheese Pizza', price: 69000, badge: null, image: 'media-assets/sevenElevenProds/fastFoods/pizzaFullCheese.webp', category: 'fastfood', subcategory: 'pizza' },
+    { name: 'Hawaiian Sausage Pizza', price: 75000, badge: null, image: 'media-assets/sevenElevenProds/fastFoods/pizzaHawaiianWSausages.webp', category: 'fastfood', subcategory: 'pizza' },
+    { name: 'Pancake', price: 32000, badge: 'New', image: 'media-assets/sevenElevenProds/fastFoods/pizzaPanCake.webp', category: 'fastfood', subcategory: 'pancake' },
+    { name: 'Pepperoni Medium Pizza', price: 79000, badge: null, image: 'media-assets/sevenElevenProds/fastFoods/pizzaPepperoniiMedium.webp', category: 'fastfood', subcategory: 'pizza' },
+    { name: 'Pepperoni Mini Pizza', price: 35000, badge: null, image: 'media-assets/sevenElevenProds/fastFoods/pizzaPepperoniiMini.webp', category: 'fastfood', subcategory: 'pizza' },
+    { name: 'Pepperoni Square Pizza', price: 65000, badge: null, image: 'media-assets/sevenElevenProds/fastFoods/pizzaPepperoniiSquare.webp', category: 'fastfood', subcategory: 'pizza' }
   ];
 </script>
 <script src="arasaka.js"></script>
@@ -385,6 +410,7 @@
     renderGrid('beer-grid', window.fuelProducts.filter(p => p.category === 'beer'));
     renderGrid('icecream-grid', window.fuelProducts.filter(p => p.category === 'icecream'));
     renderGrid('energy-grid', window.fuelProducts.filter(p => p.category === 'energy'));
+    renderGrid('fastfood-grid', window.fuelProducts.filter(p => p.category === 'fastfood'));
 
     document.querySelectorAll('[data-grid-filter]').forEach(btn => {
       btn.addEventListener('click', () => {
